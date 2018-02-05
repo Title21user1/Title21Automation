@@ -1,10 +1,10 @@
 package org.title21.POM;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.title21.validation.entities.ErrorMessages;
 
 public class AdministrationCreateNewGroup_POM
 {
@@ -18,7 +18,7 @@ public AdministrationCreateNewGroup_POM(WebDriver driver) {
 @FindBy(xpath="//a[contains(@href,'GetGroupList')]")
 WebElement groupslink;
 
-@FindBy(xpath="//a[contains(@href,'GetGroupList')]")
+@FindBy(xpath="//a[contains(@href,'AddUserGroup')]")
 WebElement addnewlink;
 
 @FindBy(xpath="//*[text()='Add Group']")
@@ -50,6 +50,16 @@ WebElement nogroupfoundresulttext;
 
 @FindBy(xpath="//tbody[@class='t21-js-clickable-rows']/tr/td[1]")
 WebElement listOfGroups;
+
+@FindBy(xpath="//button[text()='Close']")
+WebElement alertCloseButton;
+
+@FindBy(xpath="//h4[text()='Message']")
+WebElement alertMsgPopUp;
+
+@FindBy(css="#Group_Groups-error")
+WebElement alreadyGroupCreatedErrorMsg;
+
  
  public WebElement groupsTab()
  {
@@ -119,6 +129,21 @@ WebElement listOfGroups;
 	 return listOfGroups;
  }
  
+ public WebElement alertCloseButton() {
+	 
+	 return alertCloseButton;
+ }
+ 
+ public WebElement alertMsgPopUp() {
+	 
+	 return alertMsgPopUp;
+ }
+ 
+ public WebElement alreadyGroupCreatedErrorMsg() {
+	 
+	 return alreadyGroupCreatedErrorMsg;
+ }
+ 
  /*
 	 * 
 	 * This method verify text on Administration 
@@ -155,6 +180,35 @@ WebElement listOfGroups;
 		
 	}
 
+	public boolean verifyAlerPopUp(WebDriver driver){
+		
+		String alertHeaderText = alertMsgPopUp().getText();
+		
+		if(alertHeaderText.equalsIgnoreCase("Message"))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+		
+	}
+	
+	public boolean verifyalreadyGroupCreatedErrorMsg(WebDriver driver){
+		
+		String errorMessage = alreadyGroupCreatedErrorMsg().getText();		
+		if(errorMessage.contains(ErrorMessages.groupnamealreadyexist))
+		{
+			return true;
+		}
+		else
+		{	
+			return false;
+		}		
+		
+	}
+	
 	public void switchToModalDialog(WebDriver driver){
 		 
 		 driver.switchTo().alert();

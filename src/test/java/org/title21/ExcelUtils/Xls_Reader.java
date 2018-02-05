@@ -363,6 +363,7 @@ public class Xls_Reader {
 			
 		XSSFCellStyle style = workbook.createCellStyle();
 		style.setFillForegroundColor(HSSFColor.GREY_40_PERCENT.index);
+
 	//	style.setFillPattern(HSSFCellStyle.SOLID_FOREGROUND);
 	
 		style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
@@ -408,6 +409,7 @@ public class Xls_Reader {
 		XSSFCellStyle style = workbook.createCellStyle();
 		style.setFillForegroundColor(HSSFColor.GREY_40_PERCENT.index);
 		XSSFCreationHelper createHelper = workbook.getCreationHelper();
+
 //		style.setFillPattern(HSSFCellStyle.NO_FILL);
 
 		style.setFillPattern(FillPatternType.NO_FILL);

@@ -310,13 +310,11 @@ public class BaseClass {
 		sleep(2);
 	}
 	
-	public void logoutFunction(WebDriver driver){
-		logout=new LogoutPage_POM(driver);
-		logout.getAdmindropdown().click();
-		sleep(2);
-		logout.getlogoutLink().click();
-		sleep(2);
-		logout.getLogoutButton().click();		
-	}
+	/*public void logoutFunction(WebDriver driver){			
+		logout.administratorDropDown(driver).click();
+		test.log(LogStatus.PASS, "Clicked on Administrator dropdown after sucessfully login.");
+		logout.logoutLink(driver).click();
+		test.log(LogStatus.PASS, "Clicked on logout link");
+	}*/
 	
 }
