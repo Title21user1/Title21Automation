@@ -1,5 +1,7 @@
 package org.title21.test;
 
+import static org.testng.Assert.assertEquals;
+
 import org.openqa.selenium.By;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -40,7 +42,7 @@ public class AddNewUser_Test extends BaseClass{
 	public void AddNewUser() throws Exception
 	{
 		
-		test = extent.startTest("AddNewUser_Test");
+		test = extent.startTest("AddNewUser");
 		addNewUserPage= new AddNewUser_POM(driver);
 		number = FunctionUtils.generateRandomNumber();
 		
@@ -53,12 +55,12 @@ public class AddNewUser_Test extends BaseClass{
 		test.log(LogStatus.PASS, "Successfully click on 'Add New' link.");
 		
 		sleep(3);
-		
+						
 		if(addNewUserPage.verifyAddNewUserPopUpHeader(driver))
 		{
 			test.log(LogStatus.PASS, "Successfully verified 'Add New User' pop-up header."+
 					test.addScreenCapture(captureScreenShot(driver, "Add New User")));
-			
+					
 			if(addNewUserPage.general_tab() != null) 
 			{
 				test.log(LogStatus.PASS, "Successfully verified 'general' tab.");
@@ -73,9 +75,7 @@ public class AddNewUser_Test extends BaseClass{
 				
 				addNewUserPage.userFullName_Dopdown().selectByVisibleText(adminData.getEmployeeName());
 				test.log(LogStatus.PASS, "Selected "+adminData.getEmployeeName()+" as a full name.");
-				
-				//addNewUserPage.username_textbox().sendKeys(adminData.getEmployeeName());//Mart
-				
+			
 				addNewUserPage.username_textbox().sendKeys(userData[1][2]+number);//Mart
 				test.log(LogStatus.PASS, "Selected "+userData[1][2]+number+" as a user name."+
 				test.addScreenCapture(captureScreenShot(driver, "Add New User")));
