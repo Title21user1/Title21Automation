@@ -13,7 +13,7 @@ public class debug extends BaseClass{
 	}*/
 	
 	@Test
-	public static void test_db() throws ClassNotFoundException{
+	public static void test_db() throws Exception{
 		
 		DBConnection dbconnect=new DBConnection();
 		dbconnect.getConnection();
