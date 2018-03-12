@@ -4,14 +4,12 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import org.title21.utility.*;
-
 import org.testng.Assert;
+import org.title21.utility.BaseClass;
 
-public class DBConnection {
+public class DBConnection extends BaseClass {
 
-	private static Connection connection;
-
-	public static Connection getConnection() throws ClassNotFoundException {
+	public static Connection getConnection() throws Exception {
 		if (connection == null) {
 			try {
 				DriverManager.registerDriver(new com.microsoft.sqlserver.jdbc.SQLServerDriver());
@@ -27,12 +25,44 @@ public class DBConnection {
 		return connection;
 	}
 
-	private static String getDBConnectionString() {
-		
-		// TODO Auto-generated method stub
+	private static String getDBConnectionString()
+	{
+
 		return String.format("jdbc:sqlserver://%s;databaseName=%s;user=%s;password=%s;", BaseClass.dbServer,
 				BaseClass.dbName, BaseClass.dbUsername, BaseClass.dbPassword);
-		
+
+	}
+
+	public static Connection closeConnection() {
+		if (connection != null) {
+			try {
+				System.out.println("Closing DB Connection");
+				connection.close();
+			} catch (SQLException ex) {
+				ex.printStackTrace();
+			}
+		}
+		return connection;
+	}
+
+	public static int getIntDBValue(String dbquery, String cloumnName) throws Exception
+	{
+		int dbvalue = 0;
+		try{
+			getConnection();
+			String query = dbquery;
+			statement = connection.createStatement();
+			rs = statement.executeQuery(query);
+
+			while(rs.next()){
+				dbvalue= rs.getInt(cloumnName);	
+			}
+		}
+		finally{
+			closeConnection();
+		}
+		return dbvalue;
+
 	}
 }
 
