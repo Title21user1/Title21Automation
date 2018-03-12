@@ -3,12 +3,11 @@ package org.title21.DBConnection;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-
+import org.title21.utility.*;
 import org.testng.Assert;
 import org.title21.utility.BaseClass;
 
 public class DBConnection extends BaseClass {
-
 
 	public static Connection getConnection() throws Exception {
 		if (connection == null) {
@@ -63,6 +62,7 @@ public class DBConnection extends BaseClass {
 			closeConnection();
 		}
 		return dbvalue;
+
 	}
 }
 
