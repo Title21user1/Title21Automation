@@ -7,9 +7,14 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Formatter;
+import java.util.HashMap;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
@@ -32,8 +37,10 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -84,10 +91,19 @@ public class BaseClass {
 	public static String routeSheet="";
 	public static String browser="";
 	public static String baseUrl="";
+	public static String dbServer="";
+	public static String dbName="";
+	public static String dbUsername="";
+	public static String dbPassword="";
 	public static String adminUsername="";
 	public static String adminPassword="";
 	static String imagesDirectory = "";
 	static String relativePathforImage="";
+	static String downloadPath="";
+	
+	protected static Connection connection;
+	protected static Statement statement;
+	protected static ResultSet rs;
 	
 	int pixels=0;
 
@@ -125,7 +141,10 @@ public class BaseClass {
 		
 		browser=p.getProperty("browser");
 		baseUrl=p.getProperty("baseUrl");
-		excelFile=p.getProperty("excelFilePath");		
+		excelFile=p.getProperty("excelFilePath");
+		
+		//db properties
+		
 
 		loginSheet=p.getProperty("Loginsheet");
 		groupSheet=p.getProperty("Groupsheet");
@@ -133,6 +152,12 @@ public class BaseClass {
 		employeeSheet=p.getProperty("EmployeeSheet");
 		routeSheet=p.getProperty("RouteSheet");
 		
+		
+		// get db properties
+		dbServer=p.getProperty("dbserver");
+		dbName=p.getProperty("dbName");
+		dbUsername=p.getProperty("dbUser");
+		dbPassword=p.getProperty("dbPwd");
 		
 		adminUsername=p.getProperty("adminUsername");
 		adminPassword=p.getProperty("adminPassword");
@@ -142,12 +167,14 @@ public class BaseClass {
 		SimpleDateFormat formater = new SimpleDateFormat("dd_MM_yy_hh_mm_ss");
 		
 		filePath = workingDir + "\\index.html";		
-
+		
 		loginData=ExcelData(excelFile, loginSheet);
 		groupData=ExcelData(excelFile, groupSheet);
 		userData=ExcelData(excelFile, userSheet);
 		employeeData=ExcelData(excelFile, employeeSheet);
 		routeData=ExcelData(excelFile, routeSheet);
+		
+		downloadPath=System.getProperty("user.dir") + "\\DownloadedFiles";
 		
 		extent = ExtentManager.getReporter(filePath,baseUrl);	
 		
@@ -164,6 +191,8 @@ public class BaseClass {
 	public void implicitwait(WebDriver driver) {
 		driver.manage().timeouts().implicitlyWait(120, TimeUnit.SECONDS);
 	}
+	
+	
 
 	public static void createDirectory(String classname) {
 
@@ -179,6 +208,12 @@ public class BaseClass {
 		}
 	}
 	
+	public static void cleanDownloadDirectory() throws IOException{
+		
+		File file = new File(downloadPath);
+		FileUtils.cleanDirectory(file);		
+	}
+		
 	/*	
 	 * This function will take full screenshot of the application. This includes browser address bar.  
 	 * Can be used based on client requirement.
@@ -255,12 +290,23 @@ public class BaseClass {
 	}
 	
 	
-	public void getBrowser() {				
-		     
+	public void getBrowser() {		
+		
+				
 		if (browser.equalsIgnoreCase("chrome")) {
 			extent = ExtentManager.getReporter(filePath,baseUrl);
 			System.setProperty("webdriver.chrome.driver", ".\\drivers\\chromedriver.exe");
-			driver = new ChromeDriver();
+			ChromeOptions options = new ChromeOptions();
+			
+			HashMap<String, Object> chromePrefs = new HashMap<String, Object>();
+			chromePrefs.put("profile.default_content_settings.popups", 0);
+			chromePrefs.put("download.default_directory",downloadPath);
+			options.setExperimentalOption("prefs", chromePrefs);
+			DesiredCapabilities capabilities = DesiredCapabilities.chrome();
+			capabilities.setCapability(ChromeOptions.CAPABILITY, options);
+			
+			driver = new ChromeDriver(capabilities);
+			//driver = new ChromeDriver();
 			implicitwait(driver);
 			driver.get(baseUrl);
 			driver.manage().window().maximize();
@@ -372,6 +418,8 @@ public class BaseClass {
 		return strReturn;
 	}
 
+	
+	
 	public static void sleep(double seconds) {
 		try {
 			Thread.sleep(Double.valueOf(seconds * 1000).intValue());

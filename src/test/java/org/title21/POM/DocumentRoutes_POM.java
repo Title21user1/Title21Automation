@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindAll;
@@ -375,7 +376,14 @@ public class DocumentRoutes_POM extends CreateDocument_POM {
 	
 	public boolean verifyNoItemForApproval(WebDriver driver)
 	{
-		String Text = noItemForApproval_text().getText();
+		String Text="";
+		try 
+		{
+			Text = noItemForApproval_text().getText();
+		}
+		catch(NoSuchElementException e) 
+		{
+		}
 		if(Text.contains("No items for approval"))
 		{
 			return true;

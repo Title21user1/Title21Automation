@@ -1,6 +1,7 @@
 package org.title21.test;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebElement;
@@ -48,6 +49,7 @@ public class DocumentRoutes_Test extends BaseClass{
 	{		
 		test = extent.startTest("Document Routes");
 		//test.log(LogStatus.PASS, "1.Login as a web interface.");
+		test.log(LogStatus.INFO, "Link to Test case document", "<a href='file:///E:/sameer/Sameer Joshi/Title health solutions/Test case by neosoft/TestCase_WIA_Delete User.doc'>TestCaseDocument</a>");
 		documentRoutes=new DocumentRoutes_POM(driver);
 		
 		documentRoutes.getnewdoc().click();
@@ -216,7 +218,7 @@ public class DocumentRoutes_Test extends BaseClass{
 					sleep(2);
 					test.log(LogStatus.PASS, "15. Login as one of the users named in Sequence 1.");
 					
-					logInWithUserInpute("sameer", "joshi12345");
+					login.loginUser("sameer", "joshi12345");
 					
 					test.log(LogStatus.PASS, "16. Go to the approval wizard.");
 					documentRoutes.wizard_Option().click();
@@ -238,12 +240,12 @@ public class DocumentRoutes_Test extends BaseClass{
 					
 					test.log(LogStatus.PASS, "18. Navigate to the approval wizard");
 					
-					logInWithUserInpute("secret", "Title123456*");
+					login.loginUser("secret", "Title123456*");
 					
 					documentRoutes.wizard_Option().click();
 					documentRoutes.approval_Tab().click();
 					
-					if(documentRoutes.noItemForApproval_text().isDisplayed())
+					/*if(documentRoutes.noItemForApproval_text().isDisplayed())
 					{
 						test.log(LogStatus.PASS, "<b>ER 9- The document is not available in the approval wizard.<b>"+
 								test.addScreenCapture(captureScreenShot(driver, "approval wizard")));
@@ -252,14 +254,37 @@ public class DocumentRoutes_Test extends BaseClass{
 					{
 						test.log(LogStatus.FAIL, "Unable to find The document is not available in the approval wizard."+
 								test.addScreenCapture(captureScreenShot(driver, "approval wizard")));
+					}*/
+					
+					driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+					
+					if(documentRoutes.verifyNoItemForApproval(driver))
+					{
+						test.log(LogStatus.PASS, "<b>ER 9- The document is not available in the approval wizard.<b>"+
+								test.addScreenCapture(captureScreenShot(driver, "approval wizard")));
+					}
+					else
+					{
+						isValueFound=false;
+						if(!verifyDocForApprovel(documetNo))
+						{
+							test.log(LogStatus.PASS, "<b>ER 8- The document is available in the approval wizard.<b>"+
+									test.addScreenCapture(captureScreenShot(driver, "approval wizard")));
+						}
+						else
+						{
+							test.log(LogStatus.FAIL, "Document is available in the approval wizard."+
+									test.addScreenCapture(captureScreenShot(driver, "approval wizard")));
+						}
 					}
 					
+					driver.manage().timeouts().implicitlyWait(120, TimeUnit.SECONDS);
 					test.log(LogStatus.PASS, "19. Logout. ");
 					logout.logoutFunction();
 					test.log(LogStatus.PASS, "20. Login as each individual approvers listed in Sequence 1, and approve the document through the Web interface.");
 					sleep(2);
 					
-					logInWithUserInpute("sameer", "joshi12345");
+					login.loginUser("sameer", "joshi12345");
 					
 					documentRoutes.wizard_Option().click();
 					documentRoutes.approval_Tab().click();
@@ -276,7 +301,7 @@ public class DocumentRoutes_Test extends BaseClass{
 					sleep(2);
 					logout.logoutFunction();
 					
-					logInWithUserInpute("admin", "administrator");
+					login.loginUser("admin", "administrator");
 					documentRoutes.wizard_Option().click();
 					documentRoutes.approval_Tab().click();
 					sleep(2);
@@ -310,7 +335,7 @@ public class DocumentRoutes_Test extends BaseClass{
 					
 					test.log(LogStatus.PASS, "21. Login as a member of the group named in Sequence 2 again and navigate to the approval wizard.");
 					
-					logInWithUserInpute("secret", "Title123456*");
+					login.loginUser("secret", "Title123456*");
 					
 					documentRoutes.wizard_Option().click();
 					documentRoutes.approval_Tab().click();
@@ -322,7 +347,7 @@ public class DocumentRoutes_Test extends BaseClass{
 					}
 					else
 					{
-						test.log(LogStatus.PASS, "Unable to find the document is available in the approval wizard, and the status for both of the Sequence 1 individual approvals are updated.<b>"+
+						test.log(LogStatus.FAIL, "Unable to find the document is available in the approval wizard, and the status for both of the Sequence 1 individual approvals are updated.<b>"+
 								test.addScreenCapture(captureScreenShot(driver, "approval wizard")));
 					}
 				}
@@ -396,15 +421,6 @@ public class DocumentRoutes_Test extends BaseClass{
 			}
 		}
 		return isRecordFound;
-	}
-	
-	private void logInWithUserInpute(String userID, String password) 
-	{
-		login.getUsername().sendKeys(userID);
-		login.getLogin_button().click();
-		sleep(2);
-		login.getpassword().sendKeys(password);
-		login.getLogin_button().click();
 	}
 	
 }
