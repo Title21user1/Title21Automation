@@ -41,7 +41,7 @@ public class DocumentRoutes_Test extends BaseClass{
 		createDirectory(className);
 		logout=new LogoutPage_POM(driver);
 		login=new LoginPage_POM(driver);
-		login.loginFunction();
+		login.loginUser("saurabhp", "Title123456*");
 	}
 	
 	@Test(testName = "DocumentRoutes", groups = "Document Routes", priority = 0)
@@ -49,7 +49,7 @@ public class DocumentRoutes_Test extends BaseClass{
 	{		
 		test = extent.startTest("Document Routes");
 		//test.log(LogStatus.PASS, "1.Login as a web interface.");
-		test.log(LogStatus.INFO, "Link to Test case document", "<a href='file:///E:/sameer/Sameer Joshi/Title health solutions/Test case by neosoft/TestCase_WIA_Delete User.doc'>TestCaseDocument</a>");
+		test.log(LogStatus.INFO, "Link to Test case document", "<a href='file:///E:/sameer/Sameer Joshi/Title health solutions/Test case by neosoft/TestCase-WIA-document_routes.doc'>TestCaseDocument</a>");
 		documentRoutes=new DocumentRoutes_POM(driver);
 		
 		documentRoutes.getnewdoc().click();
@@ -422,5 +422,5 @@ public class DocumentRoutes_Test extends BaseClass{
 		}
 		return isRecordFound;
 	}
-	
+
 }

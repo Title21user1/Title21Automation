@@ -38,8 +38,7 @@ public class AutomaticallyLoggedOut_scenario1_Test extends BaseClass {
 	@Test(testName = "AutomaticallyLoggedOut", groups = "LogOut", priority = 0)
 	public void CreateGroupInAdmin() 
 	{
-		automaticallyLoggedOut = new AutomaticallyLoggedOut_POM(driver);
-				
+		automaticallyLoggedOut = new AutomaticallyLoggedOut_POM(driver);				
 		
 		if(automaticallyLoggedOut.verifyInactivityWarningPopUp()) 
 		{
