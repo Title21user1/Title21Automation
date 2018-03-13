@@ -12,22 +12,22 @@ import com.relevantcodes.extentreports.LogStatus;
 public class TestDB extends BaseClass
 {
 	DBQueries dbqueries;
-	
-	@Test
-	public void getSessionTimeOut() throws Exception
-	{
-		test = extent.startTest("Session Timeout");
-		
-		test.log(LogStatus.PASS,"DataBase Value "+DBConnection.getIntDBValue(dbqueries.sessessiontimeoutinminutes, 
-				"sessiontimeoutinminutes"));
-		
-	}
-	
 	@BeforeClass
 	public void beforeClass()
 	{
 		dbqueries = new DBQueries();
 	}
+	
+	@Test
+	public void getSessionTimeOut() throws Exception
+	{
+		test = extent.startTest("Session Timeout");		
+		//test.log(LogStatus.PASS,"DataBase Value "+DBConnection.getIntDBValue(dbqueries.sessessiontimeoutinminutes, 
+				//"sessiontimeoutinminutes"));
+		test.log(LogStatus.PASS,"MoveDocsBetweenCabinets"+DBConnection.executeStoredProcedure(dbqueries.moveDocsOnReleaseDate)); 
+				
+	}
+		
 	
 	@AfterClass
 	public void afterClass()

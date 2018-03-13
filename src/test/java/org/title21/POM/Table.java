@@ -78,11 +78,27 @@ public class Table extends BaseClass
 	public List<WebElement> gettableCells(int columnNumber){	
 		List<WebElement> cells = null;
 		for(WebElement row : tableRows) {
-		    cells = row.findElements(By.xpath("//td["+columnNumber+"]"));
+		    cells = row.findElements(By.xpath("//td["+columnNumber+"]")); 
+		  }
+		return cells;
+	}
+	//for doc
+	public List<WebElement> getDocumentApprovalstableCells(int columnNumber){	
+		List<WebElement> cells = null;
+		for(WebElement row : tableRows) {
+		    cells = row.findElements(By.xpath("//div[@id='DocumentApprovalsTab']//td["+columnNumber+"]"));  //div[@id='DocumentApprovalsTab']//td[2]
 		  }
 		return cells;
 	}
 	
+	public List<WebElement> getcollapseDocumentstableCells(int columnNumber){	
+		List<WebElement> cells = null;
+		for(WebElement row : tableRows) {
+		    cells = row.findElements(By.xpath("//div[@id='collapseDocuments']//td["+columnNumber+"]"));  //div[@id='DocumentApprovalsTab']//td[2]
+		  }
+		return cells;
+	}
+	//
 	public WebElement getDeleteIcon(WebElement tableRow){
 		
 		WebElement rowToDeleteElement=tableRow.findElement(By.xpath("//span[@title='Remove Group']"));
