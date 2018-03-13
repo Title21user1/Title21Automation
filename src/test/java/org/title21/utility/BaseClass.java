@@ -69,6 +69,7 @@ public class BaseClass {
 	protected static String groupData[][];
 	protected static String userData[][];
 	protected static String employeeData[][];
+	protected static String routeData[][];
 	
 	protected String data[][];
 	protected WebDriverWait waitDriver = null;
@@ -80,6 +81,7 @@ public class BaseClass {
 	public static String groupSheet="";
 	public static String employeeSheet="";
 	public static String userSheet="";
+	public static String routeSheet="";
 	public static String browser="";
 	public static String baseUrl="";
 	public static String adminUsername="";
@@ -129,6 +131,8 @@ public class BaseClass {
 		groupSheet=p.getProperty("Groupsheet");
 		userSheet=p.getProperty("UserSheet");
 		employeeSheet=p.getProperty("EmployeeSheet");
+		routeSheet=p.getProperty("RouteSheet");
+		
 		
 		adminUsername=p.getProperty("adminUsername");
 		adminPassword=p.getProperty("adminPassword");
@@ -142,7 +146,8 @@ public class BaseClass {
 		loginData=ExcelData(excelFile, loginSheet);
 		groupData=ExcelData(excelFile, groupSheet);
 		userData=ExcelData(excelFile, userSheet);
-		employeeData=ExcelData(excelFile, employeeSheet);		
+		employeeData=ExcelData(excelFile, employeeSheet);
+		routeData=ExcelData(excelFile, routeSheet);
 		
 		extent = ExtentManager.getReporter(filePath,baseUrl);	
 		

@@ -50,7 +50,6 @@ public class CreateDocument_POM
 	@FindBy(css=".t21-inline-block")
 	WebElement documentcreationverify;
 	
-	
 	@FindBy(css="#DocCheckOutTo")
 	WebElement AutoCheck;
 	
