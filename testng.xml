@@ -1,30 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Title21Suite">	
+<suite name="DDFSuite">	
 	<parameter name="configFile" value="config.properties"/>
-	<!-- <test name="AdminModuleScreens">
-		<classes>		
-			
-			<class name="org.title21.test.LoginPage_Test"/>
+	<test name="TestDDF">
+		<classes>			
+		
+			<!-- <class name="org.title21.test.LoginPage_Test"/>
 			<class name="org.title21.test.LogoutPage_Test"/>			
 			<class name="org.title21.test.AddEmployee_Test"/>
-			<class name="org.title21.test.UpdateEmployee_Test"/>
 			<class name="org.title21.test.CreateNewUser_Test"/>
 			<class name="org.title21.test.UpdateUser_Test"/>
-			<class name="org.title21.test.DeleteUser_Test"/>
-			<class name="org.title21.test.CreateDeleteGroups_Test"/>
-			<class name="org.title21.test.DeleteEmployee_Test"/>
-			<class name="org.title21.test.AccountLockout_Test"/>					
-						
-	</classes>
-	</test>  -->
-	<test name="CreateDocumentScreens">
-		<classes>		
-			
-			<!-- <class name="org.title21.test.CreateDocument_Test"/> -->			
-			<class name="org.title21.test.debug"/>							
-						
-	</classes>
+			<class name="org.title21.test.DeleteUser_Test"/> -->
+			<class name="org.title21.test.DocumentRoutes_Test"/>
+
+		</classes>
 	</test>
 </suite>
 
