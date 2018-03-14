@@ -27,6 +27,7 @@ public class ErrorMessages
 	public static final String roleFieldValidationMessage="Role is required.";
 	public static final String FileSizeuploadValidationMessage="File size must be less than 50 MB.";
 	public static final String checkedsuccessfullyMessage="checked in successfully.";
+	public static final String permissionToEdit="You don't have permissions to edit form";
 	
 	
 	

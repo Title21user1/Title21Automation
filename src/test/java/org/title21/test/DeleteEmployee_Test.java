@@ -1,27 +1,18 @@
 package org.title21.test;
 
-import java.util.NoSuchElementException;
-import java.util.concurrent.TimeUnit;
-
 import org.apache.log4j.Logger;
-import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-import org.title21.POM.AddEmployee_POM;
 import org.title21.POM.DashBord_POM;
 import org.title21.POM.Delete_Employee_POM;
 import org.title21.POM.LoginPage_POM;
 import org.title21.POM.LogoutPage_POM;
 import org.title21.dao.AdminData;
 import org.title21.utility.BaseClass;
-import org.title21.utility.FunctionUtils;
-
 import com.relevantcodes.extentreports.LogStatus;
 
 public class DeleteEmployee_Test extends BaseClass {
@@ -71,14 +62,23 @@ public class DeleteEmployee_Test extends BaseClass {
 		}
 				
 		emp.noemployeebutton().click();
-		test.log(LogStatus.PASS, " 5.Click on No Button." + "<br/>" + "<b>ER 3: The employee should not get deleted.<b>"
-				+ test.addScreenCapture(captureScreenShot(driver, "NoButtonOnConfirmationPopup")));
+		test.log(LogStatus.PASS, "5. Click on No Button. ");
+		sleep(2);
+		emp.EmployeeFilterClearButton().click();
+		sleep(2);
+		emp.EmployeeFilterResult().sendKeys(adminData.getEmployeeName());
+		sleep(2);
+		emp.EmployeeFilterResutGoButton().click();
+		sleep(2);
+		
+		test.log(LogStatus.PASS, " 6. Search for employee " + "<br/>" + "<b>ER 3: The employee is not deleted.<b>"
+				+ test.addScreenCapture(captureScreenShot(driver, "Employee Still Exist")));
 		
 		waitTillElementVisible(emp.EmployeeFilterResult());
 		sleep(4);		
-		test.log(LogStatus.PASS, "6.Click on the delete icon against the employee in the previous step.");
+		test.log(LogStatus.PASS, "7. Click on the delete icon against the employee in the previous step.");
 		if (clickonDelete()){
-			test.log(LogStatus.PASS, "7.Click on Yes Button when the confirmation dialog is displayed.");
+			test.log(LogStatus.PASS, "8. Click on Yes Button when the confirmation dialog is displayed.");
 			waitTillElementVisible(emp.deleteEmployeePopUpYesButton());
 			emp.deleteEmployeePopUpYesButton().click();
 			sleep(2);
@@ -90,12 +90,15 @@ public class DeleteEmployee_Test extends BaseClass {
 		}
 		
 		waitTillElementVisible(emp.EmployeeFilterResult());
-		test.log(LogStatus.PASS, "8. Search for the employee which was deleted in the previous step.");
-		
+		sleep(2);
+		emp.EmployeeFilterClearButton().click();
+		sleep(2);
 		emp.EmployeeFilterResult().sendKeys(adminData.getEmployeeName());
 		sleep(2);
 		emp.EmployeeFilterResutGoButton().click();
 		sleep(2);
+		
+		test.log(LogStatus.PASS, "9. Search for the employee which was deleted in the previous step.");
 		
 		if (emp.verifyNoEmployeeFoundText()){
 			test.log(LogStatus.PASS,"<b>ER5: Employee is no longer available in the list.<b>"+
