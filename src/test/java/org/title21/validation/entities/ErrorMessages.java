@@ -25,9 +25,7 @@ public class ErrorMessages
 	public static final String sequenceFieldValidationMessage="Sequence is required.";
 	public static final String allottedDaysValidationMessage="Allotted days are required.";
 	public static final String roleFieldValidationMessage="Role is required.";
-	public static final String permissionToEdit="You don't have permissions to edit form DOC";
-	
-	
+	public static final String permissionToEdit="You don't have permissions to edit form";
 	
 	
 }

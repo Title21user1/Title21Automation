@@ -25,7 +25,7 @@ import org.title21.utility.FunctionUtils;
 import com.relevantcodes.extentreports.LogStatus;
 
 public class DeleteEmployee_Test extends BaseClass {
-	LoginPage_POM login;
+	LoginPage_POM login;	
 	LogoutPage_POM logout;
 	Delete_Employee_POM emp;
 	DashBord_POM dashboardObj;

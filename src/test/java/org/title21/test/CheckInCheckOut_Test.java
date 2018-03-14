@@ -31,7 +31,7 @@ public class CheckInCheckOut_Test extends BaseClass
 		logout=new LogoutPage_POM(driver);
 		mydocs =new MyDocs_POM(driver);
 		Credoc=new CreateDocument_POM(driver);
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 	}
 
 
@@ -103,6 +103,59 @@ public class CheckInCheckOut_Test extends BaseClass
 		login.loginUser(loginData[4][0], loginData[4][1]);
 		sleep(1);
 		test.log(LogStatus.PASS,"8.	Login with the test user");
+		
+		mydocs.clickCreatedDocFromRecentViewed(mydocs.docID);
+		sleep(2);
+		mydocs.getContextMenu().click();
+		sleep(2);
+		mydocs.getCheckinContextMenu().click();
+		sleep(2);
+		mydocs.getCheckinButton().click();
+		sleep(2);
+		mydocs.getCheckinCloseButton().click();
+		sleep(2);
+		mydocs.getContextMenu().click();
+		sleep(2);
+		mydocs.getCheckoutContextMenu().click();
+		sleep(2);
+		mydocs.getCheckoutPerson().clear();
+		sleep(2);
+		mydocs.getCheckoutPerson().sendKeys("Person User");
+		sleep(2);
+		test.log(LogStatus.PASS,"9.	Try to check out a document to another user using Person field ");
+		mydocs.getCheckoutConfirmButton().click();
+		sleep(2);
+		
+		test.log(LogStatus.PASS,"<b>ER3: Successfully able to check out a document to someone else. <b>"+
+				test.addScreenCapture(captureScreenShot(driver, "Succsessful checkout to another user")));
+		
+		mydocs.getCheckinCloseButton().click();
+		sleep(2);
+		test.log(LogStatus.PASS,"10. Click on Close. ");
+		
+		logout.logoutFunction();
+		sleep(1);
+		login.loginUser(loginData[6][0], loginData[6][1]);
+		test.log(LogStatus.PASS,"11. Log in with the user which is set as Person to Checkout in step 9 ");
+		sleep(2);
+		
+		mydocs.getMyDocs().click();
+		sleep(1);
+		mydocs.getCheckOutByMe().click();
+		sleep(1);
+		mydocs.getSearch().sendKeys(mydocs.docID);
+		sleep(1);
+		mydocs.getGoButton().click();
+		sleep(1);
+		mydocs.getFirstDocumentName().click();
+		sleep(1);
+		mydocs.getDocumentApproval().click();
+		sleep(1);
+		mydocs.getEditModeON().click();
+		sleep(1);
+		mydocs.getSignatureRoute().click();
+		sleep(2);
+			
 		
 	}
 

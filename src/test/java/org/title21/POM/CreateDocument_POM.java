@@ -38,7 +38,7 @@ public class CreateDocument_POM
 	WebElement Section;
 
 
-	@FindBy(css=".form-control.t21-placeholder.valid")
+	@FindBy(xpath=".//*[@id='default-modal']/div/form/div/div[2]/div/div/div[2]/div[2]/div[2]/div/div/input")
 	WebElement search;
 	
 	@FindBy(xpath=".//*[@id='default-modal']/div/form/div/div[2]/div/div/div[2]/div[2]/div[2]/div/div/span[1]/button")
