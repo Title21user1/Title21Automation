@@ -35,7 +35,7 @@ public class CheckInCheckOut_Test extends BaseClass
 	}
 
 
-	@Test(testName = "CheckInCheckOut", groups = "Document", priority = 0)
+	@Test(testName = "CheckInCheckOut", groups = "DocumentCheck", priority = 0)
 	public void checkInCheckOut()
 	{
 		test = extent.startTest("Check In and Check Out Document");
