@@ -25,7 +25,7 @@ import org.title21.utility.FunctionUtils;
 import com.relevantcodes.extentreports.LogStatus;
 
 public class DeleteEmployee_Test extends BaseClass {
-	LoginPage_POM login;	
+	LoginPage_POM login;
 	LogoutPage_POM logout;
 	Delete_Employee_POM emp;
 	DashBord_POM dashboardObj;
@@ -71,14 +71,23 @@ public class DeleteEmployee_Test extends BaseClass {
 		}
 				
 		emp.noemployeebutton().click();
-		test.log(LogStatus.PASS, " 5.Click on No Button." + "<br/>" + "<b>ER 3: The employee should not get deleted.<b>"
-				+ test.addScreenCapture(captureScreenShot(driver, "NoButtonOnConfirmationPopup")));
+		test.log(LogStatus.PASS, "5. Click on No Button. ");
+		sleep(2);
+		emp.EmployeeFilterClearButton().click();
+		sleep(2);
+		emp.EmployeeFilterResult().sendKeys(adminData.getEmployeeName());
+		sleep(2);
+		emp.EmployeeFilterResutGoButton().click();
+		sleep(2);
+		
+		test.log(LogStatus.PASS, " 6. Search for employee " + "<br/>" + "<b>ER 3: The employee is not deleted.<b>"
+				+ test.addScreenCapture(captureScreenShot(driver, "Employee Still Exist")));
 		
 		waitTillElementVisible(emp.EmployeeFilterResult());
 		sleep(4);		
-		test.log(LogStatus.PASS, "6.Click on the delete icon against the employee in the previous step.");
+		test.log(LogStatus.PASS, "7. Click on the delete icon against the employee in the previous step.");
 		if (clickonDelete()){
-			test.log(LogStatus.PASS, "7.Click on Yes Button when the confirmation dialog is displayed.");
+			test.log(LogStatus.PASS, "8. Click on Yes Button when the confirmation dialog is displayed.");
 			waitTillElementVisible(emp.deleteEmployeePopUpYesButton());
 			emp.deleteEmployeePopUpYesButton().click();
 			sleep(2);
@@ -90,12 +99,15 @@ public class DeleteEmployee_Test extends BaseClass {
 		}
 		
 		waitTillElementVisible(emp.EmployeeFilterResult());
-		test.log(LogStatus.PASS, "8. Search for the employee which was deleted in the previous step.");
-		
+		sleep(2);
+		emp.EmployeeFilterClearButton().click();
+		sleep(2);
 		emp.EmployeeFilterResult().sendKeys(adminData.getEmployeeName());
 		sleep(2);
 		emp.EmployeeFilterResutGoButton().click();
 		sleep(2);
+		
+		test.log(LogStatus.PASS, "9. Search for the employee which was deleted in the previous step.");
 		
 		if (emp.verifyNoEmployeeFoundText()){
 			test.log(LogStatus.PASS,"<b>ER5: Employee is no longer available in the list.<b>"+
