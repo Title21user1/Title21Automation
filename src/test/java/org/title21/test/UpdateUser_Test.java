@@ -88,9 +88,10 @@ public class UpdateUser_Test extends BaseClass{
 			test.log(LogStatus.PASS, "<b>ER 4- Update user screen is displayed.<b>"+
 					test.addScreenCapture(captureScreenShot(driver, "Record as per search")));
 			
-			if(!updateUserPage.locationDropDown_click().isEnabled())
+			if(!updateUserPage.locationDropDown_click().isEnabled() &&!updateUserPage.userFullNameDropDown_click().isEnabled()&&!updateUserPage.username_textbox().isEnabled())
 			{
-				test.log(LogStatus.PASS, "<b>ER 5- location field is disabled. <b>");
+				test.log(LogStatus.PASS, "<b>ER 5- location, full name, and username field are disabled.<b>"+
+						test.addScreenCapture(captureScreenShot(driver, "Record as per search")));
 			}
 			else
 			{
@@ -98,27 +99,6 @@ public class UpdateUser_Test extends BaseClass{
 				test.addScreenCapture(captureScreenShot(driver, "location field")));
 			}
 			
-			if(!updateUserPage.userFullNameDropDown_click().isEnabled())
-			{
-				test.log(LogStatus.PASS, "<b>full name field is disabled.<b>");
-			}
-			else
-			{
-				test.log(LogStatus.FAIL, "Unable to find full name field is disabled."+
-				test.addScreenCapture(captureScreenShot(driver, "full name field")));
-			}
-			
-			if(!updateUserPage.username_textbox().isEnabled())
-			{
-				test.log(LogStatus.PASS, "<b>username field is disabled.<b>"+
-						test.addScreenCapture(captureScreenShot(driver, "field are disabled")));
-			}
-			else
-			{
-				test.log(LogStatus.FAIL, "Unable to find username field is disabled."+
-				test.addScreenCapture(captureScreenShot(driver, "username field")));
-			}
-				
 				String list = updateUserPage.selected_List().getText();
 				
 				sleep(2);

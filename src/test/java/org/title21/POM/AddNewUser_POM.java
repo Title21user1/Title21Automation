@@ -161,6 +161,22 @@ public class AddNewUser_POM extends AdminCreateDeleteGroups_POM {
     @FindBy(xpath="//span[text()='Password cannot contain UserId']")
     WebElement passwordCannotContainUserId;
     
+    @FindBy(css="#User_UserName-error")
+    WebElement userNameErrorMsg;
+    
+    @FindBy(xpath="//label[text()='User Name']")
+    WebElement userNameLabel;
+    
+    public WebElement userName_Label()
+    {
+    	return userNameLabel;
+    }
+    
+    public WebElement userNameError_Msg()
+    {
+    	return userNameErrorMsg;
+    }
+    
     public WebElement passwordCannotContainUserId_ErrorMsg()
     {
     	return passwordCannotContainUserId;
