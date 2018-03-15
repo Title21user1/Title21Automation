@@ -157,16 +157,11 @@ public class CreateNewUser_Test extends BaseClass{
 				{
 					test.log(LogStatus.PASS, "<b>ER 6- 'list of employees' in full name field and 'groups' associated with that location should get listed.<b>"+
 							test.addScreenCapture(captureScreenShot(driver, "Location Details")));
-					//addNewUserPage.userFullName_Dropdown().selectByVisibleText(adminData.getEmployeeName());
-					addNewUserPage.userFullName_Dropdown().selectByVisibleText("Martink401");
-					
-					
-//ER7,8 and steps 9,10	
+					addNewUserPage.userFullName_Dropdown().selectByVisibleText(adminData.getEmployeeName());
 					
 					test.log(LogStatus.PASS, "9.Select Location whose all employees have already been assigned a user ID");
-					addNewUserPage.location_Dropdown().selectByVisibleText("Antioch");
+					addNewUserPage.location_Dropdown().selectByVisibleText(userData[1][9]);
 					sleep(2);
-					//add excel value-
 					if(addNewUserPage.empAssigned_Msg().isDisplayed())
 					{
 						test.log(LogStatus.PASS, "<b>ER 7- It displayed validation message as 'All employees have already been assigned a user ID'.<b>"+
@@ -179,11 +174,10 @@ public class CreateNewUser_Test extends BaseClass{
 								test.addScreenCapture(captureScreenShot(driver, "already assigned a user ID")));
 					}
 					addNewUserPage.location_Dropdown().selectByVisibleText(userData[1][0]);
-					//addNewUserPage.userFullName_Dropdown().selectByVisibleText(adminData.getEmployeeName());
 					sleep(2);
-					addNewUserPage.userFullName_Dropdown().selectByVisibleText("Martink401");
+					addNewUserPage.userFullName_Dropdown().selectByVisibleText(adminData.getEmployeeName());
 					sleep(2);
-					addNewUserPage.username_textbox().sendKeys("saurabhp");
+					addNewUserPage.username_textbox().sendKeys(userData[1][10]);
 					test.log(LogStatus.PASS, "10.Enter already existing username in username field.");
 					addNewUserPage.userName_Label().click();
 					sleep(2);
@@ -224,7 +218,6 @@ public class CreateNewUser_Test extends BaseClass{
 							sleep(3);
 							
 							javaScriptClick(addNewUserPage.add_GeneralButton());
-							//addNewUserPage.add_GeneralButton().click();
 							test.log(LogStatus.PASS, "14.Click on add button.");
 							
 							sleep(3);
@@ -284,12 +277,11 @@ public class CreateNewUser_Test extends BaseClass{
 								
 								sleep(3);
 								addNewUserPage.new_PasswordInput().clear();
-								addNewUserPage.new_PasswordInput().sendKeys(userData[1][7]);
-								addNewUserPage.confirm_PasswordInput().sendKeys(userData[1][7]);
+								addNewUserPage.new_PasswordInput().sendKeys(userName+123);
+								addNewUserPage.confirm_PasswordInput().sendKeys(userName+123);
 								test.log(LogStatus.PASS, "19.Enter password contains user Id.");
 								sleep(2);
 								test.log(LogStatus.PASS, "20.Click on add button.");
-								//addNewUserPage.password_AddTab().click();
 								javaScriptClick(addNewUserPage.password_AddTab());
 								sleep(3);
 								if(addNewUserPage.passwordCannotContainUserId_ErrorMsg().isDisplayed()) 
@@ -311,7 +303,7 @@ public class CreateNewUser_Test extends BaseClass{
 								addNewUserPage.confirm_PasswordInput().sendKeys(userData[1][8]);
 								test.log(LogStatus.PASS, "22.Enter invalid data in confirm password field.");
 								sleep(2);
-								addNewUserPage.password_AddTab().click();
+								javaScriptClick(addNewUserPage.password_AddTab());
 								sleep(3);
 								if(addNewUserPage.passwordDoesNotMatch_ErrorMsg().isDisplayed())
 								{

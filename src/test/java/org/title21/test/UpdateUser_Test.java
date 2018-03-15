@@ -48,7 +48,7 @@ public class UpdateUser_Test extends BaseClass{
 	public void UpdateUser() throws Exception
 	{		
 		test = extent.startTest("Update User");
-		test.log(LogStatus.PASS, "1.Login as a web interface.");
+		test.log(LogStatus.PASS, "1.Login to the web interface.");
 		updateUserPage= new UpdateUser_POM(driver);		
 		
 		getAdministrationPage(test);	
@@ -68,7 +68,7 @@ public class UpdateUser_Test extends BaseClass{
 		test.log(LogStatus.PASS, "<b>ER 2- Only users of selected location are displayed.<b>"+
 				test.addScreenCapture(captureScreenShot(driver, "Selected Location")));
 		
-		test.log(LogStatus.PASS, "5.Click on search filter and enter the user's name");
+		test.log(LogStatus.PASS, "5.Click on search filter and enter the user's name.");
 		updateUserPage.groupFilterResult().click();
 		updateUserPage.groupFilterResult().sendKeys(adminData.getUserName());
 		
@@ -191,8 +191,12 @@ public class UpdateUser_Test extends BaseClass{
 					login.loginFunction();
 					test.log(LogStatus.PASS, "18.Login as admin user");
 					
-					getAdministrationPage(test);
-					
+					//getAdministrationPage(test);
+					test.log(LogStatus.PASS, "19.Click on Administration link from the top right menu.");
+					updateUserPage.administratorDropDown().click();
+					sleep(1);
+					updateUserPage.administrationLink().click();
+					sleep(2);
 					test.log(LogStatus.PASS, "20.Click on user link");
 					updateUserPage.user_link().click();
 					
