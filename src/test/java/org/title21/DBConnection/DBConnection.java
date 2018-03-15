@@ -2,6 +2,7 @@ package org.title21.DBConnection;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import org.title21.utility.*;
 import org.testng.Assert;
@@ -45,7 +46,13 @@ public class DBConnection extends BaseClass {
 		return connection;
 	}
 
-	public static int getIntDBValue(String dbquery, String cloumnName) throws Exception
+	/*
+	 * @param dbquery - query statement
+	 * @param columnName - columnName in which query will fetch the value.
+	 * 
+	 */
+	
+	public static int getIntDBValue(String dbquery, String columnName) throws Exception
 	{
 		int dbvalue = 0;
 		try{
@@ -53,17 +60,40 @@ public class DBConnection extends BaseClass {
 			String query = dbquery;
 			statement = connection.createStatement();
 			rs = statement.executeQuery(query);
-
+						
 			while(rs.next()){
-				dbvalue= rs.getInt(cloumnName);	
+				dbvalue= rs.getInt(columnName);
+				
 			}
 		}
 		finally{
 			closeConnection();
 		}
 		return dbvalue;
-
 	}
+	
+	public static int executeStoredProcedure(String storedProcedure) throws Exception{
+		
+		try{
+			Connection con=getConnection();
+			PreparedStatement ps= con.prepareStatement(storedProcedure);
+			
+			ps.setEscapeProcessing(true);
+			ps.executeQuery();
+			sleep(3);
+			return 1;
+		}
+		catch(Exception e){
+			System.out.println(e);
+			return 0;
+		}	
+		finally{
+			closeConnection();
+		}	
+		
+	}
+	
+	
 }
 
 

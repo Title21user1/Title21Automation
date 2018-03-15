@@ -31,6 +31,20 @@ public class AccountLockout_Test extends BaseClass
 	DashBord_POM dashboardObj;
 	String className="";
 
+	@BeforeClass
+	public void beforeClass()
+	{
+		getBrowser();
+		className = this.getClass().getName();
+		createDirectory(className);
+		login=new LoginPage_POM(driver);
+		logout=new LogoutPage_POM(driver);
+		adminpage = new AdministrationPage_POM(driver);
+		adduser = new AddNewUser_POM(driver);
+		updateuser = new UpdateUser_POM(driver);
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+	}
+	
 	@Test(testName = "AccountLockOut", groups = "LockOut", priority = 0)
 	public void accountLockout()
 	{
@@ -96,19 +110,7 @@ public class AccountLockout_Test extends BaseClass
 		extent.endTest(test);
 	}
 
-	@BeforeClass
-	public void beforeClass()
-	{
-		getBrowser();
-		className = this.getClass().getName();
-		createDirectory(className);
-		login=new LoginPage_POM(driver);
-		logout=new LogoutPage_POM(driver);
-		adminpage = new AdministrationPage_POM(driver);
-		adduser = new AddNewUser_POM(driver);
-		updateuser = new UpdateUser_POM(driver);
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-	}
+	
 
 	@AfterClass
 	public void afterClass()

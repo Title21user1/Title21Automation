@@ -153,7 +153,6 @@ public class UpdateUser_Test extends BaseClass{
 							test.addScreenCapture(captureScreenShot(driver, "successful update")));
 					
 					test.log(LogStatus.PASS, "13.Enter password and confirm password");
-						
 					sleep(3);
 					updateUserPage.new_PasswordInput().sendKeys(userData[1][5]);
 					updateUserPage.confirm_PasswordInput().sendKeys(userData[1][5]);
@@ -163,7 +162,6 @@ public class UpdateUser_Test extends BaseClass{
 					updateUserPage.UpdateUserConfirm_Button().click();
 					sleep(2);
 					updateUserPage.confirmClose_Button().click();
-					
 					sleep(3);
 					test.log(LogStatus.PASS, "15.Logout from admin");
 					logout.logoutFunction();	
