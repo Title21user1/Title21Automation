@@ -8,6 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 
 public class MyDocs_POM
 {
@@ -46,6 +47,9 @@ public class MyDocs_POM
 	@FindBy(xpath=".//*[@id='displaySel']/div[1]/div[3]/div/ul/li[13]/div/a/span[2]")
 	WebElement	checkoutContextMenu;
 	
+	@FindBy(xpath=".//*[@id='displaySel']/div[1]/div[3]/div/ul/li[12]/div/a/span[2]")
+	WebElement	routeApporvalContextMenu;
+	
 	@FindBy(xpath=".//*[@id='default-modal']/div/form/div/div[3]/input")
 	WebElement	checkinButton;
 	
@@ -70,6 +74,11 @@ public class MyDocs_POM
 	@FindBy(xpath=".//*[@id='default-modal']/div/form/div/div[2]/div[1]/div[2]/select")
 	WebElement	routeName;
 	
+	@FindBy(xpath=".//*[@id='default-modal']/div/form/div/div[3]/input")
+	WebElement signatureroteAddButton;
+	
+	@FindBy(xpath=".//*[@id='set-2']/div/a")
+	WebElement rejectedByOthers;
 	
 	@FindBy(xpath=".//*[@id='t21-workarea']/div/div/div[1]/div[1]/div[2]/div[3]/table/tbody/tr/td[1]/a")
 	List<WebElement> recentViewedDocs;
@@ -150,11 +159,26 @@ public class MyDocs_POM
 		return editModeON;
 	}
 	
-	public WebElement getRouteName()
-	{
-		return routeName;
+	public WebElement getSignatureRouteAddButton()
+	{		
+		return signatureroteAddButton;			
 	}
 	
+	public WebElement getRouteApporvalContext()
+	{		
+		return routeApporvalContextMenu;			
+	}
+	
+	public WebElement rejectedByOthers()
+	{		
+		return rejectedByOthers;			
+	}
+	
+	public Select getRouteName()
+	{		
+		Select selectObj=new Select(routeName);
+		return selectObj;		
+	}
 	
 	public List<WebElement> getAllRecentViewedDocs()
 	{
@@ -193,20 +217,5 @@ public class MyDocs_POM
 				element.click();
 			}
 		}
-	}
-	
-	public String CheckEditModeStatus()
-	{
-		String editMode;
-		if(signatureRoute.isEnabled())
-		{
-			editMode="ON";
-		}else{
-			editMode="OFF";
-			log.error("Edit mode is off");
-		}	
-		return editMode;
-	}
-	
-	
+	}	
 }
