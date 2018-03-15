@@ -172,7 +172,7 @@ public class BaseClass {
 		groupData=ExcelData(excelFile, groupSheet);
 		userData=ExcelData(excelFile, userSheet);
 		employeeData=ExcelData(excelFile, employeeSheet);
-		routeData=ExcelData(excelFile, routeSheet);
+		//routeData=ExcelData(excelFile, routeSheet);
 		
 		downloadPath=System.getProperty("user.dir") + "\\DownloadedFiles";
 		
@@ -296,17 +296,19 @@ public class BaseClass {
 		if (browser.equalsIgnoreCase("chrome")) {
 			extent = ExtentManager.getReporter(filePath,baseUrl);
 			System.setProperty("webdriver.chrome.driver", ".\\drivers\\chromedriver.exe");
-			ChromeOptions options = new ChromeOptions();
+			/*ChromeOptions options = new ChromeOptions();
 			
 			HashMap<String, Object> chromePrefs = new HashMap<String, Object>();
 			chromePrefs.put("profile.default_content_settings.popups", 0);
 			chromePrefs.put("download.default_directory",downloadPath);
+			
 			options.setExperimentalOption("prefs", chromePrefs);
 			DesiredCapabilities capabilities = DesiredCapabilities.chrome();
 			capabilities.setCapability(ChromeOptions.CAPABILITY, options);
+			*/
 			
-			driver = new ChromeDriver(capabilities);
-			//driver = new ChromeDriver();
+			//driver = new ChromeDriver(capabilities);
+			driver = new ChromeDriver();
 			implicitwait(driver);
 			driver.get(baseUrl);
 			driver.manage().window().maximize();
