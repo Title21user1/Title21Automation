@@ -1,14 +1,14 @@
-package org.title21.Documents_test;
+package org.title21.test;
 
 import java.util.concurrent.TimeUnit;
 
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import org.title21.Documents_POM.MyDocs_POM;
+import org.title21.POM.CreateDocument_POM;
 import org.title21.POM.LoginPage_POM;
 import org.title21.POM.LogoutPage_POM;
-import org.title21.Documents_POM.CreateDocument_POM;
+import org.title21.POM.MyDocs_POM;
 import org.title21.POM.WizardPage_POM;
 import org.title21.utility.BaseClass;
 import org.title21.validation.entities.ErrorMessages;
@@ -50,14 +50,14 @@ public class CheckInCheckOut_Test extends BaseClass
 		Credoc.getnewdoc().click();
 		sleep(2);
 		Credoc.getdocument().click();
-		sleep(3);
+		waitTillElementVisible(Credoc.getSearchText());
 
 		Credoc.getlocationDrodown().selectByVisibleText("Pittsburgh");
 		sleep(2);
 		Credoc.getSearchText().sendKeys("SOP.CT");
 		sleep(1);
 		Credoc.getGoButton().click();
-		sleep(1);
+		sleep(2);
 		Credoc.selectType().click();
 		sleep(2);
 		Credoc.getAutoCheck().selectByVisibleText("Check Out User");
