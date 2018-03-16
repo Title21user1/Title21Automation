@@ -1,4 +1,4 @@
-package org.title21.test;
+package org.title21.Documents_test;
 
 import java.util.concurrent.TimeUnit;
 
@@ -8,7 +8,6 @@ import org.testng.annotations.Test;
 import org.title21.POM.CreateDocument_POM;
 import org.title21.POM.LoginPage_POM;
 import org.title21.POM.LogoutPage_POM;
-import org.title21.POM.MyDocs_POM;
 import org.title21.POM.WizardPage_POM;
 import org.title21.utility.BaseClass;
 import org.title21.validation.entities.ErrorMessages;
@@ -20,7 +19,7 @@ public class CheckInCheckOut_Test extends BaseClass
 	LoginPage_POM login; 
 	LogoutPage_POM logout;
 	CreateDocument_POM Credoc;
-	MyDocs_POM mydocs;
+	org.title21.Documents_POM.MyDocs_POM mydocs;
 	WizardPage_POM wizpage;
 	String className="";
 
@@ -32,7 +31,7 @@ public class CheckInCheckOut_Test extends BaseClass
 		createDirectory(className);
 		login=new LoginPage_POM(driver);
 		logout=new LogoutPage_POM(driver);
-		mydocs =new MyDocs_POM(driver);
+		mydocs =new org.title21.Documents_POM.MyDocs_POM(driver);
 		Credoc=new CreateDocument_POM(driver);
 		wizpage = new WizardPage_POM(driver);
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);

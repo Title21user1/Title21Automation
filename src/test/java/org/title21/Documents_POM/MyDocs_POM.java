@@ -1,4 +1,4 @@
-package org.title21.POM;
+package org.title21.Documents_POM;
 
 import java.util.List;
 
@@ -9,6 +9,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
+import org.title21.POM.AddEmployee_POM;
 
 public class MyDocs_POM
 {

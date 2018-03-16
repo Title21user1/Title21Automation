@@ -3,13 +3,10 @@ package org.title21.POM;
 import java.util.List;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.title21.utility.BaseClass;
 
 public class WizardPage_POM extends BaseClass{
@@ -55,19 +52,19 @@ public class WizardPage_POM extends BaseClass{
 	@FindBy(xpath =".//*[@id='Approval']/a")
 	WebElement approvalbutton;
 	
-	@FindBy(xpath =".//*[@id='ApprovalDocs']/div[1]/div/form/div/input")
+	@FindBy(css =".form-control.t21-placeholder")
 	WebElement approvalFilterText;
 	
-	@FindBy(xpath =".//*[@id='ApprovalDocs']/div[1]/div/form/div/span[1]/button")
+	@FindBy(css =".t21-ajax-submit-button.form-control.form-inline.btn.t21-btn-default")
 	WebElement approvalGoButton;
 	
-	@FindBy(xpath =".//*[@id='collapseDocuments']/div/table/tbody/tr[1]/td[3]/a")
+	@FindBy(xpath ="//a[contains(@href,'Approval/SelectForm')]")
 	WebElement approvalFirstDoc;
 	
-	@FindBy(xpath =".//*[@id='tab-strip']/ul/li[2]/a[1]")
+	@FindBy(xpath ="//a[@class='flash']")
 	WebElement firstDocTab;
 	
-	@FindBy(xpath =".//*[@id='Tutorial_step2']/a[1]")
+	@FindBy(xpath ="//a[text()='Reject']")
 	WebElement rejectButton;
 	
 	@FindBy(id ="Pin")
@@ -76,11 +73,13 @@ public class WizardPage_POM extends BaseClass{
 	@FindBy(id ="Comments")
 	WebElement commentsText;
 	
-	@FindBy(xpath =".//*[@id='default-modal']/div/form/div/div[3]/div/input")
+	@FindBy(xpath ="//input[@name='submitButton']")
 	WebElement rejectConfirmButton;
 	
-	@FindBy(xpath =".//*[@id='t21-workarea']/div/div/div[1]/div/div[3]/div/p")
+	@FindBy(xpath ="//p[contains(text(),'successfully rejected')]")
 	WebElement rejectMessage;
+	
+	
 	
 	
 	public WebElement getWizardButton()
