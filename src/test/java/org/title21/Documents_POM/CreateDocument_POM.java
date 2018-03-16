@@ -532,6 +532,12 @@ public class CreateDocument_POM
 
 		return editdocumentNO;			
 	}
+	
+	public WebElement getPlusButtonuploadfile()
+	{
+		
+		return PlusButtonuploadfile;			
+	}
 
 	public boolean CheckinSuccessmessage(){
 
