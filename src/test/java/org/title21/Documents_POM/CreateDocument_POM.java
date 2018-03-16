@@ -1,5 +1,4 @@
-
-package org.title21.POM;
+package org.title21.Documents_POM;
 //import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -140,7 +139,6 @@ public class CreateDocument_POM
 	@FindBy(css=".fa.fa-level-up.grid-button-icon")
 	WebElement checkin;
 	
-
 	@FindBy(css=".//*[@id='set-1']/div/a")
 	WebElement checkouttome;
 	
@@ -148,14 +146,11 @@ public class CreateDocument_POM
 	@FindBy(css=".btn.t21-btn-default")
 	WebElement checkoutsuccessclose;
 	
-
 	@FindBy(xpath=".//*[@id='lock']/a[1]")
 	WebElement EditModeoffDisable;
 	
-
 	@FindBy(xpath=".//*[@id='displaySel']/div[1]/div[3]/div/a/span[2]")//.//*[@id='displaySel']/div[1]/div[3]/div/a/span[2]
 	WebElement contextmenu;
-	
 	
 	
 	@FindBy(css=".btn.t21-btn-primary.t21-ajax-submit-button")
@@ -169,26 +164,32 @@ public class CreateDocument_POM
 	@FindBy(css="#OpenOnCheckOut")
 	WebElement checkbox;
 	
-
 	@FindBy(xpath=".//*[@id='t21-workarea']/div/div/div[1]/div[1]/div[2]/div[3]/table/tbody/tr[1]/td[1]/a")
 	WebElement createddoc;
 	
-	
+	@FindBy(xpath=".//*[@id='default-modal']/div/form/div/div[2]/div/div/div[2]/div[2]/div[2]/div/div/span[1]/button")
+	WebElement goButton;
 	
 	@FindBy(css=".btn.t21-btn-primary.t21-ajax-submit-button.process-btn-click")
 	WebElement checkoutconfirm;
 	
 	@FindBy(css=".col-lg-12.col-md-12.col-sm-12.col-xs-12.t21-padding-top")
 	WebElement clickaftercheckin;
-		
-
+	
 	@FindBy(xpath=".//*[@id='dialog-form']/div/div/div[1]/button")
 	WebElement checkincancelSucesswindow;
 	
-
 	@FindBy(css=".t21-no-bold")
 	WebElement checkoutversion;
 	
+	@FindBy(xpath=".//*[@id='default-modal']/div/form/div/div[2]/div/div/div[2]/div[3]/div/div/div/table/tbody/tr/td[1]/a")
+	WebElement selectType;
+	
+	@FindBy(xpath=".//*[@id='DocumentTitle']")
+	WebElement docTitle;
+	
+	@FindBy(xpath=".//*[@id='displaySel']/div/p")
+	WebElement permissionMessage;
 	
 	public WebElement getcreateddoc()
 	{
@@ -380,6 +381,12 @@ public class CreateDocument_POM
 		return newdoc;			
 	}
 	
+	public WebElement getGoButton()
+	{
+
+		return goButton;			
+	}
+	
 	public WebElement getDocumentTitlemsg()
 	{
 		
@@ -398,9 +405,27 @@ public class CreateDocument_POM
 	
 	public WebElement getUploadsizemsg()
 	{
-		
+
 		return UploadSizemsg;			
 	}
+	
+	public WebElement getSearchText()
+	{		
+		return search;			
+	}
+
+	public WebElement selectType()
+	{
+
+		return selectType;			
+	}
+	
+	public WebElement getDocTitle()
+	{
+
+		return docTitle;			
+	}
+	
 	
 	
 public boolean DocumentTitlemsgvalidation(){
@@ -543,9 +568,29 @@ public WebElement getdocument()
 		return ConfirmButtonm;			
 	}
 	public WebElement Appendix()
-	{
-		
+	{		
 		return Appendix;			
+	}
+	
+
+	public WebElement getPermissionMessage()
+	{		
+		return permissionMessage;			
+	}
+	
+	public boolean permissionToEditMessage(){
+
+		element=getPermissionMessage();
+		String errorMessage = element.getText();
+		boolean isValidationMessagePresent=false;
+
+		if(errorMessage.contains(ErrorMessages.permissionToEdit))
+		{
+			isValidationMessagePresent=true;
+		}else{
+			log.error("Validation message for Permission is not present.");
+		}	
+		return isValidationMessagePresent;
 	}
 	
 	}

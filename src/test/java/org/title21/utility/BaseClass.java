@@ -296,7 +296,7 @@ public class BaseClass {
 		if (browser.equalsIgnoreCase("chrome")) {
 			extent = ExtentManager.getReporter(filePath,baseUrl);
 			System.setProperty("webdriver.chrome.driver", ".\\drivers\\chromedriver.exe");
-			/*ChromeOptions options = new ChromeOptions();
+			ChromeOptions options = new ChromeOptions();
 			
 			HashMap<String, Object> chromePrefs = new HashMap<String, Object>();
 			chromePrefs.put("profile.default_content_settings.popups", 0);
@@ -305,8 +305,7 @@ public class BaseClass {
 			options.setExperimentalOption("prefs", chromePrefs);
 			DesiredCapabilities capabilities = DesiredCapabilities.chrome();
 			capabilities.setCapability(ChromeOptions.CAPABILITY, options);
-			*/
-			
+						
 			//driver = new ChromeDriver(capabilities);
 			driver = new ChromeDriver();
 			implicitwait(driver);
