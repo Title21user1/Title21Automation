@@ -1,4 +1,7 @@
 package org.title21.POM;
+import java.util.List;
+import java.util.Random;
+
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -30,23 +33,20 @@ public class CreateDocument_POM
 	@FindBy(xpath=".//*[@id='Location']")
 	WebElement location;
 
-
 	@FindBy(xpath=".//*[@id='Cabinet']")
 	WebElement Cabinet;
 
 	@FindBy(css="#CabinetSection")
 	WebElement Section;
 
-
-	@FindBy(xpath=".//*[@id='default-modal']/div/form/div/div[2]/div/div/div[2]/div[2]/div[2]/div/div/input")
+	@FindBy(css=".form-control.t21-placeholder")
 	WebElement search;
 	
-	@FindBy(xpath=".//*[@id='default-modal']/div/form/div/div[2]/div/div/div[2]/div[2]/div[2]/div/div/span[1]/button")
+	@FindBy(css=".t21-ajax-submit-button.form-control.form-inline.btn.t21-btn-default")
 	WebElement goButton;
 
 	@FindBy(css=".t21-inline-block")
 	WebElement documentcreationverify;
-
 
 	@FindBy(css="#DocCheckOutTo")
 	WebElement AutoCheck;
@@ -59,7 +59,6 @@ public class CreateDocument_POM
 
 	@FindBy(xpath="//span[contains(@class,'field-validation-error') and contains(@data-valmsg-for,'DocAppendix')]")
 	WebElement appedixvalmsg;
-
 
 	@FindBy(xpath="//span[contains(@class,'field-validation-error') and contains(@data-valmsg-for,'DocChangeSummary')]")
 	WebElement Documentsummarymsg;
@@ -85,17 +84,99 @@ public class CreateDocument_POM
 	@FindBy(css=".btn.t21-btn-default.pull-left")
 	WebElement Cancel;
 
-	@FindBy(xpath=".//*[@id='displaySel']/div[1]/div[2]/span")
+	@FindBy(css="#documentId")
 	WebElement createdDocID;
 	
 	@FindBy(xpath=".//*[@id='DocumentTitle']")
 	WebElement docTitle;
 	
-	@FindBy(xpath=".//*[@id='default-modal']/div/form/div/div[2]/div/div/div[2]/div[3]/div/div/div/table/tbody/tr/td[1]/a")
+	@FindBy(xpath="//input[contains(@name,'ValueOfBasicFilter')]")
 	WebElement selectType;
 	
-	@FindBy(xpath=".//*[@id='displaySel']/div/p")
+	@FindBy(xpath="//p[contains(text(),'permissions to edit')]")
 	WebElement permissionMessage;
+	
+	@FindBy(xpath="//span[contains(@class,'field-validation-error') and contains(@data-valmsg-for,'AttachmentFile')]")
+	 WebElement UploadSizemsg;
+	
+	@FindBy(xpath=".//*[@id='lock']/a[1]")
+	WebElement EditModeOff;
+	
+	@FindBy(xpath=".//*[@id='NavMyDocs']/a")
+	WebElement MyDoc;
+	
+	@FindBy(css=".btn.btn-default.t21-ajax-link")
+	WebElement EditModeON;
+	
+	@FindBy(css=".btn.btn-default.fa.fa-plus-circle.t21-ajax-link")
+	WebElement PlusButtonuploadfile;
+	
+	@FindBy(xpath=".//*[@id='AttachmentFile']")
+	WebElement Brouse;
+	
+	@FindBy(xpath="//button[contains(@class,'btn t21-btn-primary t21-ajax-submit-button')]")
+	WebElement AddButtonupload;
+	
+	
+	@FindBy(xpath=".//*[@id='lock']")
+	WebElement editmodedisable;
+	
+	@FindBy(linkText="PDF")
+	WebElement pdf;
+	
+	@FindBy(linkText="Native")
+	WebElement nativeafile;
+	
+	@FindBy(css="")
+	WebElement checkinwindowclose;
+	
+	@FindBy(css=".t21-js-user-message-text")
+	WebElement checkinwindowsuccessmsg;
+	
+	@FindBy(css=".modal-title")
+	WebElement poupcheckin;
+	
+	@FindBy(css=".modal-title")
+	WebElement uploadpopuptitle;
+	
+	@FindBy(css=".fa.fa-level-up.grid-button-icon")
+	WebElement checkin;
+	
+	@FindBy(css=".//*[@id='set-1']/div/a")
+	WebElement checkouttome;
+	
+	@FindBy(css=".btn.t21-btn-default")
+	WebElement checkoutsuccessclose;
+	
+	@FindBy(xpath=".//*[@id='lock']/a[1]")
+	WebElement EditModeoffDisable;
+	
+	@FindBy(xpath=".//*[@id='displaySel']/div[1]/div[3]/div/a/span[2]")
+	WebElement contextmenu;
+	
+	@FindBy(css=".btn.t21-btn-primary.t21-ajax-submit-button")
+	WebElement checkinbuttonwindow;
+	
+	@FindBy(css=".fa.fa-level-down.grid-button-icon")
+	WebElement checkoutbutton;
+	
+	@FindBy(css="#OpenOnCheckOut")
+	WebElement checkbox;
+	
+	@FindBy(xpath=".//*[@id='t21-workarea']/div/div/div[1]/div[1]/div[2]/div[3]/table/tbody/tr[1]/td[1]/a")
+	WebElement createddoc;
+	
+	@FindBy(css=".btn.t21-btn-primary.t21-ajax-submit-button.process-btn-click")
+	WebElement checkoutconfirm;
+	
+	@FindBy(css=".col-lg-12.col-md-12.col-sm-12.col-xs-12.t21-padding-top")
+	WebElement clickaftercheckin;
+		
+	@FindBy(xpath=".//*[@id='dialog-form']/div/div/div[1]/button")
+	WebElement checkincancelSucesswindow;
+	
+	@FindBy(css=".t21-no-bold")
+	WebElement checkoutversion;
 	
 	
 	public WebElement getDocTitle()
@@ -292,5 +373,221 @@ public class CreateDocument_POM
 		}	
 		return isValidationMessagePresent;
 	}
+	
+	public WebElement getcreateddoc()
+	{
+
+		return createddoc;			
+	}
+
+	public WebElement EditModeoffDisable()
+	{
+
+		return EditModeoffDisable;			
+	}
+
+	public WebElement checkoutsuccesswindowclose()
+	{
+
+		return checkoutsuccessclose;			
+	}
+
+	public WebElement getpoupcheckin()
+	{
+
+		return poupcheckin;			
+	}
+
+	public WebElement  editmodedisable()
+	{
+
+		return  editmodedisable;			
+	}
+
+	public WebElement getclickaftercheckin()
+	{
+
+		return clickaftercheckin;			
+	}
+
+	public WebElement getcheckinbuttonwindow()
+	{
+
+		return checkinbuttonwindow;			
+	}
+
+	public WebElement getcheckoutconfirm()
+	{
+
+		return checkoutconfirm;			
+	}
+	public WebElement getcheckboxcheckout()
+	{
+
+		return checkbox;			
+	}
+
+	public WebElement checkoutvesionval()
+	{
+
+		return checkoutversion;			
+	}
+
+	public WebElement getcheckouttome()
+	{
+
+		return checkouttome;			
+	}
+
+
+	public WebElement getcheckoutbutton()
+	{
+
+		return checkoutbutton;			
+	}
+	public WebElement getcheckincancelsuccess()
+	{
+
+		return checkincancelSucesswindow;			
+	}
+
+	public WebElement getcheckinwindowclose()
+	{
+
+		return checkinwindowclose;			
+	}
+	public WebElement getcheckinwindowsuccessmsg()
+	{
+
+		return checkinwindowsuccessmsg;			
+	}
+
+	public WebElement getcheckin()
+	{
+
+		return checkin;	//.//*[@id='displaySel']/div[1]/div[3]/div/ul/li[12]/div/a/span[2]		
+	}
+
+	public WebElement getEditModeON()
+	{
+
+		return EditModeON;			
+	}
+
+	public WebElement getcontextmenu()
+	{
+
+		return contextmenu;			
+	}
+
+	public WebElement getpdf()
+	{
+
+		return pdf;			
+	}
+
+	public WebElement getnative()
+	{
+
+		return nativeafile;			
+	}
+
+	public WebElement getCancel()
+	{
+
+		return Cancel;			
+	}
+	public WebElement getuploadpopuptitle()
+	{
+
+		return uploadpopuptitle;			
+	}
+
+	public WebElement getAddButtonupload()
+	{
+
+		return AddButtonupload;			
+	}
+
+
+	public WebElement getBrouse()
+	{
+
+		return Brouse;			
+	}
+
+	public WebElement getMyDocs()
+	{
+
+		return MyDoc;			
+	}
+
+	public WebElement getEditModeOff()
+	{
+
+		return EditModeOff;			
+	}
+	public WebElement GeteditdocumentNo()
+	{
+
+		return editdocumentNO;			
+	}
+
+	public boolean CheckinSuccessmessage(){
+
+		element=getcheckinwindowsuccessmsg();
+		String errorMessage = element.getText();
+		boolean isValidationMessagePresent=false;		
+
+		if(errorMessage.contains(ErrorMessages.checkedsuccessfullyMessage))
+		{
+			isValidationMessagePresent=true;
+		}else{
+			log.error("Validation message for check in is not valid.");
+		}	
+		return isValidationMessagePresent;
+	}
+
+	public boolean checkoutversionvalidation(){
+
+		element=checkoutvesionval();
+		String errorMessage = element.getText();
+		boolean isValidationMessagePresent=false;		
+
+		if(errorMessage.contains("0.1"))
+		{
+			isValidationMessagePresent=true;
+		}else{
+			log.error("Version not chnages after Checkout.");
+		}	
+		return isValidationMessagePresent;
+	}
+	
+	public boolean UploadFileSizeValidation(){
+
+		element=UploadSizemsg;
+		String errorMessage = element.getText();
+		boolean isValidationMessagePresent=false;		
+
+		if(errorMessage.contains(ErrorMessages.FileSizeuploadValidationMessage))
+		{
+			isValidationMessagePresent=true;
+		}else{
+			log.error("Validation message for file size is not valid  ");
+		}	
+		return isValidationMessagePresent;
+	}
+
+
+	public String ValueFromAppendix()
+	{		
+		//	Select selectObj=new Select(Number);
+		List allOptions =  getnumberappedix().getOptions();
+		Random rand = new Random();
+		int randomElement = (Integer) allOptions.get(rand.nextInt(allOptions.size()));
+		System.out.print(randomElement);
+		return String.valueOf(randomElement);
+	}
+
 
 }
