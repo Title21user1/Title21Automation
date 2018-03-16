@@ -86,8 +86,8 @@ public class AddEmployee_Test extends BaseClass {
 		
 		javaScriptClick(addEmployeePOM.getAddBtn());
 		test.log(LogStatus.PASS,"5.	Click on Add Button without entering data in it.");
-		test.log(LogStatus.PASS,"ER4: It displays validation messages as 'Location is required', 'Full Name is required',"+
-				"'Employee ID is required', 'Business Unit is required', 'Department is required'."+
+		test.log(LogStatus.PASS,"<b> ER4: It displays validation messages as 'Location is required', 'Full Name is required',"+
+				"'Employee ID is required', 'Business Unit is required', 'Department is required'.<b>"+
 				test.addScreenCapture(captureScreenShot(driver, "ValidationMessages")));
 				
 		if (!addEmployeePOM.verifyLocationValidationMessage()){	
@@ -126,8 +126,12 @@ public class AddEmployee_Test extends BaseClass {
 		}
 		
 		if (isValidationMessageProper){
-			test.log(LogStatus.PASS, "Displays validation messages when no data entered.(General TAB)"+
-					test.addScreenCapture(captureScreenShot(driver, "ValidationMessagesFailure")));			
+			test.log(LogStatus.PASS,"<b> ER4: It displays validation messages as 'Location is required', 'Full Name is required',"+
+					"'Employee ID is required', 'Business Unit is required', 'Department is required'.<b>"+
+					test.addScreenCapture(captureScreenShot(driver, "ValidationMessages")));
+		}else{
+			test.log(LogStatus.PASS,"<b> 5a: It displays all other validation messages properly except given failure/failures above."+
+					test.addScreenCapture(captureScreenShot(driver, "ValidationMessages")));
 		}
 		
 		log.info("Entering data in form.");
@@ -219,7 +223,7 @@ public class AddEmployee_Test extends BaseClass {
 		
 		waitTillElementVisible(addEmployeePOM.getSelectedJobCode());
 		
-		test.log(LogStatus.PASS, "ER8: It should be visible in 'selected job codes' section.  "+
+		test.log(LogStatus.PASS, "<b> ER8: It should be visible in 'selected job codes' section.<b>"+
 				test.addScreenCapture(captureScreenShot(driver, "SelectedJobCodeList")));
 		
 		addEmployeePOM.getAddBtn().click();	
@@ -230,15 +234,11 @@ public class AddEmployee_Test extends BaseClass {
 						
 		if (addEmployeePOM.verifySuccessMessage()){
 			
-			test.log(LogStatus.PASS, "Employee created successfully."+
+			test.log(LogStatus.PASS, "<b>ER9: The employee should get added successfully and A message confirming successfully added should get displayed.<b>"+
 			test.addScreenCapture(captureScreenShot(driver, "Employee added successfully.")));
 		};
 		
-		log.info("employee added successfully.");
-		
-		waitTillElementVisible(addEmployeePOM.getCloseButtononSuccessMessage());
-		
-		test.log(LogStatus.PASS, "<b>ER9: The employee should get added successfully and A message confirming successfully added should get displayed.<b>");
+		log.info("employee added successfully.");		
 		
 		addEmployeePOM.getCloseButtononSuccessMessage().click();	
 		

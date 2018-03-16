@@ -1,4 +1,4 @@
-package org.title21.test;
+package org.title21.Documents_test;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -21,7 +21,7 @@ public class DocumentRoutes_Test extends BaseClass{
 	LoginPage_POM login;
 	LogoutPage_POM logout;
 	DocumentRoutes_POM documentRoutes;
-	static Logger log = Logger.getLogger(UpdateUser_Test.class);
+	static Logger log = Logger.getLogger(DocumentRoutes_Test.class);
 	String className="";
 	String documetNo="";
 	String documetsName="";
@@ -41,7 +41,7 @@ public class DocumentRoutes_Test extends BaseClass{
 		createDirectory(className);
 		logout=new LogoutPage_POM(driver);
 		login=new LoginPage_POM(driver);
-		login.loginFunction();
+		login.loginUser("saurabhp", "Title123456*");
 	}
 	
 	@Test(testName = "DocumentRoutes", groups = "Document Routes", priority = 0)
@@ -49,9 +49,8 @@ public class DocumentRoutes_Test extends BaseClass{
 	{		
 		test = extent.startTest("Document Routes");
 		//test.log(LogStatus.PASS, "1.Login as a web interface.");
-		test.log(LogStatus.INFO, "Link to Test case document", "<a href='file:///E:/sameer/Sameer Joshi/Title health solutions/Test case by neosoft/TestCase_WIA_Delete User.doc'>TestCaseDocument</a>");
-		documentRoutes=new DocumentRoutes_POM(driver);
-		
+		test.log(LogStatus.INFO, "Link to Test case document", "<a href='file:///E:/sameer/Sameer Joshi/Title health solutions/Test case by neosoft/TestCase-WIA-document_routes.doc'>TestCaseDocument</a>");
+		documentRoutes=new DocumentRoutes_POM(driver);		
 		documentRoutes.getnewdoc().click();
 		sleep(2);
 		waitTillElementVisible(documentRoutes.getdocument());
@@ -422,5 +421,5 @@ public class DocumentRoutes_Test extends BaseClass{
 		}
 		return isRecordFound;
 	}
-	
+
 }

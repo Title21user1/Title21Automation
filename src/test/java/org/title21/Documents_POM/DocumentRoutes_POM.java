@@ -1,4 +1,4 @@
-package org.title21.POM;
+package org.title21.Documents_POM;
 
 import java.util.List;
 

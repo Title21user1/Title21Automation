@@ -1,4 +1,4 @@
-package org.title21.POM;
+package org.title21.Documents_POM;
 
 import java.util.List;
 
@@ -15,7 +15,7 @@ public class MyDocs_POM
 	public WebDriver driver;
 	public WebElement element;
 	public String docID;
-	static Logger log = Logger.getLogger(AddEmployee_POM.class);
+	static Logger log = Logger.getLogger(MyDocs_POM.class);
 	
 	public MyDocs_POM(WebDriver driver)
 	{
