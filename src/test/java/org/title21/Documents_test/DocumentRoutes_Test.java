@@ -41,7 +41,7 @@ public class DocumentRoutes_Test extends BaseClass{
 		createDirectory(className);
 		logout=new LogoutPage_POM(driver);
 		login=new LoginPage_POM(driver);
-		login.loginUser("saurabhp", "Title123456*");
+		login.loginUser(loginData[7][0], loginData[7][1]);
 	}
 	
 	@Test(testName = "DocumentRoutes", groups = "Document Routes", priority = 0)
@@ -68,8 +68,6 @@ public class DocumentRoutes_Test extends BaseClass{
 		if(documentRoutes.getdocumentcreationverify().isDisplayed()) 
 		{
 			test.log(LogStatus.PASS,"1.	Create a new document form.");
-			
-			//documentRoutes.getEditModeOff().click();
 			
 			test.log(LogStatus.PASS,"2.	Open the document form (in edit mode) and add a main file.");
 			
@@ -217,7 +215,7 @@ public class DocumentRoutes_Test extends BaseClass{
 					sleep(2);
 					test.log(LogStatus.PASS, "15. Login as one of the users named in Sequence 1.");
 					
-					login.loginUser("sameer", "joshi12345");
+					login.loginUser(loginData[1][0], loginData[1][1]); 
 					
 					test.log(LogStatus.PASS, "16. Go to the approval wizard.");
 					documentRoutes.wizard_Option().click();
@@ -239,21 +237,10 @@ public class DocumentRoutes_Test extends BaseClass{
 					
 					test.log(LogStatus.PASS, "18. Navigate to the approval wizard");
 					
-					login.loginUser("secret", "Title123456*");
+					login.loginUser(loginData[8][0], loginData[8][1]); 
 					
 					documentRoutes.wizard_Option().click();
 					documentRoutes.approval_Tab().click();
-					
-					/*if(documentRoutes.noItemForApproval_text().isDisplayed())
-					{
-						test.log(LogStatus.PASS, "<b>ER 9- The document is not available in the approval wizard.<b>"+
-								test.addScreenCapture(captureScreenShot(driver, "approval wizard")));
-					}
-					else
-					{
-						test.log(LogStatus.FAIL, "Unable to find The document is not available in the approval wizard."+
-								test.addScreenCapture(captureScreenShot(driver, "approval wizard")));
-					}*/
 					
 					driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 					
@@ -283,7 +270,7 @@ public class DocumentRoutes_Test extends BaseClass{
 					test.log(LogStatus.PASS, "20. Login as each individual approvers listed in Sequence 1, and approve the document through the Web interface.");
 					sleep(2);
 					
-					login.loginUser("sameer", "joshi12345");
+					login.loginUser(loginData[1][0], loginData[1][1]); 
 					
 					documentRoutes.wizard_Option().click();
 					documentRoutes.approval_Tab().click();
@@ -300,7 +287,8 @@ public class DocumentRoutes_Test extends BaseClass{
 					sleep(2);
 					logout.logoutFunction();
 					
-					login.loginUser("admin", "administrator");
+					login.loginUser(loginData[9][0], loginData[9][1]); 
+					
 					documentRoutes.wizard_Option().click();
 					documentRoutes.approval_Tab().click();
 					sleep(2);
@@ -334,7 +322,7 @@ public class DocumentRoutes_Test extends BaseClass{
 					
 					test.log(LogStatus.PASS, "21. Login as a member of the group named in Sequence 2 again and navigate to the approval wizard.");
 					
-					login.loginUser("secret", "Title123456*");
+					login.loginUser(loginData[8][0], loginData[8][1]); 
 					
 					documentRoutes.wizard_Option().click();
 					documentRoutes.approval_Tab().click();

@@ -5,10 +5,9 @@ import java.util.concurrent.TimeUnit;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import org.title21.Documents_POM.MyDocs_POM;
+import org.title21.POM.CreateDocument_POM;
 import org.title21.POM.LoginPage_POM;
 import org.title21.POM.LogoutPage_POM;
-import org.title21.Documents_POM.CreateDocument_POM;
 import org.title21.POM.WizardPage_POM;
 import org.title21.utility.BaseClass;
 import org.title21.validation.entities.ErrorMessages;
@@ -20,7 +19,7 @@ public class CheckInCheckOut_Test extends BaseClass
 	LoginPage_POM login; 
 	LogoutPage_POM logout;
 	CreateDocument_POM Credoc;
-	MyDocs_POM mydocs;
+	org.title21.Documents_POM.MyDocs_POM mydocs;
 	WizardPage_POM wizpage;
 	String className="";
 
@@ -32,7 +31,7 @@ public class CheckInCheckOut_Test extends BaseClass
 		createDirectory(className);
 		login=new LoginPage_POM(driver);
 		logout=new LogoutPage_POM(driver);
-		mydocs =new MyDocs_POM(driver);
+		mydocs =new org.title21.Documents_POM.MyDocs_POM(driver);
 		Credoc=new CreateDocument_POM(driver);
 		wizpage = new WizardPage_POM(driver);
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
@@ -50,14 +49,14 @@ public class CheckInCheckOut_Test extends BaseClass
 		Credoc.getnewdoc().click();
 		sleep(2);
 		Credoc.getdocument().click();
-		sleep(3);
+		waitTillElementVisible(Credoc.getSearchText());
 
 		Credoc.getlocationDrodown().selectByVisibleText("Pittsburgh");
 		sleep(2);
 		Credoc.getSearchText().sendKeys("SOP.CT");
 		sleep(1);
 		Credoc.getGoButton().click();
-		sleep(1);
+		sleep(2);
 		Credoc.selectType().click();
 		sleep(2);
 		Credoc.getAutoCheck().selectByVisibleText("Check Out User");
