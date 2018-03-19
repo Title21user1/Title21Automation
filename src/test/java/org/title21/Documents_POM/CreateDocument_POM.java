@@ -150,16 +150,13 @@ public class CreateDocument_POM
 	WebElement EditModeoffDisable;
 	
 	@FindBy(xpath=".//*[@id='displaySel']/div[1]/div[3]/div/a/span[2]")//.//*[@id='displaySel']/div[1]/div[3]/div/a/span[2]
-	WebElement contextmenu;
-	
+	WebElement contextmenu;	
 	
 	@FindBy(css=".btn.t21-btn-primary.t21-ajax-submit-button")
-	WebElement checkinbuttonwindow;
-	
+	WebElement checkinbuttonwindow;	
 	
 	@FindBy(css=".fa.fa-level-down.grid-button-icon")
-	WebElement checkoutbutton;
-	
+	WebElement checkoutbutton;	
 	
 	@FindBy(css="#OpenOnCheckOut")
 	WebElement checkbox;
@@ -359,53 +356,47 @@ public class CreateDocument_POM
 		return MyDoc;			
 	}
 	public WebElement getDocChangeSummary()
-	{
-		
+	{		
 		return DocChangeSummary;			
 	}
-
 	
 	public WebElement getEditModeOff()
-	{
-		
+	{		
 		return EditModeOff;			
 	}
+	
 	public WebElement GeteditdocumentNo()
 	{
-		
 		return editdocumentNO;			
 	}
+	
 	public WebElement getnewdoc()
 	{
-		
 		return newdoc;			
 	}
 	
 	public WebElement getGoButton()
 	{
-
 		return goButton;			
 	}
 	
 	public WebElement getDocumentTitlemsg()
-	{
-		
+	{		
 		return DocumentTitlemsg;			
 	}
+	
 	public WebElement getDocumentsummarymsg()
 	{
-		
 		return Documentsummarymsg;			
 	}
+	
 	public WebElement getappedixvalmsg()
 	{
-		
 		return appedixvalmsg;			
 	}
 	
 	public WebElement getUploadsizemsg()
 	{
-
 		return UploadSizemsg;			
 	}
 	
@@ -512,7 +503,7 @@ public boolean UploadFileSizeValidation(){
 	{
 		isValidationMessagePresent=true;
 	}else{
-		log.error("Validation message for file size is not valid  ");
+		log.error("Validation message for file size is not valid");
 	}	
 	return isValidationMessagePresent;
 }
