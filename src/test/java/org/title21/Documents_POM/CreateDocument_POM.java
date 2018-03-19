@@ -150,8 +150,8 @@ public class CreateDocument_POM
 	
 	@FindBy(xpath=".//*[@id='lock']/a[1]")
 	WebElement EditModeoffDisable;
-	
-	@FindBy(xpath=".//*[@id='displaySel']/div[1]/div[3]/div/a/span[2]")
+
+  @FindBy(xpath=".//*[@id='displaySel']/div[1]/div[3]/div/a/span[2]")
 	WebElement contextmenu;
 	
 	@FindBy(css=".btn.t21-btn-primary.t21-ajax-submit-button")
@@ -177,8 +177,7 @@ public class CreateDocument_POM
 	
 	@FindBy(css=".t21-no-bold")
 	WebElement checkoutversion;
-	
-	
+
 	public WebElement getDocTitle()
 	{
 
@@ -392,6 +391,26 @@ public class CreateDocument_POM
 		return checkoutsuccessclose;			
 	}
 
+	public WebElement getDocChangeSummary()
+	{		
+		return DocChangeSummary;			
+	}
+	
+	public WebElement getEditModeOff()
+	{		
+		return EditModeOff;			
+	}
+	
+	public WebElement GeteditdocumentNo()
+	{
+		return editdocumentNO;			
+	}
+	
+	public WebElement getnewdoc()
+	{
+		return newdoc;			
+
+  }
 	public WebElement getpoupcheckin()
 	{
 
@@ -412,14 +431,29 @@ public class CreateDocument_POM
 
 	public WebElement getcheckinbuttonwindow()
 	{
+		return checkinbuttonwindow;	
 
-		return checkinbuttonwindow;			
 	}
 
 	public WebElement getcheckoutconfirm()
 	{
-
-		return checkoutconfirm;			
+	
+    return checkoutconfirm;			
+	}
+	
+	public WebElement getDocumentTitlemsg()
+	{		
+		return DocumentTitlemsg;			
+	}
+	
+	public WebElement getDocumentsummarymsg()
+	{
+		return Documentsummarymsg;			
+	}
+	
+	public WebElement getappedixvalmsg()
+	{
+		return appedixvalmsg;		
 	}
 	public WebElement getcheckboxcheckout()
 	{
@@ -437,14 +471,16 @@ public class CreateDocument_POM
 	{
 
 		return checkouttome;			
+
 	}
 
 
 	public WebElement getcheckoutbutton()
 	{
+		return checkoutbutton;
 
-		return checkoutbutton;			
 	}
+    
 	public WebElement getcheckincancelsuccess()
 	{
 
@@ -494,7 +530,6 @@ public class CreateDocument_POM
 
 	public WebElement getCancel()
 	{
-
 		return Cancel;			
 	}
 	public WebElement getuploadpopuptitle()

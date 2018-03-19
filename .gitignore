@@ -2,12 +2,12 @@
 /target/
 /Reports/
 /extentReports/
-/extentReports/index.html
+/*.index.html
+/*.testng.xml
 /test-output/
 /build_artifacts/
 /.settings
-/testng.xml
-/testdata/TestData.xlsx
+/*.TestData.xlsx
 Log.log
 /example.log
 /example.log.1
