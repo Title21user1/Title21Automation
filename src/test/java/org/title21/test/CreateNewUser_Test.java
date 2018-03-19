@@ -427,5 +427,4 @@ public class CreateNewUser_Test extends BaseClass{
 	{		
 		driver.close();
 	}
-	
 }

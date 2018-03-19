@@ -11,8 +11,8 @@ public class FunctionUtils {
 		return uuid;	 
 	}	
 
-	public static String generateRandomNumber(){
-		
+	public static String generateRandomNumber()
+	{
 		Random randomGenerator = new Random();	   
 	    int randomInt = randomGenerator.nextInt(1000);	    
 	    return String.valueOf(randomInt);	    	
