@@ -1,6 +1,7 @@
-package org.title21.Documents_test;
+package org.title21.test;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.NoSuchElementException;
 
 import org.apache.log4j.Logger;
@@ -16,6 +17,7 @@ import org.title21.dao.AdminData;
 import org.title21.utility.BaseClass;
 import org.title21.utility.DownloadUtils;
 import org.title21.utility.FileUpload;
+import org.title21.utility.FunctionUtils;
 
 import com.relevantcodes.extentreports.LogStatus;
 
@@ -27,9 +29,11 @@ public class CreateDocument_Test extends BaseClass {
 	String className = "";
 
 	FileUpload Upload;
-	String AppendixNumber = "27";
-	String Appendix = "Tuvb123";
+	String doc="abc";
+	String AppendixNumber = "21";
+	String Appendix =doc+FunctionUtils.generateRandomNumber();
 	String fileUploadPath = "";
+	String fileUploadPath1 = "";
 	String uploadFileName = "test.doc";
 	String uploadFileNameSize = "Sizeval.doc";
 	static Logger log = Logger.getLogger(CreateDocument_Test.class);
@@ -42,7 +46,7 @@ public class CreateDocument_Test extends BaseClass {
 		createDirectory(className);
 		login = new LoginPage_POM(driver);
 		login.loginFunction();
-	}
+			}
 
 	@Test(testName = "create  document ", groups = "create_doc", priority = 0)
 	public void Create_doc() {
@@ -56,14 +60,11 @@ public class CreateDocument_Test extends BaseClass {
 		waitTillElementVisible(Credoc.getdocument());
 		Credoc.getdocument().click();
 		sleep(3);
-		// Credoc.getdocumentnumber().getText();
-		// System.out.print(Credoc.getdocumentnumber().getText());
-
 		test.log(LogStatus.PASS,
 				"1.From the Main menu click on New and select Document " + "<br/>"
 						+ "<b>ER1: New document dialog appears. <b>"
 						+ test.addScreenCapture(captureScreenShot(driver, "Doc_Dialog")));
-		sleep(2);
+		sleep(5);
 		Credoc.getlocationDrodown().selectByVisibleText("Dallas");
 		sleep(2);
 		test.log(LogStatus.PASS,
@@ -100,7 +101,7 @@ public class CreateDocument_Test extends BaseClass {
 		Credoc.Appendix().sendKeys(Appendix);
 		sleep(2);
 		String Document_number = Credoc.getdocumentnumber().getAttribute("value");
-		if (Document_number.contains(AppendixNumber) && Document_number.contains(Appendix)) {
+		if (Document_number.contains(Appendix)) {
 
 			test.log(LogStatus.PASS, " 6.	Edit the \"document no\" field " + "<br/>"
 					+ "7. Select number from the number drop-down field" + "<br/>"
@@ -120,7 +121,7 @@ public class CreateDocument_Test extends BaseClass {
 							+ test.addScreenCapture(captureScreenShot(driver, "create_document")));
 
 		}
-		sleep(5);
+		sleep(2);
 		logout = new LogoutPage_POM(driver);
 		logout.logoutFunction();
 		login1 = new LoginPage_POM(driver);
@@ -129,12 +130,6 @@ public class CreateDocument_Test extends BaseClass {
 		sleep(3);
 		Credoc.getcreateddoc().click();
 		sleep(5);
-		// if (Credoc.EditModeoffDisable().isDisplayed()) {
-		// test.log(LogStatus.PASS,
-		// "10.Turn upper right-hand corner Edit Mode to off. " + "<br/>"
-		// + "<b> ER7: All the documents fields should get disabled..<b>"
-		// + test.addScreenCapture(captureScreenShot(driver, "Edit_Mode_Off")));
-		// }
 		Credoc.getEditModeON().click();
 		sleep(5);
 		Credoc.getPlusButtonuploadfile().click();
@@ -143,16 +138,16 @@ public class CreateDocument_Test extends BaseClass {
 		Credoc.getBrouse().click();
 		sleep(5);
 		Upload = new FileUpload();
-		fileUploadPath = System.getProperty("user.dir") + "\\testdata";
-		fileUploadPath = fileUploadPath + "\\" + uploadFileNameSize;
+		fileUploadPath1 = System.getProperty("user.dir") + "\\testdata";
+		fileUploadPath1 = fileUploadPath1 + "\\" + uploadFileNameSize;
 		
-		FileUpload.uploadFile(fileUploadPath);
+		FileUpload.uploadFile(fileUploadPath1);
 		Credoc.getAddButtonupload().click();
 
 		if (Credoc.UploadFileSizeValidation()) {
 			test.log(LogStatus.PASS,
-					"Turn edit mode to ON" + "<br/>" + "Click on add file plus button" + "<br/>"
-							+ "14. Add file with size more than 50 MB  and click on Add  button  " + "<br/>"
+					"10. Turn edit mode to ON" + "<br/>" + "11.Click on add file plus button" + "<br/>"
+							+ "12. Add file with size more than 50 MB  and click on Add  button  " + "<br/>"
 							+ "<b> ER7: It should show validation message as \"File size must be less than 50 MB\".<b>"
 							+ test.addScreenCapture(captureScreenShot(driver, "File_Size")));
 
@@ -168,7 +163,7 @@ public class CreateDocument_Test extends BaseClass {
 		Credoc.getBrouse().sendKeys(fileUploadPath);
 		sleep(2);
 		Credoc.getAddButtonupload().click();
-		sleep(8);
+		sleep(15);
 		Credoc.getnative();
 		Credoc.getnative().click();
 		sleep(15);
@@ -176,11 +171,11 @@ public class CreateDocument_Test extends BaseClass {
 		if (downloadedFile.exists()) {
 			test.log(LogStatus.PASS,
 					"13.Attached main file to the document for eg. Any doc or pdf file " + "<br/>"
-							+ "16.Click on native button under the main file" + "<br/>"
+							+ "14.Click on native button under the main file" + "<br/>"
 							+ "<b>ER8: It should download the main file document in its native form.<b>"
 							+ test.addScreenCapture(captureScreenShot(driver, "native_file")));
 		}
-		sleep(10);
+		sleep(15);
 		System.out.print(home_page);
 		Credoc.getpdf();
 		Credoc.getpdf().click();
@@ -211,7 +206,7 @@ public class CreateDocument_Test extends BaseClass {
 					"<b>ER 11:  A Successful message that the document has been checked In is displayed.<b>"
 							+ test.addScreenCapture(captureScreenShot(driver, "checkinsuccessmessage")));
 		}
-		sleep(15);
+		sleep(8);
 		waitTillElementVisible(Credoc.getcheckincancelsuccess());
 		Credoc.getcheckincancelsuccess();
 		Credoc.getcheckincancelsuccess().click();
@@ -226,7 +221,7 @@ public class CreateDocument_Test extends BaseClass {
 		sleep(2);
 		Credoc.getcheckoutbutton().click();
 		sleep(2);
-		if (Credoc.getpoupcheckin().isDisplayed())
+		if(Credoc.getcheckboxcheckout().isDisplayed())
 			test.log(LogStatus.PASS,
 					"19 again click on doc option context menu  " + "<br/>" + "20.Click on checkout link." + "<br/>"
 							+ "<b> ER 13 : Check Out popup screen should get open.  <b>"
@@ -241,18 +236,30 @@ public class CreateDocument_Test extends BaseClass {
 					+ "<b>ER 14 :  Minor revision of the document incremented changed for eg, doc number is changed from 001.398:0.1 to 001.398:0.2 <b>"
 					+ test.addScreenCapture(captureScreenShot(driver, "checkoutvesionvalidation")));
 		}
-		
 		sleep(10);
+		if(Credoc.getcheckincancelsuccess().isDisplayed())
+		{
+		waitTillElementVisible(Credoc.getcheckincancelsuccess());
+		Credoc.getcheckincancelsuccess();
+		Credoc.getcheckincancelsuccess().click();
+		Credoc.getcheckincancelsuccess().click();
+		}
+		else
+		{
+			log.info("prompt not display");
+		}
+		sleep(13);
         test.log(LogStatus.PASS, "<b>ER 15: Document edit mode enable.<b>"
 				+ test.addScreenCapture(captureScreenShot(driver, "document edit   mode")));
-		sleep(6);
+		sleep(10);
 
 	}
 
 	@AfterClass
-	public void closeBrowserInstance() {
+	public void closeBrowserInstance() throws IOException {
 
-	
+		cleanDownloadDirectory();
+		sleep(2);
 		logout.logoutFunction();
 		log.info("logout successfully.");
 		sleep(2);
