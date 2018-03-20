@@ -1,6 +1,7 @@
 package org.title21.Documents_test;
 
 import java.io.File;
+
 import java.io.IOException;
 import java.util.NoSuchElementException;
 
@@ -8,11 +9,9 @@ import org.apache.log4j.Logger;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import org.title21.POM.AddEmployee_POM;
-import org.title21.POM.CreateDocument_POM;
+import org.title21.Documents_POM.CreateDocument_POM;
 import org.title21.POM.LoginPage_POM;
 import org.title21.POM.LogoutPage_POM;
-import org.title21.POM.UpdateEmployee_POM;
 import org.title21.dao.AdminData;
 import org.title21.utility.BaseClass;
 import org.title21.utility.DownloadUtils;
