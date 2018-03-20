@@ -31,7 +31,7 @@ public class AddEmployee_Test extends BaseClass {
 	Table searchTable;
 	SoftAssert softAssertion=new SoftAssert();
 	String className="";
-	String employeeFullName="";
+	String employeeFullName="";	
 	String employeeID="";
 	Boolean isRecordFound=false;
 	boolean isValidationMessageProper=true;
