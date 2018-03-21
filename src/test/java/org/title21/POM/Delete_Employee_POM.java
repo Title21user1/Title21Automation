@@ -29,10 +29,10 @@ public class Delete_Employee_POM
 
 	@FindBy(xpath=".//*[@id='t21-workarea']/div/div/div[2]/div[2]/div/div[3]/div/div/form/div/span[2]/button")
 	WebElement EmployeeFilterClearButton;
-
+	
 	@FindBy(xpath="//input[@value='Yes']")
 	WebElement deleteEmployeePopUpYesButton;   
-
+	
 	@FindBy(css=".btn.t21-btn-default.pull-left")
 	WebElement deleteEmployeePopUpNoButton;
 

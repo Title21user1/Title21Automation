@@ -6,6 +6,10 @@ import java.io.IOException;
 import java.util.NoSuchElementException;
 
 import org.apache.log4j.Logger;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -37,21 +41,23 @@ public class CreateDocument_Test extends BaseClass {
 	String uploadFileNameSize = "Sizeval.doc";
 	static Logger log = Logger.getLogger(CreateDocument_Test.class);
 	AdminData adminData = new AdminData();
+	String testcaseName="TestCase-WIA-Creation of new document.doc";	
+	String filePath = System.getProperty("user.dir") + "\\TestCases\\"+testcaseName;
 
 	@BeforeClass
 	public void openURL() {
 		getBrowser();
+		implicitwait(driver);
 		className = this.getClass().getName();
 		createDirectory(className);
 		login = new LoginPage_POM(driver);
 		login.loginFunction();
-			}
+	}
 
 	@Test(testName = "create  document ", groups = "create_doc", priority = 0)
 	public void Create_doc() {
 		test = extent.startTest("Create  Document");
-		test.log(LogStatus.INFO, "Link to Test case document",
-				"<a href='C:\\Users\\dell\\Desktop\\Title21data\\documents\\TestCase-WIA-Creation of new document.doc'>TestCaseDocument</a>");
+		test.log(LogStatus.INFO, "Link to Test case document", "<a href='file://"+filePath+"'>TestCaseDocument</a>");
 		sleep(2);
 		Credoc = new CreateDocument_POM(driver);
 		Credoc.getnewdoc().click();
@@ -163,7 +169,7 @@ public class CreateDocument_Test extends BaseClass {
 		sleep(2);
 		Credoc.getAddButtonupload().click();
 		sleep(15);
-		Credoc.getnative();
+		verticalScrollingDown();
 		Credoc.getnative().click();
 		sleep(15);
 		File downloadedFile = DownloadUtils.waitForDownloadToComplete("test");
@@ -174,9 +180,10 @@ public class CreateDocument_Test extends BaseClass {
 							+ "<b>ER8: It should download the main file document in its native form.<b>"
 							+ test.addScreenCapture(captureScreenShot(driver, "native_file")));
 		}
-		sleep(15);
-		System.out.print(home_page);
-		Credoc.getpdf();
+		sleep(15);		
+		//Credoc.getpdf();
+		verticalScrollingDown();
+		waitTillElementClickable(Credoc.getpdf());
 		Credoc.getpdf().click();
 		sleep(14);
 		test.log(LogStatus.PASS,
@@ -189,7 +196,7 @@ public class CreateDocument_Test extends BaseClass {
 		System.out.print(pop_page);
 		sleep(5);
 		driver.switchTo().window(home_page);
-		sleep(5);
+		sleep(8);
 		Credoc.getcontextmenu().click();
 		sleep(5);
 		Credoc.getcheckin().click();
@@ -207,17 +214,20 @@ public class CreateDocument_Test extends BaseClass {
 		}
 		sleep(8);
 		waitTillElementVisible(Credoc.getcheckincancelsuccess());
-		Credoc.getcheckincancelsuccess();
+		//Credoc.getcheckincancelsuccess();
 		Credoc.getcheckincancelsuccess().click();
 		Credoc.getcheckincancelsuccess().click();
-		sleep(15);
+		
+		//sleep(15);
+		waitTillElementVisible(Credoc.editmodedisable());
 		if (Credoc.editmodedisable().isDisplayed()) {
 			test.log(LogStatus.PASS, "18.Click on close button " + "<br/>" + "<b>ER12: Doument Edit mode is disable.<b>"
 					+ test.addScreenCapture(captureScreenShot(driver, "documenteditmodedisable")));
 		}
-		sleep(2);
+		
+		sleep(4);
 		Credoc.getcontextmenu().click();
-		sleep(2);
+		sleep(4);
 		Credoc.getcheckoutbutton().click();
 		sleep(2);
 		if(Credoc.getcheckboxcheckout().isDisplayed())
@@ -235,11 +245,12 @@ public class CreateDocument_Test extends BaseClass {
 					+ "<b>ER 14 :  Minor revision of the document incremented changed for eg, doc number is changed from 001.398:0.1 to 001.398:0.2 <b>"
 					+ test.addScreenCapture(captureScreenShot(driver, "checkoutvesionvalidation")));
 		}
-		sleep(10);
+		//sleep(10);
+		waitTillElementVisible(Credoc.getcheckincancelsuccess());
 		if(Credoc.getcheckincancelsuccess().isDisplayed())
 		{
-		waitTillElementVisible(Credoc.getcheckincancelsuccess());
-		Credoc.getcheckincancelsuccess();
+		
+		//Credoc.getcheckincancelsuccess();
 		Credoc.getcheckincancelsuccess().click();
 		Credoc.getcheckincancelsuccess().click();
 		}
@@ -253,7 +264,19 @@ public class CreateDocument_Test extends BaseClass {
 		sleep(10);
 
 	}
-
+	
+    @Override
+	public void waitTillElementClickable(WebElement element) {		
+		WebDriverWait wait=new WebDriverWait(driver,20);
+		wait.until(ExpectedConditions.elementToBeClickable(element));		
+	}
+	
+    @Override
+    public void waitTillElementVisible(WebElement element) {		
+		WebDriverWait wait=new WebDriverWait(driver,20);
+		wait.until(ExpectedConditions.visibilityOf(element));		
+	}
+    
 	@AfterClass
 	public void closeBrowserInstance() throws IOException {
 
