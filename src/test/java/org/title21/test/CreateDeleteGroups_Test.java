@@ -26,6 +26,8 @@ public class CreateDeleteGroups_Test extends BaseClass {
 	AdminCreateDeleteGroups_POM adminCreateGroup;
 	boolean GroupPresence = false;
 	boolean GroupPresenceAfterSearch = false;
+	String testcaseName="TestCase-WIA-CreateandDeleteGroups.doc";	
+	String filePath = System.getProperty("user.dir") + "\\TestCases\\"+testcaseName;
 	
 	@BeforeClass
 	public void openURL() 
@@ -45,7 +47,7 @@ public class CreateDeleteGroups_Test extends BaseClass {
 		adminCreateGroup = new AdminCreateDeleteGroups_POM(driver);
 		
 		test = extent.startTest("Create & Delete Groups");
-		test.log(LogStatus.INFO, "Link to Test case document", "<a href='file:///E:/sameer/Sameer Joshi/Title health solutions/Test case by neosoft/TestCase_WIA_CreateandDeleteGroups.doc'>TestCaseDocument</a>");
+		test.log(LogStatus.INFO, "Link to Test case document", "<a href='file://"+filePath+"'>TestCaseDocument</a>");
 		test.log(LogStatus.PASS, "1.Login as a web interface.");
 		BaseClass.getAdministrationPage(test);
 		

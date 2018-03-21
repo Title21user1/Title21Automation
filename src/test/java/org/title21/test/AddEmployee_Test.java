@@ -31,11 +31,14 @@ public class AddEmployee_Test extends BaseClass {
 	Table searchTable;
 	SoftAssert softAssertion=new SoftAssert();
 	String className="";
-	String employeeFullName="";
+	String employeeFullName="";	
 	String employeeID="";
 	Boolean isRecordFound=false;
 	boolean isValidationMessageProper=true;
 	static Logger log = Logger.getLogger(AddEmployee_Test.class);
+	String testcaseName="TestCase-WIA-Add Employee.doc";	
+	String filePath = System.getProperty("user.dir") + "\\TestCases\\"+testcaseName;
+	
 	AdminData adminData=new AdminData();	
 	
 	@BeforeClass
@@ -52,7 +55,7 @@ public class AddEmployee_Test extends BaseClass {
 	public void createEmployee() throws Exception 
 	{	
 		test = extent.startTest("Add Employee");	
-		test.log(LogStatus.INFO, "Link to Test case document", "<a href='file:///E:/sameer/Sameer Joshi/Title health solutions/Test case by neosoft/TestCase-WIA-Add Employee.doc'>TestCaseDocument</a>");
+		test.log(LogStatus.INFO, "Link to Test case document", "<a href='file://"+filePath+"'>TestCaseDocument</a>");
 		test.log(LogStatus.PASS,"1.	Login to the web interface.");
 		getAdministrationPage(test);		
 		

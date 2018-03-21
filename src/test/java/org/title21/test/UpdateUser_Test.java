@@ -32,6 +32,8 @@ public class UpdateUser_Test extends BaseClass{
 	boolean UserPresenceAfterSearch = false;
 	private boolean isRecordFound=true;
 	AdminData adminData=new AdminData();
+	String testcaseName="TestCase-WIA-Update New User.doc";	
+	String filePath = System.getProperty("user.dir") + "\\TestCases\\"+testcaseName;
 		
 	@BeforeClass
 	public void openURL() 
@@ -48,6 +50,7 @@ public class UpdateUser_Test extends BaseClass{
 	public void UpdateUser() throws Exception
 	{		
 		test = extent.startTest("Update User");
+		test.log(LogStatus.INFO, "Link to Test case document", "<a href='file://"+filePath+"'>TestCaseDocument</a>");
 		test.log(LogStatus.PASS, "1.Login to the web interface.");
 		updateUserPage= new UpdateUser_POM(driver);		
 		

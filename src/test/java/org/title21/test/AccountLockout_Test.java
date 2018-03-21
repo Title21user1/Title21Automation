@@ -30,6 +30,8 @@ public class AccountLockout_Test extends BaseClass
 	UpdateUser_POM updateuser;
 	DashBord_POM dashboardObj;
 	String className="";
+	String testcaseName="TestCase-WIA-Lockout on repeated incorrect passwords.doc";	
+	String filePath = System.getProperty("user.dir") + "\\TestCases\\"+testcaseName;
 
 	@BeforeClass
 	public void beforeClass()
@@ -49,6 +51,7 @@ public class AccountLockout_Test extends BaseClass
 	public void accountLockout()
 	{
 		test = extent.startTest("Account Lockout");
+		test.log(LogStatus.INFO, "Link to Test case document", "<a href='file://"+filePath+"'>TestCaseDocument</a>");
 		test.log(LogStatus.PASS,"1.	Enter the URL in the browser to bring up the web interface login page.");
 		login.loginUser(loginData[2][0], loginData[2][1]);
 

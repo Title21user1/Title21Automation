@@ -22,6 +22,8 @@ public class CheckInCheckOut_Test extends BaseClass
 	org.title21.Documents_POM.MyDocs_POM mydocs;
 	WizardPage_POM wizpage;
 	String className="";
+	String testcaseName="TestCase-WIA-Check_In & Checkout.doc";	
+	String filePath = System.getProperty("user.dir") + "\\TestCases\\"+testcaseName;
 
 	@BeforeClass
 	public void beforeClass()
@@ -42,10 +44,11 @@ public class CheckInCheckOut_Test extends BaseClass
 	public void checkInCheckOut()
 	{
 		test = extent.startTest("Check In and Check Out Document");
+		test.log(LogStatus.INFO, "Link to Test case document", "<a href='file://"+filePath+"'>TestCaseDocument</a>");
 		login.loginUser(loginData[4][0], loginData[4][1]);
 		sleep(2);
 		test.log(LogStatus.PASS,"1. Login to Web Application as a Test User");
-
+		
 		Credoc.getnewdoc().click();
 		sleep(2);
 		Credoc.getdocument().click();
