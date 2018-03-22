@@ -6,6 +6,8 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.title21.Documents_POM.CreateDocument_POM;
+import org.title21.Documents_POM.MyDocs_POM;
+
 import org.title21.POM.LoginPage_POM;
 import org.title21.POM.LogoutPage_POM;
 import org.title21.POM.WizardPage_POM;
@@ -19,7 +21,7 @@ public class CheckInCheckOut_Test extends BaseClass
 	LoginPage_POM login; 
 	LogoutPage_POM logout;
 	CreateDocument_POM Credoc;
-	org.title21.Documents_POM.MyDocs_POM mydocs;
+	MyDocs_POM mydocs;
 	WizardPage_POM wizpage;
 	String className="";
 	String testcaseName="TestCase-WIA-Check_In & Checkout.doc";	
@@ -40,7 +42,7 @@ public class CheckInCheckOut_Test extends BaseClass
 	}
 
 
-	@Test(testName = "CheckInCheckOut", groups = "DocumentCheck", priority = 0)
+	@Test(testName = "CheckInCheckOut", groups = "DocumentCheck")
 	public void checkInCheckOut()
 	{
 		test = extent.startTest("Check In and Check Out Document");

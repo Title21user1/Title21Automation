@@ -142,6 +142,10 @@ public class CreateDocument_Test extends BaseClass {
 
 		Credoc.getBrouse().click();
 		sleep(5);
+    
+		/*Upload = new FileUpload();
+		fileUploadPath = System.getProperty("user.dir") + "\\testdata";*/
+		fileUploadPath = fileUploadPath + "\\" + uploadFileNameSize;
 		Upload = new FileUpload();
 		fileUploadPath1 = System.getProperty("user.dir") + "\\testdata";
 		fileUploadPath1 = fileUploadPath1 + "\\" + uploadFileNameSize;
