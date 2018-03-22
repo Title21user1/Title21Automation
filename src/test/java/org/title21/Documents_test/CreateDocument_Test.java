@@ -3,10 +3,7 @@ package org.title21.Documents_test;
 import java.io.File;
 
 import java.io.IOException;
-import java.util.NoSuchElementException;
-
 import org.apache.log4j.Logger;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -69,7 +66,6 @@ public class CreateDocument_Test extends BaseClass {
 				"1.From the Main menu click on New and select Document " + "<br/>"
 						+ "<b>ER1: New document dialog appears. <b>"
 						+ test.addScreenCapture(captureScreenShot(driver, "Doc_Dialog")));
-		sleep(5);
 		Credoc.getlocationDrodown().selectByVisibleText("Dallas");
 		sleep(2);
 		test.log(LogStatus.PASS,
@@ -126,7 +122,7 @@ public class CreateDocument_Test extends BaseClass {
 							+ test.addScreenCapture(captureScreenShot(driver, "create_document")));
 
 		}
-		sleep(2);
+		
 		logout = new LogoutPage_POM(driver);
 		logout.logoutFunction();
 		login1 = new LoginPage_POM(driver);
@@ -134,17 +130,15 @@ public class CreateDocument_Test extends BaseClass {
 		login1.loginFunction();
 		sleep(3);
 		Credoc.getcreateddoc().click();
-		sleep(5);
+		sleep(3);
 		Credoc.getEditModeON().click();
-		sleep(5);
+		sleep(3);
 		Credoc.getPlusButtonuploadfile().click();
 		sleep(2);
 
 		Credoc.getBrouse().click();
 		sleep(5);
     
-		/*Upload = new FileUpload();
-		fileUploadPath = System.getProperty("user.dir") + "\\testdata";*/
 		fileUploadPath = fileUploadPath + "\\" + uploadFileNameSize;
 		Upload = new FileUpload();
 		fileUploadPath1 = System.getProperty("user.dir") + "\\testdata";
@@ -152,7 +146,7 @@ public class CreateDocument_Test extends BaseClass {
 		
 		FileUpload.uploadFile(fileUploadPath1);
 		Credoc.getAddButtonupload().click();
-
+		sleep(2);
 		if (Credoc.UploadFileSizeValidation()) {
 			test.log(LogStatus.PASS,
 					"10. Turn edit mode to ON" + "<br/>" + "11.Click on add file plus button" + "<br/>"
@@ -161,7 +155,6 @@ public class CreateDocument_Test extends BaseClass {
 							+ test.addScreenCapture(captureScreenShot(driver, "File_Size")));
 
 		}
-		sleep(2);
 		Credoc.getCancel().click();
 		sleep(2);
 		Credoc.getPlusButtonuploadfile().click();
@@ -172,10 +165,10 @@ public class CreateDocument_Test extends BaseClass {
 		Credoc.getBrouse().sendKeys(fileUploadPath);
 		sleep(2);
 		Credoc.getAddButtonupload().click();
-		sleep(15);
+		sleep(10);
 		verticalScrollingDown();
 		Credoc.getnative().click();
-		sleep(15);
+		sleep(10);
 		File downloadedFile = DownloadUtils.waitForDownloadToComplete("test");
 		if (downloadedFile.exists()) {
 			test.log(LogStatus.PASS,
@@ -185,53 +178,49 @@ public class CreateDocument_Test extends BaseClass {
 							+ test.addScreenCapture(captureScreenShot(driver, "native_file")));
 		}
 		sleep(15);		
-		//Credoc.getpdf();
-		verticalScrollingDown();
-		waitTillElementClickable(Credoc.getpdf());
 		Credoc.getpdf().click();
-		sleep(14);
+		sleep(15);
 		test.log(LogStatus.PASS,
 				"15. click on pdf button " + "<br/>"
 						+ "<b>ER 9 : Document is converted to pdf form and open in new tab.<b>"
 						+ test.addScreenCapture(captureScreenShot(driver, "checkinsuccessmessage")));
-		sleep(8);
 
 		String pop_page = driver.getWindowHandle();
 		System.out.print(pop_page);
-		sleep(5);
+		sleep(2);
 		driver.switchTo().window(home_page);
-		sleep(8);
+		sleep(3);
+		verticalScrollingUp();
+		sleep(2);
 		Credoc.getcontextmenu().click();
-		sleep(5);
+		sleep(2);
 		Credoc.getcheckin().click();
-		sleep(8);
+		sleep(2);
 		test.log(LogStatus.PASS,
 				"16.Click on doc option context menu." + "<br/>" + "17. Go to Action section and click on Check-In.  "
 						+ "<br/>" + "<b>ER 10 : Check In popup screen is displayed.<b>"
 						+ test.addScreenCapture(captureScreenShot(driver, "checkin_popup")));
 		Credoc.getcheckinbuttonwindow().click();
-		sleep(10);
+		sleep(5);
 		if (Credoc.CheckinSuccessmessage()) {
 			test.log(LogStatus.PASS,
 					"<b>ER 11:  A Successful message that the document has been checked In is displayed.<b>"
 							+ test.addScreenCapture(captureScreenShot(driver, "checkinsuccessmessage")));
 		}
-		sleep(8);
 		waitTillElementVisible(Credoc.getcheckincancelsuccess());
-		//Credoc.getcheckincancelsuccess();
-		Credoc.getcheckincancelsuccess().click();
-		Credoc.getcheckincancelsuccess().click();
 		
-		//sleep(15);
+		Credoc.getcheckincancelsuccess().click();
+		Credoc.getcheckincancelsuccess().click();
+		sleep(2);
 		waitTillElementVisible(Credoc.editmodedisable());
 		if (Credoc.editmodedisable().isDisplayed()) {
 			test.log(LogStatus.PASS, "18.Click on close button " + "<br/>" + "<b>ER12: Doument Edit mode is disable.<b>"
 					+ test.addScreenCapture(captureScreenShot(driver, "documenteditmodedisable")));
 		}
 		
-		sleep(4);
+		sleep(2);
 		Credoc.getcontextmenu().click();
-		sleep(4);
+		sleep(2);
 		Credoc.getcheckoutbutton().click();
 		sleep(2);
 		if(Credoc.getcheckboxcheckout().isDisplayed())
@@ -242,14 +231,14 @@ public class CreateDocument_Test extends BaseClass {
 		sleep(2);
 		Credoc.getcheckboxcheckout().click();
 		Credoc.getcheckoutconfirm().click();
-		sleep(10);
+		sleep(5);
 		if (Credoc.checkoutversionvalidation()) {
 			test.log(LogStatus.PASS, "21. Check the open document after checkout checkbox " + "<br/>"
 					+ "22.Click on confirm button" + "<br/>"
 					+ "<b>ER 14 :  Minor revision of the document incremented changed for eg, doc number is changed from 001.398:0.1 to 001.398:0.2 <b>"
 					+ test.addScreenCapture(captureScreenShot(driver, "checkoutvesionvalidation")));
 		}
-		//sleep(10);
+	
 		waitTillElementVisible(Credoc.getcheckincancelsuccess());
 		if(Credoc.getcheckincancelsuccess().isDisplayed())
 		{
@@ -262,10 +251,9 @@ public class CreateDocument_Test extends BaseClass {
 		{
 			log.info("prompt not display");
 		}
-		sleep(13);
+		sleep(5);
         test.log(LogStatus.PASS, "<b>ER 15: Document edit mode enable.<b>"
 				+ test.addScreenCapture(captureScreenShot(driver, "document edit   mode")));
-		sleep(10);
 
 	}
 	

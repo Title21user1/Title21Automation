@@ -1,6 +1,8 @@
 package org.title21.test;
 
 import org.testng.annotations.Test;
+import org.title21.DBConnection.DBConnection;
+import org.title21.DBConnection.DBQueries;
 import org.title21.POM.AddNewUser_POM;
 import org.title21.POM.AdministrationPage_POM;
 import org.title21.POM.DashBord_POM;
@@ -29,6 +31,7 @@ public class AccountLockout_Test extends BaseClass
 	AddNewUser_POM adduser;
 	UpdateUser_POM updateuser;
 	DashBord_POM dashboardObj;
+	DBQueries dbqueries;
 	String className="";
 	String testcaseName="TestCase-WIA-Lockout on repeated incorrect passwords.doc";	
 	String filePath = System.getProperty("user.dir") + "\\TestCases\\"+testcaseName;
@@ -44,9 +47,10 @@ public class AccountLockout_Test extends BaseClass
 		adminpage = new AdministrationPage_POM(driver);
 		adduser = new AddNewUser_POM(driver);
 		updateuser = new UpdateUser_POM(driver);
+		dbqueries = new DBQueries();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	}
-	
+
 	@Test(testName = "AccountLockOut", groups = "LockOut", priority = 0)
 	public void accountLockout()
 	{
@@ -78,7 +82,7 @@ public class AccountLockout_Test extends BaseClass
 				updateuser.iAgree_Button().click();
 			}		
 		}
-		
+
 		test.log(LogStatus.PASS,"2.	Enter a valid test username and password");
 		test.log(LogStatus.PASS,"<b>ER1: User is able to login with the correct username and password.<b>"+
 				test.addScreenCapture(captureScreenShot(driver, "SuccessfulLogin")));
@@ -88,19 +92,21 @@ public class AccountLockout_Test extends BaseClass
 
 		login.getUsername().sendKeys(loginData[2][0]);
 		login.getLogin_button().sendKeys(Keys.RETURN);
-		test.log(LogStatus.PASS,"4.	Enter the test username with an incorrect password eight times consecutively");
-		int invalidLoginCounter=1;
-
-		for (char i = 'a'; i <'i'; i++)
+		int NumFailedLoginAttempts = DBConnection.getIntDBValue(dbqueries.failedloginattempts,"NumFailedLoginAttempts");
+		
+		test.log(LogStatus.PASS,"4.	Enter the test username with an incorrect password "+NumFailedLoginAttempts+" times consecutively");
+	
+		for (int i = 1; i < NumFailedLoginAttempts+1; i++)
 		{
-			login.getpassword().sendKeys(loginData[3][1]);
-			login.getLogin_button().sendKeys(Keys.RETURN);
-			test.log(LogStatus.PASS,"4"+i+" Invalid Login No: "+invalidLoginCounter);			
-			assertEquals(login.getPasswordErrorMessage().getText(), ErrorMessages.passworderrormessages);
-			invalidLoginCounter++;			
+			{
+				login.getpassword().sendKeys(loginData[3][1]);
+				login.getLogin_button().sendKeys(Keys.RETURN);
+				test.log(LogStatus.PASS,"Invalid Login No: "+i);			
+				assertEquals(login.getPasswordErrorMessage().getText(), ErrorMessages.passworderrormessages);		
+			}
 		}
 
-		test.log(LogStatus.PASS,"<b>ER2: On entering the incorrect password eight times the user is locked out and asked to contact the administrator.<b>"+
+		test.log(LogStatus.PASS,"<b>ER2: On entering the incorrect password "+NumFailedLoginAttempts+" times the user is locked out and asked to contact the administrator.<b>"+
 				test.addScreenCapture(captureScreenShot(driver, "AccountLocked")));
 
 		login.getpassword().sendKeys(loginData[2][1]);
@@ -113,7 +119,7 @@ public class AccountLockout_Test extends BaseClass
 		extent.endTest(test);
 	}
 
-	
+
 
 	@AfterClass
 	public void afterClass()

@@ -123,7 +123,7 @@ public class CreateDocument_POM
 	@FindBy(xpath=".//*[@id='lock']")
 	WebElement editmodedisable;
 
-	@FindBy(linkText="PDF")
+	@FindBy(xpath="//a[contains(text(),'PDF')]")
 	WebElement pdf;
 
 	@FindBy(linkText="Native")
