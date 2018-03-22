@@ -3,6 +3,7 @@ import java.util.List;
 import java.util.Random;
 
 import org.apache.log4j.Logger;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -18,6 +19,7 @@ public class CreateDocument_POM
 	public WebElement element;
 	AdminData adminData=new AdminData();
 	static Logger log = Logger.getLogger(CreateDocument_POM.class);
+
 	public CreateDocument_POM (WebDriver driver) 
 	{
 		this.driver = driver;
@@ -41,7 +43,7 @@ public class CreateDocument_POM
 
 	@FindBy(css=".form-control.t21-placeholder")
 	WebElement search;
-	
+
 	@FindBy(css=".t21-ajax-submit-button.form-control.form-inline.btn.t21-btn-default")
 	WebElement goButton;
 
@@ -86,108 +88,131 @@ public class CreateDocument_POM
 
 	@FindBy(css="#documentId")
 	WebElement createdDocID;
-	
+
 	@FindBy(xpath=".//*[@id='DocumentTitle']")
 	WebElement docTitle;
-	
-	@FindBy(xpath="//input[contains(@name,'ValueOfBasicFilter')]")
+
+	@FindBy(xpath="//a[contains(@href,'UpdateCabinetListDropDownNewFormModal')]")
 	WebElement selectType;
-	
+
 	@FindBy(xpath="//p[contains(text(),'permissions to edit')]")
 	WebElement permissionMessage;
-	
+
 	@FindBy(xpath="//span[contains(@class,'field-validation-error') and contains(@data-valmsg-for,'AttachmentFile')]")
-	 WebElement UploadSizemsg;
-	
+	WebElement UploadSizemsg;
+
 	@FindBy(xpath=".//*[@id='lock']/a[1]")
 	WebElement EditModeOff;
-	
+
 	@FindBy(xpath=".//*[@id='NavMyDocs']/a")
 	WebElement MyDoc;
-	
+
 	@FindBy(css=".btn.btn-default.t21-ajax-link")
 	WebElement EditModeON;
-	
+
 	@FindBy(css=".btn.btn-default.fa.fa-plus-circle.t21-ajax-link")
 	WebElement PlusButtonuploadfile;
-	
+
 	@FindBy(xpath=".//*[@id='AttachmentFile']")
 	WebElement Brouse;
-	
+
 	@FindBy(xpath="//button[contains(@class,'btn t21-btn-primary t21-ajax-submit-button')]")
 	WebElement AddButtonupload;
-	
-	
+
+
 	@FindBy(xpath=".//*[@id='lock']")
 	WebElement editmodedisable;
-	
+
 	@FindBy(linkText="PDF")
 	WebElement pdf;
-	
+
 	@FindBy(linkText="Native")
 	WebElement nativeafile;
-	
+
 	@FindBy(css="")
 	WebElement checkinwindowclose;
-	
+
 	@FindBy(css=".t21-js-user-message-text")
 	WebElement checkinwindowsuccessmsg;
-	
+
 	@FindBy(css=".modal-title")
 	WebElement poupcheckin;
-	
+
 	@FindBy(css=".modal-title")
 	WebElement uploadpopuptitle;
-	
+
 	@FindBy(css=".fa.fa-level-up.grid-button-icon")
 	WebElement checkin;
-	
+
 	@FindBy(css=".//*[@id='set-1']/div/a")
 	WebElement checkouttome;
-	
+
 	@FindBy(css=".btn.t21-btn-default")
 	WebElement checkoutsuccessclose;
-	
+
 	@FindBy(xpath=".//*[@id='lock']/a[1]")
 	WebElement EditModeoffDisable;
-	
-	@FindBy(xpath=".//*[@id='displaySel']/div[1]/div[3]/div/a/span[2]")
+
+	@FindBy(xpath="//*[@id='displaySel']//a[@title='Context Menu']")
 	WebElement contextmenu;
-	
+
 	@FindBy(css=".btn.t21-btn-primary.t21-ajax-submit-button")
 	WebElement checkinbuttonwindow;
-	
+
 	@FindBy(css=".fa.fa-level-down.grid-button-icon")
 	WebElement checkoutbutton;
-	
+
 	@FindBy(css="#OpenOnCheckOut")
 	WebElement checkbox;
-	
+
 	@FindBy(xpath=".//*[@id='t21-workarea']/div/div/div[1]/div[1]/div[2]/div[3]/table/tbody/tr[1]/td[1]/a")
 	WebElement createddoc;
-	
+
 	@FindBy(css=".btn.t21-btn-primary.t21-ajax-submit-button.process-btn-click")
 	WebElement checkoutconfirm;
-	
+
 	@FindBy(css=".col-lg-12.col-md-12.col-sm-12.col-xs-12.t21-padding-top")
 	WebElement clickaftercheckin;
-		
+
 	@FindBy(xpath=".//*[@id='dialog-form']/div/div/div[1]/button")
 	WebElement checkincancelSucesswindow;
-	
+
 	@FindBy(css=".t21-no-bold")
 	WebElement checkoutversion;
+
+	@FindBy(xpath="//a[contains(@href,'AddReviewerModal')]")
+	WebElement editperiodicreviewer;
 	
+	@FindBy(xpath="//input[@name='submitButton']")
+	WebElement saveButton;
 	
+	@FindBy(xpath="//a[contains(@href,'AddAttachmentModal')]")
+	WebElement addattachment;
+	
+	@FindBy(xpath="//*[@id='default-modal']//button[@type='submit']")
+	WebElement addbutton;
+	
+	@FindBy(xpath="//a[contains(@href,'LinksModal')]")
+	WebElement addnewlinks;
+	
+	@FindBy(xpath="//input[@name='formIdOfLinksToAdd']")
+	WebElement linkstoadd;
+	
+	@FindBy(xpath="//input[@name='searchString']")
+	WebElement addlinksearch;
+	
+	@FindBy(xpath=".//*[@id='default-modal']//button[@class='t21-ajax-submit-button form-control form-inline btn t21-btn-default']")
+	WebElement addlinkgobutton;
+
 	public WebElement getDocTitle()
 	{
 
 		return docTitle;			
 	}
-	
+
 	public WebElement selectType()
 	{
-
+		
 		return selectType;			
 	}
 
@@ -232,7 +257,7 @@ public class CreateDocument_POM
 
 		return goButton;			
 	}
-	
+
 	public WebElement getDocumentTitlemsg()
 	{
 
@@ -253,18 +278,57 @@ public class CreateDocument_POM
 	{		
 		return createdDocID;			
 	}
-	
+
 	public WebElement getPermissionMessage()
 	{		
 		return permissionMessage;			
 	}
-	
+
 	public WebElement getSearchText()
 	{		
 		return search;			
 	}
 
-
+	public WebElement editPeriodicReviewer()
+	{		
+		return editperiodicreviewer;			
+	}
+	
+	public WebElement saveButton()
+	{		
+		return saveButton;			
+	}
+	
+	public WebElement addAttachment()
+	{		
+		return addattachment;			
+	}
+	
+	public WebElement addButton()
+	{		
+		return addbutton;			
+	}
+	
+	public WebElement addNewLinks()
+	{		
+		return addnewlinks;			
+	}
+	
+	public WebElement selectLinkToAdd()
+	{
+		return linkstoadd;
+	}
+	
+	public WebElement addLinkSearch()
+	{
+		return addlinksearch;
+	}
+	
+	public WebElement addLinkGoButton()
+	{
+		return addlinkgobutton;
+	}
+	
 	public boolean DocumentTitlemsgvalidation(){
 
 		element=getDocumentTitlemsg();
@@ -358,7 +422,7 @@ public class CreateDocument_POM
 
 		return Appendix;			
 	}	
-	
+
 	public boolean permissionToEditMessage(){
 
 		element=getPermissionMessage();
@@ -373,7 +437,7 @@ public class CreateDocument_POM
 		}	
 		return isValidationMessagePresent;
 	}
-	
+
 	public WebElement getcreateddoc()
 	{
 
@@ -532,10 +596,10 @@ public class CreateDocument_POM
 
 		return editdocumentNO;			
 	}
-	
+
 	public WebElement getPlusButtonuploadfile()
 	{
-		
+
 		return PlusButtonuploadfile;			
 	}
 
@@ -568,7 +632,7 @@ public class CreateDocument_POM
 		}	
 		return isValidationMessagePresent;
 	}
-	
+
 	public boolean UploadFileSizeValidation(){
 
 		element=UploadSizemsg;
@@ -593,4 +657,21 @@ public class CreateDocument_POM
 		System.out.print(randomElement);
 		return String.valueOf(randomElement);
 	}
+
+	public void selectPeriodicReviewer(String value)
+	{
+		
+		WebElement element = driver.findElement(By.xpath
+				(".//*[@id='bootstrap-duallistbox-nonselected-list_DocRequiredReviewerList[]']//option[@value='"+value+"']"));
+		element.click();			
+	}
+	
+	public void selectEntities(String value)
+	{
+		
+		WebElement element = driver.findElement(By.xpath
+				("//select[@id='bootstrap-duallistbox-nonselected-list_selectedEmployee']//option[@value='"+value+"']"));
+		element.click();			
+	}
+	//option[@value='Person User']
 }
