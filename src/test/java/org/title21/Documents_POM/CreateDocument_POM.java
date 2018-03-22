@@ -153,6 +153,9 @@ public class CreateDocument_POM
 	@FindBy(xpath=".//*[@id='lock']/a[1]")
 	WebElement EditModeoffDisable;
 
+	//@FindBy(xpath=".//*[@id='displaySel']/div[1]/div[3]/div/a/span[2]")
+	//WebElement contextmenu;
+	
 	@FindBy(xpath="//*[@id='displaySel']//a[@title='Context Menu']")
 	WebElement contextmenu;
 
@@ -218,7 +221,6 @@ public class CreateDocument_POM
 
 	public WebElement getDocumentTitle()
 	{
-
 		return DocumentTitle;			
 	}
 
@@ -230,31 +232,22 @@ public class CreateDocument_POM
 
 	public WebElement getdocumentnumber()
 	{
-
 		return documentnumber;			
 	}
 
 
 	public WebElement getDocChangeSummary()
 	{
-
 		return DocChangeSummary;			
 	}
 
 	public WebElement GeteditdocumentNO()
 	{
-
 		return editdocumentNO;			
 	}
-	public WebElement getnewdoc()
-	{
-
-		return newdoc;			
-	}
-
+	
 	public WebElement getGoButton()
 	{
-
 		return goButton;			
 	}
 
@@ -455,7 +448,17 @@ public class CreateDocument_POM
 
 		return checkoutsuccessclose;			
 	}
+	
+	public WebElement GeteditdocumentNo()
+	{
+		return editdocumentNO;			
+	}
+	
+	public WebElement getnewdoc()
+	{
+		return newdoc;			
 
+  }
 	public WebElement getpoupcheckin()
 	{
 
@@ -476,15 +479,30 @@ public class CreateDocument_POM
 
 	public WebElement getcheckinbuttonwindow()
 	{
+		return checkinbuttonwindow;	
 
-		return checkinbuttonwindow;			
 	}
 
 	public WebElement getcheckoutconfirm()
 	{
-
-		return checkoutconfirm;			
+	
+    return checkoutconfirm;			
 	}
+	
+	public WebElement getDocumentTitlemsg()
+	{		
+		return DocumentTitlemsg;			
+	}
+	
+	public WebElement getDocumentsummarymsg()
+	{
+		return Documentsummarymsg;			
+	}
+	
+	/*public WebElement getappedixvalmsg()
+	{
+		return appedixvalmsg;		
+	}*/
 	public WebElement getcheckboxcheckout()
 	{
 
@@ -501,14 +519,16 @@ public class CreateDocument_POM
 	{
 
 		return checkouttome;			
+
 	}
 
 
 	public WebElement getcheckoutbutton()
 	{
+		return checkoutbutton;
 
-		return checkoutbutton;			
 	}
+    
 	public WebElement getcheckincancelsuccess()
 	{
 
@@ -558,7 +578,6 @@ public class CreateDocument_POM
 
 	public WebElement getCancel()
 	{
-
 		return Cancel;			
 	}
 	public WebElement getuploadpopuptitle()
@@ -591,6 +610,7 @@ public class CreateDocument_POM
 
 		return EditModeOff;			
 	}
+  
 	public WebElement GeteditdocumentNo()
 	{
 
@@ -600,7 +620,12 @@ public class CreateDocument_POM
 	public WebElement getPlusButtonuploadfile()
 	{
 
-		return PlusButtonuploadfile;			
+		return PlusButtonuploadfile;
+  }
+		
+	public WebElement getPlusButtonuploadfile()
+	{
+			return PlusButtonuploadfile;
 	}
 
 	public boolean CheckinSuccessmessage(){

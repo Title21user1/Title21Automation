@@ -46,9 +46,13 @@ public class UpdateEmployee_Test extends BaseClass {
 	String CanceltEmployeePostalCode = "";
 	String CancelEmployeeCountry = "";
 	String CancelEmployeePhone = "";
+	
+	String testcaseName="TestCase-WIA-UpdateEmployee.doc";	
+	String filePath = System.getProperty("user.dir") + "\\TestCases\\"+testcaseName;
 
 	boolean EmployeePresenceAfterSearch = false;
-	static Logger log = Logger.getLogger(UpdateEmployee_Test.class);
+	static Logger log = Logger.getLogger(UpdateEmployee_Test.class);	
+	
 
 	@BeforeClass
 	public void openURL() {
@@ -64,7 +68,7 @@ public class UpdateEmployee_Test extends BaseClass {
 	public void Edit_general_Employee() throws Exception {
 		
 		test = extent.startTest("Update  Employee");
-		test.log(LogStatus.INFO, "Link to Test case document", "<a href='file:///E:/sameer/Sameer Joshi/Title health solutions/Test case by neosoft/TestCase_WIA_UpdateEmployee.doc'>TestCaseDocument</a>");
+		test.log(LogStatus.INFO, "Link to Test case document", "<a href='file://"+filePath+"'>TestCaseDocument</a>");
 		test.log(LogStatus.PASS, "1 Login to the web interface");
 		getAdministrationPage(test);
 		test.log(LogStatus.PASS, "<b>ER1: Administration Screen is displayed.<b>"

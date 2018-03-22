@@ -172,7 +172,7 @@ public class BaseClass {
 		groupData=ExcelData(excelFile, groupSheet);
 		userData=ExcelData(excelFile, userSheet);
 		employeeData=ExcelData(excelFile, employeeSheet);
-		//routeData=ExcelData(excelFile, routeSheet);
+		routeData=ExcelData(excelFile, routeSheet);
 		
 		downloadPath=System.getProperty("user.dir") + "\\DownloadedFiles";
 		
@@ -204,6 +204,12 @@ public class BaseClass {
 		if (!file.exists()) {
 			file.mkdir();
 		} else {
+			try {
+				FileUtils.cleanDirectory(file);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}		
 			System.out.println("Either directory is already prersent or Failed to create directory.");
 		}
 	}
@@ -306,8 +312,8 @@ public class BaseClass {
 			DesiredCapabilities capabilities = DesiredCapabilities.chrome();
 			capabilities.setCapability(ChromeOptions.CAPABILITY, options);
 						
-			//driver = new ChromeDriver(capabilities);
-			driver = new ChromeDriver();
+			driver = new ChromeDriver(capabilities);
+			//driver = new ChromeDriver();
 			implicitwait(driver);
 			driver.get(baseUrl);
 			driver.manage().window().maximize();

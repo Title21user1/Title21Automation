@@ -24,11 +24,12 @@ public class CreateNewUser_Test extends BaseClass{
 	String firstMsgColor = "";
 	String secondLineColor = "";
 	String thirdLinecolor = "";
-	String userName = "";
-	
-	boolean UserPresenceAfterSearch = false;
-	
+	String userName = "";	
+	boolean UserPresenceAfterSearch = false;	
 	AdminData adminData=new AdminData();
+	String testcaseName="TestCase-WIA-Create New User.doc";	
+	String filePath = System.getProperty("user.dir") + "\\TestCases\\"+testcaseName;	
+	
 	@BeforeClass
 	public void openURL() 
 	{
@@ -43,7 +44,7 @@ public class CreateNewUser_Test extends BaseClass{
 	public void AddNewUser() throws Exception
 	{
 		test = extent.startTest("Create New User");
-		test.log(LogStatus.INFO, "Link to Test case document", "<a href='file:///E:/sameer/Sameer Joshi/Title health solutions/Test case by neosoft/TestCase_WIA_Create New User.doc'>TestCaseDocument</a>");
+		test.log(LogStatus.INFO, "Link to Test case document", "<a href='file://"+filePath+"'>TestCaseDocument</a>");
 		addNewUserPage= new AddNewUser_POM(driver);
 		test.log(LogStatus.PASS, "1.Login to the web interface.");
 		getAdministrationPage(test);	
@@ -427,5 +428,4 @@ public class CreateNewUser_Test extends BaseClass{
 	{		
 		driver.close();
 	}
-	
 }

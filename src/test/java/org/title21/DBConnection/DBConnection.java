@@ -72,20 +72,36 @@ public class DBConnection extends BaseClass {
 		return dbvalue;
 	}
 	
-	public static int executeStoredProcedure(String storedProcedure) throws Exception{
+	/*
+	 * 
+	 * This will execute storedProcedure. 
+	 * It will return true if there is any resultset false otherwise. 
+	 * 
+	 */
+		
+	public static boolean executeStoredProcedure(String storedProcedure) throws Exception{
 		
 		try{
+			boolean getResults;
 			Connection con=getConnection();
 			PreparedStatement ps= con.prepareStatement(storedProcedure);
 			
 			ps.setEscapeProcessing(true);
-			ps.executeQuery();
-			sleep(3);
-			return 1;
+			getResults=ps.execute();
+			
+			if (getResults){
+				
+				rs=ps.getResultSet();
+				return true;
+													
+			}else{
+				return false;
+			}
+						
 		}
 		catch(Exception e){
 			System.out.println(e);
-			return 0;
+			return false;
 		}	
 		finally{
 			closeConnection();

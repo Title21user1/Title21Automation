@@ -12,6 +12,7 @@ import com.relevantcodes.extentreports.LogStatus;
 public class TestDB extends BaseClass
 {
 	DBQueries dbqueries;
+	
 	@BeforeClass
 	public void beforeClass()
 	{
@@ -23,9 +24,8 @@ public class TestDB extends BaseClass
 	{
 		test = extent.startTest("Session Timeout");		
 		//test.log(LogStatus.PASS,"DataBase Value "+DBConnection.getIntDBValue(dbqueries.sessessiontimeoutinminutes, 
-				//"sessiontimeoutinminutes"));
-		test.log(LogStatus.PASS,"MoveDocsBetweenCabinets"+DBConnection.executeStoredProcedure(dbqueries.moveDocsOnReleaseDate)); 
-				
+		//"sessiontimeoutinminutes"));	
+		test.log(LogStatus.PASS,"MoveDocsBetweenCabinets"+DBConnection.executeStoredProcedure(dbqueries.moveDocsOnReleaseDate));				
 	}
 		
 	
