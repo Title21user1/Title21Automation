@@ -123,7 +123,7 @@ public class CreateDocument_POM
 	@FindBy(xpath=".//*[@id='lock']")
 	WebElement editmodedisable;
 
-	@FindBy(linkText="PDF")
+	@FindBy(xpath="//a[contains(text(),'PDF')]")
 	WebElement pdf;
 
 	@FindBy(linkText="Native")
@@ -155,7 +155,7 @@ public class CreateDocument_POM
 
 	//@FindBy(xpath=".//*[@id='displaySel']/div[1]/div[3]/div/a/span[2]")
 	//WebElement contextmenu;
-	
+
 	@FindBy(xpath="//*[@id='displaySel']//a[@title='Context Menu']")
 	WebElement contextmenu;
 
@@ -185,25 +185,25 @@ public class CreateDocument_POM
 
 	@FindBy(xpath="//a[contains(@href,'AddReviewerModal')]")
 	WebElement editperiodicreviewer;
-	
+
 	@FindBy(xpath="//input[@name='submitButton']")
 	WebElement saveButton;
-	
+
 	@FindBy(xpath="//a[contains(@href,'AddAttachmentModal')]")
 	WebElement addattachment;
-	
+
 	@FindBy(xpath="//*[@id='default-modal']//button[@type='submit']")
 	WebElement addbutton;
-	
+
 	@FindBy(xpath="//a[contains(@href,'LinksModal')]")
 	WebElement addnewlinks;
-	
+
 	@FindBy(xpath="//input[@name='formIdOfLinksToAdd']")
 	WebElement linkstoadd;
-	
+
 	@FindBy(xpath="//input[@name='searchString']")
 	WebElement addlinksearch;
-	
+
 	@FindBy(xpath=".//*[@id='default-modal']//button[@class='t21-ajax-submit-button form-control form-inline btn t21-btn-default']")
 	WebElement addlinkgobutton;
 
@@ -215,7 +215,7 @@ public class CreateDocument_POM
 
 	public WebElement selectType()
 	{
-		
+
 		return selectType;			
 	}
 
@@ -245,7 +245,7 @@ public class CreateDocument_POM
 	{
 		return editdocumentNO;			
 	}
-	
+
 	public WebElement getGoButton()
 	{
 		return goButton;			
@@ -255,11 +255,6 @@ public class CreateDocument_POM
 	{
 
 		return DocumentTitlemsg;			
-	}
-
-	public WebElement getDocumentsummarymsg()
-	{
-		return Documentsummarymsg;			
 	}
 
 	public WebElement getappedixvalmsg()
@@ -286,42 +281,42 @@ public class CreateDocument_POM
 	{		
 		return editperiodicreviewer;			
 	}
-	
+
 	public WebElement saveButton()
 	{		
 		return saveButton;			
 	}
-	
+
 	public WebElement addAttachment()
 	{		
 		return addattachment;			
 	}
-	
+
 	public WebElement addButton()
 	{		
 		return addbutton;			
 	}
-	
+
 	public WebElement addNewLinks()
 	{		
 		return addnewlinks;			
 	}
-	
+
 	public WebElement selectLinkToAdd()
 	{
 		return linkstoadd;
 	}
-	
+
 	public WebElement addLinkSearch()
 	{
 		return addlinksearch;
 	}
-	
+
 	public WebElement addLinkGoButton()
 	{
 		return addlinkgobutton;
 	}
-	
+
 	public boolean DocumentTitlemsgvalidation(){
 
 		element=getDocumentTitlemsg();
@@ -448,17 +443,12 @@ public class CreateDocument_POM
 
 		return checkoutsuccessclose;			
 	}
-	
-	public WebElement GeteditdocumentNo()
-	{
-		return editdocumentNO;			
-	}
-	
+
 	public WebElement getnewdoc()
 	{
 		return newdoc;			
 
-  }
+	}
 	public WebElement getpoupcheckin()
 	{
 
@@ -485,20 +475,15 @@ public class CreateDocument_POM
 
 	public WebElement getcheckoutconfirm()
 	{
-	
-    return checkoutconfirm;			
+
+		return checkoutconfirm;			
 	}
-	
-	public WebElement getDocumentTitlemsg()
-	{		
-		return DocumentTitlemsg;			
-	}
-	
+
 	public WebElement getDocumentsummarymsg()
 	{
 		return Documentsummarymsg;			
 	}
-	
+
 	/*public WebElement getappedixvalmsg()
 	{
 		return appedixvalmsg;		
@@ -528,7 +513,7 @@ public class CreateDocument_POM
 		return checkoutbutton;
 
 	}
-    
+
 	public WebElement getcheckincancelsuccess()
 	{
 
@@ -610,7 +595,7 @@ public class CreateDocument_POM
 
 		return EditModeOff;			
 	}
-  
+
 	public WebElement GeteditdocumentNo()
 	{
 
@@ -621,11 +606,6 @@ public class CreateDocument_POM
 	{
 
 		return PlusButtonuploadfile;
-  }
-		
-	public WebElement getPlusButtonuploadfile()
-	{
-			return PlusButtonuploadfile;
 	}
 
 	public boolean CheckinSuccessmessage(){
@@ -685,15 +665,15 @@ public class CreateDocument_POM
 
 	public void selectPeriodicReviewer(String value)
 	{
-		
+
 		WebElement element = driver.findElement(By.xpath
 				(".//*[@id='bootstrap-duallistbox-nonselected-list_DocRequiredReviewerList[]']//option[@value='"+value+"']"));
 		element.click();			
 	}
-	
+
 	public void selectEntities(String value)
 	{
-		
+
 		WebElement element = driver.findElement(By.xpath
 				("//select[@id='bootstrap-duallistbox-nonselected-list_selectedEmployee']//option[@value='"+value+"']"));
 		element.click();			

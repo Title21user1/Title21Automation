@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import org.title21.utility.*;
 import org.testng.Assert;
 import org.title21.utility.BaseClass;
 
@@ -52,7 +51,7 @@ public class DBConnection extends BaseClass {
 	 * 
 	 */
 	
-	public static int getIntDBValue(String dbquery, String columnName) throws Exception
+	public static int getIntDBValue(String dbquery, String columnName)
 	{
 		int dbvalue = 0;
 		try{
@@ -65,6 +64,10 @@ public class DBConnection extends BaseClass {
 				dbvalue= rs.getInt(columnName);
 				
 			}
+		}
+		catch(Exception e)
+		{
+			System.out.println("Failed Database Connection");
 		}
 		finally{
 			closeConnection();

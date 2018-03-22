@@ -169,7 +169,7 @@ public class DetailedCheckout_Test extends BaseClass
 		verticalScrollingDown();											sleep(2);
 		
 		test.log(LogStatus.PASS,"12. Check the periodic review control of the document checked out "
-				+ "and compare it with the effective document (Prerequisite 3 screenshots).");
+				+ "and compare it with the effective document.");
 		
 		if (mydocs.beforeCheckReviewer().containsAll(mydocs.afterCheckReviewer()))
 		{
@@ -185,7 +185,7 @@ public class DetailedCheckout_Test extends BaseClass
 		verticalScrollingDown();											sleep(2);
 		
 		test.log(LogStatus.PASS,"13. Check the attachment control of the document checked out "
-				+ "and compare it with the effective document (Prerequisite 3 screenshots).");
+				+ "and compare it with the effective document.");
 		
 		if (mydocs.beforeCheckAttachment().containsAll(mydocs.afterCheckAttachment()))
 		{
