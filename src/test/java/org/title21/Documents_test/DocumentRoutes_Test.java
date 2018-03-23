@@ -83,6 +83,7 @@ public class DocumentRoutes_Test extends BaseClass{
 				
 				sleep(2);
 				documentRoutes.add_Button().click();
+				sleep(2);
 			}
 			else
 			{

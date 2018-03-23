@@ -28,7 +28,6 @@ public class TestDB extends BaseClass
 				
 	}
 		
-	
 	@AfterClass
 	public void afterClass()
 	{

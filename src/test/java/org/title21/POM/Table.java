@@ -86,7 +86,7 @@ public class Table extends BaseClass
 	public List<WebElement> getDocumentApprovalstableCells(int columnNumber){	
 		List<WebElement> cells = null;
 		for(WebElement row : tableRows) {
-		    cells = row.findElements(By.xpath("//div[@id='DocumentApprovalsTab']//td["+columnNumber+"]"));  //div[@id='DocumentApprovalsTab']//td[2]
+		    cells = row.findElements(By.xpath("//div[@id='DocumentApprovalsTab']//td["+columnNumber+"]")); 
 		  }
 		return cells;
 	}
@@ -94,7 +94,23 @@ public class Table extends BaseClass
 	public List<WebElement> getcollapseDocumentstableCells(int columnNumber){	
 		List<WebElement> cells = null;
 		for(WebElement row : tableRows) {
-		    cells = row.findElements(By.xpath("//div[@id='collapseDocuments']//td["+columnNumber+"]"));  //div[@id='DocumentApprovalsTab']//td[2]
+		    cells = row.findElements(By.xpath("//div[@id='collapseDocuments']//td["+columnNumber+"]")); 
+		  }
+		return cells;
+	}
+	
+	public List<WebElement> getTrainingItemCells(int columnNumber){	
+		List<WebElement> cells = null;
+		for(WebElement row : tableRows) {
+		    cells = row.findElements(By.xpath("//div[@data-t21-ajax-id='training-item-list']//td["+columnNumber+"]")); 
+		  }
+		return cells;
+	}
+	
+	public List<WebElement> getTrainingCompletedItemCell(int columnNumber){	
+		List<WebElement> cells = null;
+		for(WebElement row : tableRows) {
+		    cells = row.findElements(By.xpath("//td[2]")); 
 		  }
 		return cells;
 	}
