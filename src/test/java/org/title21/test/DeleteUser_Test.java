@@ -28,10 +28,12 @@ public class DeleteUser_Test extends BaseClass{
 	String number="";
 	String updatedAdminUsername="";
 	boolean GroupPresenceAfterSearch = false;
-	Table searchTable;
-	
+	Table searchTable;	
 	private boolean isRecordFound=true;
 	AdminData adminData=new AdminData();
+	
+	String testcaseName="TestCase-WIA-Delete User.doc";	
+	String filePath = System.getProperty("user.dir") + "\\TestCases\\"+testcaseName;	
 		
 	@BeforeClass
 	public void openURL() 
@@ -48,7 +50,7 @@ public class DeleteUser_Test extends BaseClass{
 	public void UpdateUser() throws Exception
 	{		
 		test = extent.startTest("Delete User");
-		test.log(LogStatus.INFO, "Link to Test case document", "<a href='file:///E:/sameer/Sameer Joshi/Title health solutions/Test case by neosoft/TestCase_WIA_Delete User.doc'>TestCaseDocument</a>");
+		test.log(LogStatus.INFO, "Link to Test case document", "<a href='file://"+filePath+"'>TestCaseDocument</a>");
 		test.log(LogStatus.PASS, "1.Login as a web interface.");
 		deleteUser=new DeleteUser_POM(driver);
 		updatedAdminUsername=adminUsername;

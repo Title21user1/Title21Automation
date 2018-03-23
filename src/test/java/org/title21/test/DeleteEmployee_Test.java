@@ -26,6 +26,9 @@ public class DeleteEmployee_Test extends BaseClass {
 	String employeeID = "";
 	boolean EmployeePresenceAfterSearch = false;
 	static Logger log = Logger.getLogger(DeleteEmployee_Test.class);
+	
+	String testcaseName="TestCase-WIA-Delete Employee record.doc";	
+	String filePath = System.getProperty("user.dir") + "\\TestCases\\"+testcaseName;
 
 	@BeforeClass
 	public void openURL() {
@@ -40,7 +43,7 @@ public class DeleteEmployee_Test extends BaseClass {
 	public void Delete_Employee() throws Exception {
 		
 		test = extent.startTest("Delete Employee");
-		test.log(LogStatus.INFO, "Link to Test case document", "<a href='file:///E:/sameer/Sameer Joshi/Title health solutions/Test case by neosoft/TestCase-WIA-Delete Employee record.doc'>TestCaseDocument</a>");
+		test.log(LogStatus.INFO, "Link to Test case document", "<a href='file://"+filePath+"'>TestCaseDocument</a>");
 		test.log(LogStatus.PASS, "1 Login to the web interface.");
 		getAdministrationPage(test);
 		emp = new Delete_Employee_POM(driver);

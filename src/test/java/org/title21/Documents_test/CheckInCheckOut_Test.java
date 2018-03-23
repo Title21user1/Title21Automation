@@ -5,7 +5,9 @@ import java.util.concurrent.TimeUnit;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import org.title21.POM.CreateDocument_POM;
+import org.title21.Documents_POM.CreateDocument_POM;
+import org.title21.Documents_POM.MyDocs_POM;
+
 import org.title21.POM.LoginPage_POM;
 import org.title21.POM.LogoutPage_POM;
 import org.title21.POM.WizardPage_POM;
@@ -19,9 +21,11 @@ public class CheckInCheckOut_Test extends BaseClass
 	LoginPage_POM login; 
 	LogoutPage_POM logout;
 	CreateDocument_POM Credoc;
-	org.title21.Documents_POM.MyDocs_POM mydocs;
+	MyDocs_POM mydocs;
 	WizardPage_POM wizpage;
 	String className="";
+	String testcaseName="TestCase-WIA-Check_In & Checkout.doc";	
+	String filePath = System.getProperty("user.dir") + "\\TestCases\\"+testcaseName;
 
 	@BeforeClass
 	public void beforeClass()
@@ -38,14 +42,15 @@ public class CheckInCheckOut_Test extends BaseClass
 	}
 
 
-	@Test(testName = "CheckInCheckOut", groups = "DocumentCheck", priority = 0)
+	@Test(testName = "CheckInCheckOut", groups = "DocumentCheck")
 	public void checkInCheckOut()
 	{
 		test = extent.startTest("Check In and Check Out Document");
+		test.log(LogStatus.INFO, "Link to Test case document", "<a href='file://"+filePath+"'>TestCaseDocument</a>");
 		login.loginUser(loginData[4][0], loginData[4][1]);
 		sleep(2);
 		test.log(LogStatus.PASS,"1. Login to Web Application as a Test User");
-
+		
 		Credoc.getnewdoc().click();
 		sleep(2);
 		Credoc.getdocument().click();

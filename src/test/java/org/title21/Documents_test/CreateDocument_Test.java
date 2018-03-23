@@ -1,7 +1,12 @@
 package org.title21.Documents_test;
 
 import java.io.File;
+
+import java.io.IOException;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -12,6 +17,7 @@ import org.title21.dao.AdminData;
 import org.title21.utility.BaseClass;
 import org.title21.utility.DownloadUtils;
 import org.title21.utility.FileUpload;
+import org.title21.utility.FunctionUtils;
 
 import com.relevantcodes.extentreports.LogStatus;
 
@@ -23,17 +29,22 @@ public class CreateDocument_Test extends BaseClass {
 	String className = "";
 
 	FileUpload Upload;
-	String AppendixNumber = "27";
-	String Appendix = "Tuvb123";
+	String doc="abc";
+	String AppendixNumber = "21";
+	String Appendix =doc+FunctionUtils.generateRandomNumber();
 	String fileUploadPath = "";
+	String fileUploadPath1 = "";
 	String uploadFileName = "test.doc";
 	String uploadFileNameSize = "Sizeval.doc";
 	static Logger log = Logger.getLogger(CreateDocument_Test.class);
 	AdminData adminData = new AdminData();
+	String testcaseName="TestCase-WIA-Creation of new document.doc";	
+	String filePath = System.getProperty("user.dir") + "\\TestCases\\"+testcaseName;
 
 	@BeforeClass
 	public void openURL() {
 		getBrowser();
+		implicitwait(driver);
 		className = this.getClass().getName();
 		createDirectory(className);
 		login = new LoginPage_POM(driver);
@@ -43,8 +54,7 @@ public class CreateDocument_Test extends BaseClass {
 	@Test(testName = "create  document ", groups = "create_doc", priority = 0)
 	public void Create_doc() {
 		test = extent.startTest("Create  Document");
-		test.log(LogStatus.INFO, "Link to Test case document",
-				"<a href='C:\\Users\\dell\\Desktop\\Title21data\\documents\\TestCase-WIA-Creation of new document.doc'>TestCaseDocument</a>");
+		test.log(LogStatus.INFO, "Link to Test case document", "<a href='file://"+filePath+"'>TestCaseDocument</a>");
 		sleep(2);
 		Credoc = new CreateDocument_POM(driver);
 		Credoc.getnewdoc().click();
@@ -52,14 +62,10 @@ public class CreateDocument_Test extends BaseClass {
 		waitTillElementVisible(Credoc.getdocument());
 		Credoc.getdocument().click();
 		sleep(3);
-		// Credoc.getdocumentnumber().getText();
-		// System.out.print(Credoc.getdocumentnumber().getText());
-
 		test.log(LogStatus.PASS,
 				"1.From the Main menu click on New and select Document " + "<br/>"
 						+ "<b>ER1: New document dialog appears. <b>"
 						+ test.addScreenCapture(captureScreenShot(driver, "Doc_Dialog")));
-		sleep(2);
 		Credoc.getlocationDrodown().selectByVisibleText("Dallas");
 		sleep(2);
 		test.log(LogStatus.PASS,
@@ -96,7 +102,7 @@ public class CreateDocument_Test extends BaseClass {
 		Credoc.Appendix().sendKeys(Appendix);
 		sleep(2);
 		String Document_number = Credoc.getdocumentnumber().getAttribute("value");
-		if (Document_number.contains(AppendixNumber) && Document_number.contains(Appendix)) {
+		if (Document_number.contains(Appendix)) {
 
 			test.log(LogStatus.PASS, " 6.	Edit the \"document no\" field " + "<br/>"
 					+ "7. Select number from the number drop-down field" + "<br/>"
@@ -116,7 +122,7 @@ public class CreateDocument_Test extends BaseClass {
 							+ test.addScreenCapture(captureScreenShot(driver, "create_document")));
 
 		}
-		sleep(5);
+		
 		logout = new LogoutPage_POM(driver);
 		logout.logoutFunction();
 		login1 = new LoginPage_POM(driver);
@@ -124,36 +130,31 @@ public class CreateDocument_Test extends BaseClass {
 		login1.loginFunction();
 		sleep(3);
 		Credoc.getcreateddoc().click();
-		sleep(5);
-		// if (Credoc.EditModeoffDisable().isDisplayed()) {
-		// test.log(LogStatus.PASS,
-		// "10.Turn upper right-hand corner Edit Mode to off. " + "<br/>"
-		// + "<b> ER7: All the documents fields should get disabled..<b>"
-		// + test.addScreenCapture(captureScreenShot(driver, "Edit_Mode_Off")));
-		// }
+		sleep(3);
 		Credoc.getEditModeON().click();
-		sleep(5);
+		sleep(3);
 		Credoc.getPlusButtonuploadfile().click();
 		sleep(2);
 
 		Credoc.getBrouse().click();
 		sleep(5);
-		Upload = new FileUpload();
-		fileUploadPath = System.getProperty("user.dir") + "\\testdata";
+    
 		fileUploadPath = fileUploadPath + "\\" + uploadFileNameSize;
+		Upload = new FileUpload();
+		fileUploadPath1 = System.getProperty("user.dir") + "\\testdata";
+		fileUploadPath1 = fileUploadPath1 + "\\" + uploadFileNameSize;
 		
-		FileUpload.uploadFile(fileUploadPath);
+		FileUpload.uploadFile(fileUploadPath1);
 		Credoc.getAddButtonupload().click();
-
+		sleep(2);
 		if (Credoc.UploadFileSizeValidation()) {
 			test.log(LogStatus.PASS,
-					"Turn edit mode to ON" + "<br/>" + "Click on add file plus button" + "<br/>"
-							+ "14. Add file with size more than 50 MB  and click on Add  button  " + "<br/>"
+					"10. Turn edit mode to ON" + "<br/>" + "11.Click on add file plus button" + "<br/>"
+							+ "12. Add file with size more than 50 MB  and click on Add  button  " + "<br/>"
 							+ "<b> ER7: It should show validation message as \"File size must be less than 50 MB\".<b>"
 							+ test.addScreenCapture(captureScreenShot(driver, "File_Size")));
 
 		}
-		sleep(2);
 		Credoc.getCancel().click();
 		sleep(2);
 		Credoc.getPlusButtonuploadfile().click();
@@ -164,65 +165,65 @@ public class CreateDocument_Test extends BaseClass {
 		Credoc.getBrouse().sendKeys(fileUploadPath);
 		sleep(2);
 		Credoc.getAddButtonupload().click();
-		sleep(8);
-		Credoc.getnative();
+		sleep(10);
+		verticalScrollingDown();
 		Credoc.getnative().click();
-		sleep(15);
+		sleep(10);
 		File downloadedFile = DownloadUtils.waitForDownloadToComplete("test");
 		if (downloadedFile.exists()) {
 			test.log(LogStatus.PASS,
 					"13.Attached main file to the document for eg. Any doc or pdf file " + "<br/>"
-							+ "16.Click on native button under the main file" + "<br/>"
+							+ "14.Click on native button under the main file" + "<br/>"
 							+ "<b>ER8: It should download the main file document in its native form.<b>"
 							+ test.addScreenCapture(captureScreenShot(driver, "native_file")));
 		}
-		sleep(10);
-		System.out.print(home_page);
-		Credoc.getpdf();
+		sleep(15);		
 		Credoc.getpdf().click();
-		sleep(14);
+		sleep(15);
 		test.log(LogStatus.PASS,
 				"15. click on pdf button " + "<br/>"
 						+ "<b>ER 9 : Document is converted to pdf form and open in new tab.<b>"
 						+ test.addScreenCapture(captureScreenShot(driver, "checkinsuccessmessage")));
-		sleep(8);
 
 		String pop_page = driver.getWindowHandle();
 		System.out.print(pop_page);
-		sleep(5);
+		sleep(2);
 		driver.switchTo().window(home_page);
-		sleep(5);
+		sleep(3);
+		verticalScrollingUp();
+		sleep(2);
 		Credoc.getcontextmenu().click();
-		sleep(5);
+		sleep(2);
 		Credoc.getcheckin().click();
-		sleep(8);
+		sleep(2);
 		test.log(LogStatus.PASS,
 				"16.Click on doc option context menu." + "<br/>" + "17. Go to Action section and click on Check-In.  "
 						+ "<br/>" + "<b>ER 10 : Check In popup screen is displayed.<b>"
 						+ test.addScreenCapture(captureScreenShot(driver, "checkin_popup")));
 		Credoc.getcheckinbuttonwindow().click();
-		sleep(10);
+		sleep(5);
 		if (Credoc.CheckinSuccessmessage()) {
 			test.log(LogStatus.PASS,
 					"<b>ER 11:  A Successful message that the document has been checked In is displayed.<b>"
 							+ test.addScreenCapture(captureScreenShot(driver, "checkinsuccessmessage")));
 		}
-		sleep(15);
 		waitTillElementVisible(Credoc.getcheckincancelsuccess());
-		Credoc.getcheckincancelsuccess();
+		
 		Credoc.getcheckincancelsuccess().click();
 		Credoc.getcheckincancelsuccess().click();
-		sleep(15);
+		sleep(2);
+		waitTillElementVisible(Credoc.editmodedisable());
 		if (Credoc.editmodedisable().isDisplayed()) {
 			test.log(LogStatus.PASS, "18.Click on close button " + "<br/>" + "<b>ER12: Doument Edit mode is disable.<b>"
 					+ test.addScreenCapture(captureScreenShot(driver, "documenteditmodedisable")));
 		}
+		
 		sleep(2);
 		Credoc.getcontextmenu().click();
 		sleep(2);
 		Credoc.getcheckoutbutton().click();
 		sleep(2);
-		if (Credoc.getpoupcheckin().isDisplayed())
+		if(Credoc.getcheckboxcheckout().isDisplayed())
 			test.log(LogStatus.PASS,
 					"19 again click on doc option context menu  " + "<br/>" + "20.Click on checkout link." + "<br/>"
 							+ "<b> ER 13 : Check Out popup screen should get open.  <b>"
@@ -230,25 +231,49 @@ public class CreateDocument_Test extends BaseClass {
 		sleep(2);
 		Credoc.getcheckboxcheckout().click();
 		Credoc.getcheckoutconfirm().click();
-		sleep(10);
+		sleep(5);
 		if (Credoc.checkoutversionvalidation()) {
 			test.log(LogStatus.PASS, "21. Check the open document after checkout checkbox " + "<br/>"
 					+ "22.Click on confirm button" + "<br/>"
 					+ "<b>ER 14 :  Minor revision of the document incremented changed for eg, doc number is changed from 001.398:0.1 to 001.398:0.2 <b>"
 					+ test.addScreenCapture(captureScreenShot(driver, "checkoutvesionvalidation")));
 		}
+	
+		waitTillElementVisible(Credoc.getcheckincancelsuccess());
+		if(Credoc.getcheckincancelsuccess().isDisplayed())
+		{
 		
-		sleep(10);
+		//Credoc.getcheckincancelsuccess();
+		Credoc.getcheckincancelsuccess().click();
+		Credoc.getcheckincancelsuccess().click();
+		}
+		else
+		{
+			log.info("prompt not display");
+		}
+		sleep(5);
         test.log(LogStatus.PASS, "<b>ER 15: Document edit mode enable.<b>"
 				+ test.addScreenCapture(captureScreenShot(driver, "document edit   mode")));
-		sleep(6);
 
 	}
-
-	@AfterClass
-	public void closeBrowserInstance() {
-
 	
+    @Override
+	public void waitTillElementClickable(WebElement element) {		
+		WebDriverWait wait=new WebDriverWait(driver,20);
+		wait.until(ExpectedConditions.elementToBeClickable(element));		
+	}
+	
+    @Override
+    public void waitTillElementVisible(WebElement element) {		
+		WebDriverWait wait=new WebDriverWait(driver,20);
+		wait.until(ExpectedConditions.visibilityOf(element));		
+	}
+    
+	@AfterClass
+	public void closeBrowserInstance() throws IOException {
+
+		cleanDownloadDirectory();
+		sleep(2);
 		logout.logoutFunction();
 		log.info("logout successfully.");
 		sleep(2);

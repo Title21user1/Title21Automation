@@ -17,6 +17,7 @@ import java.util.Formatter;
 import java.util.HashMap;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
+import java.util.function.Function;
 
 import javax.imageio.ImageIO;
 
@@ -43,6 +44,8 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.ITestResult;
 import org.testng.Reporter;
@@ -198,12 +201,21 @@ public class BaseClass {
 
 		classname = classname.substring(4);
 		imagesDirectory = System.getProperty("user.dir") + "\\extentReports" + "\\" + classname;
-		relativePathforImage="..\\extentReports" + "\\" + classname+"\\";
+		/*
+		 * relativePathforImage has been set with relation with index.html
+		 */
+		relativePathforImage="..\\extentReports" + "\\" + classname+"\\";		
 		
 		File file = new File(imagesDirectory);
 		if (!file.exists()) {
 			file.mkdir();
 		} else {
+			try {
+				FileUtils.cleanDirectory(file);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}		
 			System.out.println("Either directory is already prersent or Failed to create directory.");
 		}
 	}
@@ -306,8 +318,8 @@ public class BaseClass {
 			DesiredCapabilities capabilities = DesiredCapabilities.chrome();
 			capabilities.setCapability(ChromeOptions.CAPABILITY, options);
 						
-			//driver = new ChromeDriver(capabilities);
-			driver = new ChromeDriver();
+			driver = new ChromeDriver(capabilities);
+			//driver = new ChromeDriver();
 			implicitwait(driver);
 			driver.get(baseUrl);
 			driver.manage().window().maximize();
@@ -430,6 +442,20 @@ public class BaseClass {
 
 	}
 	
+	/*public void waitforSynchronization(WebElement element){
+		
+		Wait wait=new FluentWait(driver)
+				.withTimeout(30, TimeUnit.SECONDS).
+				pollingEvery(5, TimeUnit.SECONDS);
+		
+		WebElement foo = wait.until(new Function()  {    
+		    public WebElement apply(WebDriver driver) {    
+		        return element;   
+		    }
+		
+		
+	}
+		*/
 	public void waitTillElementisInvisible(WebElement element) {	
 		
 		WebDriverWait wait=new WebDriverWait(driver,5);
@@ -464,4 +490,18 @@ public class BaseClass {
 			js.executeScript("window.scrollBy(0,-250)");
 		}	
 	}
+	
+	public void horizontalScrollingToRight(){
+		JavascriptExecutor js=(JavascriptExecutor)driver;	
+		for (int i=0;i<2;i++){
+			js.executeScript("window.scrollBy(200,0)");
+		}	
+	}
+	
+	public void horizontalScrollingToLeft(){
+		JavascriptExecutor js=(JavascriptExecutor)driver;	
+		for (int i=0;i<2;i++){
+			js.executeScript("window.scrollBy(-200,0)");
+		}	
+	}	
 }

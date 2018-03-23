@@ -8,7 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import org.title21.POM.DocumentRoutes_POM;
+import org.title21.Documents_POM.DocumentRoutes_POM;
 import org.title21.POM.LoginPage_POM;
 import org.title21.POM.LogoutPage_POM;
 import org.title21.POM.Table;
@@ -32,6 +32,8 @@ public class DocumentRoutes_Test extends BaseClass{
 	boolean isRecordFound1=false;
 	boolean isValueFound=false;
 	AdminData adminData=new AdminData();
+	String testcaseName="TestCase-WIA-Document_Routes.doc";	
+	String filePath = System.getProperty("user.dir") + "\\TestCases\\"+testcaseName;
 		
 	@BeforeClass
 	public void openURL() 
@@ -49,7 +51,7 @@ public class DocumentRoutes_Test extends BaseClass{
 	{		
 		test = extent.startTest("Document Routes");
 		//test.log(LogStatus.PASS, "1.Login as a web interface.");
-		test.log(LogStatus.INFO, "Link to Test case document", "<a href='file:///E:/sameer/Sameer Joshi/Title health solutions/Test case by neosoft/TestCase-WIA-document_routes.doc'>TestCaseDocument</a>");
+		test.log(LogStatus.INFO, "Link to Test case document", "<a href='file://"+filePath+"'>TestCaseDocument</a>");
 		documentRoutes=new DocumentRoutes_POM(driver);		
 		documentRoutes.getnewdoc().click();
 		sleep(2);
@@ -283,7 +285,7 @@ public class DocumentRoutes_Test extends BaseClass{
 					documentRoutes.documentApprove_Button().click();
 					sleep(2);
 					documentRoutes.pinTo_Approve().clear();
-					documentRoutes.pinTo_Approve().sendKeys("262829");
+					documentRoutes.pinTo_Approve().sendKeys(routeData[1][12]);
 					documentRoutes.checkInRouteSubmit_Button().click();
 					sleep(2);
 					logout.logoutFunction();
@@ -316,7 +318,7 @@ public class DocumentRoutes_Test extends BaseClass{
 					documentRoutes.documentApprove_Button().click();
 					sleep(2);
 					documentRoutes.pinTo_Approve().clear();
-					documentRoutes.pinTo_Approve().sendKeys("262829");
+					documentRoutes.pinTo_Approve().sendKeys(routeData[1][12]);
 					documentRoutes.checkInRouteSubmit_Button().click();
 					sleep(2);
 					logout.logoutFunction();
