@@ -72,6 +72,78 @@ public class ReadAndSignTraining_POM extends DocumentRoutes_POM {
 	@FindBy(xpath="//button[@type='submit'][@tabindex='1']")
 	WebElement audtitLogSearchFieldGobutton;
 	
+	@FindBy(xpath="//a[contains(@href,'#GeneralTab')]")
+	WebElement genaralTab;
+	
+	@FindBy(css="DocTargetReleaseDateString")
+	WebElement targetReleaseDateTextBox;
+	
+	@FindBy(css="#CanPromoteWithOpenTraining")
+	WebElement promotionSettingsItemCheckBox;
+	
+	@FindBy(css="#MinPercentRequired")
+	WebElement trainingsPercentageCheckBox;
+	
+	@FindBy(css="#Percent")
+	WebElement trainingsPercentageTextBox;
+	
+	@FindBy(xpath="//*[@id='EntitiesFromSelection'][@value='True']")
+	WebElement entitiesSubjectFromSection;
+	
+	@FindBy(xpath="//*[@id='add-new-training-entities']")
+	WebElement addNewTrainingEntitiesLink;
+	
+	@FindBy(xpath="//h4[text()='Selected Entities']")
+	WebElement selectedEntitiesHeader;
+	
+	@FindBy(xpath="//*[@id='bootstrap-duallistbox-nonselected-list_selectedEmployee']/option[1]")
+	WebElement firstEmpFromList;
+	
+	public WebElement firstEmp_FromList()
+	{
+		return firstEmpFromList;
+	}
+	
+	public WebElement selectedEntities_Header()
+	{
+		return selectedEntitiesHeader;
+	}
+	
+	public WebElement addNewTrainingEntities_Link()
+	{
+		return addNewTrainingEntitiesLink;
+	}
+	
+	public WebElement entitiesSubject_FromSection()
+	{
+		return entitiesSubjectFromSection;
+	}
+	
+	public WebElement trainingsPercentage_TextBox()
+	{
+		return trainingsPercentageTextBox;
+	}
+	
+	public WebElement trainingsPercentage_CheckBox()
+	{
+		return trainingsPercentageCheckBox;
+	}
+	
+	public WebElement promotionSettingsItem_CheckBox()
+	{
+		return promotionSettingsItemCheckBox;
+	}
+	
+	public WebElement targetReleaseDate_TextBox()
+	{
+		return targetReleaseDateTextBox;
+	}
+	
+	public WebElement general_Tab()
+	{
+		return genaralTab;
+	}
+	
 	public WebElement audtitLogSearchFieldGo_button()
 	 {
 		 return audtitLogSearchFieldGobutton;
@@ -157,6 +229,25 @@ public class ReadAndSignTraining_POM extends DocumentRoutes_POM {
 	{
 		return trainingTab;
 	}
-
+	
+	public void promotionSettingsItemsCheck(Boolean check)
+	 {
+	  if (!check && promotionSettingsItem_CheckBox().isSelected()) {
+		  promotionSettingsItem_CheckBox().click();
+	  }
+	  else if (check && !promotionSettingsItem_CheckBox().isSelected()) {
+		  promotionSettingsItem_CheckBox().click();
+	  }
+	 }
+	
+	public void trainingsPercentagCheck(Boolean check)
+	 {
+	  if (!check && trainingsPercentage_CheckBox().isSelected()) {
+		  trainingsPercentage_CheckBox().click();
+	  }
+	  else if (check && !trainingsPercentage_CheckBox().isSelected()) {
+		  trainingsPercentage_CheckBox().click();
+	  }
+	 }
 }
 

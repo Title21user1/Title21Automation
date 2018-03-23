@@ -1,22 +1,20 @@
 package org.title21.Documents_test;
 
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.Sleeper;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.title21.Documents_POM.ReadAndSignTraining_POM;
-import org.title21.POM.DocumentRoutes_POM;
 import org.title21.POM.LoginPage_POM;
 import org.title21.POM.LogoutPage_POM;
 import org.title21.POM.Table;
 import org.title21.dao.AdminData;
 import org.title21.utility.BaseClass;
+import org.title21.utility.DateTimeUtils;
 
 import com.relevantcodes.extentreports.LogStatus;
 
@@ -24,6 +22,7 @@ public class ReadAndSignTraining_Test extends BaseClass{
 	LoginPage_POM login;
 	LogoutPage_POM logout;
 	ReadAndSignTraining_POM readSign;
+	DateTimeUtils dateTimeUtils;
 	static Logger log = Logger.getLogger(DocumentRoutes_Test.class);
 	String className="";
 	String documetNo="";
@@ -52,7 +51,8 @@ public class ReadAndSignTraining_Test extends BaseClass{
 		test = extent.startTest("Read And Sign Training");
 		test.log(LogStatus.PASS, "1.Login to the web interface as 'Test User'.");
 		test.log(LogStatus.INFO, "Link to Test case document", "<a href='file:///E:/sameer/Sameer Joshi/Title health solutions/Test case by neosoft/TestCase-WIA-document_routes.doc'>TestCaseDocument</a>");
-		readSign=new ReadAndSignTraining_POM(driver);		
+		readSign=new ReadAndSignTraining_POM(driver);	
+		dateTimeUtils=new DateTimeUtils();
 		//=========================================================================Part=>01================================================================================
 		readSign.getnewdoc().click();
 		sleep(2);
@@ -306,7 +306,10 @@ public class ReadAndSignTraining_Test extends BaseClass{
 		{
 			test.log(LogStatus.FAIL,"Unable to Create a new document form.");
 		}
+		
+		logout.logoutFunction();
 	//=====================================================================Part=>02=======================================================================
+		login.loginUser(loginData[7][0], loginData[7][1]);
 		
 		readSign.getnewdoc().click();
 		sleep(2);
@@ -371,16 +374,67 @@ public class ReadAndSignTraining_Test extends BaseClass{
 			}
 			
 			test.log(LogStatus.PASS, "23.Set the Target Release Date to one day after the current date.");
+			readSign.general_Tab().click();
+			sleep(2);
+			readSign.targetReleaseDate_TextBox().sendKeys(DateTimeUtils.getYesterdayDate());
+			test.log(LogStatus.PASS, "<b>ER10- Target release date is set.<b>"+
+					test.addScreenCapture(captureScreenShot(driver, "Target release date is set.")));
 			
+			test.log(LogStatus.PASS, "24.Click on the 'Training' tab.");
+			readSign.training_Tab().click();
+			sleep(2);
 			
+			test.log(LogStatus.PASS, "25.Select or change the training type to 'Read and Sign'.");
+			readSign.ChangeTrainingType_Link().click();
+			waitTillElementVisible(readSign.changeTrainingType_Header());
+			if(readSign.changeTrainingType_Header().isDisplayed())
+			{
+				readSign.readAndSignRadio_Button().click();
+				test.log(LogStatus.PASS, "6.Click on save button.");
+				readSign.changeTrainingTypePopUpSave_Button().click();
+				sleep(2);
+			}
+			else
+			{
+				test.log(LogStatus.FAIL, "Unable to find Change Training Type Pop Up.");
+			}
 			
+			test.log(LogStatus.PASS, "26.Set 'Schedule training: On promotion to the following cabinet' to 'Approved'.");
+			readSign.scheduleTraining_DropDown().selectByVisibleText("Approved");
+				
+			test.log(LogStatus.PASS, "27.For 'Training due', select the radio button 'before promotion to next cabinet'");
+			readSign.BeforePromotionRadio_Button().click();
 			
+			verticalScrollingDown();
 			
+			test.log(LogStatus.PASS, "28.For 'Promotion Settings', select the checkbox 'Item may be promoted to next cabinet with open training items'.");
+			readSign.promotionSettingsItemsCheck(true);
 			
+			test.log(LogStatus.PASS, "29.For 'Require the following percentage of training to be completed,' select the checkbox and add '50' % in the text box.");
+			readSign.trainingsPercentagCheck(true);
+			sleep(2);
+			readSign.trainingsPercentage_TextBox().clear();
+			readSign.trainingsPercentage_TextBox().sendKeys("50");
 			
-			
-			
-			
+			test.log(LogStatus.PASS, "30.For 'Select entities subject to training', select the 'From Selection' radio button. Click on 'Entities' link. Select two entities and click on 'Update'.");
+			readSign.entitiesSubject_FromSection().click();
+			readSign.addNewTrainingEntities_Link().click();
+			waitTillElementVisible(readSign.selectedEntities_Header());
+			if(readSign.selectedEntities_Header().isDisplayed())
+			{
+				readSign.firstEmp_FromList().click();
+				readSign.firstEmp_FromList().click();
+				javaScriptClick(readSign.changeTrainingTypePopUpSave_Button());
+			//	readSign.changeTrainingTypePopUpSave_Button().click();
+				sleep(2);
+				test.log(LogStatus.PASS, "<b>ER11- The Read and Sign Training is scheduled.<b>"+
+						test.addScreenCapture(captureScreenShot(driver, "Target release date is set.")));
+				
+			}
+			else
+			{
+				test.log(LogStatus.PASS, "Unable to find Selected Entities Header");
+			}
 		
 		}
 		else
