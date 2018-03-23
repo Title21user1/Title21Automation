@@ -410,22 +410,25 @@ public class BaseClass {
 	private static String cellToString(XSSFCell cell) {
 		Object result;
 		String strReturn = null;
+		XSSFCell CellType;
 
 		if (cell == null) {
 			strReturn = "";
-		} else {
+		} else {			
 			switch (cell.getCellType()) {
 			case Cell.CELL_TYPE_NUMERIC:
-				result = cell.getNumericCellValue();
+				double strdouble = cell.getNumericCellValue();				
+				long cellNumber=Math.round(strdouble);				
+				strReturn =String.valueOf(cellNumber);
+				break;				
+			case Cell.CELL_TYPE_STRING:				
+				result =  String.valueOf(cell.getStringCellValue());
 				strReturn = result.toString();
 				break;
-
-			case Cell.CELL_TYPE_STRING:
-				result = cell.getStringCellValue();
-				strReturn = result.toString();
-				break;
+			case Cell.CELL_TYPE_BLANK:
+				strReturn ="";
 			default:
-				strReturn = null;
+				strReturn = null;			
 			}
 		}
 		return strReturn;
@@ -503,5 +506,6 @@ public class BaseClass {
 		for (int i=0;i<2;i++){
 			js.executeScript("window.scrollBy(-200,0)");
 		}	
-	}	
+	}
+	
 }
