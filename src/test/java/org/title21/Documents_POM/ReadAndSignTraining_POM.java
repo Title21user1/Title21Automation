@@ -75,7 +75,7 @@ public class ReadAndSignTraining_POM extends DocumentRoutes_POM {
 	@FindBy(xpath="//a[contains(@href,'#GeneralTab')]")
 	WebElement genaralTab;
 	
-	@FindBy(css="DocTargetReleaseDateString")
+	@FindBy(xpath="//*[@id='DocTargetReleaseDateString']")
 	WebElement targetReleaseDateTextBox;
 	
 	@FindBy(css="#CanPromoteWithOpenTraining")
@@ -98,6 +98,14 @@ public class ReadAndSignTraining_POM extends DocumentRoutes_POM {
 	
 	@FindBy(xpath="//*[@id='bootstrap-duallistbox-nonselected-list_selectedEmployee']/option[1]")
 	WebElement firstEmpFromList;
+	
+	@FindBy(xpath=".//*[@id='GeneralTab']/div[1]/div[2]/div[4]/div[2]/label")
+	WebElement documentStatus;
+	
+	public WebElement document_Status()
+	{
+		return documentStatus;
+	}
 	
 	public WebElement firstEmp_FromList()
 	{
