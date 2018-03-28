@@ -145,8 +145,8 @@ public class CreateDocument_Test extends BaseClass {
 		fileUploadPath1 = fileUploadPath1 + "\\" + uploadFileNameSize;
 		
 		FileUpload.uploadFile(fileUploadPath1);
-		Credoc.getAddButtonupload().click();
-		sleep(2);
+		Credoc.addButton().click();
+		sleep(3);
 		if (Credoc.UploadFileSizeValidation()) {
 			test.log(LogStatus.PASS,
 					"10. Turn edit mode to ON" + "<br/>" + "11.Click on add file plus button" + "<br/>"

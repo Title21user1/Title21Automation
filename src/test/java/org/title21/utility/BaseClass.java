@@ -494,6 +494,14 @@ public class BaseClass {
 		}	
 	}
 	
+
+	public void horizontalScrollingRight(){
+		JavascriptExecutor js=(JavascriptExecutor)driver;	
+		for (int i=0;i<2;i++){
+			js.executeScript("window.scrollBy(250,0)");
+		}	
+	}
+
 	public void horizontalScrollingToRight(){
 		JavascriptExecutor js=(JavascriptExecutor)driver;	
 		for (int i=0;i<2;i++){
@@ -507,5 +515,4 @@ public class BaseClass {
 			js.executeScript("window.scrollBy(-200,0)");
 		}	
 	}
-	
 }
