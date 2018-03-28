@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -32,6 +33,7 @@ public class ReadAndSignTraining_Test extends BaseClass{
 	String fileUploadPath="";
 	String uploadFileName="DocumentRouteTest.doc";
 	String documentStatus="";
+	String addedEntities="";
 	Table searchTable;
 	DBQueries dbqueries;
 	boolean isRecordFound=false;
@@ -50,7 +52,7 @@ public class ReadAndSignTraining_Test extends BaseClass{
 		
 	}
 //=========================================================================Part=>01================================================================================
-	@Test(testName = "ReadAndSignTraining", groups = "Read And Sign Trainings", priority = 0, enabled=false)
+	@Test(testName = "ReadAndSignTraining", groups = "Read And Sign Trainings", priority = 0, enabled=true)
 	public void ReadAndSignTraining_Part1() throws Exception
 	{		
 		test = extent.startTest("Read And Sign Training Part-1");
@@ -126,9 +128,12 @@ public class ReadAndSignTraining_Test extends BaseClass{
 			test.log(LogStatus.PASS,"4.Click on the 'Training' tab.");
 			readSign.training_Tab().click();
 			sleep(2);
-			test.log(LogStatus.PASS,"5.Change the training type to 'Read and Sign'.");
+			
 			readSign.ChangeTrainingType_Link().click();
 			waitTillElementVisible(readSign.changeTrainingType_Header());
+			test.log(LogStatus.PASS,"5.Change the training type to 'Read and Sign'."+
+					test.addScreenCapture(captureScreenShot(driver, "Read and Sign")));
+			
 			if(readSign.changeTrainingType_Header().isDisplayed())
 			{
 				readSign.readAndSignRadio_Button().click();
@@ -244,7 +249,7 @@ public class ReadAndSignTraining_Test extends BaseClass{
 				test.log(LogStatus.PASS, "<b>ER7- The electronic signature dialog is presented.<b>"+
 						test.addScreenCapture(captureScreenShot(driver, "electronic signature dialog")));
 				test.log(LogStatus.PASS, "17.Enter the pin and click on confirm button.");
-				readSign.pin_TextBox().sendKeys("262829");
+				readSign.pin_TextBox().sendKeys(routeData[1][12]);
 				readSign.changeTrainingTypePopUpSave_Button().click();
 				sleep(2);
 			}
@@ -257,7 +262,7 @@ public class ReadAndSignTraining_Test extends BaseClass{
 			getTrainingCompletedItem(documetNo);
 			if(isRecordFound)
 			{
-				test.log(LogStatus.PASS, "<b>ER8- User is informed that the training item is completed, and the training item details are visible with the “Signed On” date updated.<b>"+
+				test.log(LogStatus.PASS, "<b>ER8- User is informed that the training item is completed, and the training item details are visible with the 'Signed On' date updated.<b>"+
 						test.addScreenCapture(captureScreenShot(driver, "training item is completed")));
 			}
 			else
@@ -317,7 +322,7 @@ public class ReadAndSignTraining_Test extends BaseClass{
 	}
 //=====================================================================Part=>02==============================================================================
 	
-	@Test(testName = "ReadAndSignTraining", groups = "Read And Sign Trainings", priority = 0)
+	@Test(testName = "ReadAndSignTraining", groups = "Read And Sign Trainings", priority = 0, enabled=false)
 	public void ReadAndSignTraining_Part2() throws Exception
 	{		
 		test = extent.startTest("Read And Sign Training Part-2");
@@ -389,7 +394,7 @@ public class ReadAndSignTraining_Test extends BaseClass{
 			readSign.general_Tab().click();
 			sleep(2);
 			
-			String targetReleaseDate=DateTimeUtils.getYesterdayDate();  
+			String targetReleaseDate=DateTimeUtils.getCurrentPSTDate();  
 			String finalDate=targetReleaseDate.substring(3, 5);
 			
 			readSign.targetReleaseDate_TextBox().click();
@@ -408,7 +413,6 @@ public class ReadAndSignTraining_Test extends BaseClass{
 			if(readSign.changeTrainingType_Header().isDisplayed())
 			{
 				readSign.readAndSignRadio_Button().click();
-				test.log(LogStatus.PASS, "6.Click on save button.");
 				readSign.changeTrainingTypePopUpSave_Button().click();
 				sleep(2);
 			}
@@ -441,8 +445,21 @@ public class ReadAndSignTraining_Test extends BaseClass{
 			waitTillElementVisible(readSign.selectedEntities_Header());
 			if(readSign.selectedEntities_Header().isDisplayed())
 			{
-				readSign.firstEmp_FromList().click();
-				readSign.firstEmp_FromList().click();
+				readSign.entitiesEmp_FilterBox().clear();
+				readSign.entitiesEmp_FilterBox().sendKeys(loginData[10][2]);
+				readSign.entitiesEmpFilterGo_Button().click();
+				sleep(2);
+				readSign.moveSelectedEntities_Button().click();
+				sleep(2);
+				
+				readSign.entitiesEmp_FilterBox().clear();
+				readSign.entitiesEmp_FilterBox().sendKeys(loginData[11][2]);
+				readSign.entitiesEmpFilterGo_Button().click();
+				sleep(2);
+				readSign.moveSelectedEntities_Button().click();
+				
+				addedEntities = readSign.addedFirst_Entities().getText();
+				
 				javaScriptClick(readSign.changeTrainingTypePopUpSave_Button());
 				sleep(2);
 				verticalScrollingUp();
@@ -483,7 +500,7 @@ public class ReadAndSignTraining_Test extends BaseClass{
 			documentStatus = readSign.document_Status().getText();
 			if(documentStatus.equals("Approved"))
 			{
-				test.log(LogStatus.PASS, "<b>ER11- Approved document from Step 35 should not move to the effective cabinet as 50% of required training is not completed yet.<b>"+
+				test.log(LogStatus.PASS, "<b>ER12- Approved document from Step 35 should not move to the effective cabinet as 50% of required training is not completed yet.<b>"+
 						test.addScreenCapture(captureScreenShot(driver, "Approved document status")));
 			}
 			else
@@ -491,9 +508,17 @@ public class ReadAndSignTraining_Test extends BaseClass{
 				test.log(LogStatus.FAIL, "Unable to find Approved document status.");
 			}
 			
-			test.log(LogStatus.PASS, "37.Logout and login as one of the entity noted in Step 32.");
+			test.log(LogStatus.PASS, "37.Logout and login as one of the entity noted in Step 30.");
 			logout.logoutFunction();
-			login.loginUser(loginData[1][0], loginData[1][1]);  //sameer
+			
+			if(addedEntities.equalsIgnoreCase(loginData[10][2]))
+			{
+				login.loginUser(loginData[10][0], loginData[10][1]);
+			}
+			else
+			{
+				login.loginUser(loginData[11][0], loginData[11][1]);
+			}
 			
 			test.log(LogStatus.PASS, "38.Navigate to Wizard > Training.");
 			readSign.wizard_Option().click();
@@ -513,7 +538,13 @@ public class ReadAndSignTraining_Test extends BaseClass{
 			}
 			
 			String date=getDueOnDateTrainingDoc(documetNo);
-			if(date.equals(targetReleaseDate))
+			
+			String ddmm = targetReleaseDate.substring(0, 5);
+			
+			System.out.println(date);
+			System.out.println(ddmm);
+			
+			if(date.contains(ddmm))
 			{
 				test.log(LogStatus.PASS, "<b>ER14- Training due date is same as Target release date noted in Step 20.<b>"+
 						test.addScreenCapture(captureScreenShot(driver, "Read and Sign training created")));
@@ -527,11 +558,11 @@ public class ReadAndSignTraining_Test extends BaseClass{
 			readSign.beginTraining_Button().click();
 			
 			test.log(LogStatus.PASS, "40.Sign/complete the training.");
-			selectDocForTraining(documetNo);
+			selectTrainingItemDoc(documetNo);
 			readSign.document_Button().click();
 			readSign.sign_Button().click();
 			sleep(2);
-			readSign.pin_TextBox().sendKeys("262829");
+			readSign.pin_TextBox().sendKeys(routeData[1][12]);
 			readSign.changeTrainingTypePopUpSave_Button().click();
 			sleep(2);
 			
@@ -543,6 +574,8 @@ public class ReadAndSignTraining_Test extends BaseClass{
 			test.log(LogStatus.PASS, "43.Log in to a user used in Step 1");
 			login.loginUser(loginData[7][0], loginData[7][1]); //saurabhp
 			
+			driver.findElement(By.xpath("//li[text()='"+routeData[1][1]+documetNo+"']")).click();
+			sleep(2);	
 			documentStatus = readSign.document_Status().getText();
 			if(documentStatus.equals("Effective"))
 			{
@@ -551,7 +584,20 @@ public class ReadAndSignTraining_Test extends BaseClass{
 			}
 			else
 			{
-				test.log(LogStatus.FAIL, "unable to find the Approved document from Step 35 should move to the effective cabinet as 50% of required training is completed.");
+				driver.navigate().refresh();
+				sleep(10);
+				driver.findElement(By.xpath("//li[text()='"+routeData[1][1]+documetNo+"']")).click();
+				sleep(2);
+				if(documentStatus.equals("Effective"))
+				{
+					test.log(LogStatus.PASS, "<b>ER15- Approved document from Step 35 should move to the effective cabinet as 50% of required training is completed.<b>"+
+							test.addScreenCapture(captureScreenShot(driver, "Approved document effective")));
+				}
+				else
+				{
+					test.log(LogStatus.FAIL, "Unable to find ER15- Approved document from Step 35 should move to the effective cabinet as 50% of required training is completed."+
+							test.addScreenCapture(captureScreenShot(driver, "Approved document effective")));
+				}
 			}
 		}
 		else
@@ -606,12 +652,29 @@ public class ReadAndSignTraining_Test extends BaseClass{
 		return isRecordFound;
 	}
 	
+	private boolean selectTrainingItemDoc(String docName) 
+	{
+		isRecordFound=false;
+		searchTable=new Table(driver);
+		List<WebElement> tableCells=searchTable.getTrainingItemDoc(2);				
+		for (int i=0;i<tableCells.size();i++)
+		{
+			if (tableCells.get(i).getText().contains(docName))
+			{													
+				tableCells.get(i).click();
+				isRecordFound=true;
+				break;
+			}
+		}
+		return isRecordFound;
+	}
+	
 	private String getDueOnDateTrainingDoc(String docName) 
 	{
 		String date="";
 		searchTable=new Table(driver);
 		List<WebElement> tableCells=searchTable.getTrainingItemCells(2);				
-		for (int i=0;i<tableCells.size();i++)
+		for (int i=1;i<=tableCells.size();i++)
 		{
 			if (tableCells.get(i).getText().contains(docName))
 			{													
@@ -655,7 +718,7 @@ public class ReadAndSignTraining_Test extends BaseClass{
 			 {
 				// verticalScrollingDown();
 				 readSign.documentTableNext_Button().click();
-		 			sleep(2); 
+		 		 sleep(2); 
 			 }
 			 else
 			 {
@@ -668,7 +731,7 @@ public class ReadAndSignTraining_Test extends BaseClass{
 		readSign.documentApprove_Button().click();
 		sleep(2);
 		readSign.pinTo_Approve().clear();
-		readSign.pinTo_Approve().sendKeys("262829");
+		readSign.pinTo_Approve().sendKeys(routeData[1][12]);
 		readSign.checkInRouteSubmit_Button().click();
 		sleep(4);
 	}

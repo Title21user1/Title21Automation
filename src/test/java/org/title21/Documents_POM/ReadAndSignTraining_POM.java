@@ -102,6 +102,38 @@ public class ReadAndSignTraining_POM extends DocumentRoutes_POM {
 	@FindBy(xpath=".//*[@id='GeneralTab']/div[1]/div[2]/div[4]/div[2]/label")
 	WebElement documentStatus;
 	
+	@FindBy(xpath="//*[@id='EmployeeFilterBox']")
+	WebElement entitiesEmpFilterBox;
+	
+	@FindBy(xpath="//*[@id='tab1']/div[1]/div/span[1]/button")
+	WebElement entitiesEmpFilterGoButton;
+	
+	@FindBy(xpath="//*[@id='tab1']/div[3]/div[1]/div/button[1]")
+	WebElement moveSelectedEntitiesButton;
+	
+	@FindBy(xpath="//*[@id='bootstrap-duallistbox-selected-list_selectedEmployee']/option")
+	WebElement addedFirstEntities;
+	
+	public WebElement addedFirst_Entities()
+	{
+		return addedFirstEntities;
+	}
+	
+	public WebElement moveSelectedEntities_Button()
+	{
+		return moveSelectedEntitiesButton;
+	}
+	
+	public WebElement entitiesEmpFilterGo_Button()
+	{
+		return entitiesEmpFilterGoButton;
+	}
+	
+	public WebElement entitiesEmp_FilterBox()
+	{
+		return entitiesEmpFilterBox;
+	}
+	
 	public WebElement document_Status()
 	{
 		return documentStatus;
