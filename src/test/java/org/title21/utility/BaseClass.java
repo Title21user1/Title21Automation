@@ -17,6 +17,7 @@ import java.util.Formatter;
 import java.util.HashMap;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
+import java.util.function.Function;
 
 import javax.imageio.ImageIO;
 
@@ -43,6 +44,8 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.ITestResult;
 import org.testng.Reporter;
@@ -198,7 +201,10 @@ public class BaseClass {
 
 		classname = classname.substring(4);
 		imagesDirectory = System.getProperty("user.dir") + "\\extentReports" + "\\" + classname;
-		relativePathforImage="..\\extentReports" + "\\" + classname+"\\";
+		/*
+		 * relativePathforImage has been set with relation with index.html
+		 */
+		relativePathforImage="..\\extentReports" + "\\" + classname+"\\";		
 		
 		File file = new File(imagesDirectory);
 		if (!file.exists()) {
@@ -404,22 +410,25 @@ public class BaseClass {
 	private static String cellToString(XSSFCell cell) {
 		Object result;
 		String strReturn = null;
+		XSSFCell CellType;
 
 		if (cell == null) {
 			strReturn = "";
-		} else {
+		} else {			
 			switch (cell.getCellType()) {
 			case Cell.CELL_TYPE_NUMERIC:
-				result = cell.getNumericCellValue();
+				double strdouble = cell.getNumericCellValue();				
+				long cellNumber=Math.round(strdouble);				
+				strReturn =String.valueOf(cellNumber);
+				break;				
+			case Cell.CELL_TYPE_STRING:				
+				result =  String.valueOf(cell.getStringCellValue());
 				strReturn = result.toString();
 				break;
-
-			case Cell.CELL_TYPE_STRING:
-				result = cell.getStringCellValue();
-				strReturn = result.toString();
-				break;
+			case Cell.CELL_TYPE_BLANK:
+				strReturn ="";
 			default:
-				strReturn = null;
+				strReturn = null;			
 			}
 		}
 		return strReturn;
@@ -436,6 +445,20 @@ public class BaseClass {
 
 	}
 	
+	/*public void waitforSynchronization(WebElement element){
+		
+		Wait wait=new FluentWait(driver)
+				.withTimeout(30, TimeUnit.SECONDS).
+				pollingEvery(5, TimeUnit.SECONDS);
+		
+		WebElement foo = wait.until(new Function()  {    
+		    public WebElement apply(WebDriver driver) {    
+		        return element;   
+		    }
+		
+		
+	}
+		*/
 	public void waitTillElementisInvisible(WebElement element) {	
 		
 		WebDriverWait wait=new WebDriverWait(driver,5);
@@ -471,10 +494,25 @@ public class BaseClass {
 		}	
 	}
 	
+
 	public void horizontalScrollingRight(){
 		JavascriptExecutor js=(JavascriptExecutor)driver;	
 		for (int i=0;i<2;i++){
 			js.executeScript("window.scrollBy(250,0)");
+		}	
+	}
+
+	public void horizontalScrollingToRight(){
+		JavascriptExecutor js=(JavascriptExecutor)driver;	
+		for (int i=0;i<2;i++){
+			js.executeScript("window.scrollBy(200,0)");
+		}	
+	}
+	
+	public void horizontalScrollingToLeft(){
+		JavascriptExecutor js=(JavascriptExecutor)driver;	
+		for (int i=0;i<2;i++){
+			js.executeScript("window.scrollBy(-200,0)");
 		}	
 	}
 }

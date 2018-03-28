@@ -283,8 +283,8 @@ public class DocumentRoutes_Test extends BaseClass{
 					sleep(2);
 					documentRoutes.documentApprove_Button().click();
 					sleep(2);
-					documentRoutes.pinTo_Approve().clear();
-					documentRoutes.pinTo_Approve().sendKeys("262829");
+					documentRoutes.pinTo_Approve().clear();					
+					documentRoutes.pinTo_Approve().sendKeys(routeData[1][12]);
 					documentRoutes.checkInRouteSubmit_Button().click();
 					sleep(2);
 					logout.logoutFunction();
@@ -317,7 +317,7 @@ public class DocumentRoutes_Test extends BaseClass{
 					documentRoutes.documentApprove_Button().click();
 					sleep(2);
 					documentRoutes.pinTo_Approve().clear();
-					documentRoutes.pinTo_Approve().sendKeys("262829");
+					documentRoutes.pinTo_Approve().sendKeys(routeData[1][12]);
 					documentRoutes.checkInRouteSubmit_Button().click();
 					sleep(2);
 					logout.logoutFunction();
