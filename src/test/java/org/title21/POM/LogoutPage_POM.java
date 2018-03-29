@@ -1,15 +1,11 @@
 package org.title21.POM;
 
-import org.openqa.selenium.Alert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.title21.utility.BaseClass;
 import org.title21.validation.entities.ErrorMessages;
-
-import com.relevantcodes.extentreports.LogStatus;
 
 public class LogoutPage_POM extends BaseClass
 {
