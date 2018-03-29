@@ -41,6 +41,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -326,8 +327,14 @@ public class BaseClass {
 		}
 
 		else if (browser.equalsIgnoreCase("ie")) {
+			
 			extent = ExtentManager.getReporter(filePath,baseUrl);
 			System.setProperty("webdriver.ie.driver", ".\\drivers\\IEDriverServer.exe");
+			DesiredCapabilities capabilities = new DesiredCapabilities();
+			capabilities.setCapability(InternetExplorerDriver.ENABLE_PERSISTENT_HOVERING,false);
+			capabilities.setCapability(InternetExplorerDriver.REQUIRE_WINDOW_FOCUS, false);
+			capabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS, true); 
+			
 			driver = new InternetExplorerDriver();
 			implicitwait(driver);
 			driver.get(baseUrl);
