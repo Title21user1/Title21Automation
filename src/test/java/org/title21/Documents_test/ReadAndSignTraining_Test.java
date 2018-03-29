@@ -52,7 +52,7 @@ public class ReadAndSignTraining_Test extends BaseClass{
 		
 	}
 //=========================================================================Part=>01================================================================================
-	@Test(testName = "ReadAndSignTraining", groups = "Read And Sign Trainings", priority = 0, enabled=true)
+	@Test(testName = "ReadAndSignTraining", groups = "Read And Sign Trainings", priority = 0, enabled=false)
 	public void ReadAndSignTraining_Part1() throws Exception
 	{		
 		test = extent.startTest("Read And Sign Training Part-1");
@@ -322,7 +322,7 @@ public class ReadAndSignTraining_Test extends BaseClass{
 	}
 //=====================================================================Part=>02==============================================================================
 	
-	@Test(testName = "ReadAndSignTraining", groups = "Read And Sign Trainings", priority = 0, enabled=false)
+	@Test(testName = "ReadAndSignTraining", groups = "Read And Sign Trainings", priority = 0, enabled=true)
 	public void ReadAndSignTraining_Part2() throws Exception
 	{		
 		test = extent.startTest("Read And Sign Training Part-2");
