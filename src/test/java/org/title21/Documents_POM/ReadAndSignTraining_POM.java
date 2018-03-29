@@ -114,6 +114,22 @@ public class ReadAndSignTraining_POM extends DocumentRoutes_POM {
 	@FindBy(xpath="//*[@id='bootstrap-duallistbox-selected-list_selectedEmployee']/option")
 	WebElement addedFirstEntities;
 	
+	@FindBy(xpath="//*[@id='TrainingDueBy'][@value='ByDate']")
+	WebElement trainingDueByDate;
+	
+	@FindBy(xpath="//*[@id='TrainingDueDate']")
+	WebElement trainingDueDateTextBox;
+	
+	public WebElement trainingDueDate_TextBox()
+	{
+		return trainingDueDateTextBox;
+	}
+
+	public WebElement trainingDue_ByDate()
+	{
+		return trainingDueByDate;
+	}
+	
 	public WebElement addedFirst_Entities()
 	{
 		return addedFirstEntities;

@@ -330,7 +330,22 @@ public class DocumentRoutes_Test extends BaseClass{
 					documentRoutes.wizard_Option().click();
 					documentRoutes.approval_Tab().click();
 					sleep(2);
-					if(verifyDocForApprovel(documetNo))
+					
+					for(int i=1; i<=20; i++)
+					{
+						verifyDocForApprovel(documetNo);
+						 if(!isValueFound)
+						 {
+							 documentRoutes.documentTableNext_Button().click();
+					 		 sleep(2); 
+						 }
+						 else
+						 {
+							 break;
+						 }
+					}
+					
+					if(isValueFound)
 					{
 						test.log(LogStatus.PASS, "<b>ER 9- The document is available in the approval wizard, and the status for both of the Sequence 1 individual approvals are updated.<b>"+
 								test.addScreenCapture(captureScreenShot(driver, "approval wizard")));

@@ -34,6 +34,7 @@ public class ReadAndSignTraining_Test extends BaseClass{
 	String uploadFileName="DocumentRouteTest.doc";
 	String documentStatus="";
 	String addedEntities="";
+	String trainigDueDate="";
 	Table searchTable;
 	DBQueries dbqueries;
 	boolean isRecordFound=false;
@@ -51,7 +52,7 @@ public class ReadAndSignTraining_Test extends BaseClass{
 		login.loginUser(loginData[7][0], loginData[7][1]);
 		
 	}
-//=========================================================================Part=>01================================================================================
+//=====================================================================Part=>01================================================================================
 	@Test(testName = "ReadAndSignTraining", groups = "Read And Sign Trainings", priority = 0, enabled=false)
 	public void ReadAndSignTraining_Part1() throws Exception
 	{		
@@ -320,9 +321,8 @@ public class ReadAndSignTraining_Test extends BaseClass{
 		logout.logoutFunction();
 		extent.endTest(test);
 	}
-//=====================================================================Part=>02==============================================================================
-	
-	@Test(testName = "ReadAndSignTraining", groups = "Read And Sign Trainings", priority = 0, enabled=true)
+//=====================================================================Part=>02================================================================================
+	@Test(testName = "ReadAndSignTraining", groups = "Read And Sign Trainings", priority = 0, enabled=false)
 	public void ReadAndSignTraining_Part2() throws Exception
 	{		
 		test = extent.startTest("Read And Sign Training Part-2");
@@ -608,9 +608,226 @@ public class ReadAndSignTraining_Test extends BaseClass{
 		logout.logoutFunction();
 		extent.endTest(test);
 	}
-	
-	
-//===========================================================================================================================================================	
+//=====================================================================Part=>03================================================================================	
+	@Test(testName = "ReadAndSignTraining", groups = "Read And Sign Trainings", priority = 0, enabled=true)
+	public void ReadAndSignTraining_Part3() throws Exception
+	{		
+		test = extent.startTest("Read And Sign Training Part-3");
+		readSign=new ReadAndSignTraining_POM(driver);	
+		dateTimeUtils=new DateTimeUtils();
+		
+		/////////
+		
+		
+		
+		///////////
+		
+		readSign.getnewdoc().click();
+		sleep(2);
+		waitTillElementVisible(readSign.getdocument());
+		readSign.getdocument().click();
+		sleep(3);
+		test.log(LogStatus.PASS,"44.Create a new document.");
+		readSign.getlocationDrodown().selectByVisibleText(routeData[1][0]);
+		sleep(2);
+		documetNo = readSign.document_No().getAttribute("value");
+		
+		readSign.getDocumentTitle().sendKeys(routeData[1][1]+documetNo); 
+		readSign.getDocChangeSummary().sendKeys(routeData[1][2]+documetNo);
+		verticalScrollingDown();
+		readSign.getConfirmButton().click();
+		sleep(5);
+		test.log(LogStatus.PASS,"45.Ensure the document is open in edit mode.");
+		test.log(LogStatus.PASS, "46.Note: Edit mode On/Off is generally indicated on the top of the form and form fields are editable when it is enabled.");
+		if(readSign.getdocumentcreationverify().isDisplayed()) 
+		{
+			readSign.addMainFile_Button().click();
+			
+			waitTillElementVisible(readSign.addMainFileHeader_Text());
+			
+			test.log(LogStatus.PASS, "47.Add the main file, approvers, and all the required fields.");
+			//main file- 
+			if(readSign.addMainFileHeader_Text().isDisplayed())
+			{
+				fileUploadPath=System.getProperty("user.dir") + "\\testdata";
+				fileUploadPath=fileUploadPath+"\\"+uploadFileName;
+				readSign.browse_Button().sendKeys(fileUploadPath);
+				
+				sleep(2);
+				readSign.add_Button().click();
+				sleep(2);
+			}
+			else
+			{
+				test.log(LogStatus.FAIL,"Unable to find Add Main File header.");
+			}
+			//approver-
+			readSign.getDocumentApprovaltab().click();
+			sleep(2);
+			readSign.getAddApproverLink().click();
+			sleep(2);
+			if(readSign.addNewApprover_Header().isDisplayed())
+			{
+				readSign.getApproverRole().selectByVisibleText(routeData[1][3]);
+				sleep(2);
+				readSign.getLocationDropdown().selectByVisibleText(routeData[1][4]); 
+				sleep(2);
+				readSign.getnameinAddApprover().selectByVisibleText(routeData[1][5]);
+				readSign.getSequenceinAddApprover().selectByVisibleText("1");
+				readSign.getallottedDaysinAddApprover().selectByVisibleText(routeData[1][7]);
+				readSign.approverAdd_Button().click();
+				sleep(2);
+			}
+			else
+			{
+				test.log(LogStatus.FAIL, "Unable to find Add new approver popup screen."+
+						test.addScreenCapture(captureScreenShot(driver, "new approver popup")));
+			}
+			
+			test.log(LogStatus.PASS, "48.Click on the 'Training' tab.");
+			readSign.training_Tab().click();
+			sleep(2);
+			
+			test.log(LogStatus.PASS, "49.Select or change the training type to 'Read and Sign'.");
+			readSign.ChangeTrainingType_Link().click();
+			waitTillElementVisible(readSign.changeTrainingType_Header());
+			if(readSign.changeTrainingType_Header().isDisplayed())
+			{
+				readSign.readAndSignRadio_Button().click();
+				readSign.changeTrainingTypePopUpSave_Button().click();
+				sleep(2);
+			}
+			else
+			{
+				test.log(LogStatus.FAIL, "Unable to find Change Training Type Pop Up.");
+			}
+			
+			test.log(LogStatus.PASS, "50.Set 'Schedule training: On promotion to the following cabinet' to 'Approved'.");
+			readSign.scheduleTraining_DropDown().selectByVisibleText("Approved");
+				
+			test.log(LogStatus.PASS, "51.For 'Training due' select radio button 'by date' and set that date.");
+			readSign.trainingDue_ByDate().click();
+			trainigDueDate= readSign.trainingDueDate_TextBox().getAttribute("value");
+			
+			verticalScrollingDown();
+			
+			test.log(LogStatus.PASS, "52.For 'Promotion Settings', select the checkbox 'Item may be promoted to next cabinet with open training items'.");
+			readSign.promotionSettingsItemsCheck(true);
+			sleep(2);
+			test.log(LogStatus.PASS, "53.For 'Require the following percentage of training to be completed,' select the checkbox and add '50' % in the text box.");
+			readSign.trainingsPercentagCheck(true);
+			sleep(2);
+			readSign.trainingsPercentage_TextBox().clear();
+			sleep(2);
+			readSign.trainingsPercentage_TextBox().sendKeys("50");
+			
+			test.log(LogStatus.PASS, "54.For 'Select entities subject to training', select the 'From Selection' radio button. Click on 'Entities' link. Select two entities and click on 'Update'.");
+			readSign.entitiesSubject_FromSection().click();
+			readSign.addNewTrainingEntities_Link().click();
+			waitTillElementVisible(readSign.selectedEntities_Header());
+			if(readSign.selectedEntities_Header().isDisplayed())
+			{
+				readSign.entitiesEmp_FilterBox().clear();
+				readSign.entitiesEmp_FilterBox().sendKeys(loginData[10][2]);
+				readSign.entitiesEmpFilterGo_Button().click();
+				sleep(2);
+				readSign.moveSelectedEntities_Button().click();
+				sleep(2);
+				
+				readSign.entitiesEmp_FilterBox().clear();
+				readSign.entitiesEmp_FilterBox().sendKeys(loginData[11][2]);
+				readSign.entitiesEmpFilterGo_Button().click();
+				sleep(2);
+				readSign.moveSelectedEntities_Button().click();
+				
+				addedEntities = readSign.addedFirst_Entities().getText();
+				
+				javaScriptClick(readSign.changeTrainingTypePopUpSave_Button());
+				sleep(2);
+				verticalScrollingUp();
+				test.log(LogStatus.PASS, "<b>ER16- Read and Sign Training is setup as described in previous steps.<b>"+
+						test.addScreenCapture(captureScreenShot(driver, "Target release date is set.")));
+			}
+			else
+			{
+				test.log(LogStatus.FAIL, "Unable to find Selected Entities Header");
+			}
+			
+			test.log(LogStatus.PASS, "55.Check in the document and route the document for approval.");
+			readSign.docContext_Menu().click();
+			sleep(2);
+			readSign.checkIn_Route().click();
+			sleep(2);
+			readSign.checkInRouteSubmit_Button().click();
+			sleep(2);
+			readSign.verifyDocumentCheckedIn(driver);
+			readSign.close_Button().click();
+			sleep(2);
+			logout.logoutFunction();
+			login.loginUser(loginData[1][0], loginData[1][1]);  //sameer
+			
+			test.log(LogStatus.PASS, "56.Approve the document.");
+			approveDocFromWizard(documetNo);
+			
+			test.log(LogStatus.PASS, "57.Log out.");
+			logout.logoutFunction();
+			
+			
+			test.log(LogStatus.PASS, "58.Log in as one of the entities noted in Step 56.");
+			if(addedEntities.equalsIgnoreCase(loginData[10][2]))
+			{
+				login.loginUser(loginData[10][0], loginData[10][1]);
+			}
+			else
+			{
+				login.loginUser(loginData[11][0], loginData[11][1]);
+			}
+			
+			test.log(LogStatus.PASS, "59.Navigate to Wizard > Training.");
+			readSign.wizard_Option().click();
+			sleep(2);
+			readSign.wizardTraining_Tab().click();
+			sleep(5);
+			
+			String date="";
+			for(int j=1; j<=7; j++)
+			{
+				 date=getDueOnDateTrainingDoc(documetNo);
+				 if(date.equals(""))
+				 {
+					 readSign.documentTableNext_Button().click();
+			 		 sleep(2); 
+				 }
+				 else
+				 {
+					 break;
+				 }
+			}
+			
+			String ddmm = trainigDueDate.substring(0, 5);
+			
+			System.out.println(date);
+			System.out.println(ddmm);
+			
+			if(date.contains(ddmm))
+			{
+				test.log(LogStatus.PASS, "<b>ER17- The Read and Sign training created in Step 56 appears and the due date is the same as 'Training due by date' noted in step 53.<b>"+
+						test.addScreenCapture(captureScreenShot(driver, "Read and Sign training created")));
+			}
+			else
+			{
+				test.log(LogStatus.FAIL, "Unable to find The Read and Sign training created in Step 56 appears and the due date is the same as 'Training due by date' noted in step 53.");
+			}
+		}
+		else
+		{
+			test.log(LogStatus.FAIL,"Unable to Create a new document form.");
+		}
+		
+		logout.logoutFunction();
+		extent.endTest(test);
+	}
+//=============================================================================================================================================================	
 	
 	@AfterClass
 	public void closeBrowserInstance()
@@ -674,12 +891,13 @@ public class ReadAndSignTraining_Test extends BaseClass{
 		String date="";
 		searchTable=new Table(driver);
 		List<WebElement> tableCells=searchTable.getTrainingItemCells(2);				
-		for (int i=1;i<=tableCells.size();i++)
+		for (int i=0;i<tableCells.size();i++)
 		{
 			if (tableCells.get(i).getText().contains(docName))
-			{													
+			{	
 				tableCells.get(i).click();
-				WebElement dateDetails = driver.findElement(By.xpath("//div[@data-t21-ajax-id='training-item-list']//tr["+i+"]/td[6]"));
+				int k = i+1;
+				WebElement dateDetails = driver.findElement(By.xpath("//div[@data-t21-ajax-id='training-item-list']//tr["+k+"]/td[6]"));
 				date=dateDetails.getText();
 				break;
 			}
@@ -711,8 +929,8 @@ public class ReadAndSignTraining_Test extends BaseClass{
 		readSign.approval_Tab().click();
 		sleep(2);
 		isRecordFound = false;
-		for(int i=1; i<=5; i++)
-		 {
+		for(int i=1; i<=7; i++)
+		{
 			 selectDocForApprovel(docName);
 			 if(!isRecordFound)
 			 {
@@ -724,7 +942,7 @@ public class ReadAndSignTraining_Test extends BaseClass{
 			 {
 				 break;
 			 }
-		 }
+		}
 		sleep(2);
 		readSign.documentTab_ForApprover().click();
 		sleep(2);
