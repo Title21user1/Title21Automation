@@ -95,11 +95,12 @@ public class DBConnection extends BaseClass {
 			if (getResults){
 				
 				rs=ps.getResultSet();
+				System.out.println("There is a resultset.");
 				return true;
 													
 			}else{
-				
-				return false;
+				System.out.println("There is a no resultset returned after executing stored procedure.");
+				return true;
 			}
 						
 		}

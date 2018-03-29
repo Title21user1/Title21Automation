@@ -25,9 +25,15 @@ public class TestDB extends BaseClass
 		test = extent.startTest("Session Timeout");
 		
 		//test.log(LogStatus.PASS,"DataBase Value "+DBConnection.getIntDBValue(dbqueries.sessessiontimeoutinminutes, 
-		//"sessiontimeoutinminutes"));	
+		//"sessiontimeoutinminutes"));
 		
-		test.log(LogStatus.PASS,"MoveDocsBetweenCabinets"+DBConnection.executeStoredProcedure(dbqueries.moveDocsOnReleaseDate));				
+		if (DBConnection.executeStoredProcedure(dbqueries.moveDocsOnReleaseDate)){
+			test.log(LogStatus.PASS,"Success while moving docs between cabinets.");
+		}else{
+			test.log(LogStatus.FAIL,"Failed to Move Docs Between Cabinets");
+		}
+		
+		//test.log(LogStatus.PASS,"MoveDocsBetweenCabinets"+DBConnection.executeStoredProcedure(dbqueries.moveDocsOnReleaseDate));				
 	}
 		
 	
