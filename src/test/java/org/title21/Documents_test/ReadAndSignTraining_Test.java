@@ -31,7 +31,7 @@ public class ReadAndSignTraining_Test extends BaseClass{
 	String documetNo="";
 	String documetsName="";
 	String fileUploadPath="";
-	String uploadFileName="DocumentRouteTest.doc";
+	String uploadFileName="FileToUpload.txt";
 	String documentStatus="";
 	String addedEntities="";
 	String trainigDueDate="";
@@ -49,13 +49,12 @@ public class ReadAndSignTraining_Test extends BaseClass{
 		logout=new LogoutPage_POM(driver);
 		login=new LoginPage_POM(driver);
 		dbqueries = new DBQueries();
-		login.loginUser(loginData[7][0], loginData[7][1]);
-		
 	}
 //=====================================================================Part=>01================================================================================
 	@Test(testName = "ReadAndSignTraining", groups = "Read And Sign Trainings", priority = 0, enabled=false)
 	public void ReadAndSignTraining_Part1() throws Exception
 	{		
+		login.loginUser(loginData[7][0], loginData[7][1]);
 		test = extent.startTest("Read And Sign Training Part-1");
 		test.log(LogStatus.PASS, "1.Login to the web interface as 'Test User'.");
 		test.log(LogStatus.INFO, "Link to Test case document", "<a href='file:///E:/sameer/Sameer Joshi/Title health solutions/Test case by neosoft/TestCase-WIA-document_routes.doc'>TestCaseDocument</a>");
@@ -322,9 +321,10 @@ public class ReadAndSignTraining_Test extends BaseClass{
 		extent.endTest(test);
 	}
 //=====================================================================Part=>02================================================================================
-	@Test(testName = "ReadAndSignTraining", groups = "Read And Sign Trainings", priority = 0, enabled=false)
+	@Test(testName = "ReadAndSignTraining", groups = "Read And Sign Trainings", priority = 0, enabled=true)
 	public void ReadAndSignTraining_Part2() throws Exception
 	{		
+		login.loginUser(loginData[7][0], loginData[7][1]);
 		test = extent.startTest("Read And Sign Training Part-2");
 		readSign=new ReadAndSignTraining_POM(driver);	
 		dateTimeUtils=new DateTimeUtils();
@@ -609,18 +609,13 @@ public class ReadAndSignTraining_Test extends BaseClass{
 		extent.endTest(test);
 	}
 //=====================================================================Part=>03================================================================================	
-	@Test(testName = "ReadAndSignTraining", groups = "Read And Sign Trainings", priority = 0, enabled=true)
+	@Test(testName = "ReadAndSignTraining", groups = "Read And Sign Trainings", priority = 0, enabled=false)
 	public void ReadAndSignTraining_Part3() throws Exception
-	{		
+	{	
+		login.loginUser(loginData[7][0], loginData[7][1]);
 		test = extent.startTest("Read And Sign Training Part-3");
 		readSign=new ReadAndSignTraining_POM(driver);	
 		dateTimeUtils=new DateTimeUtils();
-		
-		/////////
-		
-		
-		
-		///////////
 		
 		readSign.getnewdoc().click();
 		sleep(2);
