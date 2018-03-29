@@ -134,13 +134,13 @@ public class AccountLockout_Test extends BaseClass
 					test.addScreenCapture(captureScreenShot(driver, "UnableToLogin")));	
 		}
 		
-		extent.endTest(test);
 	}
 
 
 	@AfterClass
 	public void afterClass()
 	{
+		extent.endTest(test);
 		driver.close();
 	}
 }
