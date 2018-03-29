@@ -487,9 +487,9 @@ public class MyDocs_POM
 	public WebElement searchDocument(String documentName)
 	{
 		driver.findElement(By.xpath("//span[text()[contains(.,'Searches')]]")).click();
-		BaseClass.sleep(2);
+		BaseClass.sleep(3);
 		driver.findElement(By.xpath("//*[@id='editCell'][text()='Search on Document Number']")).click();
-		BaseClass.sleep(2);
+		BaseClass.sleep(3);
 		driver.findElement(By.xpath("//input[@id='param-0']")).sendKeys(documentName);
 		BaseClass.sleep(2);
 		driver.findElement(By.xpath("//input[@value='Go']")).click();

@@ -24,11 +24,10 @@ public class DashBord_POM
 	}
 
 
-	/*
-	 * 
-	 * This method verify text on dashboard - (Dashboard). 
-	 * @param WebDriver obj
-	 */
+	public WebElement toDashboard()
+	{
+		return dashboard;
+	}
 	
 	public boolean verifyDashboardPrescence(){
 		
