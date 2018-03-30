@@ -38,6 +38,8 @@ public class DBConnection extends BaseClass {
 			try {
 				System.out.println("Closing DB Connection");
 				connection.close();
+				connection=null;
+				sleep(2);
 			} catch (SQLException ex) {
 				ex.printStackTrace();
 			}

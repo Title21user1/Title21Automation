@@ -51,7 +51,7 @@ public class ReadAndSignTraining_Test extends BaseClass{
 		dbqueries = new DBQueries();
 	}
 //=====================================================================Part=>01================================================================================
-	@Test(testName = "ReadAndSignTraining", groups = "Read And Sign Trainings", priority = 0, enabled=false)
+	@Test(testName = "ReadAndSignTraining", groups = "Read And Sign Trainings", priority = 0, enabled=true)
 	public void ReadAndSignTraining_Part1() throws Exception
 	{		
 		login.loginUser(loginData[7][0], loginData[7][1]);
@@ -194,7 +194,7 @@ public class ReadAndSignTraining_Test extends BaseClass{
 			sleep(2);
 			readSign.wizardTraining_Tab().click();
 			
-			for(int i=1; i<=5; i++)
+			for(int i=1; i<=20; i++)
 			{
 				selectDocForTraining(documetNo);
 				 if(!isRecordFound)
@@ -294,7 +294,7 @@ public class ReadAndSignTraining_Test extends BaseClass{
 				test.log(LogStatus.PASS, "unable to find the Audtit Log Search_Field.");
 			}
 			
-			for(int i=1; i<=10; i++)
+			for(int i=1; i<=20; i++)
 			{
 				WebElement text = driver.findElement(By.xpath("//div[@class='t21-md-break t21-sm-break']//tr["+i+"]/td[5]"));
 				String itemName= text.getText();
@@ -395,10 +395,11 @@ public class ReadAndSignTraining_Test extends BaseClass{
 			sleep(2);
 			
 			String targetReleaseDate=DateTimeUtils.getCurrentPSTDate();  
-			String finalDate=targetReleaseDate.substring(3, 5);
+		//	String finalDate=targetReleaseDate.substring(3, 5);
 			
 			readSign.targetReleaseDate_TextBox().click();
-			driver.findElement(By.xpath("//*[text()='"+finalDate+"']")).click();
+			//driver.findElement(By.xpath("//*[text()='"+finalDate+"']")).click();
+			readSign.current_Date().click();
 			
 			test.log(LogStatus.PASS, "<b>ER10- Target release date is set.<b>"+
 					test.addScreenCapture(captureScreenShot(driver, "Target release date is set.")));
@@ -526,7 +527,21 @@ public class ReadAndSignTraining_Test extends BaseClass{
 			readSign.wizardTraining_Tab().click();
 			sleep(2);
 			
-			selectDocForTraining(documetNo);
+			for(int i=1; i<=20; i++)
+			{
+				selectDocForTraining(documetNo);
+				 if(!isRecordFound)
+				 {
+					// verticalScrollingDown();
+					 readSign.documentTableNext_Button().click();
+			 			sleep(2); 
+				 }
+				 else
+				 {
+					 break;
+				 }
+			}
+			
 			if(isRecordFound)
 			{
 				test.log(LogStatus.PASS, "<b>ER13- The Read and Sign training created in ER-11 appears.<b>"+
@@ -537,7 +552,20 @@ public class ReadAndSignTraining_Test extends BaseClass{
 				test.log(LogStatus.FAIL, "unable to find the Read and Sign training created in ER-11 appears.");
 			}
 			
-			String date=getDueOnDateTrainingDoc(documetNo);
+			String date="";
+			for(int j=1; j<=20; j++)
+			{
+				 date=getDueOnDateTrainingDoc(documetNo);
+				 if(date.equals(""))
+				 {
+					 readSign.documentTableNext_Button().click();
+			 		 sleep(2); 
+				 }
+				 else
+				 {
+					 break;
+				 }
+			}
 			
 			String ddmm = targetReleaseDate.substring(0, 5);
 			
@@ -609,7 +637,7 @@ public class ReadAndSignTraining_Test extends BaseClass{
 		extent.endTest(test);
 	}
 //=====================================================================Part=>03================================================================================	
-	@Test(testName = "ReadAndSignTraining", groups = "Read And Sign Trainings", priority = 0, enabled=false)
+	@Test(testName = "ReadAndSignTraining", groups = "Read And Sign Trainings", priority = 0, enabled=true)
 	public void ReadAndSignTraining_Part3() throws Exception
 	{	
 		login.loginUser(loginData[7][0], loginData[7][1]);
@@ -785,7 +813,7 @@ public class ReadAndSignTraining_Test extends BaseClass{
 			sleep(5);
 			
 			String date="";
-			for(int j=1; j<=7; j++)
+			for(int j=1; j<=20; j++)
 			{
 				 date=getDueOnDateTrainingDoc(documetNo);
 				 if(date.equals(""))
@@ -924,7 +952,7 @@ public class ReadAndSignTraining_Test extends BaseClass{
 		readSign.approval_Tab().click();
 		sleep(2);
 		isRecordFound = false;
-		for(int i=1; i<=7; i++)
+		for(int i=1; i<=20; i++)
 		{
 			 selectDocForApprovel(docName);
 			 if(!isRecordFound)

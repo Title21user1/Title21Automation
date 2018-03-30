@@ -297,7 +297,7 @@ public class DocumentRoutes_Test extends BaseClass{
 					sleep(2);
 					
 					isRecordFound = false;
-					for(int i=1; i<=5; i++)
+					for(int i=1; i<=20; i++)
 					 {
 						 selectDocForApprovel(documetNo);
 						 if(!isRecordFound)

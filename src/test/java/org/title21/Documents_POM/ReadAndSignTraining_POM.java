@@ -120,6 +120,14 @@ public class ReadAndSignTraining_POM extends DocumentRoutes_POM {
 	@FindBy(xpath="//*[@id='TrainingDueDate']")
 	WebElement trainingDueDateTextBox;
 	
+	@FindBy(css=".day.today")
+	WebElement currentDate;
+	
+	public WebElement current_Date()
+	{
+		return currentDate;
+	}
+	
 	public WebElement trainingDueDate_TextBox()
 	{
 		return trainingDueDateTextBox;
