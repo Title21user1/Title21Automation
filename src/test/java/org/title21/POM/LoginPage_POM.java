@@ -150,11 +150,13 @@ public class LoginPage_POM extends BaseClass
 	public void loginUser(String username, String password)
 	{
 		getUsername().sendKeys(username);
-		getLogin_button().sendKeys(Keys.RETURN);
+		sleep(1);
+		getLogin_button().click();
 		sleep(2);
 		getpassword().sendKeys(password);
-		getLogin_button().sendKeys(Keys.RETURN);
+		sleep(1);
+		getLogin_button().click();
 		sleep(2);
 	}
-
+	
 }
