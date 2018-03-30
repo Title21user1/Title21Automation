@@ -33,6 +33,14 @@ public class TestDB extends BaseClass
 			test.log(LogStatus.FAIL,"Failed to Move Docs Between Cabinets");
 		}
 		
+		sleep(4);
+		
+		if (DBConnection.executeStoredProcedure(dbqueries.moveDocsOnReleaseDate)){
+			test.log(LogStatus.PASS,"Success while moving docs between cabinets.");
+		}else{
+			test.log(LogStatus.FAIL,"Failed to Move Docs Between Cabinets");
+		}
+		
 		//test.log(LogStatus.PASS,"MoveDocsBetweenCabinets"+DBConnection.executeStoredProcedure(dbqueries.moveDocsOnReleaseDate));				
 	}
 		
