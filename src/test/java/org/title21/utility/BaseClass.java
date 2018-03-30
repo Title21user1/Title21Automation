@@ -407,7 +407,7 @@ public class BaseClass {
 		FileOutputStream fos = new FileOutputStream(path);
 		wb.write(fos);
 		fos.close();
-
+		
 		wb.close();
 		fis.close();
 		return data;
@@ -458,14 +458,14 @@ public class BaseClass {
 				.withTimeout(30, TimeUnit.SECONDS).
 				pollingEvery(5, TimeUnit.SECONDS);
 		
-		WebElement foo = wait.until(new Function()  {    
+		element = wait.until(new Function(WebDriver driver,element)  {    
 		    public WebElement apply(WebDriver driver) {    
 		        return element;   
 		    }
 		
 		
-	}
-		*/
+	}*/
+		
 	public void waitTillElementisInvisible(WebElement element) {	
 		
 		WebDriverWait wait=new WebDriverWait(driver,5);
@@ -481,6 +481,8 @@ public class BaseClass {
 		WebDriverWait wait=new WebDriverWait(driver,5);
 		wait.until(ExpectedConditions.elementToBeClickable(element));		
 	}	
+	
+	
 	
 	public void javaScriptClick(WebElement element){
 		JavascriptExecutor js=(JavascriptExecutor)driver;		

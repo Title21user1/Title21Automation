@@ -326,12 +326,13 @@ public class DocumentRoutes_Test extends BaseClass{
 					documentRoutes.approval_Tab().click();
 					sleep(2);
 
+
+
 					for(int i=1; i<=20; i++)
 					 {
 						 selectDocForApprovel(documetNo);
 						 if(!isRecordFound)
 						 {
-							//verticalScrollingDown();
 							documentRoutes.documentTableNext_Button().click();
 							sleep(2); 
 						}
@@ -359,7 +360,7 @@ public class DocumentRoutes_Test extends BaseClass{
 					documentRoutes.wizard_Option().click();
 					documentRoutes.approval_Tab().click();
 					sleep(2);
-
+					
 					for(int i=1; i<=20; i++)
 					{
 						verifyDocForApprovel(documetNo);
