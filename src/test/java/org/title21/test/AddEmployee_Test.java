@@ -56,6 +56,7 @@ public class AddEmployee_Test extends BaseClass {
 	{	
 		test = extent.startTest("Add Employee");	
 		test.log(LogStatus.INFO, "Link to Test case document", "<a href='file://"+filePath+"'>TestCaseDocument</a>");
+		
 		test.log(LogStatus.PASS,"1.	Login to the web interface.");
 		getAdministrationPage(test);		
 		
