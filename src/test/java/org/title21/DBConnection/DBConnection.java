@@ -10,7 +10,8 @@ import org.title21.utility.BaseClass;
 public class DBConnection extends BaseClass {
 
 	public static Connection getConnection() throws Exception {
-		if (connection == null) {
+		System.out.println(connection);
+		if (connection==null)  {
 			try {
 				DriverManager.registerDriver(new com.microsoft.sqlserver.jdbc.SQLServerDriver());
 				Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
@@ -21,6 +22,9 @@ public class DBConnection extends BaseClass {
 			} catch (SQLException e) {
 				Assert.fail("Error Occurred while Connecting to DB : " + e.getMessage());
 			}
+		}
+		else{
+			System.out.println("previous connection not closed properly");
 		}
 		return connection;
 	}
@@ -35,9 +39,11 @@ public class DBConnection extends BaseClass {
 
 	public static Connection closeConnection() {
 		if (connection != null) {
-			try {
-				System.out.println("Closing DB Connection");
+			try {				
 				connection.close();
+				connection=null;
+				sleep(2);
+				
 			} catch (SQLException ex) {
 				ex.printStackTrace();
 			}
@@ -61,8 +67,7 @@ public class DBConnection extends BaseClass {
 			rs = statement.executeQuery(query);
 						
 			while(rs.next()){
-				dbvalue= rs.getInt(columnName);
-				
+				dbvalue= rs.getInt(columnName);				
 			}
 		}
 		catch(Exception e)
@@ -83,11 +88,12 @@ public class DBConnection extends BaseClass {
 	 */
 		
 	public static boolean executeStoredProcedure(String storedProcedure) throws Exception{
-		
+		Connection con;
+		PreparedStatement ps = null;
 		try{
 			boolean getResults;
-			Connection con=getConnection();
-			PreparedStatement ps= con.prepareStatement(storedProcedure);
+			con=getConnection();
+			ps= con.prepareStatement(storedProcedure);
 			
 			ps.setEscapeProcessing(true);
 			getResults=ps.execute();
@@ -109,7 +115,7 @@ public class DBConnection extends BaseClass {
 			return false;
 		}	
 		finally{
-			closeConnection();
+			closeConnection();			
 		}	
 		
 	}
