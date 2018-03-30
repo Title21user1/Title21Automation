@@ -22,10 +22,12 @@
 	<test name="CreateDocumentScreens">
 		<classes>		
 			
-		  	<class name="org.title21.Documents_test.CreateDocument_Test"/>
+	  	<class name="org.title21.Documents_test.CreateDocument_Test"/>
+     	<class name="org.title21.Documents_test.ReadAndSignTraining_Test"/> 
 		 	<class name="org.title21.Documents_test.DocumentRoutes_Test"/>
 			<class name="org.title21.Documents_test.CheckInCheckOut_Test"/>
 			<class name="org.title21.Documents_test.DetailedCheckout_Test"/>
+
 			  
 		<!--  
 			 <class name="org.title21.test.debug"/>
