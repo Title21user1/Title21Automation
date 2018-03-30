@@ -120,14 +120,13 @@ public class DeleteEmployee_Test extends BaseClass {
 
 		log.info("logout successfully.");
 		
-		extent.endTest(test);
 	}
 		
 	@AfterClass
-	public void closeBrowserInstance() {
-
-		driver.close();	
-		
+	public void closeBrowserInstance()
+	{
+		extent.endTest(test);
+		driver.close();		
 	}
 	
 	public boolean clickonDelete(){

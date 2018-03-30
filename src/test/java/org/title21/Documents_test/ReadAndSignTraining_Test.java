@@ -447,14 +447,14 @@ public class ReadAndSignTraining_Test extends BaseClass{
 			if(readSign.selectedEntities_Header().isDisplayed())
 			{
 				readSign.entitiesEmp_FilterBox().clear();
-				readSign.entitiesEmp_FilterBox().sendKeys(loginData[10][2]);
+				readSign.entitiesEmp_FilterBox().sendKeys(loginData[11][2]);
 				readSign.entitiesEmpFilterGo_Button().click();
 				sleep(2);
 				readSign.moveSelectedEntities_Button().click();
 				sleep(2);
 				
 				readSign.entitiesEmp_FilterBox().clear();
-				readSign.entitiesEmp_FilterBox().sendKeys(loginData[11][2]);
+				readSign.entitiesEmp_FilterBox().sendKeys(loginData[12][2]);
 				readSign.entitiesEmpFilterGo_Button().click();
 				sleep(2);
 				readSign.moveSelectedEntities_Button().click();
@@ -512,13 +512,13 @@ public class ReadAndSignTraining_Test extends BaseClass{
 			test.log(LogStatus.PASS, "37.Logout and login as one of the entity noted in Step 30.");
 			logout.logoutFunction();
 			
-			if(addedEntities.equalsIgnoreCase(loginData[10][2]))
+			if(addedEntities.equalsIgnoreCase(loginData[11][2]))
 			{
-				login.loginUser(loginData[10][0], loginData[10][1]);
+				login.loginUser(loginData[11][0], loginData[11][1]);
 			}
 			else
 			{
-				login.loginUser(loginData[11][0], loginData[11][1]);
+				login.loginUser(loginData[12][0], loginData[12][1]);
 			}
 			
 			test.log(LogStatus.PASS, "38.Navigate to Wizard > Training.");
@@ -751,14 +751,14 @@ public class ReadAndSignTraining_Test extends BaseClass{
 			if(readSign.selectedEntities_Header().isDisplayed())
 			{
 				readSign.entitiesEmp_FilterBox().clear();
-				readSign.entitiesEmp_FilterBox().sendKeys(loginData[10][2]);
+				readSign.entitiesEmp_FilterBox().sendKeys(loginData[11][2]);
 				readSign.entitiesEmpFilterGo_Button().click();
 				sleep(2);
 				readSign.moveSelectedEntities_Button().click();
 				sleep(2);
 				
 				readSign.entitiesEmp_FilterBox().clear();
-				readSign.entitiesEmp_FilterBox().sendKeys(loginData[11][2]);
+				readSign.entitiesEmp_FilterBox().sendKeys(loginData[12][2]);
 				readSign.entitiesEmpFilterGo_Button().click();
 				sleep(2);
 				readSign.moveSelectedEntities_Button().click();
@@ -797,13 +797,13 @@ public class ReadAndSignTraining_Test extends BaseClass{
 			
 			
 			test.log(LogStatus.PASS, "58.Log in as one of the entities noted in Step 56.");
-			if(addedEntities.equalsIgnoreCase(loginData[10][2]))
+			if(addedEntities.equalsIgnoreCase(loginData[11][2]))
 			{
-				login.loginUser(loginData[10][0], loginData[10][1]);
+				login.loginUser(loginData[11][0], loginData[11][1]);
 			}
 			else
 			{
-				login.loginUser(loginData[11][0], loginData[11][1]);
+				login.loginUser(loginData[12][0], loginData[12][1]);
 			}
 			
 			test.log(LogStatus.PASS, "59.Navigate to Wizard > Training.");
