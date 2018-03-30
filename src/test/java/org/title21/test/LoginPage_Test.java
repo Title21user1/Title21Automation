@@ -25,14 +25,13 @@ public class LoginPage_Test extends BaseClass {
 	{
 		getBrowser();
 		className = this.getClass().getName();
-		createDirectory(className);
+		createDirectory(className);	
 		
 	}
 	@Test(testName = "login-to-app", groups = "Logins", priority = 0)
 	public void LoginToApp() throws Exception 
-	{
+	{		
 		test = extent.startTest("Login authentication");
-		
 		test.log(LogStatus.INFO, "Link to Test case document", "<a href='file://"+filePath+"'>TestCaseDocument</a>");
 		test.log(LogStatus.PASS, "1. Enter the URL in the browser to bring up the web interface login page.");
 		login= new LoginPage_POM(driver);
@@ -92,12 +91,14 @@ public class LoginPage_Test extends BaseClass {
 		};
 		     	
 		extent.endTest(test);
+		
 	}	
-	
+		
 	
 	@AfterClass
 	public void closeBrowserInstance() 
 	{
+		extent.endTest(test);
 		driver.close();
 	}
 
