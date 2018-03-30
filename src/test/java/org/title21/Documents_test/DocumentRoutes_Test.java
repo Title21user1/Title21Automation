@@ -238,7 +238,6 @@ public class DocumentRoutes_Test extends BaseClass{
 							break;
 						}
 					}
-					
 					if(isValueFound)
 					{
 						test.log(LogStatus.PASS, "<b>ER 8- The document is available in the approval wizard.<b>"+
