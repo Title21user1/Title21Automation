@@ -32,8 +32,7 @@
 			 <class name="org.title21.test.TestDB"/>   -->
 								
 						
-	   </classes>		
+	   </classes>
 
 	</test>
 </suite>
-
