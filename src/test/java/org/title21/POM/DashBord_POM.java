@@ -23,7 +23,11 @@ public class DashBord_POM
 		PageFactory.initElements(driver, this);
 	}
 
-
+	public WebElement toDashboard()
+	{
+		return dashboard;
+	}
+	
 	/*
 	 * 
 	 * This method verify text on dashboard - (Dashboard). 

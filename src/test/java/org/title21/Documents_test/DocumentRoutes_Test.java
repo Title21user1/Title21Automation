@@ -223,7 +223,22 @@ public class DocumentRoutes_Test extends BaseClass{
 					documentRoutes.wizard_Option().click();
 					documentRoutes.approval_Tab().click();
 					
-					if(verifyDocForApprovel(documetNo))
+					for(int i=1; i<=20; i++)
+					{
+						verifyDocForApprovel(documetNo);
+						 if(!isValueFound)
+						 {
+							documentRoutes.documentTableNext_Button().click();
+							sleep(2); 
+						}
+						else
+						{
+							break;
+						}
+					}
+					//changes-
+					if(isValueFound)
+
 					{
 						test.log(LogStatus.PASS, "<b>ER 8- The document is available in the approval wizard.<b>"+
 								test.addScreenCapture(captureScreenShot(driver, "approval wizard")));
@@ -277,7 +292,22 @@ public class DocumentRoutes_Test extends BaseClass{
 					documentRoutes.wizard_Option().click();
 					documentRoutes.approval_Tab().click();
 					sleep(2);
-					selectDocForApprovel(documetNo);
+					
+					for(int i=1; i<=20; i++)
+					 {
+						selectDocForApprovel(documetNo);
+						 if(!isRecordFound)
+						 {
+							//verticalScrollingDown();
+							documentRoutes.documentTableNext_Button().click();
+							sleep(2); 
+						}
+						else
+						{
+							break;
+						}
+					}
+										
 					sleep(2);
 					documentRoutes.documentTab_ForApprover().click();
 					sleep(2);
@@ -294,23 +324,24 @@ public class DocumentRoutes_Test extends BaseClass{
 					documentRoutes.wizard_Option().click();
 					documentRoutes.approval_Tab().click();
 					sleep(2);
+
 					
 					isRecordFound = false;
-					for(int i=1; i<=5; i++)
+
+					for(int i=1; i<=20; i++)
 					 {
 						 selectDocForApprovel(documetNo);
 						 if(!isRecordFound)
 						 {
-							// verticalScrollingDown();
-							 documentRoutes.documentTableNext_Button().click();
-					 			sleep(2); 
-						 }
-						 else
-						 {
-							 break;
-						 }
-					 }
-					 
+							documentRoutes.documentTableNext_Button().click();
+							sleep(2); 
+						}
+						else
+						{
+							break;
+						}
+					}
+
 					sleep(2);
 					documentRoutes.documentTab_ForApprover().click();
 					sleep(2);
@@ -329,7 +360,26 @@ public class DocumentRoutes_Test extends BaseClass{
 					documentRoutes.wizard_Option().click();
 					documentRoutes.approval_Tab().click();
 					sleep(2);
+
 					if(verifyDocForApprovel(documetNo))
+
+					
+					for(int i=1; i<=20; i++)
+					{
+						verifyDocForApprovel(documetNo);
+						if(!isValueFound)
+						{
+							documentRoutes.documentTableNext_Button().click();
+							sleep(2); 
+						}
+						else
+						{
+							break;
+						}
+					}
+
+					if(isValueFound)
+
 					{
 						test.log(LogStatus.PASS, "<b>ER 9- The document is available in the approval wizard, and the status for both of the Sequence 1 individual approvals are updated.<b>"+
 								test.addScreenCapture(captureScreenShot(driver, "approval wizard")));
@@ -383,6 +433,7 @@ public class DocumentRoutes_Test extends BaseClass{
 	
 	private boolean verifyDocForApprovel(String docName) 
 	{
+		isValueFound=false;
 		searchTable=new Table(driver);
 		List<WebElement> tableCells=searchTable.getcollapseDocumentstableCells(5);				
 		for (int i=0;i<tableCells.size();i++)
@@ -398,6 +449,7 @@ public class DocumentRoutes_Test extends BaseClass{
 	
 	private boolean selectDocForApprovel(String docName) 
 	{
+		isRecordFound=false;
 		searchTable=new Table(driver);
 		List<WebElement> tableCells=searchTable.getcollapseDocumentstableCells(5);				
 		for (int i=0;i<tableCells.size();i++)

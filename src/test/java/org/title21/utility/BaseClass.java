@@ -146,16 +146,14 @@ public class BaseClass {
 		baseUrl=p.getProperty("baseUrl");
 		excelFile=p.getProperty("excelFilePath");
 		
-		//db properties
-		
+		//db properties		
 
 		loginSheet=p.getProperty("Loginsheet");
 		groupSheet=p.getProperty("Groupsheet");
 		userSheet=p.getProperty("UserSheet");
 		employeeSheet=p.getProperty("EmployeeSheet");
 		routeSheet=p.getProperty("RouteSheet");
-		
-		
+				
 		// get db properties
 		dbServer=p.getProperty("dbserver");
 		dbName=p.getProperty("dbName");
@@ -204,7 +202,9 @@ public class BaseClass {
 		/*
 		 * relativePathforImage has been set with relation with index.html
 		 */
-		relativePathforImage="..\\extentReports" + "\\" + classname+"\\";		
+		//relativePathforImage="..\\extentReports" + "\\" + classname+"\\";	
+		
+		relativePathforImage="./"+classname+"/";
 		
 		File file = new File(imagesDirectory);
 		if (!file.exists()) {
