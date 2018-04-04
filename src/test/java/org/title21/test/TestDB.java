@@ -44,6 +44,7 @@ public class TestDB extends BaseClass
 		//test.log(LogStatus.PASS,"MoveDocsBetweenCabinets"+DBConnection.executeStoredProcedure(dbqueries.moveDocsOnReleaseDate));				
 	}
 		
+	
 	@AfterClass
 	public void afterClass()
 	{

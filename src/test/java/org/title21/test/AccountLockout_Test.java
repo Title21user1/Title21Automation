@@ -16,8 +16,11 @@ import com.relevantcodes.extentreports.LogStatus;
 
 import org.testng.annotations.BeforeClass;
 
+import static org.testng.Assert.assertEquals;
+
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.Keys;
 import org.testng.annotations.AfterClass;
 
 public class AccountLockout_Test extends BaseClass
@@ -77,43 +80,29 @@ public class AccountLockout_Test extends BaseClass
 			if (updateuser.verifyIAgreePresence()==true)
 			{
 				updateuser.iAgree_Button().click();
-				sleep(2);
 			}		
 		}
 
 		test.log(LogStatus.PASS,"2.	Enter a valid test username and password");
 		test.log(LogStatus.PASS,"<b>ER1: User is able to login with the correct username and password.<b>"+
 				test.addScreenCapture(captureScreenShot(driver, "SuccessfulLogin")));
-		
+
 		logout.logoutFunction();
 		test.log(LogStatus.PASS,"3.	Log out of the web interface");
 
 		login.getUsername().sendKeys(loginData[2][0]);
-		sleep(1);
-		login.getLogin_button().click();
-		sleep(2);
-		
+		login.getLogin_button().sendKeys(Keys.RETURN);
 		int NumFailedLoginAttempts = DBConnection.getIntDBValue(dbqueries.failedloginattempts,"NumFailedLoginAttempts");
-		int counter = 1;
-		test.log(LogStatus.PASS,"4.	Enter the test username with an incorrect password "+NumFailedLoginAttempts+" times consecutively");
 		
-		login.getpassword().sendKeys(loginData[3][1]);
-		sleep(2);
-		login.getLogin_button().click();
-		sleep(2);
-		test.log(LogStatus.PASS,"Invalid Login No: "+counter);
+		test.log(LogStatus.PASS,"4.	Enter the test username with an incorrect password "+NumFailedLoginAttempts+" times consecutively");
 	
-		for (int i = 1; i < NumFailedLoginAttempts; i++)
+		for (int i = 1; i < NumFailedLoginAttempts+1; i++)
 		{
 			{
 				login.getpassword().sendKeys(loginData[3][1]);
-				sleep(2);
-				login.getLogin_button().click();
-				sleep(1);
-				login.getLogin_button().click();
-				sleep(2);
-				counter++;
-				test.log(LogStatus.PASS,"Invalid Login No: "+counter);	
+				login.getLogin_button().sendKeys(Keys.RETURN);
+				test.log(LogStatus.PASS,"Invalid Login No: "+i);			
+				assertEquals(login.getPasswordErrorMessage().getText(), ErrorMessages.passworderrormessages);		
 			}
 		}
 
@@ -121,26 +110,20 @@ public class AccountLockout_Test extends BaseClass
 				test.addScreenCapture(captureScreenShot(driver, "AccountLocked")));
 
 		login.getpassword().sendKeys(loginData[2][1]);
-		sleep(2);
-		login.getLogin_button().click();
-		sleep(2);
-		login.getLogin_button().click();
-		sleep(2);
+		login.getLogin_button().sendKeys(Keys.RETURN);
 		test.log(LogStatus.PASS,"5.	Login again, but now with the correct password.");
-		
-		if (login.getPasswordErrorMessage().getText().equalsIgnoreCase(ErrorMessages.passworderrormessages))
-		{
-			test.log(LogStatus.PASS,"<b>ER3: The user remains locked out and cannot login with the correct password.<b>"+
-					test.addScreenCapture(captureScreenShot(driver, "UnableToLogin")));	
-		}
-		
+		assertEquals(login.getPasswordErrorMessage().getText(), ErrorMessages.passworderrormessages);
+		test.log(LogStatus.PASS,"<b>ER3: The user remains locked out and cannot login with the correct password.<b>"+
+				test.addScreenCapture(captureScreenShot(driver, "UnableToLogin")));
+
+		extent.endTest(test);
 	}
+
 
 
 	@AfterClass
 	public void afterClass()
 	{
-		extent.endTest(test);
 		driver.close();
 	}
 }

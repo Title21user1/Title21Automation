@@ -57,9 +57,9 @@ public class RecentlyViewedAndFavorites_Test extends BaseClass {
 
 	}
 
-	@Test(testName = "recentlyViewd_Favorites ", groups = "recentlyViewd_Favorites", priority = 0)
+	@Test(testName = "Recently Viewed and favorites", groups = "recentlyViewed_Favorites", priority = 0)
 	public void Create_doc() throws Exception {
-		test = extent.startTest("RecentlyViewed_And_Favorites");
+		test = extent.startTest("Recently Viewed and favorites");
 		
 		RecentlyViewdAndFavorites.createdocandcheckin();
 		System.out.print(documetNo);

@@ -147,7 +147,7 @@ public class eBinders_Test extends BaseClass
 		ebinder.verifyButton().click();											sleep(2);
 		test.log(LogStatus.PASS,"22. Click on verify.");
 		
-		horizontalScrollingRight();												sleep(2);
+		horizontalScrollingToLeft();												sleep(2);
 		
 		logout.logoutFunction();
 		test.log(LogStatus.PASS,"23. Logout with admin user");
