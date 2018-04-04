@@ -38,6 +38,15 @@ public class Reports_POM
 	@FindBy(xpath="//button[text()='Close']")
 	WebElement closeButton;
 
+	@FindBy(xpath="//button[@name='clear']")
+	WebElement clearButton;
+
+	@FindBy(xpath="//input[@value='Yes']")
+	WebElement yesButton;
+
+	@FindBy(xpath="//button[text()='Update']")
+	WebElement updateButton;
+
 	@FindBy(xpath="//span[text()[contains(.,'Report name')]]")
 	WebElement reportnamevalidation;
 
@@ -46,24 +55,42 @@ public class Reports_POM
 
 	@FindBy(xpath="//span[text()[contains(.,'Category is required')]]")
 	WebElement categoryrequiredvalidation;
-	
+
 	@FindBy(xpath="//span[text()[contains(.,'design permission')]]")
 	WebElement designpermissionvalidation;
-	
+
 	@FindBy(id="ReportItem_ReportName")
 	WebElement reportName;
-	
+
 	@FindBy(id="ReportFile")
 	WebElement browse;
-	
+
 	@FindBy(id="ReportItem_Category")
 	WebElement category;
-	
+
+	@FindBy(xpath="//a[text()[contains(.,'General')]]")
+	WebElement generaltab;
+
 	@FindBy(xpath="//a[text()[contains(.,'Permissions')]]")
 	WebElement permissiontab;
-	
+
 	@FindBy(xpath="//*[@class='t21-table-hover-row']/td[1]")
 	List<WebElement> groups;
+
+	@FindBy(css=".form-control.t21-placeholder")
+	WebElement search;
+
+	@FindBy(css=".t21-ajax-submit-button.form-control.form-inline.btn.t21-btn-default")
+	WebElement goButton;
+
+	@FindBy(xpath="//span[@title='Edit Report']")
+	WebElement editReport;
+
+	@FindBy(xpath="//span[@title='Delete Report']")
+	WebElement deleteReport;
+
+	@FindBy(xpath="//div[@class='t21-js-user-message-text']")
+	WebElement editReportPermissionMessage;
 
 	public WebElement reports()
 	{
@@ -74,7 +101,7 @@ public class Reports_POM
 	{
 		return adminReports;
 	}
-	
+
 	public WebElement addReports()
 	{
 		return addReports;
@@ -88,6 +115,11 @@ public class Reports_POM
 	public WebElement closeButton()
 	{
 		return closeButton;		
+	}
+
+	public WebElement updateButton()
+	{
+		return updateButton;		
 	}
 
 	public WebElement reportNameValidation()
@@ -104,85 +136,88 @@ public class Reports_POM
 	{
 		return categoryrequiredvalidation;		
 	}
-	
+
 	public WebElement designPermissionValidation()
 	{
 		return designpermissionvalidation;		
 	}
-	
+
+	public WebElement editReportPermissionValidation()
+	{
+		return editReportPermissionMessage;		
+	}
+
 	public WebElement reportName()
 	{
 		return reportName;		
 	}
-	
+
 	public WebElement browse()
 	{
 		return browse;		
 	}
-	
+
+	public WebElement generalTab()
+	{
+		return generaltab;		
+	}
+
 	public WebElement permissionTab()
 	{
 		return permissiontab;		
 	}
-	
+
 	public List<WebElement> allGroupsName()
 	{
 		return groups;		
 	}
-	
+
+	public WebElement getSearchText()
+	{		
+		return search;			
+	}
+
+	public WebElement getGoButton()
+	{
+		return goButton;			
+	}
+
+	public WebElement clearButton()
+	{
+		return clearButton;			
+	}
+
+	public WebElement yesButton()
+	{
+		return yesButton;			
+	}
+
+	public WebElement editButton()
+	{
+		return editReport;			
+	}
+
+	public WebElement deleteReport()
+	{
+		return deleteReport;			
+	}
+
+	public void clickOnReport(String reportName)
+	{
+		driver.findElement(By.xpath("//a[text()[contains(.,'"+reportName+"')]]")).click();
+	}
+
 	public Select category()
 	{
 		Select selectobj = new Select(category);
 		return selectobj;		
 	}
 
-	public boolean verifyReportNameValidationMessage(){
-
-		WebElement element=reportNameValidation();
-		String errorMessage = element.getText();
-		boolean isValidationMessagePresent=false;		
-
-		if(errorMessage.equalsIgnoreCase(ErrorMessages.ReportNameValidation))
-		{
-			isValidationMessagePresent=true;
-		}else{
-			log.error("Validation message for Report Name field is not displayed.");
-		}	
-		return isValidationMessagePresent;
+	public void Search(String Searchdata) {
+		getSearchText().sendKeys(Searchdata);
+		getGoButton().click();
 	}
-	
-	public boolean verifySelectFileValidationMessage(){
 
-		WebElement element=selectReportValidation();
-		String errorMessage = element.getText();
-		boolean isValidationMessagePresent=false;		
-
-		if(errorMessage.equalsIgnoreCase(ErrorMessages.SelectReportValidation))
-		{
-			isValidationMessagePresent=true;
-		}else{
-			log.error("Validation message for Select File field is not displayed.");
-		}	
-		return isValidationMessagePresent;
-	}
-	
-	public boolean verifyCategoryReportValidationMessage(){
-
-		WebElement element=categoryRequiredValidation();
-		String errorMessage = element.getText();
-		boolean isValidationMessagePresent=false;		
-
-		if(errorMessage.equalsIgnoreCase(ErrorMessages.CategoryRequiredValidation))
-		{
-			System.out.println(errorMessage);
-			isValidationMessagePresent=true;
-		}else{
-			System.out.println(errorMessage);
-			log.error("Validation message for Category field is not displayed.");
-		}	
-		return isValidationMessagePresent;
-	}
-	
 	public boolean verifyDesignPermissionValidationMessage(){
 
 		WebElement element=designPermissionValidation();
@@ -197,7 +232,37 @@ public class Reports_POM
 		}	
 		return isValidationMessagePresent;
 	}
+
+	public boolean verifyEditPermissionValidationMessage(){
+
+		WebElement element=editReportPermissionValidation();
+		String errorMessage = element.getText();
+		boolean isValidationMessagePresent=false;		
+
+		if(errorMessage.equalsIgnoreCase(ErrorMessages.ReportEditPermission))
+		{
+			isValidationMessagePresent=true;
+		}else{
+			log.error("Validation message for Edit Permission is not displayed.");
+		}	
+		return isValidationMessagePresent;
+	}
 	
+	public boolean verifyDeletePermissionValidationMessage(){
+
+		WebElement element=editReportPermissionValidation();
+		String errorMessage = element.getText();
+		boolean isValidationMessagePresent=false;		
+
+		if(errorMessage.equalsIgnoreCase(ErrorMessages.ReportEditPermission))
+		{
+			isValidationMessagePresent=true;
+		}else{
+			log.error("Validation message for Edit Permission is not displayed.");
+		}	
+		return isValidationMessagePresent;
+	}
+
 	public void checkUseDesignForGroup(String name)
 	{
 		List<WebElement> list = allGroupsName();
@@ -206,18 +271,22 @@ public class Reports_POM
 		for(i=0; i<numberOfEle; i++)
 		{
 			String str = list.get(i).getText();
-			if(str.contains(name))
+			if(str.equalsIgnoreCase(name))
 			{
 				int j = i+1;
 				WebElement element1 = driver.findElement(By.xpath("//*[@id='tab2']/div/div[2]/table/tbody/tr["+j+"]/td[3]/input"));
 				element1.click();
-				BaseClass.sleep(2);
+				BaseClass.sleep(3);
+				permissionTab().click();
 				WebElement element2 = driver.findElement(By.xpath("//*[@id='tab2']/div/div[2]/table/tbody/tr["+j+"]/td[4]/input"));
 				element2.click();
+				BaseClass.sleep(3);
+				permissionTab().click();
+				BaseClass.sleep(2);
 			}
 		}
 	}
-	
+
 	public void checkUseForGroup(String name)
 	{
 		List<WebElement> list = allGroupsName();
@@ -226,11 +295,57 @@ public class Reports_POM
 		for(i=0; i<numberOfEle; i++)
 		{
 			String str = list.get(i).getText();
-			if(str.contains(name))
+			if(str.equalsIgnoreCase(name))
+			{
+				int j = i+1;
+				WebElement element = driver.findElement(By.xpath("//*[@id='tab2']/div/div[2]/table/tbody/tr["+j+"]/td[3]/input"));
+				element.click();
+				BaseClass.sleep(3);
+				permissionTab().click();
+				BaseClass.sleep(2);
+			}
+		}
+	}
+	
+	public void checkDesignForGroup(String name)
+	{
+		List<WebElement> list = allGroupsName();
+		int numberOfEle = list.size();
+		int i;
+		for(i=0; i<numberOfEle; i++)
+		{
+			String string = list.get(i).getText();
+			if(string.equalsIgnoreCase(name))
 			{
 				int j = i+1;
 				WebElement element = driver.findElement(By.xpath("//*[@id='tab2']/div/div[2]/table/tbody/tr["+j+"]/td[4]/input"));
 				element.click();
+				BaseClass.sleep(3);
+				permissionTab().click();
+				BaseClass.sleep(2);
+			}
+		}
+	}
+
+	public void uncheckUseDesignForGroup(String name)
+	{
+		List<WebElement> list = allGroupsName();
+		int numberOfEle = list.size();
+		int i;
+		for(i=0; i<numberOfEle; i++)
+		{
+			String str = list.get(i).getText();
+			if(str.equalsIgnoreCase(name))
+			{
+				int j = i+1;
+				WebElement element1 = driver.findElement(By.xpath("//*[@id='tab2']/div/div[2]/table/tbody/tr["+j+"]/td[4]/input"));
+				element1.click();
+				BaseClass.sleep(3);
+				permissionTab().click();
+				WebElement element2 = driver.findElement(By.xpath("//*[@id='tab2']/div/div[2]/table/tbody/tr["+j+"]/td[3]/input"));
+				element2.click();
+				BaseClass.sleep(3);
+				permissionTab().click();
 				BaseClass.sleep(2);
 			}
 		}
