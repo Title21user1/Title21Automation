@@ -117,6 +117,7 @@ public class AttachmentControlInDoc_Test extends BaseClass {
 							+ test.addScreenCapture(captureScreenShot(driver, "editattachment")));
 		}
 		attachment.geDescription().sendKeys("test file");
+		
 		attachment.getupdate().click();
 		sleep(5);
 		test.log(LogStatus.PASS,
