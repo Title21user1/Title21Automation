@@ -5,10 +5,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
-import org.title21.POM.AdministrationPage_POM;
+import org.title21.Documents_POM.DocumentRoutes_POM;
 import org.title21.utility.BaseClass;
 
-public class Codes_POM extends AdministrationPage_POM
+public class Codes_POM extends DocumentRoutes_POM
 {
 public WebDriver driver;
 public WebElement element;
@@ -106,6 +106,78 @@ WebElement updateButton;
 
 @FindBy(xpath="//div[contains(text(),'updated successfully')]")
 WebElement codeupdatedSuccessfullyVerificationMsg;
+
+@FindBy(css=".dropdown-toggle.t21-nav-bar-dropdown")
+WebElement administratordropdown;
+
+@FindBy(xpath="//a[contains(@href, 'Administration')]")
+WebElement administrationlink;
+
+@FindBy(xpath="//a[contains(@href,'#CodesTab')]")
+WebElement codesTab;
+
+@FindBy(css=".t21-js-parentnode.head")
+WebElement codeCategoryOnCodeTab;
+
+@FindBy(css=".treeview.hover.t21-no-padding>ul>li>label")
+WebElement codeCategoryPlusSign;
+
+@FindBy(css=".t21-code-with-description")
+WebElement codeNameOnCodesTab;
+
+@FindBy(xpath="//*[@id='CodesTab']//td[1]")
+WebElement codeNameWithDetailsOnCodesTab;
+
+@FindBy(css=".action-items")
+WebElement deleteIconToDeleteCodeInCodeTab;
+
+@FindBy(css=".col-md-7>div>div")
+WebElement NoCodesSelectedOnCodesTab;
+
+public WebElement NoCodesSelected_OnCodesTab()
+{
+	return NoCodesSelectedOnCodesTab;
+}
+
+public WebElement deleteIconToDeleteCode_InCodeTab()
+{
+	return deleteIconToDeleteCodeInCodeTab;
+}
+
+public WebElement codeNameWithDetails_OnCodesTab()
+{
+	return codeNameWithDetailsOnCodesTab;
+}
+
+public WebElement codeName_OnCodesTab()
+{
+	return codeNameOnCodesTab;
+}
+
+public WebElement codeCategory_PlusSign()
+{
+	return codeCategoryPlusSign;
+}
+
+public WebElement codeCategoryOn_CodeTab()
+{
+	return codeCategoryOnCodeTab;
+}
+
+public WebElement codes_Tab()
+{
+	return codesTab;
+}
+
+public WebElement administrationLink()
+{
+	 return administrationlink;
+}
+
+public WebElement administratorDropDown()
+{
+	 return administratordropdown;
+}
 
 public WebElement codeupdatedSuccessfully_VerificationMsg()
 {
@@ -249,7 +321,7 @@ public WebElement addCodeClass_Link()
 	return addCodeClass;
 }
 
-public WebElement codes_Tab()
+public WebElement codes_Link()
 {
 	return codeslink;
 }
