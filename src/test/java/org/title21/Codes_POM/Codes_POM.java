@@ -32,7 +32,10 @@ WebElement addCodeClassHeader;
 @FindBy(xpath="//button[text()='Add']")
 WebElement addButton;
 
-@FindBy(xpath="//select[@id='CodeClass']")
+/*@FindBy(xpath="//select[@id='CodeClass']")
+WebElement classNameTextBox;*/
+
+@FindBy(xpath="//input[@id='CodeClass'][@data-val='true']")
 WebElement classNameTextBox;
 
 @FindBy(xpath="//span[text()='Name already exists']")
@@ -92,7 +95,7 @@ WebElement codeClassDropDown;
 @FindBy(xpath="//a[contains(@href,'GetCodeAvailabilityList')]")
 WebElement getCodeAvailabilityListLink;
 
-@FindBy(xpath=".form-control.t21-placeholder")
+@FindBy(css=".form-control.t21-placeholder")
 WebElement filterResultTextBox;
 
 @FindBy(xpath="//button[@type='submit'][@tabindex='1']")

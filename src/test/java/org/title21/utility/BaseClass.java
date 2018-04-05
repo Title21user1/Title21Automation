@@ -81,6 +81,7 @@ public class BaseClass {
 	protected static String userData[][];
 	protected static String employeeData[][];
 	protected static String routeData[][];
+	protected static String codesData[][];
 	
 	protected String data[][];
 	protected WebDriverWait waitDriver = null;
@@ -93,6 +94,7 @@ public class BaseClass {
 	public static String employeeSheet="";
 	public static String userSheet="";
 	public static String routeSheet="";
+	public static String codesSheet="";
 	public static String browser="";
 	public static String baseUrl="";
 	public static String dbServer="";
@@ -155,6 +157,7 @@ public class BaseClass {
 		userSheet=p.getProperty("UserSheet");
 		employeeSheet=p.getProperty("EmployeeSheet");
 		routeSheet=p.getProperty("RouteSheet");
+		codesSheet=p.getProperty("CodesSheet");
 		
 		
 		// get db properties
@@ -177,6 +180,7 @@ public class BaseClass {
 		userData=ExcelData(excelFile, userSheet);
 		employeeData=ExcelData(excelFile, employeeSheet);
 		routeData=ExcelData(excelFile, routeSheet);
+		codesData=ExcelData(excelFile, codesSheet);
 		
 		downloadPath=System.getProperty("user.dir") + "\\DownloadedFiles";
 		
@@ -524,4 +528,8 @@ public class BaseClass {
 			js.executeScript("window.scrollBy(-200,0)");
 		}	
 	}
+	public void scrollIntoView(WebElement element){
+		  JavascriptExecutor js=(JavascriptExecutor)driver; 
+		  js.executeScript("arguments[0].scrollIntoView(true);",element);   
+		 }
 }
