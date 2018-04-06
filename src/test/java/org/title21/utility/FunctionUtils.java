@@ -14,7 +14,7 @@ public class FunctionUtils {
 	public static String generateRandomNumber()
 	{
 		Random randomGenerator = new Random();	   
-	    int randomInt = randomGenerator.nextInt(1000);	    
+	    int randomInt = randomGenerator.nextInt(10000);	    
 	    return String.valueOf(randomInt);	    	
 	}
 	
