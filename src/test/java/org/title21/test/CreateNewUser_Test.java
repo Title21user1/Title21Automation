@@ -412,7 +412,7 @@ public class CreateNewUser_Test extends BaseClass{
 			test.log(LogStatus.FAIL, "Unable to verified ER 4- Add new user popup screen appears. "+
 					test.addScreenCapture(captureScreenShot(driver, "Add New User")));
 		}
-		
+		extent.endTest(test);
 	}
 	
 	@Test(testName = "logout", groups = "Logout", priority = 1)
@@ -426,7 +426,6 @@ public class CreateNewUser_Test extends BaseClass{
 	@AfterClass
 	public void closeBrowserInstance()
 	{		
-		extent.endTest(test);
 		driver.close();
 	}
 }

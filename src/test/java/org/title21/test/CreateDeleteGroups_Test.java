@@ -247,6 +247,7 @@ public class CreateDeleteGroups_Test extends BaseClass {
 			test.log(LogStatus.FAIL, "Unable to find 'Groups' tab"+
 					test.addScreenCapture(captureScreenShot(driver, "Unable to find 'Groups' tab")));
 		}
+		extent.endTest(test);
 	}
 	
 	@Test(testName = "logout_admin", groups = "Logout", priority = 1)
@@ -259,7 +260,6 @@ public class CreateDeleteGroups_Test extends BaseClass {
 	@AfterClass
 	public void closeBrowserInstance() 
 	{
-		extent.endTest(test);
 		driver.close();
 	}
 }

@@ -2,6 +2,8 @@ package org.title21.POM;
 
 import java.awt.RenderingHints.Key;
 import java.util.List;
+import java.util.Set;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -141,7 +143,6 @@ public class LoginPage_POM extends BaseClass
 
 		getUsername().sendKeys(adminUsername);
 		getLogin_button().click();
-		sleep(2);
 		getpassword().sendKeys(adminPassword);
 		getLogin_button().click();
 		sleep(2);
@@ -150,13 +151,10 @@ public class LoginPage_POM extends BaseClass
 	public void loginUser(String username, String password)
 	{
 		getUsername().sendKeys(username);
-		sleep(1);
-		getLogin_button().click();
-		sleep(2);
+		getLogin_button().sendKeys(Keys.RETURN);
 		getpassword().sendKeys(password);
-		sleep(1);
-		getLogin_button().click();
+		getLogin_button().sendKeys(Keys.RETURN);
 		sleep(2);
 	}
-	
+
 }

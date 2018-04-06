@@ -205,8 +205,9 @@ public class DeleteUser_Test extends BaseClass{
 			test.log(LogStatus.FAIL, "Unable to find It should display 'You can't delete yourself. The main administrator must perform this function.' message."+
 					test.addScreenCapture(captureScreenShot(driver, "adminDeleteWarning_Msg")));
 		}
+
+		extent.endTest(test);
 	}
-	
 	private void clickOnDeleteButton(String employeeFullName) 
 	{
 		searchTable=new Table(driver);
@@ -257,7 +258,6 @@ public class DeleteUser_Test extends BaseClass{
 	@AfterClass
 	public void closeBrowserInstance()
 	{		
-		extent.endTest(test);
 		driver.close();
 	}
 }

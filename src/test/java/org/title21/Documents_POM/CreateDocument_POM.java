@@ -68,7 +68,7 @@ public class CreateDocument_POM
 	@FindBy(css="#DocChangeSummary")
 	WebElement DocChangeSummary;
 
-	@FindBy(css=".btn.t21-btn-primary.t21-ajax-submit-button.process-btn-click")
+	@FindBy(xpath="//input[@name='submitButton']")
 	WebElement ConfirmButtonm;
 
 	@FindBy(xpath=".//*[@id='documentId']")
@@ -206,6 +206,9 @@ public class CreateDocument_POM
 
 	@FindBy(xpath=".//*[@id='default-modal']//button[@class='t21-ajax-submit-button form-control form-inline btn t21-btn-default']")
 	WebElement addlinkgobutton;
+	
+	@FindBy(xpath="//span[@class='t21-no-bold']")
+	WebElement getcreateddocumentnumber;
 
 	public WebElement getDocTitle()
 	{
@@ -607,6 +610,12 @@ public class CreateDocument_POM
 
 		return PlusButtonuploadfile;
 	}
+	
+	public WebElement getCreatedDocnumber()
+	{
+
+		return getcreateddocumentnumber;			
+	}
 
 	public boolean CheckinSuccessmessage(){
 
@@ -668,7 +677,7 @@ public class CreateDocument_POM
 
 		WebElement element = driver.findElement(By.xpath
 				(".//*[@id='bootstrap-duallistbox-nonselected-list_DocRequiredReviewerList[]']//option[@value='"+value+"']"));
-		element.click();			
+		element.click();			 
 	}
 
 	public void selectEntities(String value)
@@ -678,5 +687,14 @@ public class CreateDocument_POM
 				("//select[@id='bootstrap-duallistbox-nonselected-list_selectedEmployee']//option[@value='"+value+"']"));
 		element.click();			
 	}
-	//option[@value='Person User']
+	
+	public void trainingItemsCheck(Boolean check)
+	{
+		if (!check && getcheckboxcheckout().isSelected()) {
+			getcheckboxcheckout().click();
+		}
+		else if (check && !getcheckboxcheckout().isSelected()) {
+			getcheckboxcheckout().click();
+		}
+	}
 }
