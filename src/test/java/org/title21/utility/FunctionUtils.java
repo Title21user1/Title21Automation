@@ -18,4 +18,11 @@ public class FunctionUtils {
 	    return String.valueOf(randomInt);	    	
 	}
 	
+	public static String generateFourRandomNumber()
+	{
+		Random randomGenerator = new Random();	   
+	    int randomInt = randomGenerator.nextInt(10000);	    
+	    return String.valueOf(randomInt);	    	
+	}
+
 }
