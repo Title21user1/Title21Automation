@@ -15,6 +15,7 @@ import org.title21.POM.Table;
 import org.title21.POM.UpdateUser_POM;
 import org.title21.dao.AdminData;
 import org.title21.utility.BaseClass;
+import org.title21.utility.FunctionUtils;
 
 import com.relevantcodes.extentreports.LogStatus;
 
@@ -23,7 +24,7 @@ public class UpdateUser_Test extends BaseClass{
 	LogoutPage_POM logout;
 	UpdateUser_POM updateUserPage;
 	String className="";
-	String number="";
+	String number=FunctionUtils.generateRandomNumber();
 	String location="";
 	String employeeName="";
 	String username="";

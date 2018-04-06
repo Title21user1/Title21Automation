@@ -122,7 +122,13 @@ public class Table extends BaseClass
 		  }
 		return cells;
 	}
-	//
+	public List<WebElement> getCodeavabilityItemCell(int columnNumber){	
+		List<WebElement> cells = null;
+		for(WebElement row : tableRows) {
+		    cells = row.findElements(By.xpath("//div[@class='t21-max-height-200']//td["+columnNumber+"]")); 
+		  }
+		return cells;
+	}
 	public WebElement getDeleteIcon(WebElement tableRow){
 		
 		WebElement rowToDeleteElement=tableRow.findElement(By.xpath("//span[@title='Remove Group']"));
