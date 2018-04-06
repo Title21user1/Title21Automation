@@ -1,38 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Title21Suite">	
-	<parameter name="configFile" value="config.properties"/>
+<suite name="Title21Suite">
+	<parameter name="configFile" value="config.properties" />
+	<test name="Sanity">
+		<classes>
+
+			<class name="org.title21.SantiyTest.Sanity_Test" />
+
+		</classes>
+	</test>
 	<test name="AdminModuleScreens">
-		<classes>		
-		 		
-			<class name="org.title21.test.LoginPage_Test"/>
-			<class name="org.title21.test.LogoutPage_Test"/>			
-			<class name="org.title21.test.AddEmployee_Test"/>
-			<class name="org.title21.test.UpdateEmployee_Test"/>
-			<class name="org.title21.test.CreateNewUser_Test"/>
-			<class name="org.title21.test.UpdateUser_Test"/>
-			<class name="org.title21.test.DeleteUser_Test"/>
-			<class name="org.title21.test.CreateDeleteGroups_Test"/>
-			<class name="org.title21.test.DeleteEmployee_Test"/>
-			<class name="org.title21.test.AccountLockout_Test"/> 			
-		
-	</classes>
-	</test> 
-	<test name="CreateDocumentScreens">
-		<classes>		
+		<classes>
 			
-		 	<class name="org.title21.Documents_test.CreateDocument_Test"/> 	
-		 	<class name="org.title21.Documents_test.DocumentRoutes_Test"/> 
+			<class name="org.title21.test.LoginPage_Test"/>
+			<class name="org.title21.test.LogoutPage_Test"/> 
+			<class name="org.title21.test.AddEmployee_Test"/>
+			<class name="org.title21.test.UpdateEmployee_Test"/> 
+			<class name="org.title21.test.CreateNewUser_Test"/>
+			<class name="org.title21.test.UpdateUser_Test"/> 
+			<class name="org.title21.test.DeleteUser_Test"/>
+			<class name="org.title21.test.CreateDeleteGroups_Test"/> 
+			<class name="org.title21.test.DeleteEmployee_Test"/>
+			<class name="org.title21.test.AccountLockout_Test"/>
+
+		</classes>
+	</test>
+	<test name="DocumentScreens">
+		<classes>
+
+			<class name="org.title21.Documents_test.CreateDocument_Test"/>
+			<class name="org.title21.Documents_test.DocumentRoutes_Test"/>
 			<class name="org.title21.Documents_test.CheckInCheckOut_Test"/> 
-			<class name="org.title21.Documents_test.CheckInCheckOut_Test"/>
-			<class name="org.title21.Documents_test.ReadAndSignTraining_Test"/>	
-			  
-		<!--  
-			 <class name="org.title21.test.debug"/>
-			 <class name="org.title21.test.TestDB"/>   -->
-								
-						
-	   </classes>
+			<class name="org.title21.Documents_test.DetailedCheckout_Test"/> 
+			<class name="org.title21.Documents_test.ReadAndSignTraining_Test"/>
+			<class name="org.title21.Documents_test.RecentlyViewedAndFavorites_Test"/>
+			<class name="org.title21.Documents_test.RecentlyViewedAndFavorites_Test" />
+			
+		</classes>
+
+	</test>
+	<test name="Module3">
+		<classes>
+
+			<class name="org.title21.Module3_Test.Reports_Test"/>
+			<class name="org.title21.Module3_Test.AttachmentControlInDoc_Test"/>
+			
+		</classes>
 
 	</test>
 </suite>

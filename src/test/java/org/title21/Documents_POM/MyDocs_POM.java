@@ -45,7 +45,10 @@ public class MyDocs_POM
 	@FindBy(xpath="//*[@id='displaySel']//a[@title='Context Menu']")
 	WebElement	contextMenu;
 
-	@FindBy(xpath=" //span[@class='grid-button-text'][text()='Check In']")
+	@FindBy(xpath="//a[@title='Context Menu']")
+	WebElement	contextMenuInList;
+	
+	@FindBy(xpath="//span[@class='grid-button-text'][text()='Check In']")
 	WebElement	checkinContextMenu;
 
 	@FindBy(xpath="//span[@class='grid-button-text'][text()='Check Out']")
@@ -174,6 +177,21 @@ public class MyDocs_POM
 	@FindBy(xpath = "//*[@id='CodesTab']//td[1]")
 	List<WebElement> afterCheckCodes;
 	
+	@FindBy(xpath = "//*[@id='CodesTab']//td[1]")
+	WebElement selectdocument;
+	
+	@FindBy(xpath="//span[@class='grid-button-text'][text()='Form']")
+	WebElement form;
+	
+	@FindBy(xpath="//div[@id='displaySel']")
+	WebElement documentformlayout;
+	
+	@FindBy(xpath="//tbody[@class='t21-js-clickable-rows']")
+	WebElement tableBody;
+	
+	@FindBy(xpath="//*[@id='displaySel']//a[@title='Undo document check out']")
+	WebElement undocheckoutform;
+	
 	public WebElement getMyDocs()
 	{
 		return mydocs;
@@ -202,6 +220,11 @@ public class MyDocs_POM
 	public WebElement getContextMenu()
 	{
 		return contextMenu;
+	}
+	
+	public WebElement getContextMenuInList()
+	{
+		return contextMenuInList;
 	}
 
 	public WebElement getCheckinContextMenu()
@@ -355,7 +378,27 @@ public class MyDocs_POM
 	{
 		return trainingitemscheckbox;
 	}
+	
+	public WebElement form()
+	{
+		return form;
+	}
+	
+	public WebElement documentFormLayout()
+	{
+		return documentformlayout;
+	}
 
+	public WebElement tableBodyLayout()
+	{
+		return tableBody;
+	}
+	
+	public WebElement undoCheckoutForm()
+	{
+		return undocheckoutform;
+	}
+	
 	public List<WebElement> getAllRecentViewedDocs()
 	{
 		return recentViewedDocs;
@@ -371,6 +414,18 @@ public class MyDocs_POM
 	{
 		WebElement element = driver.findElement(By.xpath("//a[text()[contains(.,'"+CodeName+"')]]"));
 		element.click();
+	}
+	
+	public WebElement selectDocument(String DocumentNumber)
+	{
+		WebElement element = driver.findElement(By.xpath("//a[text()[contains(.,'"+DocumentNumber+"')]]"));
+		return element;
+	}
+	
+	public WebElement createdDocument(String DocumentNumber)
+	{
+		WebElement element = driver.findElement(By.xpath("//span[text()[contains(.,'"+DocumentNumber+"')]]"));
+		return element;
 	}
 
 	public Select selectCodeClass()
