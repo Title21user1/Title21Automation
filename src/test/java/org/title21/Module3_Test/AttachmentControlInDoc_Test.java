@@ -41,6 +41,8 @@ public class AttachmentControlInDoc_Test extends BaseClass {
 	String Document_number = "";
 	static Logger log = Logger.getLogger(AttachmentControlInDoc_Test.class);
 	RecentlyViewdAndFavorites_POM RecentlyViewdAndFavorites;
+	String testcaseName="TestCase-WIA-Attachment control in document.docx";	
+	String filePath = System.getProperty("user.dir") + "\\TestCases\\"+testcaseName;
 
 	// public WebDriver driver;
 	@BeforeClass
@@ -58,7 +60,7 @@ public class AttachmentControlInDoc_Test extends BaseClass {
 	public void AttachmentCotrol_Test() throws Exception {
 		attachment = new AttachmentControlInDoc_POM(driver);
 		test = extent.startTest("Attachment control in document");
-		
+		test.log(LogStatus.INFO, "Link to Test case document", "<a href='file://"+filePath+"'>TestCaseDocument</a>");
 		RecentlyViewdAndFavorites = new RecentlyViewdAndFavorites_POM(driver);
 		createdoc();		
 		String home_page = driver.getWindowHandle();

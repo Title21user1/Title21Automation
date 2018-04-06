@@ -49,7 +49,7 @@ public class AttachmentControlInDoc_POM
 	List<WebElement> add_new ;
 	
 	@FindBy(css=".modal-title.wrapword-breakword")
-	WebElement attachmentwindowpopup ;
+	WebElement attachmentwindowpopup;
 	
 	//h4[text() = 'Editing Attachment - upload.PNG']
 	@FindBy(xpath="//a[text() = 'PDF']")
