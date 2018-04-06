@@ -3,10 +3,8 @@ package org.title21.test;
 import java.util.List;
 
 import org.apache.log4j.Logger;
-import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -20,7 +18,6 @@ import org.title21.dao.AdminData;
 import org.title21.utility.BaseClass;
 import org.title21.utility.FunctionUtils;
 
-import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
 
 public class AddEmployee_Test extends BaseClass {
@@ -272,7 +269,7 @@ public class AddEmployee_Test extends BaseClass {
 		
 		test.log(LogStatus.PASS, "19. Click on add new link.");
 		
-		waitTillElementVisible(addEmployeePOM.getEmployeeID());
+		sleep(3);
 		
 		test.log(LogStatus.PASS, "20. Enter already existing 'Full Name'");
 		
@@ -318,14 +315,14 @@ public class AddEmployee_Test extends BaseClass {
 		logout.logoutFunction();
 		
 		log.info("logout successfully.");
-		
-		extent.endTest(test);		
+	
 	}	
 	
 
 	@AfterClass
 	public void closeBrowserInstance()
-	{		
+	{	
+		extent.endTest(test);	
 		driver.close();
 	}
 

@@ -5,7 +5,6 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.Sleeper;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -260,7 +259,6 @@ public class UpdateUser_Test extends BaseClass{
 		{
 			test.log(LogStatus.FAIL, "Unable to verified 'general' tab");
 		}
-		extent.endTest(test);
 	}
 	
 	private void clickOnEditButton(String employeeFullName) {
@@ -280,7 +278,6 @@ public class UpdateUser_Test extends BaseClass{
 	
 	private void verifyLocationInTable() {
 		
-		// TODO Auto-generated method stub
 		searchTable=new Table(driver);
 		List<WebElement> tableCells=searchTable.gettableCells(4);				
 		
@@ -298,7 +295,6 @@ public class UpdateUser_Test extends BaseClass{
 	
 	private void verifyUserNameInTable() {
 		
-		// TODO Auto-generated method stub
 		searchTable=new Table(driver);
 		List<WebElement> tableCells=searchTable.gettableCells(2);				
 		
@@ -319,6 +315,7 @@ public class UpdateUser_Test extends BaseClass{
 	@AfterClass
 	public void closeBrowserInstance()
 	{		
+		extent.endTest(test);
 		driver.close();
 	}
 }

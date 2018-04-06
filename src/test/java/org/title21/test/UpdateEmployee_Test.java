@@ -1,28 +1,18 @@
 package org.title21.test;
 
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.concurrent.TimeUnit;
-
 import org.apache.log4j.Logger;
-import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import org.title21.POM.UpdateEmployee_POM;
 import org.title21.POM.DashBord_POM;
-import org.title21.POM.Delete_Employee_POM;
 import org.title21.POM.LoginPage_POM;
 import org.title21.POM.LogoutPage_POM;
 import org.title21.dao.AdminData;
 import org.title21.utility.BaseClass;
-import org.title21.utility.FunctionUtils;
-
 import com.relevantcodes.extentreports.LogStatus;
 
 public class UpdateEmployee_Test extends BaseClass {
@@ -369,15 +359,13 @@ test.log(LogStatus.PASS,"19.Change the default job by clicking on the radio butt
 		logout.logoutFunction();
 		
 		log.info("logout successfully."); 
-		sleep(2); 
-		extent.endTest(test);
-		 
-
+		
 	}
 
 	@AfterClass
-	public void closeBrowserInstance() {
-
-		// driver.close();
+	public void closeBrowserInstance()
+	{
+		extent.endTest(test);
+		driver.close();
 	}
 }

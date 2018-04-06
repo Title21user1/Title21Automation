@@ -42,8 +42,7 @@ public class DBConnection extends BaseClass {
 			try {				
 				connection.close();
 				connection=null;
-				sleep(2);			
-				
+				sleep(2);
 			} catch (SQLException ex) {
   				ex.printStackTrace();
 			}

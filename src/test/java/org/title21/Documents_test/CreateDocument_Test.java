@@ -122,7 +122,7 @@ public class CreateDocument_Test extends BaseClass {
 							+ test.addScreenCapture(captureScreenShot(driver, "create_document")));
 
 		}
-		
+
 		logout = new LogoutPage_POM(driver);
 		logout.logoutFunction();
 		login1 = new LoginPage_POM(driver);
@@ -138,15 +138,15 @@ public class CreateDocument_Test extends BaseClass {
 
 		Credoc.getBrouse().click();
 		sleep(5);
-    
+
 		fileUploadPath = fileUploadPath + "\\" + uploadFileNameSize;
 		Upload = new FileUpload();
 		fileUploadPath1 = System.getProperty("user.dir") + "\\testdata";
 		fileUploadPath1 = fileUploadPath1 + "\\" + uploadFileNameSize;
-		
+
 		FileUpload.uploadFile(fileUploadPath1);
-		Credoc.getAddButtonupload().click();
-		sleep(2);
+		Credoc.addButton().click();
+		sleep(3);
 		if (Credoc.UploadFileSizeValidation()) {
 			test.log(LogStatus.PASS,
 					"10. Turn edit mode to ON" + "<br/>" + "11.Click on add file plus button" + "<br/>"
@@ -208,7 +208,7 @@ public class CreateDocument_Test extends BaseClass {
 							+ test.addScreenCapture(captureScreenShot(driver, "checkinsuccessmessage")));
 		}
 		waitTillElementVisible(Credoc.getcheckincancelsuccess());
-		
+
 		Credoc.getcheckincancelsuccess().click();
 		Credoc.getcheckincancelsuccess().click();
 		sleep(2);
@@ -217,7 +217,7 @@ public class CreateDocument_Test extends BaseClass {
 			test.log(LogStatus.PASS, "18.Click on close button " + "<br/>" + "<b>ER12: Doument Edit mode is disable.<b>"
 					+ test.addScreenCapture(captureScreenShot(driver, "documenteditmodedisable")));
 		}
-		
+
 		sleep(2);
 		Credoc.getcontextmenu().click();
 		sleep(2);
@@ -238,37 +238,37 @@ public class CreateDocument_Test extends BaseClass {
 					+ "<b>ER 14 :  Minor revision of the document incremented changed for eg, doc number is changed from 001.398:0.1 to 001.398:0.2 <b>"
 					+ test.addScreenCapture(captureScreenShot(driver, "checkoutvesionvalidation")));
 		}
-	
-		waitTillElementVisible(Credoc.getcheckincancelsuccess());
+
+		sleep(2);
 		if(Credoc.getcheckincancelsuccess().isDisplayed())
 		{
-		
-		//Credoc.getcheckincancelsuccess();
-		Credoc.getcheckincancelsuccess().click();
-		Credoc.getcheckincancelsuccess().click();
+
+			//Credoc.getcheckincancelsuccess();
+			Credoc.getcheckincancelsuccess().click();
+			Credoc.getcheckincancelsuccess().click();
 		}
 		else
 		{
 			log.info("prompt not display");
 		}
 		sleep(5);
-        test.log(LogStatus.PASS, "<b>ER 15: Document edit mode enable.<b>"
+		test.log(LogStatus.PASS, "<b>ER 15: Document edit mode enable.<b>"
 				+ test.addScreenCapture(captureScreenShot(driver, "document edit   mode")));
 
 	}
-	
-    @Override
+
+	@Override
 	public void waitTillElementClickable(WebElement element) {		
 		WebDriverWait wait=new WebDriverWait(driver,20);
 		wait.until(ExpectedConditions.elementToBeClickable(element));		
 	}
-	
-    @Override
-    public void waitTillElementVisible(WebElement element) {		
+
+	@Override
+	public void waitTillElementVisible(WebElement element) {		
 		WebDriverWait wait=new WebDriverWait(driver,20);
 		wait.until(ExpectedConditions.visibilityOf(element));		
 	}
-    
+
 	@AfterClass
 	public void closeBrowserInstance() throws IOException {
 

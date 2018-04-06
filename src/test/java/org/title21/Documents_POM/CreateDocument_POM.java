@@ -10,6 +10,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 import org.title21.dao.AdminData;
+import org.title21.utility.BaseClass;
 import org.title21.validation.entities.ErrorMessages;
 
 public class CreateDocument_POM 
@@ -26,10 +27,10 @@ public class CreateDocument_POM
 		PageFactory.initElements(driver, this);
 	}
 
-	@FindBy(xpath=".//*[@id='New']/a")
+	@FindBy(xpath="//*[@id='New']/a")
 	WebElement newdoc;
 
-	@FindBy(xpath=".//*[@id='Layer_1']")
+	@FindBy(xpath="//*[@id='Layer_1']")
 	WebElement document;
 
 	@FindBy(xpath=".//*[@id='Location']")
@@ -89,7 +90,7 @@ public class CreateDocument_POM
 	@FindBy(css="#documentId")
 	WebElement createdDocID;
 
-	@FindBy(xpath=".//*[@id='DocumentTitle']")
+	@FindBy(xpath="//input[@id='DocumentTitle']")
 	WebElement docTitle;
 
 	@FindBy(xpath="//a[contains(@href,'UpdateCabinetListDropDownNewFormModal')]")
@@ -615,6 +616,19 @@ public class CreateDocument_POM
 	{
 
 		return getcreateddocumentnumber;			
+	}
+	
+	public void Search(String search)
+	{
+		getSearchText().sendKeys(search);
+		BaseClass.sleep(1);
+		getGoButton().click();
+	}
+	
+	public void selectDocumentType(String DocType)
+	{
+		WebElement element = driver.findElement(By.xpath("//a[contains(text(),'"+DocType+"')]"));
+		element.click();
 	}
 
 	public boolean CheckinSuccessmessage(){

@@ -62,7 +62,9 @@ public class eBinders_POM
 	@FindBy(xpath="//input[@value='Yes']")
 	WebElement yesButton;
 	
-
+	@FindBy(xpath="//div[@class='t21-md-break t21-sm-break']")
+	WebElement tablebody;
+	
 	public WebElement getEbinders()
 	{
 		return ebinders;			
@@ -133,6 +135,11 @@ public class eBinders_POM
 	public WebElement yesButton()
 	{
 		return yesButton;
+	}
+	
+	public WebElement tableBodyLayout()
+	{
+		return tablebody;
 	}
 	
 	public void expandAllEbinders()

@@ -8,7 +8,6 @@ import org.title21.POM.DashBord_POM;
 import org.title21.POM.LoginPage_POM;
 import org.title21.utility.BaseClass;
 
-import com.gargoylesoftware.htmlunit.javascript.host.file.File;
 import com.relevantcodes.extentreports.LogStatus;
 
 public class LoginPage_Test extends BaseClass {
@@ -25,13 +24,14 @@ public class LoginPage_Test extends BaseClass {
 	{
 		getBrowser();
 		className = this.getClass().getName();
-		createDirectory(className);	
+		createDirectory(className);
 		
 	}
 	@Test(testName = "login-to-app", groups = "Logins", priority = 0)
 	public void LoginToApp() throws Exception 
-	{		
-		test = extent.startTest("Login authentication");
+	{
+		test = extent.startTest("Login Authentication");
+		
 		test.log(LogStatus.INFO, "Link to Test case document", "<a href='file://"+filePath+"'>TestCaseDocument</a>");
 		test.log(LogStatus.PASS, "1. Enter the URL in the browser to bring up the web interface login page.");
 		login= new LoginPage_POM(driver);
@@ -85,15 +85,13 @@ public class LoginPage_Test extends BaseClass {
 		dashboardObj = new DashBord_POM(driver); 
 		
 		if (dashboardObj.verifyDashboardPrescence()){
-			test.log(LogStatus.PASS, "6c DashBord is displayed After Login."
+			test.log(LogStatus.PASS, "6c) DashBord is displayed After Login."
 		+"<br/>"+"<b>ER4: User is successfully logged in and the home screen or dashboard is displayed.<b>"+
 					test.addScreenCapture(captureScreenShot(driver, "displayingDashboard")));
 		};
 		     	
-		extent.endTest(test);
-		
 	}	
-		
+	
 	
 	@AfterClass
 	public void closeBrowserInstance() 

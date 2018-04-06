@@ -513,7 +513,12 @@ public class BaseClass {
 			js.executeScript("window.scrollBy(-200,0)");
 		}	
 	}
-  
+
+	public void highlightElement(WebElement element){
+        JavascriptExecutor jse = (JavascriptExecutor) driver;
+        jse.executeScript("arguments[0].style.border='3px solid red'", element);
+    }
+	
 	public void scrollIntoView(WebElement element){
 		  JavascriptExecutor js=(JavascriptExecutor)driver; 
 		  js.executeScript("arguments[0].scrollIntoView(true);",element);   
