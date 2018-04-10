@@ -55,18 +55,17 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Parameters;
 import org.testng.asserts.SoftAssert;
-import org.title21.POM.AdministrationPage_POM;
-import org.title21.POM.LoginPage_POM;
 import org.openqa.selenium.JavascriptExecutor;
-
-import org.title21.reporting.ExtentManager;
 
 //import com.framework.selenium.BaseClass;
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
 
-import org.title21.POM.LogoutPage_POM;
+import org.title21.AdminModule_POM.AdministrationPage_POM;
+import org.title21.AdminModule_POM.LoginPage_POM;
+import org.title21.AdminModule_POM.LogoutPage_POM;
+import org.title21.Reporting.ExtentManager;
 import org.title21.dao.AdminData;
 
 public class BaseClass {
