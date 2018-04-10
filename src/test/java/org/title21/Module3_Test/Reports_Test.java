@@ -1,10 +1,10 @@
 package org.title21.Module3_Test;
 
 import org.testng.annotations.Test;
+import org.title21.AdminModule_POM.AdministrationPage_POM;
+import org.title21.AdminModule_POM.LoginPage_POM;
+import org.title21.AdminModule_POM.LogoutPage_POM;
 import org.title21.Module3_POM.Reports_POM;
-import org.title21.POM.AdministrationPage_POM;
-import org.title21.POM.LoginPage_POM;
-import org.title21.POM.LogoutPage_POM;
 import org.title21.utility.BaseClass;
 import org.title21.utility.FileUpload;
 import org.title21.utility.FunctionUtils;

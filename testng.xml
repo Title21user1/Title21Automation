@@ -12,29 +12,28 @@
 	<test name="AdminModuleScreens">
 		<classes>
 			
-			<class name="org.title21.test.LoginPage_Test"/>
-			<class name="org.title21.test.LogoutPage_Test"/> 
-			<class name="org.title21.test.AddEmployee_Test"/>
-			<class name="org.title21.test.UpdateEmployee_Test"/> 
-			<class name="org.title21.test.CreateNewUser_Test"/>
-			<class name="org.title21.test.UpdateUser_Test"/> 
-			<class name="org.title21.test.DeleteUser_Test"/>
-			<class name="org.title21.test.CreateDeleteGroups_Test"/> 
-			<class name="org.title21.test.DeleteEmployee_Test"/>
-			<class name="org.title21.test.AccountLockout_Test"/>
+			<class name="org.title21.AdminModule_Test.LoginPage_Test"/>
+			<class name="org.title21.AdminModule_Test.LogoutPage_Test"/> 
+			<class name="org.title21.AdminModule_Test.AddEmployee_Test"/>
+			<class name="org.title21.AdminModule_Test.UpdateEmployee_Test"/> 
+			<class name="org.title21.AdminModule_Test.CreateNewUser_Test"/>
+			<class name="org.title21.AdminModule_Test.UpdateUser_Test"/> 
+			<class name="org.title21.AdminModule_Test.DeleteUser_Test"/>
+			<class name="org.title21.AdminModule_Test.CreateDeleteGroups_Test"/> 
+			<class name="org.title21.AdminModule_Test.DeleteEmployee_Test"/>
+			<class name="org.title21.AdminModule_Test.AccountLockout_Test"/>
 
 		</classes>
 	</test>
 	<test name="DocumentScreens">
 		<classes>
 
-			<class name="org.title21.Documents_test.CreateDocument_Test"/>
-			<class name="org.title21.Documents_test.DocumentRoutes_Test"/>
-			<class name="org.title21.Documents_test.CheckInCheckOut_Test"/> 
-			<class name="org.title21.Documents_test.DetailedCheckout_Test"/> 
-			<class name="org.title21.Documents_test.ReadAndSignTraining_Test"/>
-			<class name="org.title21.Documents_test.RecentlyViewedAndFavorites_Test"/>
-			<class name="org.title21.Documents_test.RecentlyViewedAndFavorites_Test" />
+			<class name="org.title21.Documents_Test.CreateDocument_Test"/>
+			<class name="org.title21.Documents_Test.DocumentRoutes_Test"/>
+			<class name="org.title21.Documents_Test.CheckInCheckOut_Test"/> 
+			<class name="org.title21.Documents_Test.DetailedCheckout_Test"/> 
+			<class name="org.title21.Documents_Test.ReadAndSignTraining_Test"/>
+			<class name="org.title21.Documents_Test.RecentlyViewedAndFavorites_Test"/>
 			
 		</classes>
 
@@ -43,6 +42,8 @@
 		<classes>
 
 			<class name="org.title21.Module3_Test.Reports_Test"/>
+			<class name="org.title21.Module3_Test.Codes_Test"/>
+			<class name="org.title21.Module3_Test.eBinders_Test"/>
 			<class name="org.title21.Module3_Test.AttachmentControlInDoc_Test"/>
 			
 		</classes>
