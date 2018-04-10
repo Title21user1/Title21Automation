@@ -5,7 +5,7 @@
 	<test name="Sanity">
 		<classes>
 
-			<class name="org.title21.SantiyTest.Sanity_Test" />
+			<class name="org.title21.Santiy_Test.Sanity_Test" />
 
 		</classes>
 	</test>
