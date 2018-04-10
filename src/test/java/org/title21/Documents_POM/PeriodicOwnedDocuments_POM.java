@@ -52,6 +52,22 @@ public class PeriodicOwnedDocuments_POM extends DocumentRoutes_POM {
 	@FindBy(css="#Review>a")
 	WebElement wizardReviewTab;
 	
+	@FindBy(xpath="//a[contains(@href,'#GeneralTab')]")
+	WebElement genaralTab;
+	
+	@FindBy(xpath="//*[@id='DocTargetReleaseDateString']")
+	WebElement docTargetReleaseDateTextBox;
+	
+	public WebElement docTargetReleaseDate_TextBox()
+	{
+		return docTargetReleaseDateTextBox;
+	}
+	
+	public WebElement general_Tab()
+	{
+		return genaralTab;
+	}
+	
 	public WebElement wizardReview_Tab()
 	{
 		return wizardReviewTab;

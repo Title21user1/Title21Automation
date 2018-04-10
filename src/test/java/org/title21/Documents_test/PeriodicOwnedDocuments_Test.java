@@ -116,6 +116,8 @@ public class PeriodicOwnedDocuments_Test extends BaseClass{
 				test.log(LogStatus.FAIL, "Unable to find Add new approver popup screen."+
 						test.addScreenCapture(captureScreenShot(driver, "new approver popup")));
 			}
+			periodicReviews.general_Tab().click();
+			sleep(2);
 			
 			test.log(LogStatus.PASS, "4.Set the document owner as the current test user if not set already.");
 			
@@ -131,15 +133,23 @@ public class PeriodicOwnedDocuments_Test extends BaseClass{
 			
 			String pickDate = DateTimeUtils.getTomorrowDate();
 			String[] preDate = pickDate.split("/");
-			String dd = preDate[0];
+			String dd = preDate[1];
+			if(dd.contains("0"))
+			{
+				dd=dd.substring(1, 2);
+			}
 			periodicReviews.pickDate_TextBox().click();
 			driver.findElement(By.xpath("//td[text()='"+dd+"']")).click();
 			
-			verticalScrollingUp();
+			scrollIntoView(periodicReviews.docTargetReleaseDate_TextBox());
 			test.log(LogStatus.PASS, "8.Set the target release date to the current date.");
-			String targetReleaseDate = DateTimeUtils.getTomorrowDate();
+			String targetReleaseDate = DateTimeUtils.getYesterdayDate();
 			String[] preDate1 = targetReleaseDate.split("/");
-			String Releasedd = preDate1[0];
+			String Releasedd = preDate1[1];
+			if(Releasedd.contains("0"))
+			{
+				Releasedd=Releasedd.substring(1, 2);
+			}
 			periodicReviews.pickDate_TextBox().click();
 			driver.findElement(By.xpath("//td[text()='"+Releasedd+"']")).click();
 			
