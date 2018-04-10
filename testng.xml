@@ -5,7 +5,7 @@
 	<test name="Sanity">
 		<classes>
 
-			<class name="org.title21.Santiy_Test.Sanity_Test" />
+			<!-- <class name="org.title21.Santiy_Test.Sanity_Test" /> -->
 
 		</classes>
 	</test>
@@ -28,7 +28,7 @@
 	<test name="DocumentScreens">
 		<classes>
 
-			<class name="org.title21.Documents_Test.CreateDocument_Test"/>
+			<class name="org.title21.Documents_test.PeriodicOwnedDocuments_Test"/>
 			<!-- <class name="org.title21.Documents_Test.DocumentRoutes_Test"/>
 			<class name="org.title21.Documents_Test.CheckInCheckOut_Test"/> 
 			<class name="org.title21.Documents_Test.DetailedCheckout_Test"/> 
@@ -41,10 +41,10 @@
 	<test name="Module3">
 		<classes>
 
-			<class name="org.title21.Module3_Test.Reports_Test"/>
+			<!-- <class name="org.title21.Module3_Test.Reports_Test"/>
 			<class name="org.title21.Module3_Test.Codes_Test"/>
 			<class name="org.title21.Module3_Test.eBinders_Test"/>
-			<class name="org.title21.Module3_Test.AttachmentControlInDoc_Test"/>
+			<class name="org.title21.Module3_Test.AttachmentControlInDoc_Test"/> -->
 			
 		</classes>
 

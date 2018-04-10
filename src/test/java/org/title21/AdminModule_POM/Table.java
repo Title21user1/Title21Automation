@@ -99,6 +99,14 @@ public class Table extends BaseClass
 		return cells;
 	}
 	
+	public List<WebElement> getReviewDocsCells(int columnNumber){	
+		List<WebElement> cells = null;
+		for(WebElement row : tableRows) {
+		    cells = row.findElements(By.xpath("//*[@id='ReviewDocs']//td["+columnNumber+"]")); 
+		  }
+		return cells;
+	}
+	
 	public List<WebElement> getTrainingItemDoc(int columnNumber){	
 		List<WebElement> cells = null;
 		for(WebElement row : tableRows) {

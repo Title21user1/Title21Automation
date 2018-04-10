@@ -28,13 +28,13 @@ public class PeriodicOwnedDocuments_POM extends DocumentRoutes_POM {
 	@FindBy(xpath="//a[contains(@href,'AddReviewerModal')]")
 	WebElement editPeriodicReviewersLink; 
 	
-	@FindBy(xpath="//*[@id='Location']")
+	@FindBy(css="#Location")
 	WebElement editPeriodicReviewersLocation;
 	
 	@FindBy(xpath="//h4[text()='Edit Periodic Reviewers']")
 	WebElement editPeriodicReviewersHeaderText;
 	
-	@FindBy(css=".t21-placeholder.form-control.valid")
+	@FindBy(xpath="//*[@id='default-modal']/div/form/div/div[2]/div[2]/div[1]/input")
 	WebElement availablePeriodicReviewersFilter;
 	
 	@FindBy(css=".btn.moveall.btn-default")
@@ -57,6 +57,135 @@ public class PeriodicOwnedDocuments_POM extends DocumentRoutes_POM {
 	
 	@FindBy(xpath="//*[@id='DocTargetReleaseDateString']")
 	WebElement docTargetReleaseDateTextBox;
+	
+	@FindBy(css=".btn-danger.t21-ajax-link")
+	WebElement changeButton;
+	
+	@FindBy(css=".btn-success.t21-ajax-link")
+	WebElement dontChangeButton;
+	
+	@FindBy(xpath="//*[@id='ReviewDocs']//tr[2]/td[2]")
+	WebElement firstPeriodicReviewerContextTab;
+	
+	@FindBy(xpath="//*[@id=\"ReviewDocs\"]//tr[3]/td[2]/div")
+	WebElement secondPeriodicReviewerContextTab;
+	
+	@FindBy(xpath="//*[@id='ReviewDocs']/div/table/tbody/tr[6]/td[2]/div/div[2]/table/tbody/tr[2]/td[2]/div/ul/li[3]/div/a/span")
+	WebElement firstPeriodicReviewerBypass;
+	
+	@FindBy(xpath="//p[contains(text(),'Bypass this reviewer')]")
+	WebElement bypassReviewerConfirmationMsg;
+	
+	@FindBy(xpath="//input[@name='submit']")
+	WebElement yesButton;
+	
+	@FindBy(xpath="//tr[2]//a[contains(text(),'Bypassed by')]")
+	WebElement bypassedByFirstReviewerTextMsg;
+	
+	@FindBy(xpath="//*[@id='ReviewDocs']/div/table/tbody/tr[6]/td[2]/div/div[2]/table/tbody/tr[2]/td[2]/div/ul/li[4]/div/a/span")
+	WebElement firstPeriodicReviewerClearBypass;
+	
+	@FindBy(xpath="//a[text()='View Document']")
+	WebElement viewDocButtonForPeriodicReview;
+	
+	@FindBy(xpath="//span[contains(text(),'Review decision')]")
+	WebElement reviewDecisionPopUpHeader;
+	
+	@FindBy(xpath="//*[@id='Pin']")
+	WebElement reviewPINTextBox;
+	
+	@FindBy(xpath="//tr[2]//*[contains(text(),'No Changes Required')]")
+	WebElement noChangesRequiredFirstReviewer;
+	
+	@FindBy(xpath="//*[@id='ReviewDocs']/div/table/tbody/tr[6]/td[2]/div/div[2]/table/tbody/tr[3]/td[2]/div/ul/li[3]/div/a/span")
+	WebElement secondPeriodicReviewerBypass;
+	
+	@FindBy(css=".grid-button-text")
+	WebElement auditLogOption;
+	
+	@FindBy(css=".dropdown-toggle.t21-nav-bar-dropdown")
+	WebElement administratordropdown;
+	
+	
+	public WebElement auditLog_Option()
+	{
+		return auditLogOption;
+	}
+	
+	public WebElement administratorDropDown()
+	{
+		return administratordropdown;
+	}
+	
+	public WebElement secondPeriodicReviewer_Bypass()
+	{
+		return secondPeriodicReviewerBypass;
+	}
+	
+	public WebElement noChangesRequired_FirstReviewer()
+	{
+		return noChangesRequiredFirstReviewer;
+	}
+	
+	public WebElement reviewPIN_TextBox()
+	{
+		return reviewPINTextBox;
+	}
+	
+	public WebElement reviewDecisionPopUp_Header()
+	{
+		return reviewDecisionPopUpHeader;
+	}
+
+	public WebElement viewDocButtonForPeriodicReview()
+	{
+		return viewDocButtonForPeriodicReview;
+	}
+	
+	public WebElement firstPeriodicReviewer_ClearBypass()
+	{
+		return firstPeriodicReviewerClearBypass;
+	}
+	
+	public WebElement bypassedByFirstReviewer_TextMsg()
+	{
+		return bypassedByFirstReviewerTextMsg;
+	}
+	
+	public WebElement yes_Button()
+	{
+		return yesButton;
+	}
+	
+	public WebElement bypassReviewer_ConfirmationMsg()
+	{
+		return bypassReviewerConfirmationMsg;
+	}
+	
+	public WebElement firstPeriodicReviewerBypass_Menu()
+	{
+		return firstPeriodicReviewerBypass;
+	}
+	
+	public WebElement secondPeriodicReviewer_ContextTab()
+	{
+		return secondPeriodicReviewerContextTab;
+	}
+	
+	public WebElement firstPeriodicReviewer_ContextTab()
+	{
+		return firstPeriodicReviewerContextTab;
+	}
+	
+	public WebElement dontChange_Button()
+	{
+		return dontChangeButton;
+	}
+	
+	public WebElement change_Button()
+	{
+		return changeButton;
+	}
 	
 	public WebElement docTargetReleaseDate_TextBox()
 	{
