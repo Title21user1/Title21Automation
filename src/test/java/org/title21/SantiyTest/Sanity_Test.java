@@ -118,7 +118,7 @@ public class Sanity_Test extends BaseClass
 				test.addScreenCapture(captureScreenShot(driver, "Searches Doc Listed")));
 		
 		reports.reports().click();													sleep(2);
-		mydocs.selectDocument("Regulations").click();								sleep(5);
+		mydocs.selectDocument("Documents Approaching Review").click();				sleep(5);
 		
 		test.log(LogStatus.PASS,"<b>ER: Report displays <b>"+
 				test.addScreenCapture(captureScreenShot(driver, "Reports Displayed")));
@@ -149,18 +149,62 @@ public class Sanity_Test extends BaseClass
 				test.addScreenCapture(captureScreenShot(driver, "CIBTR displayed")));
 		
 		dashboard.toQueries().click();												sleep(4);
-		dashboard.toReports().click();												sleep(4);
+		
+		test.log(LogStatus.PASS,"<b>ER: Queries - Landing pages load without errors <b>"+
+				test.addScreenCapture(captureScreenShot(driver, "Queries Landing")));
+		
+		dashboard.toReports().click();												sleep(2);
+		dashboard.toSubmission().click();											sleep(4);
+		
+		test.log(LogStatus.PASS,"<b>ER: Submission - Landing pages load without errors <b>"+
+				test.addScreenCapture(captureScreenShot(driver, "Submission Page")));
+		
+		dashboard.toReports().click();												sleep(2);
+		dashboard.toRetrieval().click();											sleep(4);
+		
+		test.log(LogStatus.PASS,"<b>ER: Retrieval - Landing pages load without errors <b>"+
+				test.addScreenCapture(captureScreenShot(driver, "Retrieval Page")));
+		
+		dashboard.toReports().click();												sleep(2);
+		dashboard.toRFI().click();													sleep(4);
+		
+		test.log(LogStatus.PASS,"<b>ER: RFI - Landing pages load without errors <b>"+
+				test.addScreenCapture(captureScreenShot(driver, "RFI Page")));
+		
 		dashboard.toCharts().click();												sleep(4);
+		
+		test.log(LogStatus.PASS,"<b>ER: Charts - Landing pages load without errors <b>"+
+				test.addScreenCapture(captureScreenShot(driver, "CIBTR displayed")));
+		
 		dashboard.toLMS().click();													sleep(4);
 		
 		test.log(LogStatus.PASS,"<b>ER: LMS - Landing pages load without errors <b>"+
 				test.addScreenCapture(captureScreenShot(driver, "LMS displayed")));
 		
 		dashboard.toTraningPlans().click();											sleep(4);
+		
+		test.log(LogStatus.PASS,"<b>ER: Traning Plans - Landing pages load without errors <b>"+
+				test.addScreenCapture(captureScreenShot(driver, "Training Plans")));
+		
 		dashboard.toTraningCourses().click();										sleep(4);
+		
+		test.log(LogStatus.PASS,"<b>ER: Training Courses - Landing pages load without errors <b>"+
+				test.addScreenCapture(captureScreenShot(driver, "Training Courses")));
+		
 		dashboard.toScheduleCourse().click();										sleep(4);
+		
+		test.log(LogStatus.PASS,"<b>ER: Schedule Course - Landing pages load without errors <b>"+
+				test.addScreenCapture(captureScreenShot(driver, "Schedule Course")));
+		
 		dashboard.toScheduleList().click();											sleep(4);
+		
+		test.log(LogStatus.PASS,"<b>ER: Schedule List - Landing pages load without errors <b>"+
+				test.addScreenCapture(captureScreenShot(driver, "Schedule List")));
+		
 		dashboard.toScheduleTrainee().click();										sleep(4);
+		
+		test.log(LogStatus.PASS,"<b>ER: Schedule Trainee - Landing pages load without errors <b>"+
+				test.addScreenCapture(captureScreenShot(driver, "Schedule Trainee")));
 		
 		logout.logoutFunction();
 	}
@@ -172,8 +216,4 @@ public class Sanity_Test extends BaseClass
 		driver.close();
 	}
 	
-	public void preRequisites()
-	{
-		
-	}
 }

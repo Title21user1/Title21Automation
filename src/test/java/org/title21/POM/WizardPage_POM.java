@@ -103,9 +103,9 @@ public class WizardPage_POM {
 		return reviewbutton;
 	}
 	
-	public WebElement getApporvalButton()
+	public WebElement getTrainingButton()
 	{
-		return approvalbutton;
+		return trainingbutton;
 	}
 	
 	public WebElement getApprovalFilterText()

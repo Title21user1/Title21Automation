@@ -35,6 +35,15 @@ public class DashBord_POM
 	@FindBy(xpath="//li[@id='NavCharts']")
 	WebElement charts;
 	
+	@FindBy(xpath="//li[@id='CIBMTRSubmission']")
+	WebElement submission;
+	
+	@FindBy(xpath="//li[@id='CIBMTRRetrieval']")
+	WebElement retrieval;
+	
+	@FindBy(xpath="//li[@id='RFI']")
+	WebElement rfi;
+	
 	@FindBy(xpath="//a[@title='Training']")
 	WebElement LMS;
 	
@@ -68,9 +77,29 @@ public class DashBord_POM
 		return CIBMTR;
 	}
 	
+	public WebElement toLMS()
+	{
+		return LMS;
+	}
+	
 	public WebElement toQueries()
 	{
 		return queries;
+	}
+	
+	public WebElement toSubmission()
+	{
+		return submission;
+	}
+	
+	public WebElement toRetrieval()
+	{
+		return retrieval;
+	}
+	
+	public WebElement toRFI()
+	{
+		return rfi;
 	}
 	
 	public WebElement toReports()
