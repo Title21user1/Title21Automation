@@ -9,7 +9,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.title21.utility.BaseClass;
 
-public class WizardPage_POM extends BaseClass{
+public class WizardPage_POM {
 	public BaseClass baseClassObj=new BaseClass();
 	public WebDriver driver;
 	WebElement element;
@@ -46,11 +46,17 @@ public class WizardPage_POM extends BaseClass{
 	@FindBy(xpath =".//*[@id='t21-workarea']/div/div/div[2]/div/div/div[2]/div/a[3]")
 	WebElement reviewingbutton;
 	
-	@FindBy(xpath =".//*[@id='Wizard']/a/span[1]")
+	@FindBy(xpath ="//li[@id='Wizard']")
 	WebElement wizardbutton;
 	
-	@FindBy(xpath =".//*[@id='Approval']/a")
+	@FindBy(xpath ="//li[@id='Approval']")
 	WebElement approvalbutton;
+	
+	@FindBy(xpath ="//li[@id='Review']")
+	WebElement reviewbutton;
+	
+	@FindBy(xpath ="//li[@id='Training']")
+	WebElement trainingbutton;
 	
 	@FindBy(css =".form-control.t21-placeholder")
 	WebElement approvalFilterText;
@@ -90,6 +96,16 @@ public class WizardPage_POM extends BaseClass{
 	public WebElement getApporvalButton()
 	{
 		return approvalbutton;
+	}
+	
+	public WebElement getReviewButton()
+	{
+		return reviewbutton;
+	}
+	
+	public WebElement getTrainingButton()
+	{
+		return trainingbutton;
 	}
 	
 	public WebElement getApprovalFilterText()

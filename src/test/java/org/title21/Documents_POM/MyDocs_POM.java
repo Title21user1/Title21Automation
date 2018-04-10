@@ -56,6 +56,9 @@ public class MyDocs_POM
 
 	@FindBy(xpath="//span[@class='grid-button-text'][text()='Undo Check Out']")
 	WebElement	undocheckoutContextMenu;
+	
+	@FindBy(xpath="//span[@class='grid-button-text'][text()='Main File (PDF)']")
+	WebElement	mainfilepdfContextMenu;
 
 	@FindBy(xpath="//span[@class='grid-button-text'][text()='Route For Approval']")
 	WebElement	routeApporvalContextMenu;
@@ -183,14 +186,15 @@ public class MyDocs_POM
 	@FindBy(xpath="//span[@class='grid-button-text'][text()='Form']")
 	WebElement form;
 	
-	@FindBy(xpath="//div[@id='displaySel']")
-	WebElement documentformlayout;
-	
 	@FindBy(xpath="//tbody[@class='t21-js-clickable-rows']")
 	WebElement tableBody;
 	
 	@FindBy(xpath="//*[@id='displaySel']//a[@title='Undo document check out']")
 	WebElement undocheckoutform;
+	
+	@FindBy(xpath="//span[text()[contains(.,'Searches')]]")
+	WebElement searchesTab;
+	
 	
 	public WebElement getMyDocs()
 	{
@@ -240,6 +244,11 @@ public class MyDocs_POM
 	public WebElement getUndoCheckoutContextMenu()
 	{
 		return undocheckoutContextMenu;
+	}
+	
+	public WebElement mainFilePDFContextMenu()
+	{
+		return mainfilepdfContextMenu;
 	}
 
 	public WebElement getCheckinButton()
@@ -383,11 +392,6 @@ public class MyDocs_POM
 	{
 		return form;
 	}
-	
-	public WebElement documentFormLayout()
-	{
-		return documentformlayout;
-	}
 
 	public WebElement tableBodyLayout()
 	{
@@ -397,6 +401,11 @@ public class MyDocs_POM
 	public WebElement undoCheckoutForm()
 	{
 		return undocheckoutform;
+	}
+	
+	public WebElement searchesTab()
+	{
+		return searchesTab;
 	}
 	
 	public List<WebElement> getAllRecentViewedDocs()
