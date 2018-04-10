@@ -41,7 +41,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -56,18 +55,17 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Parameters;
 import org.testng.asserts.SoftAssert;
-import org.title21.POM.AdministrationPage_POM;
-import org.title21.POM.LoginPage_POM;
 import org.openqa.selenium.JavascriptExecutor;
-
-import org.title21.reporting.ExtentManager;
 
 //import com.framework.selenium.BaseClass;
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
 
-import org.title21.POM.LogoutPage_POM;
+import org.title21.AdminModule_POM.AdministrationPage_POM;
+import org.title21.AdminModule_POM.LoginPage_POM;
+import org.title21.AdminModule_POM.LogoutPage_POM;
+import org.title21.Reporting.ExtentManager;
 import org.title21.dao.AdminData;
 
 public class BaseClass {
@@ -149,8 +147,7 @@ public class BaseClass {
 		baseUrl=p.getProperty("baseUrl");
 		excelFile=p.getProperty("excelFilePath");
 		
-		//db properties
-		
+		//db properties		
 
 		loginSheet=p.getProperty("Loginsheet");
 		groupSheet=p.getProperty("Groupsheet");
@@ -158,7 +155,6 @@ public class BaseClass {
 		employeeSheet=p.getProperty("EmployeeSheet");
 		routeSheet=p.getProperty("RouteSheet");
 		codesSheet=p.getProperty("CodesSheet");
-		
 		
 		// get db properties
 		dbServer=p.getProperty("dbserver");
@@ -209,7 +205,9 @@ public class BaseClass {
 		/*
 		 * relativePathforImage has been set with relation with index.html
 		 */
-		relativePathforImage="..\\extentReports" + "\\" + classname+"\\";		
+		//relativePathforImage="..\\extentReports" + "\\" + classname+"\\";	
+		
+		relativePathforImage="./"+classname+"/";
 		
 		File file = new File(imagesDirectory);
 		if (!file.exists()) {
@@ -331,14 +329,8 @@ public class BaseClass {
 		}
 
 		else if (browser.equalsIgnoreCase("ie")) {
-			
 			extent = ExtentManager.getReporter(filePath,baseUrl);
 			System.setProperty("webdriver.ie.driver", ".\\drivers\\IEDriverServer.exe");
-			DesiredCapabilities capabilities = new DesiredCapabilities();
-			capabilities.setCapability(InternetExplorerDriver.ENABLE_PERSISTENT_HOVERING,false);
-			capabilities.setCapability(InternetExplorerDriver.REQUIRE_WINDOW_FOCUS, false);
-			capabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS, true); 
-			
 			driver = new InternetExplorerDriver();
 			implicitwait(driver);
 			driver.get(baseUrl);
@@ -507,14 +499,6 @@ public class BaseClass {
 		}	
 	}
 	
-
-	public void horizontalScrollingRight(){
-		JavascriptExecutor js=(JavascriptExecutor)driver;	
-		for (int i=0;i<2;i++){
-			js.executeScript("window.scrollBy(250,0)");
-		}	
-	}
-
 	public void horizontalScrollingToRight(){
 		JavascriptExecutor js=(JavascriptExecutor)driver;	
 		for (int i=0;i<2;i++){
@@ -528,6 +512,12 @@ public class BaseClass {
 			js.executeScript("window.scrollBy(-200,0)");
 		}	
 	}
+
+	public void highlightElement(WebElement element){
+        JavascriptExecutor jse = (JavascriptExecutor) driver;
+        jse.executeScript("arguments[0].style.border='3px solid red'", element);
+    }
+	
 	public void scrollIntoView(WebElement element){
 		  JavascriptExecutor js=(JavascriptExecutor)driver; 
 		  js.executeScript("arguments[0].scrollIntoView(true);",element);   

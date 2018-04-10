@@ -1,10 +1,11 @@
 package org.title21.Documents_test;
 
+
 import org.testng.annotations.Test;
+import org.title21.AdminModule_POM.LoginPage_POM;
+import org.title21.AdminModule_POM.LogoutPage_POM;
 import org.title21.Documents_POM.CreateDocument_POM;
 import org.title21.Documents_POM.MyDocs_POM;
-import org.title21.POM.LoginPage_POM;
-import org.title21.POM.LogoutPage_POM;
 import org.title21.utility.BaseClass;
 import org.title21.utility.FileUpload;
 

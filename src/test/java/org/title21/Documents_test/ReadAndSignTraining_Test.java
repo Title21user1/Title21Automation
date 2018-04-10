@@ -1,20 +1,17 @@
 package org.title21.Documents_test;
-
 import java.util.List;
-
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import org.title21.AdminModule_POM.LoginPage_POM;
+import org.title21.AdminModule_POM.LogoutPage_POM;
+import org.title21.AdminModule_POM.Table;
 import org.title21.DBConnection.DBConnection;
 import org.title21.DBConnection.DBQueries;
 import org.title21.Documents_POM.ReadAndSignTraining_POM;
-import org.title21.POM.LoginPage_POM;
-import org.title21.POM.LogoutPage_POM;
-import org.title21.POM.Table;
 import org.title21.dao.AdminData;
 import org.title21.utility.BaseClass;
 import org.title21.utility.DateTimeUtils;
@@ -35,7 +32,6 @@ public class ReadAndSignTraining_Test extends BaseClass{
 	String documentStatus="";
 	String addedEntities="";
 	String trainigDueDate="";
-	String date="";
 	Table searchTable;
 	DBQueries dbqueries;
 	boolean isRecordFound=false;
@@ -183,7 +179,7 @@ public class ReadAndSignTraining_Test extends BaseClass{
 			}
 			
 			logout.logoutFunction();
-			login.loginUser(loginData[1][0], loginData[1][1]);  
+			login.loginUser(loginData[1][0], loginData[1][1]);  //sameer
 			
 			test.log(LogStatus.PASS, "11.Login with approver's login and approve the document.");
 			approveDocFromWizard(documetNo);
@@ -396,8 +392,10 @@ public class ReadAndSignTraining_Test extends BaseClass{
 			sleep(2);
 			
 			String targetReleaseDate=DateTimeUtils.getCurrentPSTDate();  
+		//	String finalDate=targetReleaseDate.substring(3, 5);
 			
 			readSign.targetReleaseDate_TextBox().click();
+			//driver.findElement(By.xpath("//*[text()='"+finalDate+"']")).click();
 			readSign.current_Date().click();
 			
 			test.log(LogStatus.PASS, "<b>ER10- Target release date is set.<b>"+
@@ -483,14 +481,14 @@ public class ReadAndSignTraining_Test extends BaseClass{
 			sleep(2);
 			test.log(LogStatus.PASS, "32.Logout and login with an approver.");
 			logout.logoutFunction();
-			login.loginUser(loginData[1][0], loginData[1][1]); 
+			login.loginUser(loginData[1][0], loginData[1][1]);  //sameer
 			
 			test.log(LogStatus.PASS, "33.Approve the document.");
 			approveDocFromWizard(documetNo);
 			
 			test.log(LogStatus.PASS, "34.Logout and login with the same user used in step 22.");
 			logout.logoutFunction();
-			login.loginUser(loginData[7][0], loginData[7][1]); 
+			login.loginUser(loginData[7][0], loginData[7][1]); //saurabhp
 			
 			test.log(LogStatus.PASS,"35.Move document between cabinets through the database."+DBConnection.executeStoredProcedure(dbqueries.moveDocsOnReleaseDate));
 			
@@ -599,7 +597,7 @@ public class ReadAndSignTraining_Test extends BaseClass{
 			test.log(LogStatus.PASS,"42.Run Jobs and Move document between cabinets through the database."+DBConnection.executeStoredProcedure(dbqueries.moveDocsOnReleaseDate));
 			
 			test.log(LogStatus.PASS, "43.Log in to a user used in Step 1");
-			login.loginUser(loginData[7][0], loginData[7][1]); 
+			login.loginUser(loginData[7][0], loginData[7][1]); //saurabhp
 			
 			driver.findElement(By.xpath("//li[text()='"+routeData[1][1]+documetNo+"']")).click();
 			sleep(2);	
@@ -786,7 +784,7 @@ public class ReadAndSignTraining_Test extends BaseClass{
 			readSign.close_Button().click();
 			sleep(2);
 			logout.logoutFunction();
-			login.loginUser(loginData[1][0], loginData[1][1]);  
+			login.loginUser(loginData[1][0], loginData[1][1]);  //sameer
 			
 			test.log(LogStatus.PASS, "56.Approve the document.");
 			approveDocFromWizard(documetNo);
@@ -811,7 +809,7 @@ public class ReadAndSignTraining_Test extends BaseClass{
 			readSign.wizardTraining_Tab().click();
 			sleep(5);
 			
-			
+			String date="";
 			for(int j=1; j<=20; j++)
 			{
 				 date=getDueOnDateTrainingDoc(documetNo);
@@ -826,19 +824,12 @@ public class ReadAndSignTraining_Test extends BaseClass{
 				 }
 			}
 			
-			String[] dateParts = trainigDueDate.split("/");
+			String ddmm = trainigDueDate.substring(0, 5);
 			
-			String dd = dateParts[0];
-			String mm = dateParts[1];
-			String yy = dateParts[2];
+			System.out.println(date);
+			System.out.println(ddmm);
 			
-			String[] preDate = date.split("/");
-			
-			String preDatedd = preDate[0];
-			String preDatemm = preDate[1];
-			String preDateyy = preDate[2];
-			
-			if((preDatedd.contains(dd)&&preDatemm.contains(mm))||yy.contains(preDateyy))
+			if(date.contains(ddmm))
 			{
 				test.log(LogStatus.PASS, "<b>ER17- The Read and Sign training created in Step 56 appears and the due date is the same as 'Training due by date' noted in step 53.<b>"+
 						test.addScreenCapture(captureScreenShot(driver, "Read and Sign training created")));

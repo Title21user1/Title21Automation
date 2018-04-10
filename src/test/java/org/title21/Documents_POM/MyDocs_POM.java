@@ -45,7 +45,10 @@ public class MyDocs_POM
 	@FindBy(xpath="//*[@id='displaySel']//a[@title='Context Menu']")
 	WebElement	contextMenu;
 
-	@FindBy(xpath=" //span[@class='grid-button-text'][text()='Check In']")
+	@FindBy(xpath="//a[@title='Context Menu']")
+	WebElement	contextMenuInList;
+	
+	@FindBy(xpath="//span[@class='grid-button-text'][text()='Check In']")
 	WebElement	checkinContextMenu;
 
 	@FindBy(xpath="//span[@class='grid-button-text'][text()='Check Out']")
@@ -53,6 +56,9 @@ public class MyDocs_POM
 
 	@FindBy(xpath="//span[@class='grid-button-text'][text()='Undo Check Out']")
 	WebElement	undocheckoutContextMenu;
+	
+	@FindBy(xpath="//span[@class='grid-button-text'][text()='Main File (PDF)']")
+	WebElement	mainfilepdfContextMenu;
 
 	@FindBy(xpath="//span[@class='grid-button-text'][text()='Route For Approval']")
 	WebElement	routeApporvalContextMenu;
@@ -174,6 +180,22 @@ public class MyDocs_POM
 	@FindBy(xpath = "//*[@id='CodesTab']//td[1]")
 	List<WebElement> afterCheckCodes;
 	
+	@FindBy(xpath = "//*[@id='CodesTab']//td[1]")
+	WebElement selectdocument;
+	
+	@FindBy(xpath="//span[@class='grid-button-text'][text()='Form']")
+	WebElement form;
+	
+	@FindBy(xpath="//tbody[@class='t21-js-clickable-rows']")
+	WebElement tableBody;
+	
+	@FindBy(xpath="//*[@id='displaySel']//a[@title='Undo document check out']")
+	WebElement undocheckoutform;
+	
+	@FindBy(xpath="//span[text()[contains(.,'Searches')]]")
+	WebElement searchesTab;
+	
+	
 	public WebElement getMyDocs()
 	{
 		return mydocs;
@@ -203,6 +225,11 @@ public class MyDocs_POM
 	{
 		return contextMenu;
 	}
+	
+	public WebElement getContextMenuInList()
+	{
+		return contextMenuInList;
+	}
 
 	public WebElement getCheckinContextMenu()
 	{
@@ -217,6 +244,11 @@ public class MyDocs_POM
 	public WebElement getUndoCheckoutContextMenu()
 	{
 		return undocheckoutContextMenu;
+	}
+	
+	public WebElement mainFilePDFContextMenu()
+	{
+		return mainfilepdfContextMenu;
 	}
 
 	public WebElement getCheckinButton()
@@ -355,7 +387,27 @@ public class MyDocs_POM
 	{
 		return trainingitemscheckbox;
 	}
+	
+	public WebElement form()
+	{
+		return form;
+	}
 
+	public WebElement tableBodyLayout()
+	{
+		return tableBody;
+	}
+	
+	public WebElement undoCheckoutForm()
+	{
+		return undocheckoutform;
+	}
+	
+	public WebElement searchesTab()
+	{
+		return searchesTab;
+	}
+	
 	public List<WebElement> getAllRecentViewedDocs()
 	{
 		return recentViewedDocs;
@@ -371,6 +423,18 @@ public class MyDocs_POM
 	{
 		WebElement element = driver.findElement(By.xpath("//a[text()[contains(.,'"+CodeName+"')]]"));
 		element.click();
+	}
+	
+	public WebElement selectDocument(String DocumentNumber)
+	{
+		WebElement element = driver.findElement(By.xpath("//a[text()[contains(.,'"+DocumentNumber+"')]]"));
+		return element;
+	}
+	
+	public WebElement createdDocument(String DocumentNumber)
+	{
+		WebElement element = driver.findElement(By.xpath("//span[text()[contains(.,'"+DocumentNumber+"')]]"));
+		return element;
 	}
 
 	public Select selectCodeClass()

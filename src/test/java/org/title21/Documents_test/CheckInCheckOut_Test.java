@@ -5,12 +5,11 @@ import java.util.concurrent.TimeUnit;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import org.title21.AdminModule_POM.LoginPage_POM;
+import org.title21.AdminModule_POM.LogoutPage_POM;
+import org.title21.AdminModule_POM.WizardPage_POM;
 import org.title21.Documents_POM.CreateDocument_POM;
 import org.title21.Documents_POM.MyDocs_POM;
-
-import org.title21.POM.LoginPage_POM;
-import org.title21.POM.LogoutPage_POM;
-import org.title21.POM.WizardPage_POM;
 import org.title21.utility.BaseClass;
 import org.title21.validation.entities.ErrorMessages;
 

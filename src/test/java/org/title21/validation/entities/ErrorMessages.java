@@ -30,5 +30,11 @@ public class ErrorMessages
 	public static final String permissionToEdit="You don't have permissions to edit form";
 	public static final String rejectedmessage="You have successfully rejected";
 	
+	//Reports
+	public static final String ReportNameValidation="Report name is required.";
+	public static final String SelectReportValidation="Please select report.";
+	public static final String CategoryRequiredValidation="Category is required.";
+	public static final String DesignPermissionValidation="Please select at least one group with design permission.";
+	public static final String ReportEditPermission="You must be a member of group with design permission to access this functionality.";
 	
 }
