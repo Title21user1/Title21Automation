@@ -67,8 +67,6 @@ public class LinkControlOfDocument_Test extends BaseClass {
 		LinkControlofDocument = new LinkControlOfDocument_POM(driver);
 		Credoc = new CreateDocument_POM(driver);
 
-		LinkControlofDocument = new LinkControlOfDocument_POM(driver);
-
 		login.loginUser("aparnak", "aparna2450");
 		dbqueries = new DBQueries();
 
@@ -83,15 +81,19 @@ public class LinkControlOfDocument_Test extends BaseClass {
 		sleep(5);
 		
 		String Document_name = LinkControlofDocument.getdocname().getText();
+				
+		Credoc.getPlusButtonuploadfile().click();
+		sleep(3);
 		scrolldown(2);
 		
-		Credoc.getPlusButtonuploadfile().click();
 		Attachmenttest.fileupload("DocDocument.docx");
 		sleep(5);
-	
+		
+		scrolldown(2);
+		
 		attachment.getAddnew().get(0).click();
 		sleep(3);
-		Attachmenttest.fileupload("DocDocument.docx");
+		Attachmenttest.fileupload("DocDocument2.docx");
 		sleep(5);
 		Linkattached("Open", "2/22/2018", 24);
 		sleep(5);
@@ -265,7 +267,7 @@ public class LinkControlOfDocument_Test extends BaseClass {
 
 	public void Linkattached(String status, String Todate, int Location) {
 		LinkControlofDocument.getadd_new_link().get(1).click();
-		sleep(5);
+		sleep(3);
 		if (status.equalsIgnoreCase("Open")) {
 			test.log(LogStatus.PASS, "1 Create a new document and add a main file to it." + "<br/>"
 					+ "2.Open the document in edit mode and navigate to the link control frame." + "<br/>"
@@ -277,17 +279,17 @@ public class LinkControlOfDocument_Test extends BaseClass {
 			LinkControlofDocument.getStatusDropdown().selectByVisibleText(status);
 		}
 
-		sleep(4);
+		sleep(2);
 		LinkControlofDocument.getTypebuttonandLocationbutton().get(1).click();// location
 		LinkControlofDocument.getheckbox().get(Location).click();
 		sleep(4);
 		if (status.equalsIgnoreCase("Open")) {
 			LinkControlofDocument.getcalender().get(3).clear();// to date
 			LinkControlofDocument.getcalender().get(3).sendKeys(Todate);
-			sleep(6);
+			sleep(3);
 			LinkControlofDocument.getGoButton().get(2).click();
 		}
-		sleep(9);
+		sleep(5);
 		if (status.equalsIgnoreCase("open")) {
 			test.log(LogStatus.PASS,
 					"4.Select Status: Open, created between (Select dates for eg: 2/22/2018 and 3/28/2018), and Type: Document."
@@ -384,9 +386,6 @@ public class LinkControlOfDocument_Test extends BaseClass {
 		logout = new LogoutPage_POM(driver);
 		logout.logoutFunction();
 		sleep(4);
-
-		// DBConnection.executeStoredProcedure(dbqueries.moveDocsOnReleaseDate);
-
 	}
 
 	@SuppressWarnings("unused")
