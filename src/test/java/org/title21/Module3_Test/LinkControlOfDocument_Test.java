@@ -64,7 +64,7 @@ public class LinkControlOfDocument_Test extends BaseClass {
 		attachment = new AttachmentControlInDoc_POM(driver);
 		RecentlyViewdAndFavorites = new RecentlyViewdAndFavorites_POM(driver);
 
-		LinkControlofDocument = new LinkControlofDocument_POM(driver);
+		LinkControlofDocument = new LinkControlOfDocument_POM(driver);
 		Credoc = new CreateDocument_POM(driver);
 
 		LinkControlofDocument = new LinkControlOfDocument_POM(driver);
