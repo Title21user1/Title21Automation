@@ -1,4 +1,4 @@
-package org.title21.Documents_POM;
+package org.title21.PeriodicReviewers_POM;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
+import org.title21.Documents_POM.DocumentRoutes_POM;
 
 public class PeriodicOwnedDocuments_POM extends DocumentRoutes_POM {
 
@@ -64,13 +65,13 @@ public class PeriodicOwnedDocuments_POM extends DocumentRoutes_POM {
 	@FindBy(css=".btn-success.t21-ajax-link")
 	WebElement dontChangeButton;
 	
-	@FindBy(xpath="//*[@id='ReviewDocs']//tr[2]/td[2]")
+	@FindBy(xpath="//table[@class='t21-table-custom']//tr[2]//span[@class='fa fa-caret-down']")
 	WebElement firstPeriodicReviewerContextTab;
 	
-	@FindBy(xpath="//*[@id=\"ReviewDocs\"]//tr[3]/td[2]/div")
+	@FindBy(xpath="//table[@class='t21-table-custom']//tr[3]//span[@class='fa fa-caret-down']")
 	WebElement secondPeriodicReviewerContextTab;
 	
-	@FindBy(xpath="//*[@id='ReviewDocs']/div/table/tbody/tr[6]/td[2]/div/div[2]/table/tbody/tr[2]/td[2]/div/ul/li[3]/div/a/span")
+	@FindBy(xpath="//*[@id='ReviewDocs']//tr[2]/td[2]//span[contains(text(),'Bypass')]/parent::a")
 	WebElement firstPeriodicReviewerBypass;
 	
 	@FindBy(xpath="//p[contains(text(),'Bypass this reviewer')]")
@@ -82,7 +83,7 @@ public class PeriodicOwnedDocuments_POM extends DocumentRoutes_POM {
 	@FindBy(xpath="//tr[2]//a[contains(text(),'Bypassed by')]")
 	WebElement bypassedByFirstReviewerTextMsg;
 	
-	@FindBy(xpath="//*[@id='ReviewDocs']/div/table/tbody/tr[6]/td[2]/div/div[2]/table/tbody/tr[2]/td[2]/div/ul/li[4]/div/a/span")
+	@FindBy(xpath="//*[@id='ReviewDocs']//tr[2]/td[2]//span[contains(text(),'Clear bypass')]/parent::a")
 	WebElement firstPeriodicReviewerClearBypass;
 	
 	@FindBy(xpath="//a[text()='View Document']")
@@ -97,7 +98,7 @@ public class PeriodicOwnedDocuments_POM extends DocumentRoutes_POM {
 	@FindBy(xpath="//tr[2]//*[contains(text(),'No Changes Required')]")
 	WebElement noChangesRequiredFirstReviewer;
 	
-	@FindBy(xpath="//*[@id='ReviewDocs']/div/table/tbody/tr[6]/td[2]/div/div[2]/table/tbody/tr[3]/td[2]/div/ul/li[3]/div/a/span")
+	@FindBy(xpath="//*[@id='ReviewDocs']//tr[3]/td[2]/div//span[contains(text(),'Bypass')]/parent::a")
 	WebElement secondPeriodicReviewerBypass;
 	
 	@FindBy(css=".grid-button-text")
@@ -106,6 +107,38 @@ public class PeriodicOwnedDocuments_POM extends DocumentRoutes_POM {
 	@FindBy(css=".dropdown-toggle.t21-nav-bar-dropdown")
 	WebElement administratordropdown;
 	
+	@FindBy(css=".btn-group")
+	WebElement changeDontChangeDisableButton;
+	
+	@FindBy(xpath="//*[@id='ReviewDocs']//tr[2]/td[6]")
+	WebElement firstReviewerComments;
+	
+	@FindBy(xpath="//*[@id='Type']")
+	WebElement auditLogTypeDropDown;
+	
+	@FindBy(xpath="//button[text()='Confirm']")
+	WebElement auditLogConfirmButton;
+	
+	public WebElement auditLogConfirm_Button()
+	{
+		return auditLogConfirmButton;
+	}
+	
+	public Select auditLogType_DropDown()
+	{
+		Select selectObj = new Select(auditLogTypeDropDown);
+		return selectObj;
+	}
+	
+	public WebElement firstReviewer_Comments()
+	{
+		return firstReviewerComments;
+	}
+	
+	public WebElement changeDontChangeDisable_Button()
+	{
+		return changeDontChangeDisableButton;
+	}
 	
 	public WebElement auditLog_Option()
 	{
