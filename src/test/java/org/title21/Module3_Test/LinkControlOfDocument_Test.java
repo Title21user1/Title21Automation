@@ -23,7 +23,7 @@ import org.title21.utility.FunctionUtils;
 import com.relevantcodes.extentreports.LogStatus;
 
 import org.title21.Module3_POM.AttachmentControlInDoc_POM;
-import org.title21.Module3_POM.LinkControlofDocument_POM;
+import org.title21.Module3_POM.LinkControlOfDocument_POM;
 import org.title21.Module3_Test.AttachmentControlInDoc_Test;
 
 public class LinkControlOfDocument_Test extends BaseClass {
@@ -50,7 +50,7 @@ public class LinkControlOfDocument_Test extends BaseClass {
 	boolean isRecordFound = false;
 	RecentlyViewedAndFavorites_Test RecentlyViewd;
 	RecentlyViewdAndFavorites_POM RecentlyViewdAndFavorites;
-	LinkControlofDocument_POM LinkControlofDocument;
+	LinkControlOfDocument_POM LinkControlofDocument;
 	AttachmentControlInDoc_POM attachment;
 	String documet_no_checkout = "";
 
@@ -63,8 +63,12 @@ public class LinkControlOfDocument_Test extends BaseClass {
 		Attachmenttest = new AttachmentControlInDoc_Test();
 		attachment = new AttachmentControlInDoc_POM(driver);
 		RecentlyViewdAndFavorites = new RecentlyViewdAndFavorites_POM(driver);
+
 		LinkControlofDocument = new LinkControlofDocument_POM(driver);
 		Credoc = new CreateDocument_POM(driver);
+
+		LinkControlofDocument = new LinkControlOfDocument_POM(driver);
+
 		login.loginUser("aparnak", "aparna2450");
 		dbqueries = new DBQueries();
 
@@ -233,7 +237,7 @@ public class LinkControlOfDocument_Test extends BaseClass {
 
 	public void searchlinkonlinkwindow(String searchlink, int go) {
 		sleep(3);
-		LinkControlofDocument = new LinkControlofDocument_POM(driver);
+		LinkControlofDocument = new LinkControlOfDocument_POM(driver);
 		if (searchlink.equalsIgnoreCase(doc_name)) {
 
 			LinkControlofDocument.getsearch().get(7).sendKeys(searchlink);
@@ -245,7 +249,7 @@ public class LinkControlOfDocument_Test extends BaseClass {
 			LinkControlofDocument.getlinksearchonsearch().sendKeys(searchlink);
 		}
 		LinkControlofDocument.getGoButton().get(go).click();
-		LinkControlofDocument = new LinkControlofDocument_POM(driver);
+		LinkControlofDocument = new LinkControlOfDocument_POM(driver);
 		sleep(5);
 
 		// LinkControlofDocument.getdocument_checkbox().click();
@@ -305,18 +309,18 @@ public class LinkControlOfDocument_Test extends BaseClass {
 					+ "<br/>" + "<b>ER6: The both documents list appears. <b>"
 					+ test.addScreenCapture(captureScreenShot(driver, "both_list")));
 			test.log(LogStatus.PASS,
-					"10.clck on ok " + "<br/>" + "13.In the link control, click on “Add New” link." + "<br/>"
+					"10.clck on ok " + "<br/>" + "13.In the link control, click on Â“Add NewÂ” link." + "<br/>"
 							+ "15.Select location from location dropdown (for eg-Antioch)" + "<br/>"
 							+ "<b>ER7.The Open and Archived documents list as per the selected location appears. <b>"
 							+ test.addScreenCapture(captureScreenShot(driver, "both_listforlocation")));
 
 		}
-		LinkControlofDocument = new LinkControlofDocument_POM(driver);
+		LinkControlofDocument = new LinkControlOfDocument_POM(driver);
 		sleep(2);
 		doc_name = LinkControlofDocument.getselected_doc_from_link().get(0).getText();
 		sleep(4);
 		System.out.println(doc_name);
-		LinkControlofDocument = new LinkControlofDocument_POM(driver);
+		LinkControlofDocument = new LinkControlOfDocument_POM(driver);
 		if (status.equalsIgnoreCase("open")) {
 			searchlinkonlinkwindow(doc_name, 2);
 

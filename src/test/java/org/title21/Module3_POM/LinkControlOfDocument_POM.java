@@ -9,7 +9,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
-public class LinkControlofDocument_POM 
+public class LinkControlOfDocument_POM 
 
 {
 	
@@ -17,7 +17,7 @@ public class LinkControlofDocument_POM
 	public WebElement element;
 	
 	static Logger log = Logger.getLogger(AttachmentControlInDoc_POM.class);
-	public LinkControlofDocument_POM(WebDriver driver)
+	public LinkControlOfDocument_POM(WebDriver driver)
 	{
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
