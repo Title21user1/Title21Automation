@@ -58,7 +58,7 @@ public class eBinders_Test extends BaseClass
 				test.addScreenCapture(captureScreenShot(driver, "Expanded EBinders")));
 
 
-		ebinder.selectEbinder("All Drafts");									sleep(3);
+		ebinder.selectEbinder("Power Temp");									sleep(3);
 
 		test.log(LogStatus.PASS,"3. Click on one of the organizers to view a list of documents available within it");
 		test.log(LogStatus.PASS,"<b>ER2: A list of the document available within the organizer is displayed<b>"+
