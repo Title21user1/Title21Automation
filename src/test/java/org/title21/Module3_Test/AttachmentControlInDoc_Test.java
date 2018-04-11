@@ -178,9 +178,9 @@ public class AttachmentControlInDoc_Test extends BaseClass {
 		sleep(2);
 		waitTillElementVisible(Credoc.getdocument());
 		Credoc.getdocument().click();
-		sleep(8);
+		sleep(3);
 		Credoc.GeteditdocumentNo().click();
-		sleep(7);
+		sleep(3);
 		Credoc.getnumberappedix().selectByVisibleText(AppendixNumber);
 		Credoc.Appendix().sendKeys(Appendix);
 		Document_number = Credoc.getdocumentnumber().getAttribute("value");
@@ -189,8 +189,6 @@ public class AttachmentControlInDoc_Test extends BaseClass {
 		Credoc.getDocChangeSummary().sendKeys("Test summary" + Document_number);
 		verticalScrollingDown();
 		Credoc.getConfirmButton().click();
-		Credoc.getPlusButtonuploadfile().click();
-
 	}
 
 	private void Search(String Searchdata) {

@@ -37,7 +37,6 @@ public class LinkControlOfDocument_Test extends BaseClass {
 	FileUpload FileUplod;
 	LogoutPage_POM logout;
 	String fileUploadPath = "";
-	// String uploadFileName = "test.doc";
 	String Document_number = "";
 	String doc_name = "";
 	String linkdoc = "";
@@ -64,7 +63,12 @@ public class LinkControlOfDocument_Test extends BaseClass {
 		Attachmenttest = new AttachmentControlInDoc_Test();
 		attachment = new AttachmentControlInDoc_POM(driver);
 		RecentlyViewdAndFavorites = new RecentlyViewdAndFavorites_POM(driver);
+
+		LinkControlofDocument = new LinkControlofDocument_POM(driver);
+		Credoc = new CreateDocument_POM(driver);
+
 		LinkControlofDocument = new LinkControlOfDocument_POM(driver);
+
 		login.loginUser("aparnak", "aparna2450");
 		dbqueries = new DBQueries();
 
@@ -76,14 +80,19 @@ public class LinkControlOfDocument_Test extends BaseClass {
 		test = extent.startTest("LinkControlOfDocument_Test");
 		
 		Attachmenttest.createdoc();
-		sleep(20);
+		sleep(5);
+		
 		String Document_name = LinkControlofDocument.getdocname().getText();
 		scrolldown(2);
+		
+		Credoc.getPlusButtonuploadfile().click();
+		Attachmenttest.fileupload("DocDocument.docx");
+		sleep(5);
 	
 		attachment.getAddnew().get(0).click();
 		sleep(3);
-		Attachmenttest.fileupload("upload.PNG");
-		sleep(10);
+		Attachmenttest.fileupload("DocDocument.docx");
+		sleep(5);
 		Linkattached("Open", "2/22/2018", 24);
 		sleep(5);
 		linkdoc = LinkControlofDocument.getlinkdocuments().get(0).getText();
@@ -205,17 +214,13 @@ public class LinkControlOfDocument_Test extends BaseClass {
 		Search(ref_documents);
 		LinkControlofDocument.getdoconsearch().click();
 		scrolldown(3);
-		/*
-		 * verticalScrollingDown(); verticalScrollingDown(); verticalScrollingDown();
-		 */
+
 		sleep(7);
 		test.log(LogStatus.PASS,
 				"" + "36.Open the document used in step (20)." + "<br/>" + "37.Go to link control."
 						+"<br/>"+ "<b>ER 13: The major revision document is available in the link control.<b>" + "<br/>"
 						+ test.addScreenCapture(captureScreenShot(driver, "delete_document")));
-		/*
-		 * verticalScrollingUp(); verticalScrollingUp(); verticalScrollingUp();
-		 */
+
 		scrollup(3);
 		sleep(2);
 		attachment.getshowattachment().click();
@@ -304,7 +309,7 @@ public class LinkControlOfDocument_Test extends BaseClass {
 					+ "<br/>" + "<b>ER6: The both documents list appears. <b>"
 					+ test.addScreenCapture(captureScreenShot(driver, "both_list")));
 			test.log(LogStatus.PASS,
-					"10.clck on ok " + "<br/>" + "13.In the link control, click on “Add New” link." + "<br/>"
+					"10.clck on ok " + "<br/>" + "13.In the link control, click on Â“Add NewÂ” link." + "<br/>"
 							+ "15.Select location from location dropdown (for eg-Antioch)" + "<br/>"
 							+ "<b>ER7.The Open and Archived documents list as per the selected location appears. <b>"
 							+ test.addScreenCapture(captureScreenShot(driver, "both_listforlocation")));
