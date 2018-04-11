@@ -150,9 +150,7 @@ public class eBinders_POM
 		BaseClass.sleep(1);
 		driver.findElement(By.xpath("//span[text()='test']")).click();
 		BaseClass.sleep(1);
-		driver.findElement(By.xpath("//span[text()='Draft']")).click();
-		BaseClass.sleep(1);
-		driver.findElement(By.xpath("//span[text()='New test']")).click();
+		driver.findElement(By.xpath("//span[text()='power user test']")).click();
 		BaseClass.sleep(1);
 	}
 
