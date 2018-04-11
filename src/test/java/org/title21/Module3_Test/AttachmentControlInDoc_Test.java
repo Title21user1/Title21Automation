@@ -5,10 +5,7 @@ import java.io.IOException;
 import java.util.List;
 
 import org.apache.log4j.Logger;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -16,7 +13,6 @@ import org.title21.AdminModule_POM.LoginPage_POM;
 import org.title21.AdminModule_POM.LogoutPage_POM;
 import org.title21.Documents_POM.CreateDocument_POM;
 import org.title21.Documents_POM.RecentlyViewdAndFavorites_POM;
-import org.title21.Documents_Test.CreateDocument_Test;
 import org.title21.utility.BaseClass;
 import org.title21.utility.DownloadUtils;
 import org.title21.utility.FileUpload;
@@ -37,23 +33,20 @@ public class AttachmentControlInDoc_Test extends BaseClass {
 	FileUpload FileUplod;
 	LogoutPage_POM logout;
 	String fileUploadPath = "";
-	// String uploadFileName = "test.doc";
 	String Document_number = "";
 	static Logger log = Logger.getLogger(AttachmentControlInDoc_Test.class);
 	RecentlyViewdAndFavorites_POM RecentlyViewdAndFavorites;
 	String testcaseName="TestCase-WIA-Attachment control in document.docx";	
 	String filePath = System.getProperty("user.dir") + "\\TestCases\\"+testcaseName;
 
-	// public WebDriver driver;
 	@BeforeClass
 	public void openURL() {
 		getBrowser();
 		className = this.getClass().getName();
 		createDirectory(className);
-
 		login = new LoginPage_POM(driver);
+		logout = new LogoutPage_POM(driver);
 		login.loginUser("aparnak", "aparna2450");
-
 	}
 
 	@Test(testName = "AttachmentCotrol_Test", groups = "AttachmentControl_Test", priority = 0)
@@ -75,7 +68,7 @@ public class AttachmentControlInDoc_Test extends BaseClass {
 						+ "2.Open the document in edit mode and navigate to the attachment control." + "<br/>"
 						+ "3.Click on Add New link." + "<br/>" + "<b>ER1: Add a document dialog appears. <b>"
 						+ test.addScreenCapture(captureScreenShot(driver, "dialog_add_file")));
-		fileupload("upload.PNG");
+		fileupload("DocDocument.docx");
 		sleep(10);
 		test.log(LogStatus.PASS, "4.Click on Choose File button." + "<br/>"
 				+ "5.Try to attach a file type which is not a MS Word document or an executable (e.g. Jpeg, PNG, TXT etc.)."
@@ -84,7 +77,7 @@ public class AttachmentControlInDoc_Test extends BaseClass {
 		sleep(3);
 		attachment.getAddnew().get(0).click();
 		sleep(5);
-		fileupload("attachment.doc");
+		fileupload("DocDocument2.docx");
 		sleep(10);
 		test.log(LogStatus.PASS,
 				"6.Click on the Add New link again, and try to attach a MS Word (.doc or .docx) document	" + "<br/>"
@@ -94,7 +87,7 @@ public class AttachmentControlInDoc_Test extends BaseClass {
 		sleep(5);		
 		attachment.getnativedownloadoption().get(1).click();		
 		sleep(5);
-		File downloadedFile = DownloadUtils.waitForDownloadToComplete("upload");
+		File downloadedFile = DownloadUtils.waitForDownloadToComplete("DocDocument.docx");
 		if (downloadedFile.exists()) {
 			test.log(LogStatus.PASS,
 					"7.Click on the Native link under the Open column for 1st file attached." + "<br/>"
@@ -118,7 +111,7 @@ public class AttachmentControlInDoc_Test extends BaseClass {
 							+ "<b>ER 6: The Editing Attachment screen appears<b>"
 							+ test.addScreenCapture(captureScreenShot(driver, "editattachment")));
 		}
-		attachment.geDescription().sendKeys("test file");
+		attachment.geDescription().sendKeys("Test File");
 		
 		attachment.getupdate().click();
 		sleep(5);
@@ -165,11 +158,7 @@ public class AttachmentControlInDoc_Test extends BaseClass {
 							+ test.addScreenCapture(captureScreenShot(driver, "viewattachment")));
 
 		}
-		extent.endTest(test);
-		/*
-		 * driver.switchTo().alert().accept(); sleep(3); attachment.getbottom().click();
-		 */
-
+		
 	}
 
 	public void fileupload(String uploadFileName) {
@@ -215,7 +204,6 @@ public class AttachmentControlInDoc_Test extends BaseClass {
 
 		cleanDownloadDirectory();
 		sleep(2);
-		logout = new LogoutPage_POM(driver);
 		logout.logoutFunction();
 		log.info("logout successfully.");
 		sleep(2);
