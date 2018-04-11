@@ -45,6 +45,7 @@
 			<class name="org.title21.Module3_Test.Codes_Test"/>
 			<class name="org.title21.Module3_Test.eBinders_Test"/>
 			<class name="org.title21.Module3_Test.AttachmentControlInDoc_Test"/>
+			<class name="org.title21.Module3_Test.LinkControlOfDocument_Test"/>
 			
 		</classes>
 

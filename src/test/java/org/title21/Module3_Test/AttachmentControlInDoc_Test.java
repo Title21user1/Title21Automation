@@ -5,10 +5,7 @@ import java.io.IOException;
 import java.util.List;
 
 import org.apache.log4j.Logger;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -16,7 +13,6 @@ import org.title21.AdminModule_POM.LoginPage_POM;
 import org.title21.AdminModule_POM.LogoutPage_POM;
 import org.title21.Documents_POM.CreateDocument_POM;
 import org.title21.Documents_POM.RecentlyViewdAndFavorites_POM;
-import org.title21.Documents_Test.CreateDocument_Test;
 import org.title21.utility.BaseClass;
 import org.title21.utility.DownloadUtils;
 import org.title21.utility.FileUpload;
@@ -37,7 +33,6 @@ public class AttachmentControlInDoc_Test extends BaseClass {
 	FileUpload FileUplod;
 	LogoutPage_POM logout;
 	String fileUploadPath = "";
-	// String uploadFileName = "test.doc";
 	String Document_number = "";
 	static Logger log = Logger.getLogger(AttachmentControlInDoc_Test.class);
 	RecentlyViewdAndFavorites_POM RecentlyViewdAndFavorites;
@@ -165,11 +160,7 @@ public class AttachmentControlInDoc_Test extends BaseClass {
 							+ test.addScreenCapture(captureScreenShot(driver, "viewattachment")));
 
 		}
-		extent.endTest(test);
-		/*
-		 * driver.switchTo().alert().accept(); sleep(3); attachment.getbottom().click();
-		 */
-
+		
 	}
 
 	public void fileupload(String uploadFileName) {
@@ -189,9 +180,9 @@ public class AttachmentControlInDoc_Test extends BaseClass {
 		sleep(2);
 		waitTillElementVisible(Credoc.getdocument());
 		Credoc.getdocument().click();
-		sleep(8);
+		sleep(3);
 		Credoc.GeteditdocumentNo().click();
-		sleep(7);
+		sleep(3);
 		Credoc.getnumberappedix().selectByVisibleText(AppendixNumber);
 		Credoc.Appendix().sendKeys(Appendix);
 		Document_number = Credoc.getdocumentnumber().getAttribute("value");
@@ -200,8 +191,6 @@ public class AttachmentControlInDoc_Test extends BaseClass {
 		Credoc.getDocChangeSummary().sendKeys("Test summary" + Document_number);
 		verticalScrollingDown();
 		Credoc.getConfirmButton().click();
-		Credoc.getPlusButtonuploadfile().click();
-
 	}
 
 	private void Search(String Searchdata) {
