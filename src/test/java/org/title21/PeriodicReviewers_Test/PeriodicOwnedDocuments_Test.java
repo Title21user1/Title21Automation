@@ -612,22 +612,22 @@ public class PeriodicOwnedDocuments_Test extends BaseClass{
 			
 			test.log(LogStatus.PASS, "35.Log in to the local admin user and view the audit logs (administration> Audit log)");
 			logout.logoutFunction();
-			/*sleep(2);
+			sleep(2);
 			login.loginUser(loginData[7][0], loginData[7][1]);
 			periodicReviews.administratorDropDown().click();
 			periodicReviews.auditLog_Option().click();
 			sleep(2);
 			
 			test.log(LogStatus.PASS, "36.Select type Bypass required reviewer and click on confirm.");
-			periodicReviews.auditLogType_DropDown().selectByVisibleText("Bypass Required Reviewer");
+			periodicReviews.auditLogType_DropDown().selectByVisibleText(AuditLogs[1][0]); 
 			sleep(2);
 			periodicReviews.auditLogConfirm_Button().click();
 			sleep(2);
-			verifyValuesInAuditLog("Mart707", 8);
-			verifyValuesInAuditLog("Mart994", 8);
+			verticalScrollingDown();
 			
-			if(isValueFound)
+			if(verifyValuesInAuditLog(loginData[11][2], 8)&&verifyValuesInAuditLog(loginData[12][2], 8))
 			{
+				
 				test.log(LogStatus.PASS, "<b>ER 18- The Bypass on Test user 2 and final bypass action on the Test user 3 is available in the audit log.<b>"+
 						test.addScreenCapture(captureScreenShot(driver, "periodic review action performed")));
 			}
@@ -638,15 +638,31 @@ public class PeriodicOwnedDocuments_Test extends BaseClass{
 			}
 			
 			test.log(LogStatus.PASS, "37.Select type Cleared Bypass of Required Reviewer and click on confirm.");
-			periodicReviews.auditLogType_DropDown().selectByVisibleText("Cleared Bypass");
+			verticalScrollingUp();
+			periodicReviews.auditLogType_DropDown().selectByVisibleText(AuditLogs[2][0]); 
+			sleep(2);
+			periodicReviews.auditLogConfirm_Button().click();
+			sleep(2);
+			verticalScrollingDown();
+			if(verifyValuesInAuditLog(loginData[11][2], 8))
+			{
+				test.log(LogStatus.PASS, "<b>ER 19- Clear bypass on the second test user is available in the audit log.<b>"+
+						test.addScreenCapture(captureScreenShot(driver, "periodic review action performed")));
+			}
+			else
+			{
+				test.log(LogStatus.FAIL, "<b>Unable to find the Clear bypass on the second test user is available in the audit log.<b>"+
+						test.addScreenCapture(captureScreenShot(driver, "periodic review action performed")));
+			}
 			
 			test.log(LogStatus.PASS, "38.Select type Enter/Update Review and click on confirm.");
-			periodicReviews.auditLogType_DropDown().selectByVisibleText("Enter/Update Review");
-			
-			verifyValuesInAuditLog("saurabhp", 2);
-			verifyValuesInAuditLog("Mart994", 2);
-			
-			if(isValueFound)
+			verticalScrollingUp();
+			sleep(2);
+			periodicReviews.auditLogType_DropDown().selectByVisibleText(AuditLogs[3][0]); 
+			sleep(2);
+			verticalScrollingDown();
+			sleep(2);
+			if(verifyValuesInAuditLog(loginData[7][0], 2))
 			{
 				test.log(LogStatus.PASS, "<b>ER 20- The periodic review actions performed by the Test user 1 and Test user 3 are available in the audit logs.<b>"+
 						test.addScreenCapture(captureScreenShot(driver, "periodic review action performed")));
@@ -655,7 +671,7 @@ public class PeriodicOwnedDocuments_Test extends BaseClass{
 			{
 				test.log(LogStatus.FAIL, "<b>Unable to find The periodic review actions performed by the Test user 1 and Test user 3 are available in the audit logs.<b>"+
 						test.addScreenCapture(captureScreenShot(driver, "periodic review action performed")));
-			}*/
+			}
 			
 		}
 		else
@@ -671,21 +687,21 @@ public class PeriodicOwnedDocuments_Test extends BaseClass{
 		driver.close();
 	}
 
-	/*private boolean verifyValuesInAuditLog(String docName, int cellNo) 
+	private boolean verifyValuesInAuditLog(String reviewerName, int cellNo) 
 	{
 		isValueFound=false;
 		searchTable=new Table(driver);
 		List<WebElement> tableCells=searchTable.getAuditLogsCells(cellNo);				
 		for (int i=0;i<tableCells.size();i++)
 		{
-			if (tableCells.get(i).getText().contains(docName))
+			if (tableCells.get(i).getText().contains(reviewerName))
 			{				
 				isValueFound=true;
 				break;
 			}
 		}
 		return isValueFound;
-	}*/
+	}
 
 	private boolean verifyDocForReview(String docName) 
 	{
