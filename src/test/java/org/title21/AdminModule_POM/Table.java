@@ -26,6 +26,9 @@ public class Table extends BaseClass
 	@FindBy(xpath="//*[contains(@class,'t21-js-clickable-rows')]/tr")
 	List<WebElement> tableRows; 
 		
+	@FindBy(xpath="//*[contains(@class,'t21-js-form-clickable-rows')]/tr")
+	List<WebElement> auditTableRows;
+	
 	@FindBy(tagName = "thead")
 	WebElement tableHeader;	
 	
@@ -95,6 +98,22 @@ public class Table extends BaseClass
 		List<WebElement> cells = null;
 		for(WebElement row : tableRows) {
 		    cells = row.findElements(By.xpath("//div[@id='collapseDocuments']//td["+columnNumber+"]")); 
+		  }
+		return cells;
+	}
+	
+	public List<WebElement> getReviewDocsCells(int columnNumber){	
+		List<WebElement> cells = null;
+		for(WebElement row : tableRows) {
+		    cells = row.findElements(By.xpath("//*[@id='ReviewDocs']//td["+columnNumber+"]")); 
+		  }
+		return cells;
+	}
+	
+	public List<WebElement> getAuditLogsCells(int columnNumber){	
+		List<WebElement> cells = null;
+		for(WebElement row : auditTableRows) {
+		    cells = row.findElements(By.xpath("//*[@id='dynamic-grid-table']//td["+columnNumber+"]")); 
 		  }
 		return cells;
 	}

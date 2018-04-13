@@ -13,14 +13,14 @@ import org.title21.AdminModule_POM.LoginPage_POM;
 import org.title21.AdminModule_POM.LogoutPage_POM;
 import org.title21.Documents_POM.CreateDocument_POM;
 import org.title21.Documents_POM.RecentlyViewdAndFavorites_POM;
+import org.title21.Module3_POM.AttachmentControlInDoc_POM;
+
 import org.title21.utility.BaseClass;
 import org.title21.utility.DownloadUtils;
 import org.title21.utility.FileUpload;
 import org.title21.utility.FunctionUtils;
 
-import com.relevantcodes.extentreports.LogStatus;
-
-import org.title21.Module3_POM.AttachmentControlInDoc_POM;;
+import com.relevantcodes.extentreports.LogStatus;;
 
 public class AttachmentControlInDoc_Test extends BaseClass {
 	AttachmentControlInDoc_POM attachment;

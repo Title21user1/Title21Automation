@@ -1,10 +1,7 @@
-package org.title21.Documents_Test;
-
+package org.title21.Documents_test;
 import java.util.List;
-
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;

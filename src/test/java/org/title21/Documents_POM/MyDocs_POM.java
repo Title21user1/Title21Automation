@@ -11,7 +11,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
-import org.title21.Documents_Test.CheckInCheckOut_Test;
+import org.title21.Documents_test.CheckInCheckOut_Test;
 import org.title21.utility.BaseClass;
 
 public class MyDocs_POM

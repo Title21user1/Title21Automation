@@ -1,4 +1,5 @@
-package org.title21.Documents_Test;
+package org.title21.Documents_test;
+
 
 import org.testng.annotations.Test;
 import org.title21.AdminModule_POM.LoginPage_POM;
