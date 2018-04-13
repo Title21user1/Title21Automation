@@ -12,7 +12,7 @@ import org.title21.AdminModule_POM.LogoutPage_POM;
 import org.title21.AdminModule_POM.Table;
 import org.title21.DBConnection.DBConnection;
 import org.title21.DBConnection.DBQueries;
-import org.title21.Documents_test.DocumentRoutes_Test;
+import org.title21.Documents_Test.DocumentRoutes_Test;
 import org.title21.PeriodicReviewers_POM.PeriodicOwnedDocuments_POM;
 import org.title21.dao.AdminData;
 import org.title21.utility.BaseClass;

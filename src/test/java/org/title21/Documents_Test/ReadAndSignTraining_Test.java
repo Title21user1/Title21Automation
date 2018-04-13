@@ -1,4 +1,4 @@
-package org.title21.Documents_test;
+package org.title21.Documents_Test;
 import java.util.List;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
