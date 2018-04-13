@@ -8,6 +8,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -42,6 +44,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
@@ -239,7 +242,7 @@ public class BaseClass {
 	 *  
 	 */
 	
-	public static String captureScreenShot(WebDriver driver, String screenshotName) {
+	/*public static String captureScreenShot(WebDriver driver, String screenshotName) {
 		try {
 			String finalImagePath="";
 			Calendar calander = Calendar.getInstance();
@@ -261,20 +264,14 @@ public class BaseClass {
 			System.out.println("Exception while taking screenshot" + e.getMessage());
 			return e.getMessage();
 		}
-	}
+	}*/
 		
-	/*
-	 * Following method will take screenshot of the webpage by TakesScreenhot interface.
-	 * 
-	 */
-
-	/*public static String captureScreenShot(WebDriver driver, String screenshotName) {
+	public static String captureScreenShot(WebDriver driver, String screenshotName) {
 		try {
 			Calendar calander = Calendar.getInstance();
 			SimpleDateFormat formater = new SimpleDateFormat("dd_MM_yy_hh_mm_ss");
 			File src = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 			
-			// String workingDir =// System.getProperty("user.dir")+"\\extentReports";
 			String dest = imagesDirectory + "\\" + screenshotName + "-" + formater.format(calander.getTime()) + ".png";
 			File destination = new File(dest);
 			FileUtils.copyFile(src, destination);			
@@ -285,7 +282,7 @@ public class BaseClass {
 			System.out.println("Exception while taking screenshot" + e.getMessage());
 			return e.getMessage();
 		}
-	}*/
+	}
 
 	public void waitForPageToLoad(WebDriver driver,int seconds) {
 		// sleep(2);
@@ -311,8 +308,30 @@ public class BaseClass {
 	
 	public void getBrowser() {		
 		
+		if (browser.equalsIgnoreCase("remote")) {
+			extent = ExtentManager.getReporter(filePath,baseUrl);
+			
+			DesiredCapabilities dc = DesiredCapabilities.chrome();
+			RemoteWebDriver remotedriver = null;
+			
+			ChromeOptions options = new ChromeOptions();
+			options.addArguments("disable-infobars");
+			options.addArguments("--start-maximized");
+			dc.setCapability(ChromeOptions.CAPABILITY, options);
+			
+			try {
+				remotedriver = new RemoteWebDriver(new URL("http://180.149.240.179:4567/wd/hub"),dc);
+			} catch (MalformedURLException e) {
+				e.printStackTrace();
+			}
+			
+			driver = remotedriver;
+			
+			driver.get(baseUrl);
+			driver.manage().window().maximize();
+		}
 				
-		if (browser.equalsIgnoreCase("chrome")) {
+		else if (browser.equalsIgnoreCase("chrome")) {
 			extent = ExtentManager.getReporter(filePath,baseUrl);
 			System.setProperty("webdriver.chrome.driver", ".\\drivers\\chromedriver.exe");
 			ChromeOptions options = new ChromeOptions();
