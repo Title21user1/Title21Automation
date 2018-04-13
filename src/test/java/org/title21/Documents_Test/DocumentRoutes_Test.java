@@ -179,7 +179,7 @@ public class DocumentRoutes_Test extends BaseClass{
 					documentRoutes.routeName_DropDown().selectByVisibleText(routeData[1][11]);
 					test.log(LogStatus.PASS, "11. Select the route (for ex. "+routeData[1][11]+") and click on add button.");
 					documentRoutes.approverAdd_Button().click();
-					sleep(2);
+					sleep(4);
 					if(verifyDocNameInTable(routeData[1][11]))
 					{
 						test.log(LogStatus.PASS, "<b>ER 6- Route is added.<b>"+

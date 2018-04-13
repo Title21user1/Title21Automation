@@ -230,6 +230,7 @@ public class CreateNewUser_Test extends BaseClass{
 								
 								addNewUserPage.password_AddTab().click();
 								test.log(LogStatus.PASS, "15.Click on Add Button without entering a 'new password' and 'confirm password'.");
+								sleep(3);
 								
 								if(addNewUserPage.passwordRequired_ErrorMsg().isDisplayed()&&addNewUserPage.confirmPasswordRequired_ErrorMsg().isDisplayed())
 								{
@@ -418,7 +419,7 @@ public class CreateNewUser_Test extends BaseClass{
 	@Test(testName = "logout", groups = "Logout", priority = 1)
 	public void Logout() throws Exception 
 	{	
-		sleep(3);
+		sleep(5);
 		logout=new LogoutPage_POM(driver);
 		logout.logoutFunction();		
 	}

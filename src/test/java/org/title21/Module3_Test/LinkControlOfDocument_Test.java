@@ -75,7 +75,7 @@ public class LinkControlOfDocument_Test extends BaseClass {
 	@Test(testName = "LinkControlOfDocument_Test", groups = "LinkControlOfDocument_POM", priority = 0)
 	public void LinkControlOfDocument_POM() throws Exception {
 
-		test = extent.startTest("LinkControlOfDocument_Test");
+		test = extent.startTest("Link Control Of Document");
 		
 		Attachmenttest.createdoc();
 		sleep(5);
