@@ -34,7 +34,7 @@ public class CreateDocument_Test extends BaseClass {
 	String Appendix =doc+FunctionUtils.generateRandomNumber();
 	String fileUploadPath = "";
 	String fileUploadPath1 = "";
-	String uploadFileName = "test.doc";
+	String uploadFileName = "DocDocument.docx";
 	String uploadFileNameSize = "Sizeval.doc";
 	static Logger log = Logger.getLogger(CreateDocument_Test.class);
 	AdminData adminData = new AdminData();
@@ -51,7 +51,7 @@ public class CreateDocument_Test extends BaseClass {
 		login.loginFunction();
 	}
 
-	@Test(testName = "create  document ", groups = "create_doc", priority = 0)
+	@Test(testName = "Create  Document", groups = "Document", priority = 0)
 	public void Create_doc() {
 		test = extent.startTest("Create  Document");
 		test.log(LogStatus.INFO, "Link to Test case document", "<a href='file://"+filePath+"'>TestCaseDocument</a>");
@@ -83,7 +83,7 @@ public class CreateDocument_Test extends BaseClass {
 							+ " \" Change Summary is required\"\n" + " <b>"
 							+ test.addScreenCapture(captureScreenShot(driver, "validationmessagefortitleand")));
 		}
-		;
+		
 		sleep(2);
 		Credoc.GeteditdocumentNo().click();
 		sleep(2);
@@ -112,7 +112,7 @@ public class CreateDocument_Test extends BaseClass {
 
 		}
 		Credoc.getDocumentTitle().sendKeys("Test");
-		Credoc.getDocChangeSummary().sendKeys("test summary");
+		Credoc.getDocChangeSummary().sendKeys("Test Summary");
 		verticalScrollingDown();
 		Credoc.getConfirmButton().click();
 		sleep(2);
@@ -136,17 +136,13 @@ public class CreateDocument_Test extends BaseClass {
 		Credoc.getPlusButtonuploadfile().click();
 		sleep(2);
 
+		Credoc.fileupload(uploadFileNameSize);
+		sleep(2);
 		Credoc.getBrouse().click();
+		sleep(2);
+		Credoc.pressEscape();
 		sleep(5);
-
-		fileUploadPath = fileUploadPath + "\\" + uploadFileNameSize;
-		Upload = new FileUpload();
-		fileUploadPath1 = System.getProperty("user.dir") + "\\testdata";
-		fileUploadPath1 = fileUploadPath1 + "\\" + uploadFileNameSize;
-
-		FileUpload.uploadFile(fileUploadPath1);
-		Credoc.addButton().click();
-		sleep(3);
+		
 		if (Credoc.UploadFileSizeValidation()) {
 			test.log(LogStatus.PASS,
 					"10. Turn edit mode to ON" + "<br/>" + "11.Click on add file plus button" + "<br/>"
@@ -159,17 +155,13 @@ public class CreateDocument_Test extends BaseClass {
 		sleep(2);
 		Credoc.getPlusButtonuploadfile().click();
 		sleep(2);
-		String home_page = driver.getWindowHandle();
-		fileUploadPath = System.getProperty("user.dir") + "\\testdata";
-		fileUploadPath = fileUploadPath + "\\" + uploadFileName;
-		Credoc.getBrouse().sendKeys(fileUploadPath);
-		sleep(2);
-		Credoc.getAddButtonupload().click();
+		Credoc.fileupload(uploadFileName);
 		sleep(10);
+		String home_page = driver.getWindowHandle();
 		verticalScrollingDown();
 		Credoc.getnative().click();
 		sleep(10);
-		File downloadedFile = DownloadUtils.waitForDownloadToComplete("test");
+		File downloadedFile = DownloadUtils.waitForDownloadToComplete("DocDocument.docx");
 		if (downloadedFile.exists()) {
 			test.log(LogStatus.PASS,
 					"13.Attached main file to the document for eg. Any doc or pdf file " + "<br/>"
@@ -177,9 +169,9 @@ public class CreateDocument_Test extends BaseClass {
 							+ "<b>ER8: It should download the main file document in its native form.<b>"
 							+ test.addScreenCapture(captureScreenShot(driver, "native_file")));
 		}
-		sleep(15);		
+		sleep(10);		
 		Credoc.getpdf().click();
-		sleep(15);
+		sleep(10);
 		test.log(LogStatus.PASS,
 				"15. click on pdf button " + "<br/>"
 						+ "<b>ER 9 : Document is converted to pdf form and open in new tab.<b>"
@@ -211,7 +203,7 @@ public class CreateDocument_Test extends BaseClass {
 
 		Credoc.getcheckincancelsuccess().click();
 		Credoc.getcheckincancelsuccess().click();
-		sleep(2);
+		sleep(3);
 		waitTillElementVisible(Credoc.editmodedisable());
 		if (Credoc.editmodedisable().isDisplayed()) {
 			test.log(LogStatus.PASS, "18.Click on close button " + "<br/>" + "<b>ER12: Doument Edit mode is disable.<b>"
@@ -219,6 +211,8 @@ public class CreateDocument_Test extends BaseClass {
 		}
 
 		sleep(2);
+		verticalScrollingUp();
+		sleep(1);
 		Credoc.getcontextmenu().click();
 		sleep(2);
 		Credoc.getcheckoutbutton().click();
@@ -242,8 +236,6 @@ public class CreateDocument_Test extends BaseClass {
 		sleep(2);
 		if(Credoc.getcheckincancelsuccess().isDisplayed())
 		{
-
-			//Credoc.getcheckincancelsuccess();
 			Credoc.getcheckincancelsuccess().click();
 			Credoc.getcheckincancelsuccess().click();
 		}

@@ -82,7 +82,7 @@ public class LogoutPage_Test extends BaseClass {
 		test.log(LogStatus.PASS, "6. When logged out, navigate directly "
 				+ "to any of the pages directly by entering the URL into the browser address bar (E.G: https://qa21.title21health.com/Training).");
 
-		driver.navigate().to("https://quantumdev.title21.com/Training");
+		driver.navigate().to(baseUrl+"/Training");
 		sleep(2);
 
 		if (login.getUsername().isDisplayed()){

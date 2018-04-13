@@ -292,14 +292,8 @@ public class DetailedCheckout_Test extends BaseClass
 		mydocs.beforeCheckReviewer();
 		verticalScrollingDown();											sleep(1);
 		Credoc.addAttachment().click();										sleep(2);
-		Credoc.getBrouse().click();											sleep(2);
-		
-		fileUploadPath = System.getProperty("user.dir") + "\\testdata";
-		fileUploadPath = fileUploadPath + "\\" + uploadFileName;
-		FileUpload.uploadFile(fileUploadPath);								sleep(2);
-		
+		Credoc.fileupload(uploadFileName);									sleep(9);
 		mydocs.beforeCheckAttachment();
-		Credoc.addButton().click();											sleep(7);
 		Credoc.addNewLinks().click();										sleep(3);
 		Credoc.addLinkSearch().sendKeys("SOP.CT");							sleep(2);
 		Credoc.addLinkGoButton().click();									sleep(2);

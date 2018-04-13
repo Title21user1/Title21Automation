@@ -1,4 +1,7 @@
 package org.title21.Documents_POM;
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.event.KeyEvent;
 import java.util.List;
 import java.util.Random;
 
@@ -618,6 +621,18 @@ public class CreateDocument_POM
 		return getcreateddocumentnumber;			
 	}
 	
+	public void pressEscape()
+	{
+		Robot robot;
+		try {
+			robot = new Robot();
+			robot.keyPress(KeyEvent.VK_ESCAPE);
+		} catch (AWTException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
 	public void Search(String search)
 	{
 		getSearchText().sendKeys(search);
@@ -674,6 +689,15 @@ public class CreateDocument_POM
 			log.error("Validation message for file size is not valid  ");
 		}	
 		return isValidationMessagePresent;
+	}
+	
+	public void fileupload(String uploadFileName) {
+
+		String fileUploadPath = System.getProperty("user.dir") + "\\testdata";
+		fileUploadPath = fileUploadPath + "\\" + uploadFileName;
+		getBrouse().sendKeys(fileUploadPath);
+		BaseClass.sleep(3);
+		getAddButtonupload().click();
 	}
 
 	public String ValueFromAppendix()

@@ -118,7 +118,7 @@ public class DeleteUser_Test extends BaseClass{
 		verifyUserNameInTable(adminData.getUserName());
 		sleep(2);
 		clickOnDeleteButton(adminData.getUserName());
-		
+		sleep(3);
 		waitTillElementVisible(deleteUser.getDeleteUserpopupYesButton());
 
 		test.log(LogStatus.PASS, "9. Click on yes button.");
@@ -183,7 +183,7 @@ public class DeleteUser_Test extends BaseClass{
 		}
 		test.log(LogStatus.PASS, "12. Go to user list screen.");
 		deleteUser.user_link().click();
-		waitTillElementVisible(deleteUser.groupFilterResult());
+		sleep(3);
 		test.log(LogStatus.PASS, "13.Find admin user which you are using.");
 		deleteUser.groupFilterResult().clear();
 		deleteUser.groupFilterResult().sendKeys(updatedAdminUsername);

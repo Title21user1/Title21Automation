@@ -39,10 +39,9 @@ public class AttachmentControlInDoc_POM
 
 	@FindBy(xpath="//a[text() = 'Native']")
 	List<WebElement> nativef ;
-	/*
-
-	@FindBy(xpath=".//*[@id='collapse-2']/div/div/div[1]/a")
-	WebElement add_new ;*/
+	
+	@FindBy(xpath="//a[contains(@href,'AddMainFile')]")
+	WebElement addMainFile;
 
 	@FindBy(css=".fa.fa-plus-circle.t21-padding-right-5")
 	List<WebElement> add_new ;
@@ -160,6 +159,12 @@ public class AttachmentControlInDoc_POM
 	{
 
 		return delete;			
+	}
+	
+	public WebElement addMainFile()
+	{
+
+		return addMainFile;			
 	}
 
 }

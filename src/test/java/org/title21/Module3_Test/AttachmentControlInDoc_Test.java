@@ -57,10 +57,13 @@ public class AttachmentControlInDoc_Test extends BaseClass {
 		RecentlyViewdAndFavorites = new RecentlyViewdAndFavorites_POM(driver);
 		createdoc();		
 		String home_page = driver.getWindowHandle();
+		attachment.addMainFile().click();
+		sleep(2);
 		fileupload("test.doc");
-		sleep(20);
+		sleep(10);
 		verticalScrollingDown();
 		verticalScrollingDown();
+		sleep(1);
 		attachment.getAddnew().get(0).click();
 		sleep(5);
 		test.log(LogStatus.PASS,
@@ -189,6 +192,7 @@ public class AttachmentControlInDoc_Test extends BaseClass {
 		Credoc.getDocChangeSummary().sendKeys("Test summary" + Document_number);
 		verticalScrollingDown();
 		Credoc.getConfirmButton().click();
+		BaseClass.sleep(3);
 	}
 
 	private void Search(String Searchdata) {
