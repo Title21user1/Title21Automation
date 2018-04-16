@@ -83,7 +83,7 @@ public class CreateDocument_Test extends BaseClass {
 							+ " \" Change Summary is required\"\n" + " <b>"
 							+ test.addScreenCapture(captureScreenShot(driver, "validationmessagefortitleand")));
 		}
-		
+
 		sleep(2);
 		Credoc.GeteditdocumentNo().click();
 		sleep(2);
@@ -138,21 +138,18 @@ public class CreateDocument_Test extends BaseClass {
 
 		Credoc.fileupload(uploadFileNameSize);
 		sleep(2);
-		Credoc.getBrouse().click();
-		sleep(1);
-		Credoc.pressEscape();
-		sleep(5);
-		
-		if (Credoc.UploadFileSizeValidation()) {
-			test.log(LogStatus.PASS,
-					"10. Turn edit mode to ON" + "<br/>" + "11.Click on add file plus button" + "<br/>"
-							+ "12. Add file with size more than 50 MB  and click on Add  button  " + "<br/>"
-							+ "<b> ER7: It should show validation message as \"File size must be less than 50 MB\".<b>"
-							+ test.addScreenCapture(captureScreenShot(driver, "File_Size")));
 
-		}
+		test.log(LogStatus.PASS,
+				"10. Turn edit mode to ON" + "<br/>" + "11.Click on add file plus button" + "<br/>"
+						+ "12. Add file with size more than 50 MB  and click on Add  button  " + "<br/>"
+						+ "<b> ER7: It should show validation message as \"File size must be less than 50 MB\".<b>"
+						+ test.addScreenCapture(captureScreenShot(driver, "File_Size")));
+
+
 		Credoc.getCancel().click();
 		sleep(4);
+		Credoc.getPlusButtonuploadfile().click();
+		sleep(2);
 		Credoc.fileupload(uploadFileName);
 		sleep(10);
 		String home_page = driver.getWindowHandle();

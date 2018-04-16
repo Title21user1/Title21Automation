@@ -68,6 +68,7 @@ public class AddEmployee_Test extends BaseClass {
 				test.addScreenCapture(captureScreenShot(driver, "EmployeeRecordsareListed")));
 		
 		log.info("Now clicking on Add new Link.");
+		sleep(3);
 		addEmployeePOM.addNewLink().click();
 		test.log(LogStatus.PASS,"4.	Click on Add new button.");
 		addEmployeePOM=new AddEmployee_POM(driver);
