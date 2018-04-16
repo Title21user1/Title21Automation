@@ -139,7 +139,7 @@ public class CreateDocument_Test extends BaseClass {
 		Credoc.fileupload(uploadFileNameSize);
 		sleep(2);
 		Credoc.getBrouse().click();
-		sleep(2);
+		sleep(1);
 		Credoc.pressEscape();
 		sleep(5);
 		
@@ -152,9 +152,7 @@ public class CreateDocument_Test extends BaseClass {
 
 		}
 		Credoc.getCancel().click();
-		sleep(2);
-		Credoc.getPlusButtonuploadfile().click();
-		sleep(2);
+		sleep(4);
 		Credoc.fileupload(uploadFileName);
 		sleep(10);
 		String home_page = driver.getWindowHandle();

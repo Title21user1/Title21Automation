@@ -630,7 +630,6 @@ public class CreateDocument_POM
 		} catch (AWTException e) {
 			e.printStackTrace();
 		}
-		
 	}
 	
 	public void Search(String search)
