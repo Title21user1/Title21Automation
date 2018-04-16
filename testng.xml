@@ -28,7 +28,7 @@
 	<test name="DocumentScreens">
 		<classes>
 
-			<class name="org.title21.Documents_test.PeriodicOwnedDocuments_Test"/>
+			<class name="org.title21.PeriodicReviewers_Test.PeriodicNotOwnedDocuments_Test"/>
 			<!-- <class name="org.title21.Documents_Test.DocumentRoutes_Test"/>
 			<class name="org.title21.Documents_Test.CheckInCheckOut_Test"/> 
 			<class name="org.title21.Documents_Test.DetailedCheckout_Test"/> 
@@ -45,7 +45,7 @@
 			<class name="org.title21.Module3_Test.Codes_Test"/>
 			<class name="org.title21.Module3_Test.eBinders_Test"/>
 			<class name="org.title21.Module3_Test.AttachmentControlInDoc_Test"/>
-			<class name="org.title21.Module3_Test.LinkControlOfDocument_Test"/>
+			<class name="org.title21.Module3_Test.LinkControlOfDocument_Test"/> -->
 
 			
 		</classes>
