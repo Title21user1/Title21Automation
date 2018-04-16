@@ -248,7 +248,6 @@ public class Reports_Test extends BaseClass
 		
 		reports.closeButton().click();											sleep(3);
 		reports.deleteReport().click();											sleep(3);
-		reports.yesButton().click();											sleep(3);
 		
 		test.log(LogStatus.PASS,"34. Click on delete button.");
 		

@@ -2,17 +2,17 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Title21Suite">
 	<parameter name="configFile" value="config.properties" />
-	<!-- <test name="Sanity" preserve-order="true">
+	<test name="Sanity" preserve-order="true">
 		<classes>
 
 			<class name="org.title21.Santiy_Test.Sanity_Test" />
 
 		</classes>
-	</test> -->
+	</test>
 	<test name="AdminModuleScreens" preserve-order="true">
 		<classes>
 			
-			<!-- <class name="org.title21.AdminModule_Test.LoginPage_Test"/>
+			<class name="org.title21.AdminModule_Test.LoginPage_Test"/>
 			<class name="org.title21.AdminModule_Test.LogoutPage_Test"/>
 			<class name="org.title21.AdminModule_Test.AddEmployee_Test"/>
 			<class name="org.title21.AdminModule_Test.UpdateEmployee_Test"/> 
@@ -21,7 +21,7 @@
 			<class name="org.title21.AdminModule_Test.DeleteUser_Test"/>
 			<class name="org.title21.AdminModule_Test.CreateDeleteGroups_Test"/> 
 			<class name="org.title21.AdminModule_Test.DeleteEmployee_Test"/>
-			<class name="org.title21.AdminModule_Test.AccountLockout_Test"/> -->
+			<class name="org.title21.AdminModule_Test.AccountLockout_Test"/>
 
 		</classes>
 	</test>
@@ -29,15 +29,15 @@
 		<classes>
 			
 			<class name="org.title21.Documents_Test.CreateDocument_Test"/>
-			<!-- <class name="org.title21.Documents_Test.DocumentRoutes_Test"/>
+			<class name="org.title21.Documents_Test.DocumentRoutes_Test"/>
 			<class name="org.title21.Documents_Test.CheckInCheckOut_Test"/> 
 			<class name="org.title21.Documents_Test.DetailedCheckout_Test"/> 
 			<class name="org.title21.Documents_Test.ReadAndSignTraining_Test"/>
-			<class name="org.title21.Documents_Test.RecentlyViewedAndFavorites_Test"/> -->
+			<class name="org.title21.Documents_Test.RecentlyViewedAndFavorites_Test"/>
 			
 		</classes>
 	</test>
-	<!-- <test name="Module3" preserve-order="true">
+	<test name="Module3" preserve-order="true">
 		<classes>
 
 			<class name="org.title21.Module3_Test.Reports_Test"/>
@@ -55,5 +55,5 @@
 			<class name="org.title21.PeriodicReviewers_Test.PeriodicOwnedDocuments_Test"/>
 			
 		</classes>
-	</test> -->
+	</test>
 </suite>

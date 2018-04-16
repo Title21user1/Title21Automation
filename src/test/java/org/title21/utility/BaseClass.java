@@ -44,6 +44,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.LocalFileDetector;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -100,6 +101,7 @@ public class BaseClass {
 	public static String AuditLogsSheet="";
 	public static String browser="";
 	public static String baseUrl="";
+	public static String remoteUrl="";
 	public static String dbServer="";
 	public static String dbName="";
 	public static String dbUsername="";
@@ -150,6 +152,7 @@ public class BaseClass {
 		
 		browser=p.getProperty("browser");
 		baseUrl=p.getProperty("baseUrl");
+		remoteUrl=p.getProperty("remoteURL");
 		excelFile=p.getProperty("excelFilePath");
 		
 		//db properties		
@@ -208,11 +211,11 @@ public class BaseClass {
 	public static void createDirectory(String classname) {
 
 		classname = classname.substring(4);
-		imagesDirectory = System.getProperty("user.dir") + "\\extentReports" + "\\" + classname;
+		//imagesDirectory = System.getProperty("user.dir") + "\\extentReports" + "\\" + classname;
 		/*
 		 * relativePathforImage has been set with relation with index.html
 		 */
-		//relativePathforImage="..\\extentReports" + "\\" + classname+"\\";	
+		imagesDirectory="/Title21/extentReports" + "/" + classname+"/";	
 		
 		relativePathforImage="./"+classname+"/";
 		
@@ -272,7 +275,7 @@ public class BaseClass {
 			SimpleDateFormat formater = new SimpleDateFormat("dd_MM_yy_hh_mm_ss");
 			File src = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 			
-			String dest = imagesDirectory + "\\" + screenshotName + "-" + formater.format(calander.getTime()) + ".png";
+			String dest = imagesDirectory + "/" + screenshotName + "-" + formater.format(calander.getTime()) + ".png";
 			File destination = new File(dest);
 			FileUtils.copyFile(src, destination);			
 			return dest;
@@ -320,7 +323,8 @@ public class BaseClass {
 			dc.setCapability(ChromeOptions.CAPABILITY, options);
 			
 			try {
-				remotedriver = new RemoteWebDriver(new URL("http://180.149.240.179:4567/wd/hub"),dc);
+				remotedriver = new RemoteWebDriver(new URL(remoteUrl),dc);
+				remotedriver.setFileDetector(new LocalFileDetector());
 			} catch (MalformedURLException e) {
 				e.printStackTrace();
 			}
