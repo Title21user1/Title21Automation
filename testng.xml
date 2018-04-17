@@ -27,7 +27,8 @@
 	</test>
 	<test name="DocumentScreens" preserve-order="true">
 		<classes>
-			
+      
+			<class name="org.title21.Documents_Test.DocumentRoutes_Test"/>
 			<class name="org.title21.Documents_Test.CreateDocument_Test"/>
 			<class name="org.title21.Documents_Test.DocumentRoutes_Test"/>
 			<class name="org.title21.Documents_Test.CheckInCheckOut_Test"/> 
@@ -53,6 +54,7 @@
 		<classes>
 
 			<class name="org.title21.PeriodicReviewers_Test.PeriodicOwnedDocuments_Test"/>
+      <class name="org.title21.PeriodicReviewers_Test.PeriodicNotOwnedDocuments_Test"/>
 			
 		</classes>
 	</test>
