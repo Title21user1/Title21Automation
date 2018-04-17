@@ -59,6 +59,38 @@ public class PeriodicNotOwnedDocuments_POM extends PeriodicOwnedDocuments_POM {
 	{
 		return allowPeriodicReviewWithoutViewingDocumentText;
 	}
+	
+	@FindBy(xpath="//li[@id='Settings']")
+	WebElement dropDownSettingLink;
+	
+	@FindBy(xpath="//*[@id='BatchReview']")
+	WebElement multiSignReviewCheckBox;
+	
+	@FindBy(xpath="//td[1]")
+	WebElement reviewDocCheckBox;
+	
+	@FindBy(xpath="//*[@id='tab-strip']/ul/li[2]/span")
+	WebElement docTabCloseButton;
+	
+	public WebElement docTabClose_Button()
+	{
+		return docTabCloseButton;
+	}
+	
+	public WebElement reviewDoc_CheckBox()
+	{
+		return reviewDocCheckBox;
+	}
+	
+	public WebElement multiSignReview_CheckBox()
+	{
+		return multiSignReviewCheckBox;
+	}
+	
+	public WebElement dropDownSetting_Link()
+	{
+		return dropDownSettingLink;
+	}
 
 	public WebElement docPermissions_PartTwo()
 	{
@@ -111,14 +143,27 @@ public class PeriodicNotOwnedDocuments_POM extends PeriodicOwnedDocuments_POM {
 	
 	
 	public void docPermissionItemsCheck(Boolean check)
-	 {
-	  if (!check && allowPeriodicReviewWithoutViewingDocument_Text().isSelected()) {
+	{
+	  if (!check && allowPeriodicReviewWithoutViewingDocument_Text().isSelected()) 
+	  {
 		  allowPeriodicReviewWithoutViewingDocument_Text().click();
 	  }
-	  else if (check && !allowPeriodicReviewWithoutViewingDocument_Text().isSelected()) {
+	  else if (check && !allowPeriodicReviewWithoutViewingDocument_Text().isSelected())
+	  {
 		  allowPeriodicReviewWithoutViewingDocument_Text().click();
 	  }
-	 }
+	}
 	
+	public void multiSignReviewCheck(Boolean check)
+	{
+	  if (!check && multiSignReview_CheckBox().isSelected()) 
+	  {
+		  multiSignReview_CheckBox().click();
+	  }
+	  else if (check && !multiSignReview_CheckBox().isSelected())
+	  {
+		  multiSignReview_CheckBox().click();
+	  }
+	}
 }
 

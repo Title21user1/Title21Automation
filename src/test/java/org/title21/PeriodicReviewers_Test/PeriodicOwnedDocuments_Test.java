@@ -61,12 +61,12 @@ public class PeriodicOwnedDocuments_Test extends BaseClass{
 		
 		test.log(LogStatus.PASS,"2.Create a new document.");
 		periodicReviews.getnewdoc().click();
-		sleep(2);
+		sleep(4);
 		waitTillElementVisible(periodicReviews.getdocument());
 		periodicReviews.getdocument().click();
 		sleep(3);
 		periodicReviews.getlocationDrodown().selectByVisibleText(routeData[1][0]);
-		sleep(2);
+		sleep(4);
 		documetNo = periodicReviews.document_No().getAttribute("value");
 		periodicReviews.getDocumentTitle().sendKeys(routeData[1][1]+documetNo); 
 		periodicReviews.getDocChangeSummary().sendKeys(routeData[1][2]+documetNo);
@@ -85,30 +85,30 @@ public class PeriodicOwnedDocuments_Test extends BaseClass{
 				fileUploadPath=fileUploadPath+"\\"+uploadFileName;
 				periodicReviews.browse_Button().sendKeys(fileUploadPath);
 
-				sleep(2);
+				sleep(4);
 				periodicReviews.add_Button().click();
-				sleep(2);
+				sleep(4);
 			}
 			else
 			{
 				test.log(LogStatus.FAIL,"Unable to find Add Main File header.");
 			}
-			sleep(2);
+			sleep(4);
 			periodicReviews.getDocumentApprovaltab().click();
-			sleep(2);
+			sleep(4);
 			periodicReviews.getAddApproverLink().click();
 			sleep(5);
 			if(periodicReviews.addNewApprover_Header().isDisplayed())
 			{
 				periodicReviews.getApproverRole().selectByVisibleText(routeData[1][3]);
-				sleep(2);
+				sleep(4);
 				periodicReviews.getLocationDropdown().selectByVisibleText(routeData[1][4]); 
-				sleep(2);
+				sleep(4);
 				periodicReviews.getnameinAddApprover().selectByVisibleText(routeData[1][5]);
 				periodicReviews.getSequenceinAddApprover().selectByVisibleText("1");
 				periodicReviews.getallottedDaysinAddApprover().selectByVisibleText(routeData[1][7]);
 				periodicReviews.approverAdd_Button().click();
-				sleep(2);
+				sleep(4);
 
 			}
 			else
@@ -117,7 +117,7 @@ public class PeriodicOwnedDocuments_Test extends BaseClass{
 						test.addScreenCapture(captureScreenShot(driver, "new approver popup")));
 			}
 			periodicReviews.general_Tab().click();
-			sleep(2);
+			sleep(4);
 			
 			test.log(LogStatus.PASS, "4.Set the document owner as the current test user if not set already.");
 			
@@ -144,9 +144,9 @@ public class PeriodicOwnedDocuments_Test extends BaseClass{
 				}
 			}
 			periodicReviews.pickDate_TextBox().click();
-			sleep(2);
+			sleep(4);
 			driver.findElement(By.xpath("//td[text()='"+dd+"']")).click();
-			sleep(2);
+			sleep(4);
 			
 			verticalScrollingUp();
 			verticalScrollingUp();
@@ -164,9 +164,9 @@ public class PeriodicOwnedDocuments_Test extends BaseClass{
 				}
 			}
 			periodicReviews.docTargetReleaseDate_TextBox().click();
-			sleep(2);
+			sleep(4);
 			driver.findElement(By.xpath("//td[text()='"+Releasedd+"']")).click();
-			sleep(2);
+			sleep(4);
 			test.log(LogStatus.PASS, "9.Click on 'Edit Periodic Reviewers' link.");
 			scrollIntoView(periodicReviews.editPeriodicReviewers_Link());
 			periodicReviews.editPeriodicReviewers_Link().click();
@@ -183,7 +183,7 @@ public class PeriodicOwnedDocuments_Test extends BaseClass{
 				test.log(LogStatus.PASS, "11.Select two reviewers.");
 				periodicReviews.availablePeriodicReviewers_Filter().click();
 				periodicReviews.availablePeriodicReviewers_Filter().sendKeys(loginData[11][2]);
-				sleep(2);
+				sleep(4);
 				if(periodicReviews.AvailablePeriodicReviewers_SearchResultArea().isDisplayed())
 				{
 					periodicReviews.availablePeriodic_MoveButton().click();
@@ -193,11 +193,11 @@ public class PeriodicOwnedDocuments_Test extends BaseClass{
 					test.log(LogStatus.PASS, "Periodic Reviewers is not displyed after specific search.");
 				}
 				
-				sleep(2);
+				sleep(4);
 				
 				periodicReviews.availablePeriodicReviewers_Filter().clear();
 				periodicReviews.availablePeriodicReviewers_Filter().sendKeys(loginData[12][2]);
-				sleep(2);
+				sleep(4);
 				if(periodicReviews.AvailablePeriodicReviewers_SearchResultArea().isDisplayed())
 				{
 					periodicReviews.availablePeriodic_MoveButton().click();
@@ -208,7 +208,7 @@ public class PeriodicOwnedDocuments_Test extends BaseClass{
 				}
 				
 				periodicReviews.save_Button().click();
-				sleep(2);
+				sleep(4);
 			}
 			else
 			{
@@ -231,12 +231,12 @@ public class PeriodicOwnedDocuments_Test extends BaseClass{
 			verticalScrollingUp();
 			verticalScrollingUp();
 			periodicReviews.docContext_Menu().click();
-			sleep(2);
+			sleep(4);
 			periodicReviews.checkIn_Route().click();
 
-			sleep(2);
+			sleep(4);
 			periodicReviews.checkInRouteSubmit_Button().click();
-			sleep(2);
+			sleep(10);
 			if(periodicReviews.messagePopUp_Header().isDisplayed())
 			{
 				test.log(LogStatus.PASS, "<b>ER 3- The document is checked in and route for approval.<b>"+
@@ -265,7 +265,7 @@ public class PeriodicOwnedDocuments_Test extends BaseClass{
 			test.log(LogStatus.PASS,"16.Run jobs to move the document to the effective cabinet."+DBConnection.executeStoredProcedure(dbqueries.moveDocsOnReleaseDate));
 			
 			driver.findElement(By.xpath("//li[text()='"+routeData[1][1]+documetNo+"']")).click();
-			sleep(2);	
+			sleep(4);	
 			documentStatus = periodicReviews.document_Status().getText();
 			if(documentStatus.equals("Effective"))
 			{
@@ -277,7 +277,7 @@ public class PeriodicOwnedDocuments_Test extends BaseClass{
 				driver.navigate().refresh();
 				sleep(10);
 				driver.findElement(By.xpath("//li[text()='"+routeData[1][1]+documetNo+"']")).click();
-				sleep(2);
+				sleep(4);
 				if(documentStatus.equals("Effective"))
 				{
 					test.log(LogStatus.PASS, "<b>ER5- The document Status is changed to effective.<b>"+
@@ -292,9 +292,9 @@ public class PeriodicOwnedDocuments_Test extends BaseClass{
 			
 			test.log(LogStatus.PASS, "17.Go to: Wizard > Review.");
 			periodicReviews.wizard_Option().click();
-			sleep(2);
+			sleep(4);
 			periodicReviews.wizardReview_Tab().click();
-			sleep(2);
+			sleep(4);
 			
 			for(int i=1; i<=20; i++)
 			{
@@ -302,7 +302,7 @@ public class PeriodicOwnedDocuments_Test extends BaseClass{
 				 if(!isValueFound)
 				 {
 					 periodicReviews.documentTableNext_Button().click();
-					sleep(2); 
+					sleep(4); 
 				}
 				else
 				{
@@ -322,7 +322,7 @@ public class PeriodicOwnedDocuments_Test extends BaseClass{
 			
 			test.log(LogStatus.PASS, "18.Click on the document.");
 			selectDocForReview(documetNo);
-			sleep(2);
+			sleep(4);
 			
 			if(periodicReviews.changeDontChangeDisable_Button().isDisplayed())
 			{
@@ -336,11 +336,11 @@ public class PeriodicOwnedDocuments_Test extends BaseClass{
 			}
 			verticalScrollingDown();
 			verticalScrollingDown();
-			sleep(2);
+			sleep(4);
 			test.log(LogStatus.PASS, "19.Click on the context menu for one of the periodic reviewers.");
 			periodicReviews.firstPeriodicReviewer_ContextTab().click();
 			
-			sleep(2);
+			sleep(4);
 			if(periodicReviews.firstPeriodicReviewerBypass_Menu().isDisplayed())
 			{
 				test.log(LogStatus.PASS, "<b>ER 8- Bypass option is available.<b>"+
@@ -353,7 +353,7 @@ public class PeriodicOwnedDocuments_Test extends BaseClass{
 				test.log(LogStatus.PASS, "Unable to find the Bypass option");
 			}
 			
-			sleep(2);
+			sleep(4);
 			if(periodicReviews.bypassReviewer_ConfirmationMsg().isDisplayed())
 			{
 				test.log(LogStatus.PASS, "<b>ER 9- The bypass confirmation popup is displayed.<b>"+
@@ -366,7 +366,7 @@ public class PeriodicOwnedDocuments_Test extends BaseClass{
 			
 			test.log(LogStatus.PASS, "21.Click on yes button.");
 			periodicReviews.yes_Button().click();
-			sleep(2);
+			sleep(4);
 
 			if(periodicReviews.bypassedByFirstReviewer_TextMsg().isDisplayed())
 			{
@@ -380,13 +380,13 @@ public class PeriodicOwnedDocuments_Test extends BaseClass{
 			
 			test.log(LogStatus.PASS, "22.Logout from Test user 1 (Owner). Login to the Test user 2 (1st periodic reviewer added in step(8)) checks the periodic reviews list of the second user.");
 			logout.logoutFunction();
-			sleep(2);
+			sleep(4);
 			login.loginUser(loginData[11][0], loginData[11][1]);
 			
 			periodicReviews.wizard_Option().click();
-			sleep(2);
+			sleep(4);
 			periodicReviews.wizardReview_Tab().click();
-			sleep(2);
+			sleep(4);
 			
 			for(int i=1; i<=20; i++)
 			{
@@ -394,7 +394,7 @@ public class PeriodicOwnedDocuments_Test extends BaseClass{
 				 if(!isValueFound)
 				 {
 					 periodicReviews.documentTableNext_Button().click();
-					sleep(2); 
+					sleep(4); 
 				}
 				else
 				{
@@ -417,9 +417,9 @@ public class PeriodicOwnedDocuments_Test extends BaseClass{
 			login.loginUser(loginData[7][0], loginData[7][1]);
 			
 			periodicReviews.wizard_Option().click();
-			sleep(2);
+			sleep(4);
 			periodicReviews.wizardReview_Tab().click();
-			sleep(2);
+			sleep(4);
 			
 			for(int i=1; i<=20; i++)
 			{
@@ -427,7 +427,7 @@ public class PeriodicOwnedDocuments_Test extends BaseClass{
 				 if(!isValueFound)
 				 {
 					 periodicReviews.documentTableNext_Button().click();
-					sleep(2); 
+					sleep(4); 
 				}
 				else
 				{
@@ -435,16 +435,16 @@ public class PeriodicOwnedDocuments_Test extends BaseClass{
 				}
 			}
 			selectDocForReview(documetNo);
-			sleep(2);
+			sleep(4);
 			verticalScrollingDown();
-			sleep(2);
+			sleep(4);
 			periodicReviews.firstPeriodicReviewer_ContextTab().click();
-			sleep(2);
+			sleep(4);
 			test.log(LogStatus.PASS, "24.Click on the context menu and Click on 'Clear Bypass' for the Test user 2 who was bypassed in step 18 and confirm.");
 			periodicReviews.firstPeriodicReviewer_ClearBypass().click();
-			sleep(2);
+			sleep(4);
 			periodicReviews.yes_Button().click();
-			sleep(2);
+			sleep(4);
 			
 			String firstReviewer_Comments = periodicReviews.firstReviewer_Comments().getText();
 			if(firstReviewer_Comments.equalsIgnoreCase("N/A"))
@@ -459,12 +459,12 @@ public class PeriodicOwnedDocuments_Test extends BaseClass{
 			
 			test.log(LogStatus.PASS, "25.Logout and login as the Test user 2 and check the periodic review list.");
 			logout.logoutFunction();
-			sleep(2);
+			sleep(4);
 			login.loginUser(loginData[11][0], loginData[11][1]);
 			periodicReviews.wizard_Option().click();
-			sleep(2);
+			sleep(4);
 			periodicReviews.wizardReview_Tab().click();
-			sleep(2);
+			sleep(4);
 			
 			for(int i=1; i<=20; i++)
 			{
@@ -472,7 +472,7 @@ public class PeriodicOwnedDocuments_Test extends BaseClass{
 				 if(!isValueFound)
 				 {
 					 periodicReviews.documentTableNext_Button().click();
-					sleep(2); 
+					sleep(4); 
 				}
 				else
 				{
@@ -492,14 +492,14 @@ public class PeriodicOwnedDocuments_Test extends BaseClass{
 			
 			test.log(LogStatus.PASS, "26.Perform the periodic review by clicking on view document.");
 			selectDocForReview(documetNo);
-			sleep(2);
+			sleep(4);
 			periodicReviews.viewDocButtonForPeriodicReview().click();
-			sleep(2);
+			sleep(4);
 			
 			test.log(LogStatus.PASS, "27.Click on Either Change or Don't Change.");
 			periodicReviews.dontChange_Button().click();
 			
-			sleep(2);
+			sleep(4);
 			if(periodicReviews.reviewDecisionPopUp_Header().isDisplayed())
 			{
 				test.log(LogStatus.PASS, "<b>ER 14- The periodic review decision popup is displayed.<b>"+
@@ -510,7 +510,7 @@ public class PeriodicOwnedDocuments_Test extends BaseClass{
 				
 				test.log(LogStatus.PASS, "29.Click on confirm button.");
 				periodicReviews.checkInRouteSubmit_Button().click();
-				sleep(2);
+				sleep(4);
 			}
 			else
 			{
@@ -520,13 +520,13 @@ public class PeriodicOwnedDocuments_Test extends BaseClass{
 			
 			test.log(LogStatus.PASS, "30.Logout and login again as the Test user 1 and select the document in the user's periodic reviewer's list.");
 			logout.logoutFunction();
-			sleep(2);
+			sleep(4);
 			login.loginUser(loginData[7][0], loginData[7][1]);
 			
 			periodicReviews.wizard_Option().click();
-			sleep(2);
+			sleep(4);
 			periodicReviews.wizardReview_Tab().click();
-			sleep(2);
+			sleep(4);
 			
 			for(int i=1; i<=20; i++)
 			{
@@ -534,7 +534,7 @@ public class PeriodicOwnedDocuments_Test extends BaseClass{
 				 if(!isValueFound)
 				 {
 					 periodicReviews.documentTableNext_Button().click();
-					sleep(2); 
+					sleep(4); 
 				}
 				else
 				{
@@ -557,7 +557,7 @@ public class PeriodicOwnedDocuments_Test extends BaseClass{
 			verticalScrollingDown();
 			test.log(LogStatus.PASS, "31.Bypass the Third test user (Test User 3 from Prerequisite 2).");
 			periodicReviews.secondPeriodicReviewer_ContextTab().click();
-			sleep(2);
+			sleep(4);
 			periodicReviews.secondPeriodicReviewer_Bypass().click();
 			waitTillElementVisible(periodicReviews.yes_Button());
 			periodicReviews.yes_Button().click();
@@ -579,10 +579,10 @@ public class PeriodicOwnedDocuments_Test extends BaseClass{
 			test.log(LogStatus.PASS, "33.Click on 'Don't Change', then sign by providing a pin and comments. Click Confirm.");
 			verticalScrollingUp();
 			periodicReviews.dontChange_Button().click();
-			sleep(2);
+			sleep(4);
 			periodicReviews.reviewPIN_TextBox().sendKeys(routeData[1][12]);
 			periodicReviews.checkInRouteSubmit_Button().click();
-			sleep(2);
+			sleep(4);
 			
 			test.log(LogStatus.PASS, "34.View the list of periodic reviews awaiting the first test user.");
 			for(int i=1; i<=20; i++)
@@ -591,7 +591,7 @@ public class PeriodicOwnedDocuments_Test extends BaseClass{
 				 if(!isValueFound)
 				 {
 					 periodicReviews.documentTableNext_Button().click();
-					sleep(2); 
+					sleep(4); 
 				}
 				else
 				{
@@ -611,17 +611,17 @@ public class PeriodicOwnedDocuments_Test extends BaseClass{
 			
 			test.log(LogStatus.PASS, "35.Log in to the local admin user and view the audit logs (administration> Audit log)");
 			logout.logoutFunction();
-			sleep(2);
+			sleep(4);
 			login.loginUser(loginData[7][0], loginData[7][1]);
 			periodicReviews.administratorDropDown().click();
 			periodicReviews.auditLog_Option().click();
-			sleep(2);
+			sleep(4);
 			
 			test.log(LogStatus.PASS, "36.Select type Bypass required reviewer and click on confirm.");
 			periodicReviews.auditLogType_DropDown().selectByVisibleText(AuditLogs[1][0]); 
-			sleep(2);
+			sleep(4);
 			periodicReviews.auditLogConfirm_Button().click();
-			sleep(2);
+			sleep(4);
 			verticalScrollingDown();
 			
 			if(verifyValuesInAuditLog(loginData[11][2], 8)&&verifyValuesInAuditLog(loginData[12][2], 8))
@@ -639,9 +639,9 @@ public class PeriodicOwnedDocuments_Test extends BaseClass{
 			test.log(LogStatus.PASS, "37.Select type Cleared Bypass of Required Reviewer and click on confirm.");
 			verticalScrollingUp();
 			periodicReviews.auditLogType_DropDown().selectByVisibleText(AuditLogs[2][0]); 
-			sleep(2);
+			sleep(4);
 			periodicReviews.auditLogConfirm_Button().click();
-			sleep(2);
+			sleep(4);
 			verticalScrollingDown();
 			if(verifyValuesInAuditLog(loginData[11][2], 8))
 			{
@@ -656,11 +656,11 @@ public class PeriodicOwnedDocuments_Test extends BaseClass{
 			
 			test.log(LogStatus.PASS, "38.Select type Enter/Update Review and click on confirm.");
 			verticalScrollingUp();
-			sleep(2);
+			sleep(4);
 			periodicReviews.auditLogType_DropDown().selectByVisibleText(AuditLogs[3][0]); 
-			sleep(2);
+			sleep(4);
 			verticalScrollingDown();
-			sleep(2);
+			sleep(4);
 			if(verifyValuesInAuditLog(loginData[7][0], 2))
 			{
 				test.log(LogStatus.PASS, "<b>ER 20- The periodic review actions performed by the Test user 1 and Test user 3 are available in the audit logs.<b>"+
@@ -756,7 +756,7 @@ public class PeriodicOwnedDocuments_Test extends BaseClass{
 	{
 		periodicReviews.wizard_Option().click();
 		periodicReviews.approval_Tab().click();
-		sleep(2);
+		sleep(4);
 		isRecordFound = false;
 		for(int i=1; i<=20; i++)
 		{
@@ -765,22 +765,22 @@ public class PeriodicOwnedDocuments_Test extends BaseClass{
 			 {
 				// verticalScrollingDown();
 				 periodicReviews.documentTableNext_Button().click();
-		 		 sleep(2); 
+		 		 sleep(4); 
 			 }
 			 else
 			 {
 				 break;
 			 }
 		}
-		sleep(2);
+		sleep(4);
 		periodicReviews.documentTab_ForApprover().click();
-		sleep(2);
+		sleep(4);
 		periodicReviews.documentApprove_Button().click();
-		sleep(2);
+		sleep(4);
 		periodicReviews.pinTo_Approve().clear();
 		periodicReviews.pinTo_Approve().sendKeys(routeData[1][12]);
 		periodicReviews.checkInRouteSubmit_Button().click();
-		sleep(4);
+		sleep(10);
 	}
 
 }
