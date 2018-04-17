@@ -369,8 +369,7 @@ public class RecentlyViewdAndFavorites_POM {
 		Credoc.getnewdoc().click();
 		FileUplo=new FileUpload();
 		baseclass=new BaseClass();
-		BaseClass.sleep(2);
-		baseclass.waitTillElementVisible(Credoc.getdocument());
+		BaseClass.sleep(3);
 		Credoc.getdocument().click();
 		BaseClass.sleep(5);
 		Credoc.GeteditdocumentNo().click();

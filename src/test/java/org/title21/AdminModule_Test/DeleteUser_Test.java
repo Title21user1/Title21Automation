@@ -1,8 +1,6 @@
 package org.title21.AdminModule_Test;
 
 import java.util.List;
-import java.util.concurrent.TimeUnit;
-
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
@@ -118,8 +116,7 @@ public class DeleteUser_Test extends BaseClass{
 		verifyUserNameInTable(adminData.getUserName());
 		sleep(2);
 		clickOnDeleteButton(adminData.getUserName());
-		
-		waitTillElementVisible(deleteUser.getDeleteUserpopupYesButton());
+		sleep(3);
 
 		test.log(LogStatus.PASS, "9. Click on yes button.");
 		deleteUser.getDeleteUserpopupYesButton().click();
@@ -145,11 +142,7 @@ public class DeleteUser_Test extends BaseClass{
 		deleteUser.groupFilterResult().sendKeys(adminData.getUserName());
 		
 		deleteUser.groupFilterResutGoButton().click();
-		
-		waitTillElementVisible(deleteUser.getnoUserfoundMessage());
-				
-		sleep(3);
-		driver.manage().timeouts().implicitlyWait(7, TimeUnit.SECONDS);
+		sleep(5);
 		if(deleteUser.verifyNoUserFoundText(driver))
 		{
 			test.log(LogStatus.PASS, "<b>ER 7- It should display 'no user found' message. <b>"+
@@ -183,7 +176,7 @@ public class DeleteUser_Test extends BaseClass{
 		}
 		test.log(LogStatus.PASS, "12. Go to user list screen.");
 		deleteUser.user_link().click();
-		waitTillElementVisible(deleteUser.groupFilterResult());
+		sleep(3);
 		test.log(LogStatus.PASS, "13.Find admin user which you are using.");
 		deleteUser.groupFilterResult().clear();
 		deleteUser.groupFilterResult().sendKeys(updatedAdminUsername);

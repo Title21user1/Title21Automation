@@ -4,12 +4,17 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.title21.DBConnection.DBConnection;
+import org.title21.DBConnection.DBQueries;
 import org.title21.utility.BaseClass;
 
 public class DashBord_POM
 
 {
-	BaseClass b=new BaseClass();
+	BaseClass b = new BaseClass();
+	DBConnection dbconnection = new DBConnection();
+	DBQueries dbqueries = new DBQueries();
+	
 	protected WebDriver driver;
 	
 	public DashBord_POM(WebDriver driver) {
@@ -148,6 +153,43 @@ public class DashBord_POM
 		
 	}
 
+	@SuppressWarnings("static-access")
+	public void enableCIBMTR_LMS()
+	{
+		int CIBMTRValue = dbconnection.getIntDBValue(dbqueries.cibmtrValue, "CibmtrEnabled");
+		int LMSValue = dbconnection.getIntDBValue(dbqueries.lmsValue, "LmsEnabled");
+		
+		if (CIBMTRValue==0)
+		{
+			dbconnection.getQueryExecuted(dbqueries.cibmtrEnable);
+			System.out.println("CIBMTR enabled");
+		}
+		
+		if (LMSValue==0)
+		{
+			dbconnection.getQueryExecuted(dbqueries.lmsEnable);
+			System.out.println("LMS enabled");
+		}
+	}
+	
+	@SuppressWarnings("static-access")
+	public void enableCIBMTR_LMS_ForGroup(String groupName)
+	{
+		int allowCIBMTRValue = dbconnection.getIntDBValue(dbqueries.allowCibmtrAccessValue+"'"+groupName+"'", "AllowCibmtrAccess");
+		int allowLMSValue = dbconnection.getIntDBValue(dbqueries.allowLMSAccessValue+"'"+groupName+"'", "AllowLmsAccess");
+		
+		if (allowCIBMTRValue==0)
+		{
+			dbconnection.getQueryExecuted(dbqueries.allowCibmtrAccessEnable+"'"+groupName+"'");
+			System.out.println("CIBMTR enabled for group "+groupName);
+		}
+		
+		if (allowLMSValue==0)
+		{
+			dbconnection.getQueryExecuted(dbqueries.allowLMSAccessEnable+"'"+groupName+"'");
+			System.out.println("LMS enabled for group "+groupName);
+		}
+	}
 	
 	public boolean verifyHeaderStyle(){
 		

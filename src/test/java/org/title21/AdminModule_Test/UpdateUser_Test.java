@@ -78,7 +78,8 @@ public class UpdateUser_Test extends BaseClass{
 		test.log(LogStatus.PASS, "6.Click on Go button");
 		updateUserPage.groupFilterResutGoButton().click();
 	
-		sleep(2);
+		sleep(3);
+		
 		verifyUserNameInTable();
 		
 		sleep(3);

@@ -53,7 +53,7 @@ public class CheckInCheckOut_Test extends BaseClass
 		Credoc.getnewdoc().click();
 		sleep(2);
 		Credoc.getdocument().click();
-		waitTillElementVisible(Credoc.getSearchText());
+		sleep(2);
 
 		Credoc.getlocationDrodown().selectByVisibleText("Pittsburgh");
 		sleep(2);

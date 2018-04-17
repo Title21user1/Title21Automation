@@ -6,7 +6,6 @@ import org.title21.AdminModule_POM.LoginPage_POM;
 import org.title21.AdminModule_POM.LogoutPage_POM;
 import org.title21.Module3_POM.Reports_POM;
 import org.title21.utility.BaseClass;
-import org.title21.utility.FileUpload;
 import org.title21.utility.FunctionUtils;
 
 import com.relevantcodes.extentreports.LogStatus;
@@ -90,13 +89,9 @@ public class Reports_Test extends BaseClass
 		
 		test.log(LogStatus.PASS,"7.	Enter report name.");
 		
-		reports.browse().click();												sleep(2);
-		
 		test.log(LogStatus.PASS,"8.	Click on choose file button and Upload crystal report(.rpt extension report).");
-
-		fileUploadPath = System.getProperty("user.dir") + "\\testdata";
-		fileUploadPath = fileUploadPath + "\\" + uploadFileName;
-		FileUpload.uploadFile(fileUploadPath);									sleep(3);
+		
+		reports.fileupload(uploadFileName);										sleep(3);
 
 		reports.category().selectByVisibleText("Feedback");						sleep(2);
 		
@@ -129,11 +124,7 @@ public class Reports_Test extends BaseClass
 				test.addScreenCapture(captureScreenShot(driver, "Checkboxes Checked")));
 
 		reports.generalTab().click();											sleep(2);
-		reports.browse().click();												sleep(2);
-
-		fileUploadPath = System.getProperty("user.dir") + "\\testdata";
-		fileUploadPath = fileUploadPath + "\\" + uploadFileName;
-		FileUpload.uploadFile(fileUploadPath);									sleep(3);
+		reports.fileupload(uploadFileName);										sleep(3);
 
 		test.log(LogStatus.PASS,"13. Click on add button.");
 		
@@ -257,7 +248,6 @@ public class Reports_Test extends BaseClass
 		
 		reports.closeButton().click();											sleep(3);
 		reports.deleteReport().click();											sleep(3);
-		reports.yesButton().click();											sleep(3);
 		
 		test.log(LogStatus.PASS,"34. Click on delete button.");
 		

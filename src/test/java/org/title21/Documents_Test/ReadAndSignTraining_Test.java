@@ -59,8 +59,7 @@ public class ReadAndSignTraining_Test extends BaseClass{
 		dateTimeUtils=new DateTimeUtils();
 		
 		readSign.getnewdoc().click();
-		sleep(2);
-		waitTillElementVisible(readSign.getdocument());
+		sleep(3);
 		readSign.getdocument().click();
 		sleep(3);
 		readSign.getlocationDrodown().selectByVisibleText(routeData[1][0]);
@@ -78,7 +77,7 @@ public class ReadAndSignTraining_Test extends BaseClass{
 			
 			readSign.addMainFile_Button().click();
 			
-			waitTillElementVisible(readSign.addMainFileHeader_Text());
+			sleep(3);
 			
 			test.log(LogStatus.PASS,"3.Add a main file, approvers and other required fields.");
 			
@@ -127,7 +126,7 @@ public class ReadAndSignTraining_Test extends BaseClass{
 			sleep(2);
 			
 			readSign.ChangeTrainingType_Link().click();
-			waitTillElementVisible(readSign.changeTrainingType_Header());
+			sleep(2);
 			test.log(LogStatus.PASS,"5.Change the training type to 'Read and Sign'."+
 					test.addScreenCapture(captureScreenShot(driver, "Read and Sign")));
 			
@@ -240,7 +239,7 @@ public class ReadAndSignTraining_Test extends BaseClass{
 				test.log(LogStatus.FAIL, "unable to find the validation message- The document should be available in a new tab with options to Sign."+
 						test.addScreenCapture(captureScreenShot(driver, "document should be available")));
 			}
-			waitTillElementVisible(readSign.pin_TextBox());
+			sleep(2);
 			if(readSign.pin_TextBox().isDisplayed())
 			{
 				test.log(LogStatus.PASS, "<b>ER7- The electronic signature dialog is presented.<b>"+
@@ -293,12 +292,12 @@ public class ReadAndSignTraining_Test extends BaseClass{
 			
 			for(int i=1; i<=20; i++)
 			{
-				WebElement text = driver.findElement(By.xpath("//div[@class='t21-md-break t21-sm-break']//tr["+i+"]/td[5]"));
+				WebElement text = driver.findElement(By.xpath("//*[@id='dynamic-grid-table']/tbody/tr["+i+"]/td[5]"));
 				String itemName= text.getText();
 				
 				if(itemName.equalsIgnoreCase("Completed Training Item"))
 				{
-					WebElement documentName = driver.findElement(By.xpath("//div[@class='t21-md-break t21-sm-break']//tr["+i+"]/td[8]"));
+					WebElement documentName = driver.findElement(By.xpath("//*[@id='dynamic-grid-table']/tbody/tr["+i+"]/td[8]"));
 					String documentText= documentName.getText();
 					if(documentText.contains(documetNo))
 					{
@@ -327,8 +326,7 @@ public class ReadAndSignTraining_Test extends BaseClass{
 		dateTimeUtils=new DateTimeUtils();
 		
 		readSign.getnewdoc().click();
-		sleep(2);
-		waitTillElementVisible(readSign.getdocument());
+		sleep(3);
 		readSign.getdocument().click();
 		sleep(3);
 		test.log(LogStatus.PASS,"20.Create a new document");
@@ -346,7 +344,7 @@ public class ReadAndSignTraining_Test extends BaseClass{
 		{
 			readSign.addMainFile_Button().click();
 			
-			waitTillElementVisible(readSign.addMainFileHeader_Text());
+			sleep(3);
 			
 			test.log(LogStatus.PASS, "22.Add the main file, approvers, and all the required fields.");
 			//main file- 
@@ -407,7 +405,7 @@ public class ReadAndSignTraining_Test extends BaseClass{
 			
 			test.log(LogStatus.PASS, "25.Select or change the training type to 'Read and Sign'.");
 			readSign.ChangeTrainingType_Link().click();
-			waitTillElementVisible(readSign.changeTrainingType_Header());
+			sleep(3);
 			if(readSign.changeTrainingType_Header().isDisplayed())
 			{
 				readSign.readAndSignRadio_Button().click();
@@ -440,7 +438,7 @@ public class ReadAndSignTraining_Test extends BaseClass{
 			test.log(LogStatus.PASS, "30.For 'Select entities subject to training', select the 'From Selection' radio button. Click on 'Entities' link. Select two entities and click on 'Update'.");
 			readSign.entitiesSubject_FromSection().click();
 			readSign.addNewTrainingEntities_Link().click();
-			waitTillElementVisible(readSign.selectedEntities_Header());
+			sleep(5);
 			if(readSign.selectedEntities_Header().isDisplayed())
 			{
 				readSign.entitiesEmp_FilterBox().clear();
@@ -455,7 +453,7 @@ public class ReadAndSignTraining_Test extends BaseClass{
 				readSign.entitiesEmpFilterGo_Button().click();
 				sleep(2);
 				readSign.moveSelectedEntities_Button().click();
-				
+				sleep(2);
 				addedEntities = readSign.addedFirst_Entities().getText();
 				
 				javaScriptClick(readSign.changeTrainingTypePopUpSave_Button());
@@ -631,6 +629,7 @@ public class ReadAndSignTraining_Test extends BaseClass{
 		}
 		
 		logout.logoutFunction();
+		sleep(2);
 		extent.endTest(test);
 	}
 //=====================================================================Part=>03================================================================================	
@@ -643,8 +642,7 @@ public class ReadAndSignTraining_Test extends BaseClass{
 		dateTimeUtils=new DateTimeUtils();
 		
 		readSign.getnewdoc().click();
-		sleep(2);
-		waitTillElementVisible(readSign.getdocument());
+		sleep(3);
 		readSign.getdocument().click();
 		sleep(3);
 		test.log(LogStatus.PASS,"44.Create a new document.");
@@ -663,7 +661,7 @@ public class ReadAndSignTraining_Test extends BaseClass{
 		{
 			readSign.addMainFile_Button().click();
 			
-			waitTillElementVisible(readSign.addMainFileHeader_Text());
+			sleep(2);
 			
 			test.log(LogStatus.PASS, "47.Add the main file, approvers, and all the required fields.");
 			//main file- 
@@ -710,7 +708,7 @@ public class ReadAndSignTraining_Test extends BaseClass{
 			
 			test.log(LogStatus.PASS, "49.Select or change the training type to 'Read and Sign'.");
 			readSign.ChangeTrainingType_Link().click();
-			waitTillElementVisible(readSign.changeTrainingType_Header());
+			sleep(3);
 			if(readSign.changeTrainingType_Header().isDisplayed())
 			{
 				readSign.readAndSignRadio_Button().click();
@@ -744,7 +742,7 @@ public class ReadAndSignTraining_Test extends BaseClass{
 			test.log(LogStatus.PASS, "54.For 'Select entities subject to training', select the 'From Selection' radio button. Click on 'Entities' link. Select two entities and click on 'Update'.");
 			readSign.entitiesSubject_FromSection().click();
 			readSign.addNewTrainingEntities_Link().click();
-			waitTillElementVisible(readSign.selectedEntities_Header());
+			sleep(3);
 			if(readSign.selectedEntities_Header().isDisplayed())
 			{
 				readSign.entitiesEmp_FilterBox().clear();
@@ -779,7 +777,7 @@ public class ReadAndSignTraining_Test extends BaseClass{
 			readSign.checkIn_Route().click();
 			sleep(2);
 			readSign.checkInRouteSubmit_Button().click();
-			sleep(2);
+			sleep(4);
 			readSign.verifyDocumentCheckedIn(driver);
 			readSign.close_Button().click();
 			sleep(2);
@@ -845,13 +843,13 @@ public class ReadAndSignTraining_Test extends BaseClass{
 		}
 		
 		logout.logoutFunction();
-		extent.endTest(test);
 	}
 //=============================================================================================================================================================	
 	
 	@AfterClass
 	public void closeBrowserInstance()
-	{		
+	{	
+		extent.endTest(test);
 		driver.close();
 	}
 	

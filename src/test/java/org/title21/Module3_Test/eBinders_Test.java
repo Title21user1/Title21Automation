@@ -58,7 +58,7 @@ public class eBinders_Test extends BaseClass
 				test.addScreenCapture(captureScreenShot(driver, "Expanded EBinders")));
 
 
-		ebinder.selectEbinder("Power Temp");									sleep(3);
+		ebinder.selectEbinder("Test-Sub");									sleep(3);
 
 		test.log(LogStatus.PASS,"3. Click on one of the organizers to view a list of documents available within it");
 		test.log(LogStatus.PASS,"<b>ER2: A list of the document available within the organizer is displayed<b>"+
@@ -93,7 +93,7 @@ public class eBinders_Test extends BaseClass
 		ebinder.ebinderGroup().selectByVisibleText("Administrators");			sleep(1);
 		test.log(LogStatus.PASS,"10. Enter group");
 
-		ebinder.addButton().click();											sleep(2);
+		ebinder.addButton().click();											sleep(4);
 
 		test.log(LogStatus.PASS,"11. Click on add button");
 		test.log(LogStatus.PASS,"<b>ER5: A message confirming eBinder successful added is displayed.<b>"+

@@ -8,6 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
+import org.title21.utility.BaseClass;
 
 public class DocumentRoutes_POM extends CreateDocument_POM {
 
@@ -347,6 +348,16 @@ public class DocumentRoutes_POM extends CreateDocument_POM {
 	public Select getLocationDropdown(){
 		Select selectObj=new Select(locationDropdowninAddApprover);
 		return selectObj;	
+	}
+	
+	public void fileupload(String uploadFileName) {
+
+		String fileUploadPath = System.getProperty("user.dir") + "\\testdata";
+		fileUploadPath = fileUploadPath + "\\" + uploadFileName;
+		browse_Button().sendKeys(fileUploadPath);
+		BaseClass.sleep(1);
+		add_Button().click();
+		BaseClass.sleep(3);
 	}
 	
 	public boolean verifyDocumentCheckedIn(WebDriver driver)
