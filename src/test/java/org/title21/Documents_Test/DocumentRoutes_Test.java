@@ -55,8 +55,7 @@ public class DocumentRoutes_Test extends BaseClass{
 		test.log(LogStatus.INFO, "Link to Test case document", "<a href='file://"+filePath+"'>TestCaseDocument</a>");
 		documentRoutes=new DocumentRoutes_POM(driver);		
 		documentRoutes.getnewdoc().click();
-		sleep(2);
-		waitTillElementVisible(documentRoutes.getdocument());
+		sleep(3);
 		documentRoutes.getdocument().click();
 		sleep(3);
 		documentRoutes.getlocationDrodown().selectByVisibleText(routeData[1][0]);
@@ -76,7 +75,7 @@ public class DocumentRoutes_Test extends BaseClass{
 
 			documentRoutes.addMainFile_Button().click();
 
-			waitTillElementVisible(documentRoutes.addMainFileHeader_Text());
+			sleep(3);
 
 			if(documentRoutes.addMainFileHeader_Text().isDisplayed())
 			{

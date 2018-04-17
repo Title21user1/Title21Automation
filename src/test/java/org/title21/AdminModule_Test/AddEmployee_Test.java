@@ -73,7 +73,7 @@ public class AddEmployee_Test extends BaseClass {
 		test.log(LogStatus.PASS,"4.	Click on Add new button.");
 		addEmployeePOM=new AddEmployee_POM(driver);
 
-		waitTillElementVisible(addEmployeePOM.getEmployeeFullName());
+		sleep(2);;
 		test.log(LogStatus.PASS, "<b>ER3: Add new employee dialog is presented.<b>"+
 				test.addScreenCapture(captureScreenShot(driver, "AddNewEmployeeDialog")));
 
@@ -81,7 +81,7 @@ public class AddEmployee_Test extends BaseClass {
 				+ "field, click on Add button.");		
 
 		verticalScrollingDown();
-		waitTillElementVisible(addEmployeePOM.getAddBtn());
+		sleep(2);
 		log.info("scrolling down to click on Add button.");
 
 		//addEmployeePOM.getAddBtn().click();	
@@ -203,7 +203,7 @@ public class AddEmployee_Test extends BaseClass {
 
 		verticalScrollingDown();
 
-		waitTillElementVisible(addEmployeePOM.getAddBtn());
+		sleep(2);
 
 		test.log(LogStatus.PASS, "13. After entering all data in different fields from the General tab,"
 				+"click on add button from the same screen."); 
@@ -211,7 +211,7 @@ public class AddEmployee_Test extends BaseClass {
 		//addEmployeePOM.getAddBtn().click();	
 		javaScriptClick(addEmployeePOM.getAddBtn());		
 
-		waitTillElementVisible(addEmployeePOM.getJobCodesTab());
+		sleep(2);
 
 
 		//addEmployeePOM=new AddEmployee_POM(driver);
@@ -235,7 +235,7 @@ public class AddEmployee_Test extends BaseClass {
 
 		test.log(LogStatus.PASS, "15. Click on add button from job code screen after selecting job codes.");
 
-		waitTillElementVisible(addEmployeePOM.getCloseButtononSuccessMessage());
+		sleep(2);
 
 		if (addEmployeePOM.verifySuccessMessage()){
 
@@ -247,7 +247,7 @@ public class AddEmployee_Test extends BaseClass {
 
 		addEmployeePOM.getCloseButtononSuccessMessage().click();	
 
-		waitTillElementVisible(addEmployeePOM.getFilterTextBox());		
+		sleep(2);		
 
 		test.log(LogStatus.PASS, "16. Go to employee list and click on search filter");
 

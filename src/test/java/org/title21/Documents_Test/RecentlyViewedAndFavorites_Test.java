@@ -53,7 +53,7 @@ public class RecentlyViewedAndFavorites_Test extends BaseClass {
 		Credoc = new CreateDocument_POM(driver);
 		documentRoutes = new DocumentRoutes_POM(driver);
 		dbqueries = new DBQueries();
-		
+
 		login.loginUser("aparnak", "aparna2450");
 
 	}
@@ -61,7 +61,7 @@ public class RecentlyViewedAndFavorites_Test extends BaseClass {
 	@Test(testName = "recentlyViewd_Favorites ", groups = "recentlyViewd_Favorites", priority = 0)
 	public void Create_doc() throws Exception {
 		test = extent.startTest("RecentlyViewed_And_Favorites");
-		
+
 		RecentlyViewdAndFavorites.createdocandcheckin();
 		System.out.print(documetNo);
 		RecentlyViewdAndFavorites.datepicker().click();
@@ -73,7 +73,7 @@ public class RecentlyViewedAndFavorites_Test extends BaseClass {
 		RecentlyViewdAndFavorites.getCreatedDocnumber();
 		sleep(5);
 		RecentlyViewdAndFavorites.getDashboard().click();
-		waitTillElementVisible(RecentlyViewdAndFavorites.Recently_Viewed());
+		sleep(3);
 		if (RecentlyViewdAndFavorites.Recently_Viewed().isDisplayed()) {
 			test.log(LogStatus.PASS,
 					"1. Click on the Dashboard tab." + "<br/>"
@@ -83,7 +83,6 @@ public class RecentlyViewedAndFavorites_Test extends BaseClass {
 
 		RecentlyViewdAndFavorites.geteBinders().click();
 		sleep(2);
-		waitTillElementVisible(RecentlyViewdAndFavorites.getLab());
 		RecentlyViewdAndFavorites.getLab().click();
 		sleep(2);
 		RecentlyViewdAndFavorites.getSOP().click();
@@ -119,10 +118,10 @@ public class RecentlyViewedAndFavorites_Test extends BaseClass {
 
 		}
 		sleep(3);
-		waitTillElementVisible(RecentlyViewdAndFavorites.getReports());
 		RecentlyViewdAndFavorites.getReports().click();
+		sleep(1);
 		Search("Regulations");
-		sleep(5);
+		sleep(3);
 		RecentlyViewdAndFavorites.getFavoritesopen().click();
 		sleep(2);
 		test.log(LogStatus.PASS,
@@ -130,14 +129,14 @@ public class RecentlyViewedAndFavorites_Test extends BaseClass {
 						+ "7. Add an available report to the Favorites by clicking on the star icon" + "<br/>"
 						+ "<b>ER5: The star icon is highlighted  <b>"
 						+ test.addScreenCapture(captureScreenShot(driver, "add  report in favorites")));
-		
+
 		verticalScrollingDown();
 		sleep(1);
 		RecentlyViewdAndFavorites.getFavorite_tab().click();
 		sleep(2);
 		Search("Regulations");
 		sleep(2);
-		
+
 		test.log(LogStatus.PASS,
 				"8.	Click on the Favorites tab" + "<br/>"
 						+ "<b>ER6: The report added is available in the Favorites list <b>"
@@ -164,7 +163,7 @@ public class RecentlyViewedAndFavorites_Test extends BaseClass {
 		sleep(2);
 		Search("Regulations");
 		sleep(2);
-	
+
 		if (RecentlyViewdAndFavorites.getrecordnotfound().isDisplayed()) {
 
 			test.log(LogStatus.PASS, "10 Click on dashborad again" + "<br/>"
@@ -190,12 +189,8 @@ public class RecentlyViewedAndFavorites_Test extends BaseClass {
 		sleep(2);
 		Credoc.getConfirmButton().click();
 		sleep(3);
-		
-		if (Credoc.getcheckincancelsuccess().isDisplayed()) {
-			waitTillElementVisible(Credoc.getcheckincancelsuccess());
-			Credoc.getcheckincancelsuccess().click();
-		}
-		
+		Credoc.getcheckincancelsuccess().click();
+		sleep(2);
 		String document_number = RecentlyViewdAndFavorites.getCreatedDocnumber().getText();
 		System.out.println(document_number + "number after checkout second");
 
@@ -267,14 +262,14 @@ public class RecentlyViewedAndFavorites_Test extends BaseClass {
 				+ "<b> ER10: The document which was added to favorites in the previous steps is updated to the major revision in favorites. <b>"
 				+ test.addScreenCapture(captureScreenShot(driver, "checkout effective  doc ")));
 		RecentlyViewdAndFavorites.geteBinders().click();
-		waitTillElementVisible(RecentlyViewdAndFavorites.getLab());
+		sleep(3);
 		RecentlyViewdAndFavorites.getLab().click();
 		sleep(3);
 		RecentlyViewdAndFavorites.getSOP().click();
 		Search("Bio-hazardous Waste Disposal");
-		waitTillElementVisible(RecentlyViewdAndFavorites.getFavoritesStar());
+		sleep(3);
 		RecentlyViewdAndFavorites.getFavoritesStar().click();
-		
+
 		logout.logoutFunction();
 
 		log.info("logout successfully.");
@@ -302,16 +297,10 @@ public class RecentlyViewedAndFavorites_Test extends BaseClass {
 		Credoc.trainingItemsCheck(true);
 		sleep(2);
 		Credoc.getcheckoutconfirm().click();
-		sleep(5);
+		sleep(6);
 
-		if (Credoc.getcheckincancelsuccess().isDisplayed()) {
-			waitTillElementVisible(Credoc.getcheckincancelsuccess());
-			Credoc.getcheckincancelsuccess();
-			Credoc.getcheckincancelsuccess().click();
-			Credoc.getcheckincancelsuccess().click();
-		}
-	
 		RecentlyViewdAndFavorites.datepicker().click();
+		sleep(1);
 		RecentlyViewdAndFavorites.gettodaysdate().click();
 		sleep(3);
 		documet_no_checkout1 = RecentlyViewdAndFavorites.getDocument_no_after_checkout().getText();
@@ -358,18 +347,18 @@ public class RecentlyViewedAndFavorites_Test extends BaseClass {
 		documentRoutes.approval_Tab().click();
 		sleep(2);
 		for(int i=1; i<=20; i++)
-	     {
+		{
 			selectDocForApprovel(documet_no_checkout1, 3);
-	       if(!isRecordFound)
-	       {
-	       documentRoutes.documentTableNext_Button().click();
-	       sleep(2); 
-	      }
-	      else
-	      {
-	       break;
-	      }
-	     }
+			if(!isRecordFound)
+			{
+				documentRoutes.documentTableNext_Button().click();
+				sleep(2); 
+			}
+			else
+			{
+				break;
+			}
+		}
 		sleep(2);
 		documentRoutes.documentTab_ForApprover().click();
 		sleep(2);
@@ -381,7 +370,7 @@ public class RecentlyViewedAndFavorites_Test extends BaseClass {
 		sleep(5);
 		logout.logoutFunction();
 		sleep(2);
-		
+
 		DBConnection.executeStoredProcedure(dbqueries.moveDocsOnReleaseDate);
 		sleep(2);
 		login.loginUser("aparnak", "aparna2450");

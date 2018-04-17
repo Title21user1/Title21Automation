@@ -169,7 +169,7 @@ public class AttachmentControlInDoc_Test extends BaseClass {
 		fileUploadPath = System.getProperty("user.dir") + "\\testdata";
 		fileUploadPath = fileUploadPath + "\\" + uploadFileName;
 		Credoc.getBrouse().sendKeys(fileUploadPath);
-		waitTillElementVisible(Credoc.getAddButtonupload());
+		sleep(2);
 		Credoc.getAddButtonupload().click();
 
 	}
@@ -178,8 +178,7 @@ public class AttachmentControlInDoc_Test extends BaseClass {
 		Credoc = new CreateDocument_POM(driver);
 		Credoc.getnewdoc().click();
 		FileUplod = new FileUpload();
-		sleep(2);
-		waitTillElementVisible(Credoc.getdocument());
+		sleep(3);
 		Credoc.getdocument().click();
 		sleep(3);
 		Credoc.GeteditdocumentNo().click();

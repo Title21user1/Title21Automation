@@ -56,7 +56,7 @@ public class DeleteEmployee_Test extends BaseClass {
 		sleep(2);
 
 		if (clickonDelete()){
-			waitTillElementVisible(emp.noemployeebutton());
+			sleep(2);
 			test.log(LogStatus.PASS,
 					" 4. Click on Delete Employee icon." + "<br/>"
 							+ "<b>ER2: Delete Employee popup is displayed. <b>"
@@ -77,7 +77,6 @@ public class DeleteEmployee_Test extends BaseClass {
 		test.log(LogStatus.PASS, " 6. Search for employee " + "<br/>" + "<b>ER 3: The employee is not deleted.<b>"
 				+ test.addScreenCapture(captureScreenShot(driver, "Employee Still Exist")));
 
-		waitTillElementVisible(emp.EmployeeFilterResult());
 		sleep(4);		
 		test.log(LogStatus.PASS, "7. Click on the delete icon against the employee in the previous step.");
 		if (clickonDelete()){
@@ -91,9 +90,7 @@ public class DeleteEmployee_Test extends BaseClass {
 			waitTillElementVisible(emp.ConfirmPopUpCloseButton());
 			emp.ConfirmPopUpCloseButton().click();			
 		}
-
-		waitTillElementVisible(emp.EmployeeFilterResult());
-		sleep(2);
+		sleep(3);
 		emp.EmployeeFilterClearButton().click();
 		sleep(2);
 		emp.EmployeeFilterResult().sendKeys(adminData.getEmployeeName());

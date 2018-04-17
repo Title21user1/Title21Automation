@@ -347,7 +347,6 @@ public class LinkControlOfDocument_Test extends BaseClass {
 		LinkControlofDocument.getconfirm().get(1).click();
 		sleep(5);
 		if (Credoc.getcheckincancelsuccess().isDisplayed()) {
-			waitTillElementVisible(Credoc.getcheckincancelsuccess());
 			Credoc.getcheckincancelsuccess();
 			Credoc.getcheckincancelsuccess().click();
 			Credoc.getcheckincancelsuccess().click();

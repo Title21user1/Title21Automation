@@ -175,7 +175,7 @@ public class Codes_Test extends BaseClass {
 		test.log(LogStatus.PASS, "14.Click on add button.");
 		codes.add_Button().click();
 		
-		waitTillElementVisible(codes.codeIdIsRequired_ErrorMsg());
+		sleep(3);
 		if(codes.codeIdIsRequired_ErrorMsg().isDisplayed()&& codes.nameIsRequired_ErrorMsg().isDisplayed())
 		{
 			test.log(LogStatus.PASS, "<b>ER7- 'Code Id is required' and 'Code name is required' validation messages are displayed.<b>"+
@@ -201,7 +201,7 @@ public class Codes_Test extends BaseClass {
 		test.log(LogStatus.PASS, "19.Click on add button.");
 		codes.add_Button().click();
 		
-		waitTillElementVisible(codes.codeAddedSuccessfully_VerificationMsg());
+		sleep(3);
 		if(codes.codeAddedSuccessfully_VerificationMsg().isDisplayed())
 		{
 			test.log(LogStatus.PASS, "<b>ER8- A successful message for newly added code is displayed.<b>"+
@@ -261,7 +261,7 @@ public class Codes_Test extends BaseClass {
 		test.log(LogStatus.PASS, "24.Click on add code.");
 		codes.addCodeName_Link().click();
 		
-		waitTillElementVisible(codes.addCodeName_TextBox());
+		sleep(3);
 		test.log(LogStatus.PASS, "25.Enter code name same as used in step (16)");
 		codes.addCodeName_TextBox().sendKeys(codesData[1][3]+number); 
 		codes.addCodeId_TextBox().click();
@@ -300,7 +300,7 @@ public class Codes_Test extends BaseClass {
 		clickOnEditButton(codesData[1][7]); 
 		sleep(2);
 		test.log(LogStatus.PASS, "29.Search for newly created code class (in previous steps) in the select a code class section.");
-		waitTillElementVisible(codes.updateCodeAvailabilityIndexCard_Header());
+		sleep(4);
 		if(codes.updateCodeAvailabilityIndexCard_Header().isDisplayed())
 		{
 			WebElement eleCodeClass = driver.findElement(By.xpath("//table[@class='t21-table-hover-custom t21-margin-bottom-10']//td/a[contains(text(),'"+number+"')]"));
@@ -323,7 +323,7 @@ public class Codes_Test extends BaseClass {
 			test.log(LogStatus.PASS, "31.Click on the update button");
 			codes.update_Button().click();
 			
-			waitTillElementVisible(codes.codeupdatedSuccessfully_VerificationMsg());
+			sleep(3);
 			if(codes.codeupdatedSuccessfully_VerificationMsg().isDisplayed())
 			{
 				test.log(LogStatus.PASS, "<b>ER13- A successful update message of Code classes for event type 'IndxCard' is displayed.<b>"+
@@ -350,8 +350,7 @@ public class Codes_Test extends BaseClass {
 		test.log(LogStatus.PASS, "Note: Edit mode needs to be turned on.");
 		
 		codes.getnewdoc().click();
-		sleep(2);
-		waitTillElementVisible(codes.getdocument());
+		sleep(3);
 		codes.getdocument().click();
 		sleep(3);
 		codes.getlocationDrodown().selectByVisibleText(routeData[1][0]);

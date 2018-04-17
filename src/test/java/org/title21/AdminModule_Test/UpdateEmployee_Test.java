@@ -78,7 +78,7 @@ public class UpdateEmployee_Test extends BaseClass {
 		test.log(LogStatus.PASS, "3. Select Employee link"+"<br/>"
 				+"<b>ER2: Employee records are listed. <b>"+
 				test.addScreenCapture(captureScreenShot(driver, "Employeerecords")));
-		waitTillElementVisible(emp.EmployeeFilterResutGoButton());
+		sleep(2);
 		emp.getGridLocation().selectByVisibleText("Antioch");
 		sleep(2);
 		test.log(LogStatus.PASS, "4. Click on location drop-down and select the specific location"+"<br/>"
@@ -170,11 +170,11 @@ public class UpdateEmployee_Test extends BaseClass {
 		emp.getEmployeeemail().sendKeys(employeeData[2][12]);
 		// emp.getAddBtn().click();
 		// javaScriptClick(emp.getAddBtn());
-		waitTillElementVisible(emp.getAddBtn());
+		sleep(2);
 
 		// addEmployeePOM.getAddBtn().click();
 		javaScriptClick(emp.getAddBtn());
-		waitTillElementVisible(emp.getCloseButtononSuccessMessage());
+		sleep(3);
 
 		if (emp.EditverifySuccessMessage()) {
 
@@ -184,7 +184,7 @@ public class UpdateEmployee_Test extends BaseClass {
 		}
 		;
 
-		waitTillElementVisible(emp.getCloseButtononSuccessMessage());
+		sleep(3);
 		emp.getCloseButtononSuccessMessage().click();
 		sleep(2);
 		emp.EmployeeEdit().click();
@@ -198,16 +198,14 @@ public class UpdateEmployee_Test extends BaseClass {
 					test.addScreenCapture(captureScreenShot(driver, "update_change")));
 
 		}
-		sleep(2);
-		waitTillElementVisible(emp.getAddBtn());
+		sleep(3);
 		javaScriptClick(emp.getAddBtn());
 		sleep(2);
-		waitTillElementVisible(emp.getCloseButtononSuccessMessage());
 		emp.getCloseButtononSuccessMessage().click();
 		sleep(2);
 		verticalScrollingUp();
 		//verticalScrollingUp();
-		waitTillElementVisible(emp.EmployeeEdit());
+		sleep(2);
 		emp.EmployeeEdit().click();
 		if (emp.getEmployeeID().isEnabled() && emp.getEmployeeFullName().isEnabled()) 
 		{
@@ -224,8 +222,9 @@ public class UpdateEmployee_Test extends BaseClass {
 		}
 		sleep(2);		
 		javaScriptClick(emp.getAddBtn());
-		waitTillElementVisible(emp.getCloseButtononSuccessMessage());
+		sleep(3);
 		emp.getCloseButtononSuccessMessage().click();
+		sleep(2);
 		CanceltEmployeePostalCode = "2222";
 		CancelEmployeeCountry = "test";
 		CancelEmployeePhone = "677888888";
@@ -235,7 +234,6 @@ public class UpdateEmployee_Test extends BaseClass {
 		sleep(2);
 		emp.EmployeeEdit().click();
 		sleep(3);
-		//waitTillElementVisible(emp2.getEmployeePostalCode());
 
 		emp.getEmployeePostalCode().clear();
 
@@ -273,8 +271,7 @@ public class UpdateEmployee_Test extends BaseClass {
 		}
 
 
-		sleep(2);
-		waitTillElementVisible(emp.getJobCodesTab());
+		sleep(3);
 		emp.getJobCodesTab().click();
 		sleep(2);
 		if (emp.EditJobTele().isDisplayed()) {
@@ -284,17 +281,14 @@ public class UpdateEmployee_Test extends BaseClass {
 		}
 		log.info("verify job  code  added to  selected job codes  section.");
 		sleep(3);
-		waitTillElementVisible(emp.getjobCodeHR());
+		sleep(2);
 
 		emp.getjobCodeHR().click();
 
 		sleep(3);
-		waitTillElementVisible(emp.getSelectedJobCode());
 
 		log.info("Verify to click on selected job code");
 
-		//WebElement oCheckBox = driver.findElement(By.cssSelector("input[value='001099']"));
-		///oCheckBox.click();
 		sleep(2);
 		test.log(LogStatus.PASS, "17.Select one job code from \"selected job\" section."+"<br/>"
 				+"<b>ER12: It should get added to selected job codes section.<b>"+
@@ -321,20 +315,15 @@ public class UpdateEmployee_Test extends BaseClass {
 		WebElement oCheckBox = driver.findElement(By.cssSelector("input[value='01002']"));
 		oCheckBox.click();
 		sleep(2);
-		waitTillElementVisible(emp.getAddBtn());
 		javaScriptClick(emp.getAddBtn()); 
 		// addEmployeePOM.getAddBtn().click();
-		sleep(2);
-		waitTillElementVisible(emp.getCloseButtononSuccessMessage());		
-		sleep(2);
-		waitTillElementVisible(emp.getCloseButtononSuccessMessage());
+		sleep(3);
 		emp.getCloseButtononSuccessMessage().click();
 		sleep(2);
 		emp.EmployeeEdit().click();
 		//verticalScrollingUp();
 		emp=new UpdateEmployee_POM(driver);
-		sleep(2);
-		waitTillElementVisible(emp.getJobCodesTab());	
+		sleep(3);	
 		emp.getJobCodesTab().click();
 
 		//emp.getJobCodesTab().click();
@@ -346,12 +335,9 @@ public class UpdateEmployee_Test extends BaseClass {
 					test.addScreenCapture(captureScreenShot(driver, "defaultjobcodeChanged")));
 		}
 		sleep(2);
-		waitTillElementVisible(emp.getAddBtn());
 
-		// addEmployeePOM.getAddBtn().click();
 		javaScriptClick(emp.getAddBtn());
-		sleep(2);
-		waitTillElementVisible(emp.getCloseButtononSuccessMessage());
+		sleep(3);
 		emp.getCloseButtononSuccessMessage().click();
 		sleep(2);
 		log.info("Now calling logout function.");

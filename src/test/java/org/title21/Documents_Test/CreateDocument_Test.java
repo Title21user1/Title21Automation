@@ -4,9 +4,6 @@ import java.io.File;
 
 import java.io.IOException;
 import org.apache.log4j.Logger;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -58,8 +55,7 @@ public class CreateDocument_Test extends BaseClass {
 		sleep(2);
 		Credoc = new CreateDocument_POM(driver);
 		Credoc.getnewdoc().click();
-		sleep(2);
-		waitTillElementVisible(Credoc.getdocument());
+		sleep(3);
 		Credoc.getdocument().click();
 		sleep(3);
 		test.log(LogStatus.PASS,
@@ -194,12 +190,10 @@ public class CreateDocument_Test extends BaseClass {
 					"<b>ER 11:  A Successful message that the document has been checked In is displayed.<b>"
 							+ test.addScreenCapture(captureScreenShot(driver, "checkinsuccessmessage")));
 		}
-		waitTillElementVisible(Credoc.getcheckincancelsuccess());
 
 		Credoc.getcheckincancelsuccess().click();
 		Credoc.getcheckincancelsuccess().click();
 		sleep(3);
-		waitTillElementVisible(Credoc.editmodedisable());
 		if (Credoc.editmodedisable().isDisplayed()) {
 			test.log(LogStatus.PASS, "18.Click on close button " + "<br/>" + "<b>ER12: Doument Edit mode is disable.<b>"
 					+ test.addScreenCapture(captureScreenShot(driver, "documenteditmodedisable")));
@@ -242,18 +236,6 @@ public class CreateDocument_Test extends BaseClass {
 		test.log(LogStatus.PASS, "<b>ER 15: Document edit mode enable.<b>"
 				+ test.addScreenCapture(captureScreenShot(driver, "document edit   mode")));
 
-	}
-
-	@Override
-	public void waitTillElementClickable(WebElement element) {		
-		WebDriverWait wait=new WebDriverWait(driver,20);
-		wait.until(ExpectedConditions.elementToBeClickable(element));		
-	}
-
-	@Override
-	public void waitTillElementVisible(WebElement element) {		
-		WebDriverWait wait=new WebDriverWait(driver,20);
-		wait.until(ExpectedConditions.visibilityOf(element));		
 	}
 
 	@AfterClass
