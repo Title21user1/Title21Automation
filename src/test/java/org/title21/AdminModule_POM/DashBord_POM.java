@@ -175,8 +175,8 @@ public class DashBord_POM
 	@SuppressWarnings("static-access")
 	public void enableCIBMTR_LMS_ForGroup(String groupName)
 	{
-		int allowCIBMTRValue = dbconnection.getIntDBValue(dbqueries.cibmtrValue+"'"+groupName+"'", "AllowCibmtrAccess");
-		int allowLMSValue = dbconnection.getIntDBValue(dbqueries.lmsValue+"'"+groupName+"'", "AllowLmsAccess");
+		int allowCIBMTRValue = dbconnection.getIntDBValue(dbqueries.allowCibmtrAccessValue+"'"+groupName+"'", "AllowCibmtrAccess");
+		int allowLMSValue = dbconnection.getIntDBValue(dbqueries.allowLMSAccessValue+"'"+groupName+"'", "AllowLmsAccess");
 		
 		if (allowCIBMTRValue==0)
 		{

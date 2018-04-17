@@ -232,9 +232,6 @@ public class LinkControlOfDocument_Test extends BaseClass {
 						+ "40.Expand the document grid" + "<br/>"
 						+ "<b>ER 14: The linked effective document is available in the grid.<b>" + "<br/>"
 						+ test.addScreenCapture(captureScreenShot(driver, "delete_document")));
-
-		
-		extent.endTest(test);
 	}
 
 	public void searchlinkonlinkwindow(String searchlink, int go) {

@@ -27,7 +27,7 @@ public class DocumentRoutes_Test extends BaseClass{
 	String documetNo="";
 	String documetsName="";
 	String fileUploadPath="";
-	String uploadFileName="DocumentRouteTest.doc";
+	String uploadFileName="DocDocument.docx";
 	Table searchTable;
 	boolean isRecordFound=false;
 	boolean isRecordFound1=false;
@@ -74,26 +74,12 @@ public class DocumentRoutes_Test extends BaseClass{
 			test.log(LogStatus.PASS,"2.	Open the document form (in edit mode) and add a main file.");
 
 			documentRoutes.addMainFile_Button().click();
-
 			sleep(3);
 
-			if(documentRoutes.addMainFileHeader_Text().isDisplayed())
-			{
-				fileUploadPath=System.getProperty("user.dir") + "\\testdata";
-				fileUploadPath=fileUploadPath+"\\"+uploadFileName;
-				documentRoutes.browse_Button().sendKeys(fileUploadPath);
-
-				sleep(2);
-				documentRoutes.add_Button().click();
-				sleep(2);
-			}
-			else
-			{
-				test.log(LogStatus.FAIL,"Unable to find Add Main File header.");
-			}
-
-			test.log(LogStatus.PASS,"3.	Navigate to the approval tab.");
+			documentRoutes.fileupload(uploadFileName);
 			sleep(2);
+			test.log(LogStatus.PASS,"3.	Navigate to the approval tab.");
+			
 			documentRoutes.getDocumentApprovaltab().click();
 			test.log(LogStatus.PASS,"4.	Click on the add approver link.");
 			sleep(2);
@@ -198,13 +184,12 @@ public class DocumentRoutes_Test extends BaseClass{
 					test.log(LogStatus.PASS, "13. Check in the document and route it for approval.");
 					sleep(2);
 					documentRoutes.checkInRouteSubmit_Button().click();
-					sleep(2);
+					sleep(4);
 					if(documentRoutes.messagePopUp_Header().isDisplayed())
 					{
 						test.log(LogStatus.PASS, "<b>ER 7- Successful message that the document has been checked In and routed is displayed.<b>"+
 								test.addScreenCapture(captureScreenShot(driver, "Route is added")));
 
-						documentRoutes.verifyDocumentCheckedIn(driver);
 						documentRoutes.close_Button().click();
 						test.log(LogStatus.PASS, "14. Click on close button.");
 					}
@@ -214,7 +199,7 @@ public class DocumentRoutes_Test extends BaseClass{
 					}
 
 					sleep(2);
-					logout.logoutFunction();	
+					logout.logoutFunction();
 					sleep(2);
 					test.log(LogStatus.PASS, "15. Login as one of the users named in Sequence 1.");
 
@@ -406,7 +391,8 @@ public class DocumentRoutes_Test extends BaseClass{
 
 	@AfterClass
 	public void closeBrowserInstance()
-	{		
+	{	
+		logout.logoutFunction();
 		extent.endTest(test);
 		driver.close();
 	}

@@ -184,14 +184,13 @@ public class CreateDocument_Test extends BaseClass {
 						+ "<br/>" + "<b>ER 10 : Check In popup screen is displayed.<b>"
 						+ test.addScreenCapture(captureScreenShot(driver, "checkin_popup")));
 		Credoc.getcheckinbuttonwindow().click();
-		sleep(5);
+		sleep(6);
 		if (Credoc.CheckinSuccessmessage()) {
 			test.log(LogStatus.PASS,
 					"<b>ER 11:  A Successful message that the document has been checked In is displayed.<b>"
 							+ test.addScreenCapture(captureScreenShot(driver, "checkinsuccessmessage")));
 		}
 
-		Credoc.getcheckincancelsuccess().click();
 		Credoc.getcheckincancelsuccess().click();
 		sleep(3);
 		if (Credoc.editmodedisable().isDisplayed()) {
@@ -226,13 +225,12 @@ public class CreateDocument_Test extends BaseClass {
 		if(Credoc.getcheckincancelsuccess().isDisplayed())
 		{
 			Credoc.getcheckincancelsuccess().click();
-			Credoc.getcheckincancelsuccess().click();
 		}
 		else
 		{
 			log.info("prompt not display");
 		}
-		sleep(5);
+		sleep(3);
 		test.log(LogStatus.PASS, "<b>ER 15: Document edit mode enable.<b>"
 				+ test.addScreenCapture(captureScreenShot(driver, "document edit   mode")));
 

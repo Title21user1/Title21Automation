@@ -292,12 +292,12 @@ public class ReadAndSignTraining_Test extends BaseClass{
 			
 			for(int i=1; i<=20; i++)
 			{
-				WebElement text = driver.findElement(By.xpath("//div[@class='t21-md-break t21-sm-break']//tr["+i+"]/td[5]"));
+				WebElement text = driver.findElement(By.xpath("//*[@id='dynamic-grid-table']/tbody/tr["+i+"]/td[5]"));
 				String itemName= text.getText();
 				
 				if(itemName.equalsIgnoreCase("Completed Training Item"))
 				{
-					WebElement documentName = driver.findElement(By.xpath("//div[@class='t21-md-break t21-sm-break']//tr["+i+"]/td[8]"));
+					WebElement documentName = driver.findElement(By.xpath("//*[@id='dynamic-grid-table']/tbody/tr["+i+"]/td[8]"));
 					String documentText= documentName.getText();
 					if(documentText.contains(documetNo))
 					{
@@ -438,7 +438,7 @@ public class ReadAndSignTraining_Test extends BaseClass{
 			test.log(LogStatus.PASS, "30.For 'Select entities subject to training', select the 'From Selection' radio button. Click on 'Entities' link. Select two entities and click on 'Update'.");
 			readSign.entitiesSubject_FromSection().click();
 			readSign.addNewTrainingEntities_Link().click();
-			sleep(2);
+			sleep(5);
 			if(readSign.selectedEntities_Header().isDisplayed())
 			{
 				readSign.entitiesEmp_FilterBox().clear();
@@ -453,7 +453,7 @@ public class ReadAndSignTraining_Test extends BaseClass{
 				readSign.entitiesEmpFilterGo_Button().click();
 				sleep(2);
 				readSign.moveSelectedEntities_Button().click();
-				
+				sleep(2);
 				addedEntities = readSign.addedFirst_Entities().getText();
 				
 				javaScriptClick(readSign.changeTrainingTypePopUpSave_Button());
@@ -629,6 +629,7 @@ public class ReadAndSignTraining_Test extends BaseClass{
 		}
 		
 		logout.logoutFunction();
+		sleep(2);
 		extent.endTest(test);
 	}
 //=====================================================================Part=>03================================================================================	
@@ -776,7 +777,7 @@ public class ReadAndSignTraining_Test extends BaseClass{
 			readSign.checkIn_Route().click();
 			sleep(2);
 			readSign.checkInRouteSubmit_Button().click();
-			sleep(2);
+			sleep(4);
 			readSign.verifyDocumentCheckedIn(driver);
 			readSign.close_Button().click();
 			sleep(2);
@@ -842,13 +843,13 @@ public class ReadAndSignTraining_Test extends BaseClass{
 		}
 		
 		logout.logoutFunction();
-		extent.endTest(test);
 	}
 //=============================================================================================================================================================	
 	
 	@AfterClass
 	public void closeBrowserInstance()
-	{		
+	{	
+		extent.endTest(test);
 		driver.close();
 	}
 	

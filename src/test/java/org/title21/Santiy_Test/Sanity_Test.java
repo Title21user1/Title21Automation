@@ -59,8 +59,8 @@ public class Sanity_Test extends BaseClass
 	public void SanityTest()
 	{
 		test = extent.startTest("Sanity");
-		dashboard.enableCIBMTR_LMS();												sleep(2);
-		dashboard.enableCIBMTR_LMS_ForGroup("Sp Tester");							sleep(2);
+		dashboard.enableCIBMTR_LMS();												
+		dashboard.enableCIBMTR_LMS_ForGroup("Sp Tester");							
 		login.loginUser(loginData[14][0],loginData[14][1]);
 		createdoc.getnewdoc().click();												sleep(3);
 		createdoc.getdocument().click();											sleep(3);

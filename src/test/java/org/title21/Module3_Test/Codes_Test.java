@@ -32,7 +32,7 @@ public class Codes_Test extends BaseClass {
 	boolean isRecordFound=false;
 	String testcaseName="TestCase-WIA-Codes.doc";	
 	String filePath = System.getProperty("user.dir") + "\\TestCases\\"+testcaseName;
-	
+
 	@BeforeClass
 	public void openURL() 
 	{
@@ -42,7 +42,7 @@ public class Codes_Test extends BaseClass {
 		login=new LoginPage_POM(driver);
 		logout=new LogoutPage_POM(driver);
 		login.loginFunction();
-		
+
 	}
 	@Test(testName = "Codes", groups = "Codes", priority = 0)
 	public void CreateGroupInAdmin() 
@@ -53,20 +53,20 @@ public class Codes_Test extends BaseClass {
 		number = FunctionUtils.generateRandomNumber();
 		test.log(LogStatus.PASS, "1.Log in as the admin user.");
 		codes.administratorDropDown().click();
-		
+
 		test.log(LogStatus.PASS, "2.Go to the administration page.");
 		codes.administrationLink().click();
 		sleep(4);
 		verticalScrollingDown();
 		codes.codes_Link().click();
 		test.log(LogStatus.PASS, "3.Click on codes."+
-		test.addScreenCapture(captureScreenShot(driver, "Codes tab")));
+				test.addScreenCapture(captureScreenShot(driver, "Codes tab")));
 		sleep(2);
-		
+
 		verticalScrollingUp();
 		test.log(LogStatus.PASS, "4.Click on add class button.");
 		codes.addCodeClass_Link().click();
-		
+
 		sleep(2);
 		if(codes.addCodeClass_Header().isDisplayed())
 		{
@@ -77,24 +77,18 @@ public class Codes_Test extends BaseClass {
 		{
 			test.log(LogStatus.FAIL, "Unable to find the Add code class dialog box.");
 		}
-		
+
 		test.log(LogStatus.PASS, "5.Enter class name.");
 		codes.className_TextBox().sendKeys(codesData[1][0]+number);
-		
+
 		test.log(LogStatus.PASS, "6.Click on add button.");
 		codes.add_Button().click();
-		
-		sleep(2);
-		if(codes.codeAddedSuccessfully_VerificationMsg().isDisplayed())
-		{
-			codes.close_Button().click();
-			sleep(2);
-		}
-		else
-		{
-			test.log(LogStatus.FAIL, "Unable to find the successfully message for the Code added.");
-		}
-		
+
+		sleep(4);
+		codes.close_Button().click();
+		sleep(3);
+
+
 		if(codes.addCodeCategory_Link().isEnabled())
 		{
 			test.log(LogStatus.PASS, "<b>ER2- Code class added successfully and 'Add category' section is enabled.<b>"+
@@ -104,26 +98,27 @@ public class Codes_Test extends BaseClass {
 		{
 			test.log(LogStatus.FAIL, "Unable to find the 'Add category' section is enabled.");
 		}
-		
+
 		test.log(LogStatus.PASS, "7.Enter code class name same as used in step(5)");
 		codes.editClass_Icon().click();
 		sleep(2);
 		codes.className_TextBox().clear();
 		codes.className_TextBox().sendKeys(codesData[1][1]); 
 		test.log(LogStatus.PASS, "8.Click on add button.");
-		sleep(2);
-		
+		sleep(3);
+
 		if(codes.nameAlreadyExists_ErrorMsg().isDisplayed())
 		{
 			test.log(LogStatus.PASS, "<b>ER3- 'CodeName already exists' validation message is displayed.<b>"+
 					test.addScreenCapture(captureScreenShot(driver, "CodeName already exists")));
-			codes.cancel_Button().click();
-			sleep(2);
 		}
 		else
 		{
 			test.log(LogStatus.FAIL, "Unable to find the validation message for the 'CodeName already exists'.");
 		}
+		
+		codes.cancel_Button().click();
+		sleep(2);
 		
 		test.log(LogStatus.PASS, "9.Click on add category button.");
 		codes.addCodeCategory_Link().click();
@@ -138,12 +133,12 @@ public class Codes_Test extends BaseClass {
 		{
 			test.log(LogStatus.PASS, "Unable to find the Add code category popup screen.");
 		}
-		
+
 		test.log(LogStatus.PASS, "10.Enter code category name.");
 		codes.codeCategory_TextBox().sendKeys(codesData[1][0]+number+" category"); 
 		test.log(LogStatus.PASS, "11.Click on add button.");
 		codes.add_Button().click();
-		sleep(2);
+		sleep(3);
 
 		if(codes.codeAddedSuccessfully_VerificationMsg().isDisplayed())
 		{
@@ -154,11 +149,11 @@ public class Codes_Test extends BaseClass {
 		{
 			test.log(LogStatus.FAIL, "Unable to find the Code category added successfully and 'Add code' section is enabled.");
 		}
-		
+
 		test.log(LogStatus.PASS, "12.Click on the close button.");
 		codes.close_Button().click();
 		sleep(2);
-		
+
 		test.log(LogStatus.PASS, "13.Click on add code button.");
 		codes.addCodeName_Link().click();
 		sleep(2);
@@ -171,10 +166,10 @@ public class Codes_Test extends BaseClass {
 		{
 			test.log(LogStatus.FAIL, "Unable to find the Add code popup screen.");
 		}
-		
+
 		test.log(LogStatus.PASS, "14.Click on add button.");
 		codes.add_Button().click();
-		
+
 		sleep(3);
 		if(codes.codeIdIsRequired_ErrorMsg().isDisplayed()&& codes.nameIsRequired_ErrorMsg().isDisplayed())
 		{
@@ -185,38 +180,40 @@ public class Codes_Test extends BaseClass {
 		{
 			test.log(LogStatus.FAIL, "Unable to find the 'Code Id is required' and 'Code name is required' validation messages.");
 		}
-		
+
 		test.log(LogStatus.PASS, "15.Enter code Id");
 		codes.addCodeId_TextBox().sendKeys(codesData[1][2]+number); 
-		
+
 		test.log(LogStatus.PASS, "16.Enter code name.");
 		codes.addCodeName_TextBox().sendKeys(codesData[1][3]+number); 
-		
+
 		test.log(LogStatus.PASS, "17.Enter definition.");
 		codes.addCodeDefinition_TextBox().sendKeys(codesData[1][4]); 
-		
+
 		test.log(LogStatus.PASS, "18.Select criticality from criticality dropdown.");
 		codes.addCodeCritIdDropDown().selectByVisibleText(codesData[1][5]); 
 		sleep(2);
 		test.log(LogStatus.PASS, "19.Click on add button.");
 		codes.add_Button().click();
-		
+
 		sleep(3);
 		if(codes.codeAddedSuccessfully_VerificationMsg().isDisplayed())
 		{
 			test.log(LogStatus.PASS, "<b>ER8- A successful message for newly added code is displayed.<b>"+
 					test.addScreenCapture(captureScreenShot(driver, "A successful message for newly added code")));
-			codes.close_Button().click();
-			sleep(2);
+			
 		}
 		else
 		{
 			test.log(LogStatus.PASS, "Unable to find the successful message for newly added code");
 		}
 		
+		codes.close_Button().click();
+		sleep(2);
+		
 		test.log(LogStatus.PASS, "20.Enter the code id same as used in step(15).");
 		codes.addCodeName_Link().click();
-		sleep(2);
+		sleep(3);
 		if(codes.addCodePopUp_Header().isDisplayed())
 		{
 			codes.addCodeId_TextBox().sendKeys(codesData[1][2]+number); 
@@ -230,11 +227,11 @@ public class Codes_Test extends BaseClass {
 			{
 				test.log(LogStatus.FAIL, "Unable to d=find the 'CodeID already exists' validation message");
 			}
-			
+
 			test.log(LogStatus.PASS, "21.Enter the code name same as used in step(16)");
 			codes.addCodeName_TextBox().sendKeys(codesData[1][3]+number);
 			sleep(2);
-			
+
 			if(codes.nameAlreadyExists_ErrorMsg().isDisplayed())
 			{
 				test.log(LogStatus.PASS, "<b>ER10- 'Code Name already exists' validation message is displayed.<b>"+
@@ -244,7 +241,7 @@ public class Codes_Test extends BaseClass {
 			{
 				test.log(LogStatus.FAIL, "Unable to find the 'Code Name already exists' validation message.");
 			}
-			
+
 			test.log(LogStatus.PASS, "22.Click on the cancel button.");
 			codes.cancel_Button().click();
 			sleep(2);
@@ -253,20 +250,20 @@ public class Codes_Test extends BaseClass {
 		{
 			test.log(LogStatus.FAIL, "Unable to find the Add code popup screen.");
 		}
-		
+
 		test.log(LogStatus.PASS, "23.Select other code class from code class dropdown.");
 		codes.codeClass_DropDown().selectByVisibleText(codesData[1][6]); 
-		
+
 		sleep(2);
 		test.log(LogStatus.PASS, "24.Click on add code.");
 		codes.addCodeName_Link().click();
-		
+
 		sleep(3);
 		test.log(LogStatus.PASS, "25.Enter code name same as used in step (16)");
 		codes.addCodeName_TextBox().sendKeys(codesData[1][3]+number); 
 		codes.addCodeId_TextBox().click();
 		sleep(2);
-		
+
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		try
 		{
@@ -281,7 +278,7 @@ public class Codes_Test extends BaseClass {
 		driver.manage().timeouts().implicitlyWait(120, TimeUnit.SECONDS);
 		codes.cancel_Button().click();
 		sleep(2);
-		
+
 		verticalScrollingDown();
 		sleep(2);
 		codes.getCodeAvailabilityList_Link().click();
@@ -295,7 +292,7 @@ public class Codes_Test extends BaseClass {
 		sleep(2);
 		codes.filterResultGo_Button().click();
 		sleep(2);
-		
+
 		test.log(LogStatus.PASS, "28.Edit the 'IndxCard'.");
 		clickOnEditButton(codesData[1][7]); 
 		sleep(2);
@@ -307,7 +304,7 @@ public class Codes_Test extends BaseClass {
 			scrollIntoView(eleCodeClass);
 			test.log(LogStatus.PASS, "30.Click on code class link.");
 			eleCodeClass.click();
-			
+
 			WebElement eleSelectedCodeClasses = driver.findElement(By.xpath("//table[@class='t21-table-custom t21-margin-bottom-30']//td[contains(text(),'"+number+"')]"));
 			scrollIntoView(eleSelectedCodeClasses);
 			if(eleSelectedCodeClasses.isDisplayed())
@@ -319,10 +316,10 @@ public class Codes_Test extends BaseClass {
 			{
 				test.log(LogStatus.FAIL, "Unable to find the  Code class gets added in selected code class section");
 			}
-			
+
 			test.log(LogStatus.PASS, "31.Click on the update button");
 			codes.update_Button().click();
-			
+
 			sleep(3);
 			if(codes.codeupdatedSuccessfully_VerificationMsg().isDisplayed())
 			{
@@ -345,10 +342,10 @@ public class Codes_Test extends BaseClass {
 		logout.logoutFunction();
 		sleep(2);
 		login.loginUser(loginData[8][0], loginData[8][1]);
-		
+
 		test.log(LogStatus.PASS, "34.Open an existing document that contains the codes control.");
 		test.log(LogStatus.PASS, "Note: Edit mode needs to be turned on.");
-		
+
 		codes.getnewdoc().click();
 		sleep(3);
 		codes.getdocument().click();
@@ -363,15 +360,15 @@ public class Codes_Test extends BaseClass {
 		codes.getConfirmButton().click();
 		sleep(5);
 		codes.getdocumentcreationverify().isDisplayed(); 
-		
+
 		test.log(LogStatus.PASS, "35.Navigate to the 'Codes' tab.");
 		codes.codes_Tab().click();
 		sleep(2);
-		
+
 		test.log(LogStatus.PASS, "36.Select the code class, which was added to documents (Index Cards) in step 27, from the 'Code Class' dropdown.");
 		codes.codeClass_DropDown().selectByVisibleText(codesData[1][0]+number); 
 		sleep(2);
-		
+
 		String categoryName=codes.codeCategoryOn_CodeTab().getText(); 
 		if(categoryName.equalsIgnoreCase(codesData[1][0]+number+" category")) 
 		{
@@ -383,10 +380,10 @@ public class Codes_Test extends BaseClass {
 			test.log(LogStatus.FAIL, "Unable to find the Newly created Code Class made available to an index card and the category."+
 					test.addScreenCapture(captureScreenShot(driver, "Newly created Code Class made available")));
 		}
-		
+
 		test.log(LogStatus.PASS, "37.Expand a category by clicking on the '+' to the left of the category name.");
 		codes.codeCategory_PlusSign().click();
-		
+
 		test.log(LogStatus.PASS, "38.Verify with the code name added in step (20).");
 		String codeName = codes.codeName_OnCodesTab().getText();
 		if(codeName.equalsIgnoreCase(codesData[1][3]+number)) 
@@ -398,11 +395,11 @@ public class Codes_Test extends BaseClass {
 		{
 			test.log(LogStatus.FAIL, "Unable to find the Code name is available and matched.");
 		}
-		
+
 		test.log(LogStatus.PASS, "39.Highlight a code, then click on it. ");
 		codes.codeName_OnCodesTab().click();
 		sleep(2);
-		
+
 		String codeNameInTable = codes.codeNameWithDetails_OnCodesTab().getText();
 		if(codeNameInTable.equalsIgnoreCase(codesData[1][3]+number)) 
 		{
@@ -413,22 +410,22 @@ public class Codes_Test extends BaseClass {
 		{
 			test.log(LogStatus.FAIL, "Unable to find the code is added to the 'Applicable codes' list matched.");
 		}
-		
+
 		test.log(LogStatus.PASS, "40.Close the document.");
 		driver.navigate().refresh();
-		
+
 		sleep(2);
 		test.log(LogStatus.PASS, "41.Re-open the document and navigate to the codes tab.");
 		codes.codes_Tab().click();
 		sleep(2);
 		codes.codeClass_DropDown().selectByVisibleText(codesData[1][0]+number); 
 		sleep(2);
-		
+
 		codes.codeCategory_PlusSign().click();
-		
+
 		codes.codeName_OnCodesTab().click();
 		sleep(2);
-		
+
 		codeNameInTable = codes.codeNameWithDetails_OnCodesTab().getText();
 		if(codeNameInTable.equalsIgnoreCase(codesData[1][3]+number)) 
 		{
@@ -442,7 +439,7 @@ public class Codes_Test extends BaseClass {
 		{
 			test.log(LogStatus.FAIL, "Unable to find the saved document with the selected code applied.");
 		}
-		
+
 		if(codes.NoCodesSelected_OnCodesTab().isDisplayed())
 		{
 			test.log(LogStatus.PASS, "<b>ER18- Code is removed from the Document.<b>"+
@@ -452,26 +449,21 @@ public class Codes_Test extends BaseClass {
 		{
 			test.log(LogStatus.FAIL, "Unable to find the 'Code is removed' on the Codes Tab.");
 		}
+		logout.logoutFunction();	
 	}
-	
-	@Test(testName = "logout_admin", groups = "Logout", priority = 1)
-	public void LogoutFromAdmin() throws Exception 
-	{		
-		logout.logoutFunction();		
-	}
-	
+
 	@AfterClass
 	public void closeBrowserInstance() 
 	{
 		extent.endTest(test);
 		driver.close();
 	}
-	
+
 	private void clickOnEditButton(String eventType)
 	{
 		searchTable=new Table(driver);
 		List<WebElement> tableCells=searchTable.gettableCells(1);				
-		
+
 		for (int i=1;i<=tableCells.size();i++){
 			if (eventType.equalsIgnoreCase(tableCells.get(i-1).getText()))
 			{				
@@ -481,5 +473,5 @@ public class Codes_Test extends BaseClass {
 			}
 		}
 	}
-	
+
 }

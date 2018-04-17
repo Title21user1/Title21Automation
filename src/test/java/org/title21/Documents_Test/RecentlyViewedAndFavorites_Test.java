@@ -89,7 +89,7 @@ public class RecentlyViewedAndFavorites_Test extends BaseClass {
 		sleep(2);
 
 		Search("Bio-hazardous Waste Disposal");
-		sleep(2);
+		sleep(3);
 
 		if (RecentlyViewdAndFavorites.verifyFavoriteOpen()==true)
 		{
@@ -188,9 +188,8 @@ public class RecentlyViewedAndFavorites_Test extends BaseClass {
 		Credoc.trainingItemsCheck(true);
 		sleep(2);
 		Credoc.getConfirmButton().click();
-		sleep(3);
-		Credoc.getcheckincancelsuccess().click();
-		sleep(2);
+		sleep(5);
+
 		String document_number = RecentlyViewdAndFavorites.getCreatedDocnumber().getText();
 		System.out.println(document_number + "number after checkout second");
 
@@ -314,7 +313,7 @@ public class RecentlyViewedAndFavorites_Test extends BaseClass {
 		documentRoutes.getAddApproverLink().click();
 		sleep(2);
 		documentRoutes.getApproverRole().selectByVisibleText("Approver");
-		sleep(2);
+		sleep(3);
 		documentRoutes.getnameinAddApprover().selectByVisibleText("sameer");
 		documentRoutes.getSequenceinAddApprover().selectByVisibleText("2");
 		documentRoutes.getallottedDaysinAddApprover().selectByVisibleText("1 day");
