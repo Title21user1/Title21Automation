@@ -36,13 +36,13 @@ public class UpdateEmployee_Test extends BaseClass {
 	String CanceltEmployeePostalCode = "";
 	String CancelEmployeeCountry = "";
 	String CancelEmployeePhone = "";
-	
+
 	String testcaseName="TestCase-WIA-UpdateEmployee.doc";	
 	String filePath = System.getProperty("user.dir") + "\\TestCases\\"+testcaseName;
 
 	boolean EmployeePresenceAfterSearch = false;
 	static Logger log = Logger.getLogger(UpdateEmployee_Test.class);	
-	
+
 
 	@BeforeClass
 	public void openURL() {
@@ -51,12 +51,12 @@ public class UpdateEmployee_Test extends BaseClass {
 		createDirectory(className);
 		login = new LoginPage_POM(driver);
 		login.loginFunction();
-		
+
 	}
 
 	@Test(testName = "update employee ", groups = "Employee")
 	public void Edit_general_Employee() throws Exception {
-		
+
 		test = extent.startTest("Update  Employee");
 		test.log(LogStatus.INFO, "Link to Test case document", "<a href='file://"+filePath+"'>TestCaseDocument</a>");
 		test.log(LogStatus.PASS, "1 Login to the web interface");
@@ -76,15 +76,15 @@ public class UpdateEmployee_Test extends BaseClass {
 		employeeemail = employeeData[2][12];
 		System.out.print(adminData.getEmployeeName());
 		test.log(LogStatus.PASS, "3. Select Employee link"+"<br/>"
-			     +"<b>ER2: Employee records are listed. <b>"+
+				+"<b>ER2: Employee records are listed. <b>"+
 				test.addScreenCapture(captureScreenShot(driver, "Employeerecords")));
-		waitTillElementVisible(emp.EmployeeFilterResutGoButton());
+		sleep(2);
 		emp.getGridLocation().selectByVisibleText("Antioch");
 		sleep(2);
 		test.log(LogStatus.PASS, "4. Click on location drop-down and select the specific location"+"<br/>"
-			     +"<b>ER3: Only Employees of selected location are displayed. <b>"+
+				+"<b>ER3: Only Employees of selected location are displayed. <b>"+
 				test.addScreenCapture(captureScreenShot(driver, "Employeelocation")));
-        sleep(2);
+		sleep(2);
 		emp.getGridLocation().selectByVisibleText("Dallas");
 		sleep(2);
 		emp.EmployeeFilterResult().sendKeys("xxxxxxxxxx");
@@ -93,7 +93,7 @@ public class UpdateEmployee_Test extends BaseClass {
 		System.out.print("out" + emp.getnoemployeemsg().getText());
 		if (emp.NoEmpMsg()) {
 			test.log(LogStatus.PASS, "5. Enter invalid data in employee field and click on  GO button"+"<br/>"
-				     +"<b>ER4:It should show validation messages as No Employee Found <b>"+
+					+"<b>ER4:It should show validation messages as No Employee Found <b>"+
 					test.addScreenCapture(captureScreenShot(driver, "No_Employee_Found")));
 		}
 		sleep(2);
@@ -110,7 +110,7 @@ public class UpdateEmployee_Test extends BaseClass {
 			if (Employees.equalsIgnoreCase(adminData.getEmployeeName())) {
 				EmployeePresenceAfterSearch = true;
 				test.log(LogStatus.PASS, "6. Enter the already existing employee information in in search field  and click on GO button."+"<br/>"
-					     +"<b>ER5: It displayed employee as per given information. <b>"+
+						+"<b>ER5: It displayed employee as per given information. <b>"+
 						test.addScreenCapture(captureScreenShot(driver, "Employee_info")));
 				break;
 			}	
@@ -130,12 +130,12 @@ public class UpdateEmployee_Test extends BaseClass {
 				Edit.click();
 				sleep(3);
 				test.log(LogStatus.PASS, "7. Click on Edit Employee Button"+"<br/>"
-					     +"<b>ER6: Update employee dialog is displayed and the general tab is presented.<b>"+
+						+"<b>ER6: Update employee dialog is displayed and the general tab is presented.<b>"+
 						test.addScreenCapture(captureScreenShot(driver, "update_emp")));
 				break;
 			}
 		}
-		
+
 
 		log.info("Update Employee Data");
 		emp.getsupervisorDropdown().selectByVisibleText(employeeData[2][3]);
@@ -170,21 +170,21 @@ public class UpdateEmployee_Test extends BaseClass {
 		emp.getEmployeeemail().sendKeys(employeeData[2][12]);
 		// emp.getAddBtn().click();
 		// javaScriptClick(emp.getAddBtn());
-		waitTillElementVisible(emp.getAddBtn());
+		sleep(2);
 
 		// addEmployeePOM.getAddBtn().click();
 		javaScriptClick(emp.getAddBtn());
-		waitTillElementVisible(emp.getCloseButtononSuccessMessage());
+		sleep(3);
 
 		if (emp.EditverifySuccessMessage()) {
 
 			test.log(LogStatus.PASS, "8. Edit the supervisor, Business Unit, department, state and country"+"<br/>"+"9. Click on confirm button. "+"<br/>"
-				     +"<b>ER7: A message confirming successful update is displayed <b>"+
+					+"<b>ER7: A message confirming successful update is displayed <b>"+
 					test.addScreenCapture(captureScreenShot(driver, "update_emp")));
 		}
 		;
 
-		waitTillElementVisible(emp.getCloseButtononSuccessMessage());
+		sleep(3);
 		emp.getCloseButtononSuccessMessage().click();
 		sleep(2);
 		emp.EmployeeEdit().click();
@@ -192,40 +192,39 @@ public class UpdateEmployee_Test extends BaseClass {
 		emp = new UpdateEmployee_POM(driver);
 		sleep(2);
 		if (emp.Editsupervisor(supervisor)&&emp.EditbusinessUnit(driver)&&emp.EditDepartment(EditDepartment)&&emp.EditAddressField(EditAddressField)&&emp.getEmployeeCity(EmployeeCity)&&emp.getEmployeeState(EmployeeState)) 
-{
+		{
 			test.log(LogStatus.PASS, "10. Again click on edit button."+"<br/>"
-				     +"<b>ER8: All changed fields are properly updated. <b>"+
-						test.addScreenCapture(captureScreenShot(driver, "update_change")));
+					+"<b>ER8: All changed fields are properly updated. <b>"+
+					test.addScreenCapture(captureScreenShot(driver, "update_change")));
 
 		}
-		sleep(2);
-		waitTillElementVisible(emp.getAddBtn());
+		sleep(3);
 		javaScriptClick(emp.getAddBtn());
 		sleep(2);
-		waitTillElementVisible(emp.getCloseButtononSuccessMessage());
 		emp.getCloseButtononSuccessMessage().click();
 		sleep(2);
 		verticalScrollingUp();
 		//verticalScrollingUp();
-		waitTillElementVisible(emp.EmployeeEdit());
+		sleep(2);
 		emp.EmployeeEdit().click();
 		if (emp.getEmployeeID().isEnabled() && emp.getEmployeeFullName().isEnabled()) 
 		{
 			test.log(LogStatus.FAIL, "11.Edit the employee again."+"<br/>"+"12.Try to edit Full Name and Employee ID field ."+"<br/>"
-				     +"<b>ER9: User able to edit the Full name and Employee ID field. <b>"+
+					+"<b>ER9: User able to edit the Full name and Employee ID field. <b>"+
 					test.addScreenCapture(captureScreenShot(driver, "Edit_name_id")));
 
 		} else {
 			sleep(2);
 			test.log(LogStatus.PASS, "11.Edit the employee again."+"<br/>"+"12.Try to edit Full Name and Employee ID field ."+"<br/>"
-				     +"<b>ER9: User should not be able to edit the Full name and Employee ID field. <b>"+
+					+"<b>ER9: User should not be able to edit the Full name and Employee ID field. <b>"+
 					test.addScreenCapture(captureScreenShot(driver, "Edit_name_id")));
 
 		}
 		sleep(2);		
 		javaScriptClick(emp.getAddBtn());
-		waitTillElementVisible(emp.getCloseButtononSuccessMessage());
+		sleep(3);
 		emp.getCloseButtononSuccessMessage().click();
+		sleep(2);
 		CanceltEmployeePostalCode = "2222";
 		CancelEmployeeCountry = "test";
 		CancelEmployeePhone = "677888888";
@@ -235,8 +234,7 @@ public class UpdateEmployee_Test extends BaseClass {
 		sleep(2);
 		emp.EmployeeEdit().click();
 		sleep(3);
-		//waitTillElementVisible(emp2.getEmployeePostalCode());
-		
+
 		emp.getEmployeePostalCode().clear();
 
 		emp.getEmployeePostalCode().sendKeys(CanceltEmployeePostalCode);
@@ -258,46 +256,43 @@ public class UpdateEmployee_Test extends BaseClass {
 		//verticalScrollingUp();
 		emp.EmployeeEdit().click();
 		sleep(3);
-	String img=test.addScreenCapture(captureScreenShot(driver, "cancel_edit"));
-	sleep(2);
+		String img=test.addScreenCapture(captureScreenShot(driver, "cancel_edit"));
+		sleep(2);
 		if (emp.getEmpStringloyeePostalCode(CanceltEmployeePostalCode) && emp.getEmployeeCountry(CancelEmployeeCountry)
 				&& emp.getEmployeePhone(CancelEmployeePhone)) {
 
-test.log(LogStatus.FAIL, "13.Edit the employee"+"<br/>"+"14.Edit the data "+"<br/>"+"15.Click on the cancel button "+"<br/>"
-		     +"<b>ER10: Records are  changed. <b>"+img);
-			
+			test.log(LogStatus.FAIL, "13.Edit the employee"+"<br/>"+"14.Edit the data "+"<br/>"+"15.Click on the cancel button "+"<br/>"
+					+"<b>ER10: Records are  changed. <b>"+img);
+
 		} else {
 
-         test.log(LogStatus.PASS, "13.Edit the employee"+"<br/>"+"14.Edit the data from some fields. "+"<br/>"+"15.Click on the cancel button. "+"<br/>"
-		     +"<b>ER10: Records are unchanged. <b>"+img);			
+			test.log(LogStatus.PASS, "13.Edit the employee"+"<br/>"+"14.Edit the data from some fields. "+"<br/>"+"15.Click on the cancel button. "+"<br/>"
+					+"<b>ER10: Records are unchanged. <b>"+img);			
 		}
 
 
-		sleep(2);
-		waitTillElementVisible(emp.getJobCodesTab());
+		sleep(3);
 		emp.getJobCodesTab().click();
 		sleep(2);
 		if (emp.EditJobTele().isDisplayed()) {
 			test.log(LogStatus.PASS, "16. Click on Job Codes Tab in Update Employee Screen."+"<br/>"
-				     +"<b>ER11: User should be navigated to Job Codes Screen and job codes list should be visible. <b>"+
+					+"<b>ER11: User should be navigated to Job Codes Screen and job codes list should be visible. <b>"+
 					test.addScreenCapture(captureScreenShot(driver, "jobcode_screen")));
 		}
 		log.info("verify job  code  added to  selected job codes  section.");
-		waitTillElementVisible(emp.getjobCodeHR());
+		sleep(3);
+		sleep(2);
 
 		emp.getjobCodeHR().click();
-		//sleep(2);
 
-		waitTillElementVisible(emp.getSelectedJobCode());
+		sleep(3);
 
 		log.info("Verify to click on selected job code");
 
-		//WebElement oCheckBox = driver.findElement(By.cssSelector("input[value='001099']"));
-		///oCheckBox.click();
-        sleep(2);
+		sleep(2);
 		test.log(LogStatus.PASS, "17.Select one job code from \"selected job\" section."+"<br/>"
-		     +"<b>ER12: It should get added to selected job codes section.<b>"+
-			test.addScreenCapture(captureScreenShot(driver, "select_jobcode")));
+				+"<b>ER12: It should get added to selected job codes section.<b>"+
+				test.addScreenCapture(captureScreenShot(driver, "select_jobcode")));
 		sleep(2);
 		//emp.EditJobTele().click();
 		/*
@@ -305,61 +300,54 @@ test.log(LogStatus.FAIL, "13.Edit the employee"+"<br/>"+"14.Edit the data "+"<br
 		 * test.addScreenCapture(captureScreenShot(driver,
 		 * " New job code  added successfully ")));
 		 */
-		
+
 		sleep(2);
 		//String addimg = test.addScreenCapture(captureScreenShot(driver, " New_job_code _added_successfully "));
-  		emp.JobCodeRemovedMinus().click();
+		emp.JobCodeRemovedMinus().click();
 		sleep(3);
 		test.log(LogStatus.PASS, "18. Click on minus button from \"selected job\"  codes section."+"<br/>"+
-			     "<b>ER13: Job code is removed and default job code is changed. <b>"+
+				"<b>ER13: Job code is removed and default job code is changed. <b>"+
 				test.addScreenCapture(captureScreenShot(driver, "removed_jobcode")));
 		sleep(2);
 		emp.EditJobTele().click();
-        //emp.getjobCodeSeniorTechnologist().click();
+		//emp.getjobCodeSeniorTechnologist().click();
 		sleep(2);
 		WebElement oCheckBox = driver.findElement(By.cssSelector("input[value='01002']"));
 		oCheckBox.click();
-		waitTillElementVisible(emp.getAddBtn());
-            javaScriptClick(emp.getAddBtn()); 
+		sleep(2);
+		javaScriptClick(emp.getAddBtn()); 
 		// addEmployeePOM.getAddBtn().click();
-
-		waitTillElementVisible(emp.getCloseButtononSuccessMessage());		
-		
-		waitTillElementVisible(emp.getCloseButtononSuccessMessage());
+		sleep(3);
 		emp.getCloseButtononSuccessMessage().click();
 		sleep(2);
 		emp.EmployeeEdit().click();
 		//verticalScrollingUp();
 		emp=new UpdateEmployee_POM(driver);
-		sleep(2);
-		waitTillElementVisible(emp.getJobCodesTab());	
+		sleep(3);	
 		emp.getJobCodesTab().click();
 
 		//emp.getJobCodesTab().click();
 		//emp.jobCodeRadio().click();
 		if (emp.jobCodeRadio().isDisplayed()) {
 
-test.log(LogStatus.PASS,"19.Change the default job by clicking on the radio button"+"<br/>"+"20. Click on confirm."+"<br/>"+" 21. Again click on edit button"+"<br/>"
-		     +"<b>ER14: Default job code is changed and job code updated  <b>"+
-			test.addScreenCapture(captureScreenShot(driver, "defaultjobcodeChanged")));
+			test.log(LogStatus.PASS,"19.Change the default job by clicking on the radio button"+"<br/>"+"20. Click on confirm."+"<br/>"+" 21. Again click on edit button"+"<br/>"
+					+"<b>ER14: Default job code is changed and job code updated  <b>"+
+					test.addScreenCapture(captureScreenShot(driver, "defaultjobcodeChanged")));
 		}
+		sleep(2);
 
-		waitTillElementVisible(emp.getAddBtn());
-
-		// addEmployeePOM.getAddBtn().click();
 		javaScriptClick(emp.getAddBtn());
-		
-		waitTillElementVisible(emp.getCloseButtononSuccessMessage());
+		sleep(3);
 		emp.getCloseButtononSuccessMessage().click();
 		sleep(2);
 		log.info("Now calling logout function.");
-		
+
 		logout = new LogoutPage_POM(driver);
-		
+
 		logout.logoutFunction();
-		
+
 		log.info("logout successfully."); 
-		
+
 	}
 
 	@AfterClass

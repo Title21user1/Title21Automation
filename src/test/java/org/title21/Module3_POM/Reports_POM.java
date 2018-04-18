@@ -217,6 +217,14 @@ public class Reports_POM
 		getSearchText().sendKeys(Searchdata);
 		getGoButton().click();
 	}
+	
+	public void fileupload(String uploadFileName) {
+
+		String fileUploadPath = System.getProperty("user.dir") + "\\testdata";
+		fileUploadPath = fileUploadPath + "\\" + uploadFileName;
+		browse().sendKeys(fileUploadPath);
+		BaseClass.sleep(3);
+	}
 
 	public boolean verifyDesignPermissionValidationMessage(){
 

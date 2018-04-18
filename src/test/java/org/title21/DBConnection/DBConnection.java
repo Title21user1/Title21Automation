@@ -79,6 +79,23 @@ public class DBConnection extends BaseClass {
 		return dbvalue;
 	}
 	
+	public void getQueryExecuted(String dbquery)
+	{
+		try{
+			getConnection();
+			String query = dbquery;
+			statement = connection.createStatement();
+			rs = statement.executeQuery(query);				
+		}
+		catch(Exception e)
+		{
+			System.out.println("Failed Database Connection");
+		}
+		finally{
+			closeConnection();
+		}
+	}
+	
 	/*
 	 * 
 	 * This will execute storedProcedure. 

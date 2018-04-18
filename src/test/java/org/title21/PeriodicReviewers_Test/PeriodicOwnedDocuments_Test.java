@@ -67,8 +67,7 @@ public class PeriodicOwnedDocuments_Test extends BaseClass{
 		
 		test.log(LogStatus.PASS,"2.Create a new document.");
 		periodicReviews.getnewdoc().click();
-		sleep(4);
-		waitTillElementVisible(periodicReviews.getdocument());
+		sleep(3);
 		periodicReviews.getdocument().click();
 		sleep(3);
 		periodicReviews.getlocationDrodown().selectByVisibleText(routeData[1][0]);
@@ -84,7 +83,7 @@ public class PeriodicOwnedDocuments_Test extends BaseClass{
 			test.log(LogStatus.PASS,"3.Add a main file, approvers and other required fields.");
 			periodicReviews.addMainFile_Button().click();
 
-			waitTillElementVisible(periodicReviews.addMainFileHeader_Text());
+			sleep(2);
 			if(periodicReviews.addMainFileHeader_Text().isDisplayed())
 			{
 				fileUploadPath=System.getProperty("user.dir") + "\\testdata";
@@ -337,7 +336,7 @@ public class PeriodicOwnedDocuments_Test extends BaseClass{
 			}
 			else
 			{
-				test.log(LogStatus.FAIL, "<b>Unable to find the- The document is not ready to sign (as it is waiting for others to review) and the Change/Don’t Change buttons are not available.<b>"+
+				test.log(LogStatus.FAIL, "<b>Unable to find the- The document is not ready to sign (as it is waiting for others to review) and the Change/DonÂ’t Change buttons are not available.<b>"+
 						test.addScreenCapture(captureScreenShot(driver, "document is not ready to sign")));
 			}
 			verticalScrollingDown();
@@ -565,7 +564,7 @@ public class PeriodicOwnedDocuments_Test extends BaseClass{
 			periodicReviews.secondPeriodicReviewer_ContextTab().click();
 			sleep(4);
 			periodicReviews.secondPeriodicReviewer_Bypass().click();
-			waitTillElementVisible(periodicReviews.yes_Button());
+			sleep(2);
 			periodicReviews.yes_Button().click();
 			sleep(5);
 			

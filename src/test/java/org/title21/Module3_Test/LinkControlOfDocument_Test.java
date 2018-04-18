@@ -75,7 +75,7 @@ public class LinkControlOfDocument_Test extends BaseClass {
 	@Test(testName = "LinkControlOfDocument_Test", groups = "LinkControlOfDocument_POM", priority = 0)
 	public void LinkControlOfDocument_POM() throws Exception {
 
-		test = extent.startTest("LinkControlOfDocument_Test");
+		test = extent.startTest("Link Control Of Document");
 		
 		Attachmenttest.createdoc();
 		sleep(5);
@@ -232,9 +232,6 @@ public class LinkControlOfDocument_Test extends BaseClass {
 						+ "40.Expand the document grid" + "<br/>"
 						+ "<b>ER 14: The linked effective document is available in the grid.<b>" + "<br/>"
 						+ test.addScreenCapture(captureScreenShot(driver, "delete_document")));
-
-		
-		extent.endTest(test);
 	}
 
 	public void searchlinkonlinkwindow(String searchlink, int go) {
@@ -347,7 +344,6 @@ public class LinkControlOfDocument_Test extends BaseClass {
 		LinkControlofDocument.getconfirm().get(1).click();
 		sleep(5);
 		if (Credoc.getcheckincancelsuccess().isDisplayed()) {
-			waitTillElementVisible(Credoc.getcheckincancelsuccess());
 			Credoc.getcheckincancelsuccess();
 			Credoc.getcheckincancelsuccess().click();
 			Credoc.getcheckincancelsuccess().click();

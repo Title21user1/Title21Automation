@@ -57,10 +57,13 @@ public class AttachmentControlInDoc_Test extends BaseClass {
 		RecentlyViewdAndFavorites = new RecentlyViewdAndFavorites_POM(driver);
 		createdoc();		
 		String home_page = driver.getWindowHandle();
+		attachment.addMainFile().click();
+		sleep(2);
 		fileupload("test.doc");
-		sleep(20);
+		sleep(10);
 		verticalScrollingDown();
 		verticalScrollingDown();
+		sleep(1);
 		attachment.getAddnew().get(0).click();
 		sleep(5);
 		test.log(LogStatus.PASS,
@@ -166,7 +169,7 @@ public class AttachmentControlInDoc_Test extends BaseClass {
 		fileUploadPath = System.getProperty("user.dir") + "\\testdata";
 		fileUploadPath = fileUploadPath + "\\" + uploadFileName;
 		Credoc.getBrouse().sendKeys(fileUploadPath);
-		waitTillElementVisible(Credoc.getAddButtonupload());
+		sleep(2);
 		Credoc.getAddButtonupload().click();
 
 	}
@@ -175,8 +178,7 @@ public class AttachmentControlInDoc_Test extends BaseClass {
 		Credoc = new CreateDocument_POM(driver);
 		Credoc.getnewdoc().click();
 		FileUplod = new FileUpload();
-		sleep(2);
-		waitTillElementVisible(Credoc.getdocument());
+		sleep(3);
 		Credoc.getdocument().click();
 		sleep(3);
 		Credoc.GeteditdocumentNo().click();
@@ -189,6 +191,7 @@ public class AttachmentControlInDoc_Test extends BaseClass {
 		Credoc.getDocChangeSummary().sendKeys("Test summary" + Document_number);
 		verticalScrollingDown();
 		Credoc.getConfirmButton().click();
+		BaseClass.sleep(3);
 	}
 
 	private void Search(String Searchdata) {
