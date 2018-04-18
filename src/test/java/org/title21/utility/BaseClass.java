@@ -319,6 +319,7 @@ public class BaseClass {
 			try {
 				remotedriver = new RemoteWebDriver(new URL(remoteUrl),dc);
 				remotedriver.setFileDetector(new LocalFileDetector());
+				remotedriver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 			} catch (MalformedURLException e) {
 				e.printStackTrace();
 			}
@@ -326,7 +327,6 @@ public class BaseClass {
 			driver = remotedriver;
 			
 			driver.get(baseUrl);
-			driver.manage().window().maximize();
 		}
 				
 		else if (browser.equalsIgnoreCase("chrome")) {
