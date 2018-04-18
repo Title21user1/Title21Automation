@@ -119,6 +119,22 @@ public class PeriodicOwnedDocuments_POM extends DocumentRoutes_POM {
 	@FindBy(xpath="//button[text()='Confirm']")
 	WebElement auditLogConfirmButton;
 	
+	@FindBy(xpath="//li[@id='Settings']")
+	WebElement dropDownSettingLink;
+	
+	@FindBy(xpath="//*[@id='BatchReview']")
+	WebElement multiSignReviewCheckBox;
+	
+	public WebElement multiSignReview_CheckBox()
+	{
+		return multiSignReviewCheckBox;
+	}
+	
+	public WebElement dropDownSetting_Link()
+	{
+		return dropDownSettingLink;
+	}
+	
 	public WebElement auditLogConfirm_Button()
 	{
 		return auditLogConfirmButton;
@@ -284,6 +300,18 @@ public class PeriodicOwnedDocuments_POM extends DocumentRoutes_POM {
 	public WebElement periodicReviewsDays_TextBox()
 	{
 		return periodicReviewsDaysTextBox;
+	}
+	
+	public void multiSignReviewCheck(Boolean check)
+	{
+	  if (!check && multiSignReview_CheckBox().isSelected()) 
+	  {
+		  multiSignReview_CheckBox().click();
+	  }
+	  else if (check && !multiSignReview_CheckBox().isSelected())
+	  {
+		  multiSignReview_CheckBox().click();
+	  }
 	}
 	
 }
