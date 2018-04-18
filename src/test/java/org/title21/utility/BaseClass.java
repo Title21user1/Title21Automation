@@ -202,12 +202,6 @@ public class BaseClass {
 		driver.get("file://" + filePath);
 	}
 
-	public void implicitwait(WebDriver driver) {
-		driver.manage().timeouts().implicitlyWait(120, TimeUnit.SECONDS);
-	}
-	
-	
-
 	public static void createDirectory(String classname) {
 
 		classname = classname.substring(4);
@@ -349,9 +343,8 @@ public class BaseClass {
 			capabilities.setCapability(ChromeOptions.CAPABILITY, options);
 						
 			driver = new ChromeDriver(capabilities);
-			//driver = new ChromeDriver();
-			implicitwait(driver);
 			driver.get(baseUrl);
+			driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 			driver.manage().window().maximize();
 		}
 
@@ -359,16 +352,18 @@ public class BaseClass {
 			extent = ExtentManager.getReporter(filePath,baseUrl);
 			System.setProperty("webdriver.ie.driver", ".\\drivers\\IEDriverServer.exe");
 			driver = new InternetExplorerDriver();
-			implicitwait(driver);
 			driver.get(baseUrl);
+			driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+			driver.manage().window().maximize();
 		}
 
 		else if (browser.equalsIgnoreCase("firefox")) {
 			extent = ExtentManager.getReporter(filePath,baseUrl);
 			System.setProperty("webdriver.gecko.driver", ".\\drivers\\geckodriver.exe");
 			driver = new FirefoxDriver();
-			implicitwait(driver);
 			driver.get(baseUrl);
+			driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+			driver.manage().window().maximize();
 		}
 	}
 	

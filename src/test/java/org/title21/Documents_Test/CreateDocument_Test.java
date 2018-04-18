@@ -41,7 +41,6 @@ public class CreateDocument_Test extends BaseClass {
 	@BeforeClass
 	public void openURL() {
 		getBrowser();
-		implicitwait(driver);
 		className = this.getClass().getName();
 		createDirectory(className);
 		login = new LoginPage_POM(driver);
