@@ -313,7 +313,9 @@ public class RecentlyViewedAndFavorites_Test extends BaseClass {
 		documentRoutes.getAddApproverLink().click();
 		sleep(2);
 		documentRoutes.getApproverRole().selectByVisibleText("Approver");
-		sleep(3);
+		sleep(2);
+		documentRoutes.getLocationDropdown().selectByVisibleText("All");
+		sleep(2);
 		documentRoutes.getnameinAddApprover().selectByVisibleText("sameer");
 		documentRoutes.getSequenceinAddApprover().selectByVisibleText("2");
 		documentRoutes.getallottedDaysinAddApprover().selectByVisibleText("1 day");

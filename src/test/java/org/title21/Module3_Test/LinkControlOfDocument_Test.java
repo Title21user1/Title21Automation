@@ -239,7 +239,7 @@ public class LinkControlOfDocument_Test extends BaseClass {
 		LinkControlofDocument = new LinkControlOfDocument_POM(driver);
 		if (searchlink.equalsIgnoreCase(doc_name)) {
 
-			LinkControlofDocument.getsearch().get(7).sendKeys(searchlink);
+			LinkControlofDocument.getsearch().get(2).sendKeys(searchlink);
 
 		} else
 
