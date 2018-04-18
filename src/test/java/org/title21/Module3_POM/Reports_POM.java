@@ -215,6 +215,7 @@ public class Reports_POM
 
 	public void Search(String Searchdata) {
 		getSearchText().sendKeys(Searchdata);
+		BaseClass.sleep(2);
 		getGoButton().click();
 	}
 	

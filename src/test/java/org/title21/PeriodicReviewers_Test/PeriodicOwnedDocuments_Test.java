@@ -626,6 +626,7 @@ public class PeriodicOwnedDocuments_Test extends BaseClass{
 			sleep(4);
 			login.loginUser(loginData[7][0], loginData[7][1]);
 			periodicReviews.administratorDropDown().click();
+			sleep(2);
 			periodicReviews.auditLog_Option().click();
 			sleep(4);
 			
