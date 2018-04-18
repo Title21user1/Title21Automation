@@ -93,7 +93,7 @@ public class eBinders_Test extends BaseClass
 		ebinder.ebinderGroup().selectByVisibleText("Administrators");			sleep(1);
 		test.log(LogStatus.PASS,"10. Enter group");
 
-		ebinder.addButton().click();											sleep(4);
+		ebinder.addButton().click();											sleep(5);
 
 		test.log(LogStatus.PASS,"11. Click on add button");
 		test.log(LogStatus.PASS,"<b>ER5: A message confirming eBinder successful added is displayed.<b>"+
@@ -191,6 +191,7 @@ public class eBinders_Test extends BaseClass
 	@AfterClass
 	public void afterClass()
 	{
+		driver.get(baseUrl);
 		tearDown();
 		extent.endTest(test);
 		driver.close();

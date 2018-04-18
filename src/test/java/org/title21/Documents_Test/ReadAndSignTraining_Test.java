@@ -52,7 +52,7 @@ public class ReadAndSignTraining_Test extends BaseClass{
 	public void ReadAndSignTraining_Part1() throws Exception
 	{		
 		login.loginUser(loginData[7][0], loginData[7][1]);
-		test = extent.startTest("Read And Sign Training Part-1");
+		test = extent.startTest("Read And Sign Training Part");
 		test.log(LogStatus.PASS, "1.Login to the web interface as 'Test User'.");
 		test.log(LogStatus.INFO, "Link to Test case document", "<a href='file:///E:/sameer/Sameer Joshi/Title health solutions/Test case by neosoft/TestCase-WIA-document_routes.doc'>TestCaseDocument</a>");
 		readSign=new ReadAndSignTraining_POM(driver);	
@@ -314,14 +314,12 @@ public class ReadAndSignTraining_Test extends BaseClass{
 		}
 		
 		logout.logoutFunction();
-		extent.endTest(test);
 	}
 //=====================================================================Part=>02================================================================================
 	@Test(testName = "ReadAndSignTraining", groups = "Read And Sign Trainings", priority = 0, enabled=true)
 	public void ReadAndSignTraining_Part2() throws Exception
 	{		
 		login.loginUser(loginData[7][0], loginData[7][1]);
-		test = extent.startTest("Read And Sign Training Part-2");
 		readSign=new ReadAndSignTraining_POM(driver);	
 		dateTimeUtils=new DateTimeUtils();
 		
@@ -630,14 +628,12 @@ public class ReadAndSignTraining_Test extends BaseClass{
 		
 		logout.logoutFunction();
 		sleep(2);
-		extent.endTest(test);
 	}
 //=====================================================================Part=>03================================================================================	
 	@Test(testName = "ReadAndSignTraining", groups = "Read And Sign Trainings", priority = 0, enabled=true)
 	public void ReadAndSignTraining_Part3() throws Exception
 	{	
 		login.loginUser(loginData[7][0], loginData[7][1]);
-		test = extent.startTest("Read And Sign Training Part-3");
 		readSign=new ReadAndSignTraining_POM(driver);	
 		dateTimeUtils=new DateTimeUtils();
 		
