@@ -51,13 +51,19 @@ public class PeriodicOwnedDocuments_Test extends BaseClass{
 		login.loginUser(loginData[7][0], loginData[7][1]);
 	}
 
-	@Test(testName = "PeriodicReviews", groups = "Periodic Reviews", priority = 0)
+	@Test(testName = "PeriodicOwnedDocuments", groups = "Periodic Reviews", priority = 0)
 	public void DocumentRoutes() throws Exception
 	{		
-		test = extent.startTest("Periodic Reviews");
+		test = extent.startTest("Periodic Reviews Owned Documents");
 		test.log(LogStatus.PASS, "1.Login to the web interface as the first test user 1.");
 		test.log(LogStatus.INFO, "Link to Test case document", "<a href='file://"+filePath+"'>TestCaseDocument</a>");
 		periodicReviews=new PeriodicOwnedDocuments_POM(driver);	
+		
+		periodicReviews.administratorDropDown().click();
+		sleep(4);
+		periodicReviews.dropDownSetting_Link().click();
+		 
+		periodicReviews.multiSignReviewCheck(false);
 		
 		test.log(LogStatus.PASS,"2.Create a new document.");
 		periodicReviews.getnewdoc().click();
@@ -566,6 +572,8 @@ public class PeriodicOwnedDocuments_Test extends BaseClass{
 			test.log(LogStatus.PASS, "32.Click on 'View Document'.");
 			periodicReviews.viewDocButtonForPeriodicReview().click();
 			sleep(5);
+			verticalScrollingUp();
+			sleep(2);
 			if(periodicReviews.dontChange_Button().isEnabled() && periodicReviews.change_Button().isEnabled())
 			{
 				test.log(LogStatus.PASS, "<b>ER 16- The document is displayed in a new tab and the periodic review Change/Don't Change buttons are available.<b>"+
@@ -582,6 +590,11 @@ public class PeriodicOwnedDocuments_Test extends BaseClass{
 			sleep(4);
 			periodicReviews.reviewPIN_TextBox().sendKeys(routeData[1][12]);
 			periodicReviews.checkInRouteSubmit_Button().click();
+			sleep(4);
+			
+			periodicReviews.wizard_Option().click();
+			sleep(2);
+			periodicReviews.wizardReview_Tab().click();
 			sleep(4);
 			
 			test.log(LogStatus.PASS, "34.View the list of periodic reviews awaiting the first test user.");
@@ -780,7 +793,7 @@ public class PeriodicOwnedDocuments_Test extends BaseClass{
 		periodicReviews.pinTo_Approve().clear();
 		periodicReviews.pinTo_Approve().sendKeys(routeData[1][12]);
 		periodicReviews.checkInRouteSubmit_Button().click();
-		sleep(10);
+		sleep(5);
 	}
 
 }
