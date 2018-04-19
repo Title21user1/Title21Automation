@@ -47,7 +47,7 @@ public class CreateDocument_Test extends BaseClass {
 		login.loginFunction();
 	}
 
-	@Test(testName = "Create  Document", groups = "Document", priority = 0)
+	@Test(testName = "Create  Document", groups = "DocumentModule", priority = 0)
 	public void Create_doc() {
 		test = extent.startTest("Create  Document");
 		test.log(LogStatus.INFO, "Link to Test case document", "<a href='file://"+filePath+"'>TestCaseDocument</a>");

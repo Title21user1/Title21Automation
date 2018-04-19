@@ -48,7 +48,7 @@ public class ReadAndSignTraining_Test extends BaseClass{
 		dbqueries = new DBQueries();
 	}
 //=====================================================================Part=>01================================================================================
-	@Test(testName = "ReadAndSignTraining", groups = "Read And Sign Trainings", priority = 0, enabled=true)
+	@Test(testName = "Read And Sign Training", groups = "DocumentModule", priority = 0)
 	public void ReadAndSignTraining_Part1() throws Exception
 	{		
 		login.loginUser(loginData[7][0], loginData[7][1]);
@@ -316,7 +316,7 @@ public class ReadAndSignTraining_Test extends BaseClass{
 		logout.logoutFunction();
 	}
 //=====================================================================Part=>02================================================================================
-	@Test(testName = "ReadAndSignTraining", groups = "Read And Sign Trainings", priority = 0, enabled=true)
+	@Test(testName = "Read And Sign Training", groups = "DocumentModule", priority = 1)
 	public void ReadAndSignTraining_Part2() throws Exception
 	{		
 		login.loginUser(loginData[7][0], loginData[7][1]);
@@ -630,7 +630,7 @@ public class ReadAndSignTraining_Test extends BaseClass{
 		sleep(2);
 	}
 //=====================================================================Part=>03================================================================================	
-	@Test(testName = "ReadAndSignTraining", groups = "Read And Sign Trainings", priority = 0, enabled=true)
+	@Test(testName = "Read And Sign Training", groups = "DocumentModule", priority = 3)
 	public void ReadAndSignTraining_Part3() throws Exception
 	{	
 		login.loginUser(loginData[7][0], loginData[7][1]);

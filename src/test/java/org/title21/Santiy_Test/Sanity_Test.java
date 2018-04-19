@@ -17,8 +17,6 @@ import com.relevantcodes.extentreports.LogStatus;
 
 import org.testng.annotations.BeforeClass;
 
-import java.util.concurrent.TimeUnit;
-
 import org.testng.annotations.AfterClass;
 
 public class Sanity_Test extends BaseClass
@@ -52,10 +50,9 @@ public class Sanity_Test extends BaseClass
 		dashboard=new DashBord_POM(driver);
 		favorites=new RecentlyViewdAndFavorites_POM(driver);
 		wizpage=new WizardPage_POM(driver);
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 	}
 	
-	@Test
+	@Test(testName = "Sanity Test", groups = "Sanity", priority = 0)
 	public void SanityTest()
 	{
 		test = extent.startTest("Sanity");

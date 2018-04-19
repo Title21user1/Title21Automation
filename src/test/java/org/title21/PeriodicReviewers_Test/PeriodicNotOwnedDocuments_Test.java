@@ -56,7 +56,7 @@ public class PeriodicNotOwnedDocuments_Test extends BaseClass{
 		login.loginFunction();
 	}
 
-	@Test(testName = "PeriodicReviewsNotOwned", groups = "Periodic Reviews", priority = 0)
+	@Test(testName = "Periodic Reviews Not Owned", groups = "PeriodicReviewer", priority = 0)
 	public void DocumentRoutes() throws Exception
 	{
 		test = extent.startTest("Periodic Reviews - Not Owned Documents");

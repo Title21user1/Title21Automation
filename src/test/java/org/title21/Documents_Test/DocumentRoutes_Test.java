@@ -47,7 +47,7 @@ public class DocumentRoutes_Test extends BaseClass{
 		login.loginUser(loginData[7][0], loginData[7][1]);
 	}
 
-	@Test(testName = "DocumentRoutes", groups = "Document Routes", priority = 0)
+	@Test(testName = "Document Routes", groups = "DocumentModule", priority = 0)
 	public void DocumentRoutes() throws Exception
 	{		
 		test = extent.startTest("Document Routes");
@@ -92,7 +92,7 @@ public class DocumentRoutes_Test extends BaseClass{
 
 				documentRoutes.getApproverRole().selectByVisibleText(routeData[1][3]);
 				test.log(LogStatus.PASS,"5.	Select Role (for eg: "+routeData[1][3]+")"); 
-
+				sleep(2);
 				documentRoutes.approverAdd_Button().click();
 				documentRoutes.approverAdd_Button().click();
 				test.log(LogStatus.PASS,"6.	Click on add button");

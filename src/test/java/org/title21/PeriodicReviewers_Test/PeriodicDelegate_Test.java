@@ -33,7 +33,7 @@ public class PeriodicDelegate_Test extends BaseClass {
 		login.loginUser("saurabhp", "Title123456*");
 	}
 
-	@Test(testName = " PeriodicReviewDelegate", groups = "PeriodicReviewDelegate_Test", priority = 0)
+	@Test(testName = " Periodic Delegate", groups = "PeriodicReviewer", priority = 0)
 	public void PeriodicReview_Delegate() throws Exception {
 
 		test = extent.startTest(" PeriodicReviewDelegate_Test");

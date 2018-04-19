@@ -9,7 +9,6 @@ import org.title21.Module3_POM.eBinders_POM;
 import org.title21.utility.BaseClass;
 import com.relevantcodes.extentreports.LogStatus;
 import org.testng.annotations.BeforeClass;
-import java.util.concurrent.TimeUnit;
 import org.testng.annotations.AfterClass;
 
 
@@ -38,10 +37,9 @@ public class eBinders_Test extends BaseClass
 		adminpage=new AdministrationPage_POM(driver);
 		dashboard=new DashBord_POM(driver);
 		ebinder=new eBinders_POM(driver);
-		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 	}
 
-	@Test
+	@Test(testName = "eBinders", groups = "Module3", priority = 0)
 	public void eBinders()
 	{
 		test = extent.startTest("eBinders");

@@ -72,7 +72,7 @@ public class LinkControlOfDocument_Test extends BaseClass {
 
 	}
 
-	@Test(testName = "LinkControlOfDocument_Test", groups = "LinkControlOfDocument_POM", priority = 0)
+	@Test(testName = "Link Control Of Document", groups = "Module3", priority = 0)
 	public void LinkControlOfDocument_POM() throws Exception {
 
 		test = extent.startTest("Link Control Of Document");
