@@ -113,7 +113,7 @@ public class PeriodicNotOwnedDocuments_POM extends PeriodicOwnedDocuments_POM {
 	
 	public WebElement selectedGroups_TextArea()
 	{
-		return administrationlink;
+		return selectedGroupsTextArea;
 	}
 	
 	public WebElement filterText()
