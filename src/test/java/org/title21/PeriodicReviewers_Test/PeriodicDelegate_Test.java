@@ -26,22 +26,19 @@ public class PeriodicDelegate_Test extends BaseClass {
 		getBrowser();
 		className = this.getClass().getName();
 		createDirectory(className);
-		login = new LoginPage_POM(driver);
-		logout = new LogoutPage_POM(driver);
 		PeriodicReviewDelegate = new PeriodicDelegate_POM(driver);
-		login.loginUser("saurabhp", "Title123456*");
 		logout = new LogoutPage_POM(driver);
 		login = new LoginPage_POM(driver);
 		periodicReviews = new PeriodicOwnedDocuments_POM(driver);
+		login.loginUser("saurabhp", "Title123456*");
 	}
 
-	@Test(testName = " PeriodicReviewDelegate", groups = "AttachmentControl_Test", priority = 0)
-	public void AttachmentCotrol_Test() throws Exception {
+	@Test(testName = " PeriodicReviewDelegate", groups = "PeriodicReviewDelegate_Test", priority = 0)
+	public void PeriodicReview_Delegate() throws Exception {
 
-		test = extent.startTest("Periodic Review Delegate");
+		test = extent.startTest(" PeriodicReviewDelegate_Test");
 		test.log(LogStatus.INFO, "Link to Test case document",
 				"<a href='file://" + filePath + "'>TestCaseDocument</a>");
-		
 		PeriodicReviewDelegate.CreateDocumentAndAddReviewers();
 		sleep(4);
 		PeriodicReviewDelegate.Search(PeriodicReviewDelegate.documetNo);
@@ -50,10 +47,11 @@ public class PeriodicDelegate_Test extends BaseClass {
 				+ "2. Click on the document to view the required periodic reviewer of the document " + "<br/>"
 				+ "<b>ER 1:The list of required reviewers is available, and the logged in test user is a required reviewer on the list<b>"
 				+ test.addScreenCapture(captureScreenShot(driver, "DocumentOnreviewGrid ")));
+		sleep(5);
 		PeriodicReviewDelegate.getClickOnDocumentFromReviewList().click();
-		sleep(3);
+		sleep(5);
 		PeriodicReviewDelegate.getDropdownOfReviewer().get(1).click();
-		sleep(3);
+		sleep(5);
 		test.log(LogStatus.PASS,
 				" 3.Click on the reviewer context menu next to the test users name. " + "<br/>"
 						+ "<b>ER 2 : The Delegate option is available  <b>"
@@ -72,9 +70,9 @@ public class PeriodicDelegate_Test extends BaseClass {
 				" 5.Select Test User 2nd name (from Prerequisite 2)  from the list and click Confirm. " + "<br/>"
 						+ "<b>ER 4 : The second test users name is updated in the Delegated To field <b>"
 						+ test.addScreenCapture(captureScreenShot(driver, "adddelegateuser ")));
-		// String
-		// DelegateUser=PeriodicReviewDelegate.getVerifyDelegateUser().get(0).getText();
+		
 		logout.logoutFunction();
+		sleep(2);
 		login.loginUser("aparnak", "aparna2450");
 		Reviewscreen_Document();
 		sleep(5);
