@@ -116,7 +116,7 @@ public class PeriodicOwnedDocuments_POM extends DocumentRoutes_POM {
 	@FindBy(xpath="//*[@id='Type']")
 	WebElement auditLogTypeDropDown;
 	
-	@FindBy(xpath="//button[text()='Confirm']")
+	@FindBy(xpath="//*[text()='Confirm']")   
 	WebElement auditLogConfirmButton;
 	
 	@FindBy(xpath="//li[@id='Settings']")
@@ -124,6 +124,14 @@ public class PeriodicOwnedDocuments_POM extends DocumentRoutes_POM {
 	
 	@FindBy(xpath="//*[@id='BatchReview']")
 	WebElement multiSignReviewCheckBox;
+	
+	@FindBy(xpath="//input[@name='submitButton']")
+	WebElement approveConfirmButton;
+	
+	public WebElement approveConfirm_Button()
+	{
+		return approveConfirmButton;
+	}
 	
 	public WebElement multiSignReview_CheckBox()
 	{
@@ -315,4 +323,3 @@ public class PeriodicOwnedDocuments_POM extends DocumentRoutes_POM {
 	}
 	
 }
-

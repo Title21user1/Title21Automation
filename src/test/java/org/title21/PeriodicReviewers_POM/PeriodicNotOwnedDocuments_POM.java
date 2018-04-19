@@ -5,10 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.Select;
 import org.title21.Documents_POM.DocumentRoutes_POM;
-
-import freemarker.core.ReturnInstruction.Return;
 
 public class PeriodicNotOwnedDocuments_POM extends PeriodicOwnedDocuments_POM {
 
@@ -113,7 +110,7 @@ public class PeriodicNotOwnedDocuments_POM extends PeriodicOwnedDocuments_POM {
 	
 	public WebElement selectedGroups_TextArea()
 	{
-		return administrationlink;
+		return selectedGroupsTextArea;
 	}
 	
 	public WebElement filterText()
@@ -166,4 +163,3 @@ public class PeriodicNotOwnedDocuments_POM extends PeriodicOwnedDocuments_POM {
 	  }
 	}
 }
-
