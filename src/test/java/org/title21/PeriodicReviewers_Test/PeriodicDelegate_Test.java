@@ -36,7 +36,7 @@ public class PeriodicDelegate_Test extends BaseClass {
 	@Test(testName = " Periodic Delegate", groups = "PeriodicReviewer", priority = 0)
 	public void PeriodicReview_Delegate() throws Exception {
 
-		test = extent.startTest(" PeriodicReviewDelegate_Test");
+		test = extent.startTest("Periodic Delegate");
 		test.log(LogStatus.INFO, "Link to Test case document",
 				"<a href='file://" + filePath + "'>TestCaseDocument</a>");
 		PeriodicReviewDelegate.CreateDocumentAndAddReviewers();

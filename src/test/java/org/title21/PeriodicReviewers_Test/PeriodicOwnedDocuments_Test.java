@@ -54,7 +54,7 @@ public class PeriodicOwnedDocuments_Test extends BaseClass{
 	@Test(testName = "Periodic Owned Documents", groups = "PeriodicReviewer", priority = 0)
 	public void DocumentRoutes() throws Exception
 	{		
-		test = extent.startTest("Periodic Reviews Owned Documents");
+		test = extent.startTest("Periodic Owned Documents");
 		test.log(LogStatus.PASS, "1.Login to the web interface as the first test user 1.");
 		test.log(LogStatus.INFO, "Link to Test case document", "<a href='file://"+filePath+"'>TestCaseDocument</a>");
 		periodicReviews=new PeriodicOwnedDocuments_POM(driver);	
