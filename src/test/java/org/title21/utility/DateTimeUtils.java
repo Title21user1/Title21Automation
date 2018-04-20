@@ -46,6 +46,12 @@ public class DateTimeUtils {
 		return MMDDFormat.format(cal.getTime());
 	}
 	
+	public static String getFutureSpecDate(int NoOfDays) {
+		Calendar cal = Calendar.getInstance();
+		cal.add(Calendar.DAY_OF_MONTH, NoOfDays);
+		return MMDDFormat.format(cal.getTime());
+	}
+	
 	/**
 	 * Get yesterday's date
 	 * 

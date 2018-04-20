@@ -147,6 +147,21 @@ public class ActionsRequiredByDocOwner_POM extends PeriodicNotOwnedDocuments_POM
 	@FindBy(css="#Review > a")
 	WebElement reviewTab;
 	
+	@FindBy(xpath="//*[@id='Comments']")
+	WebElement approveCommentTextBox;
+	
+	@FindBy(css=".day.today")
+	WebElement pickCurrentDate;
+	
+	public WebElement pickCurrent_Date()
+	{
+		return pickCurrentDate;
+	}
+	
+	public WebElement approveComment_TextBox()
+	{
+		return approveCommentTextBox;
+	}
 	
 	 public WebElement administratorDropDown()
 	 {
