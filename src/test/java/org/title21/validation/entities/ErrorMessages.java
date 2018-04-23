@@ -29,6 +29,7 @@ public class ErrorMessages
 	public static final String checkedsuccessfullyMessage="checked in successfully.";
 	public static final String permissionToEdit="You don't have permissions to edit form";
 	public static final String rejectedmessage="You have successfully rejected";
+	public static final String recordLockeditmodevalidation="This record is locked";
 
 	//Reports
 	public static final String ReportNameValidation="Report name is required.";
