@@ -200,7 +200,9 @@ public class PeriodicNotOwnedDocuments_Test extends BaseClass{
 		 periodicReviews.wizard_Option().click();
 		 sleep(2);
 		 periodicReviews.wizardReview_Tab().click();
+
 		 sleep(3);
+
 		 for(int i=1; i<=20; i++)
 		 {
 		  selectDocForReview(documentNo2);
@@ -532,12 +534,16 @@ public class PeriodicNotOwnedDocuments_Test extends BaseClass{
 	private String createNewDocWithPeriodicReviewer()
 	{
 		periodicReviews.getnewdoc().click();
+
 		sleep(3);
+
 		waitTillElementVisible(periodicReviews.getdocument());
 		periodicReviews.getdocument().click();
 		sleep(3);
 		periodicReviews.getlocationDrodown().selectByVisibleText(routeData[1][0]);
+
 		sleep(3);
+
 		documentNo = periodicReviews.document_No().getAttribute("value");
 		periodicReviews.getDocumentTitle().sendKeys(routeData[1][1]+documentNo); 
 		sleep(2);
@@ -688,6 +694,7 @@ public class PeriodicNotOwnedDocuments_Test extends BaseClass{
 				periodicReviews.checkIn_Route().click();
 				sleep(2);
 				periodicReviews.checkInRouteSubmit_Button().click();
+
 				sleep(3);
 				periodicReviews.close_Button().click();
 				sleep(3);

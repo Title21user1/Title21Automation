@@ -85,6 +85,7 @@ public class BaseClass {
 	protected static String routeData[][];
 	protected static String codesData[][];
 	protected static String AuditLogs[][];
+	protected static String PeriodicReviewer[][];
 	
 	protected String data[][];
 	protected WebDriverWait waitDriver = null;
@@ -99,6 +100,7 @@ public class BaseClass {
 	public static String routeSheet="";
 	public static String codesSheet="";
 	public static String AuditLogsSheet="";
+	public static String PeriodicReviewerSheet="";
 	public static String browser="";
 	public static String baseUrl="";
 	public static String remoteUrl="";
@@ -164,6 +166,7 @@ public class BaseClass {
 		routeSheet=p.getProperty("RouteSheet");
 		codesSheet=p.getProperty("CodesSheet");
 		AuditLogsSheet=p.getProperty("AuditLogsSheet");
+		PeriodicReviewerSheet=p.getProperty("PeriodicReviewerSheet");
 		
 		// get db properties
 		dbServer=p.getProperty("dbserver");
@@ -187,6 +190,7 @@ public class BaseClass {
 		routeData=ExcelData(excelFile, routeSheet);
 		codesData=ExcelData(excelFile, codesSheet);
 		AuditLogs=ExcelData(excelFile, AuditLogsSheet);
+		PeriodicReviewer=ExcelData(excelFile, PeriodicReviewerSheet);
 		
 		downloadPath=System.getProperty("user.dir") + "\\DownloadedFiles";
 		
