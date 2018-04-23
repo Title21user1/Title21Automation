@@ -54,8 +54,8 @@ public class UpdateEmployee_Test extends BaseClass {
 
 	}
 
-	@Test(testName = "update employee ", groups = "Employee")
-	public void Edit_general_Employee() throws Exception {
+	@Test(testName = "Update Employee ", groups = "AdminModule", priority = 0)
+	public void Edit_Employee() throws Exception {
 
 		test = extent.startTest("Update  Employee");
 		test.log(LogStatus.INFO, "Link to Test case document", "<a href='file://"+filePath+"'>TestCaseDocument</a>");

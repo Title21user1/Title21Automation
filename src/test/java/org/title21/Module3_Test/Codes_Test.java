@@ -44,7 +44,7 @@ public class Codes_Test extends BaseClass {
 		login.loginFunction();
 
 	}
-	@Test(testName = "Codes", groups = "Codes", priority = 0)
+	@Test(testName = "Codes", groups = "Module3", priority = 0)
 	public void CreateGroupInAdmin() 
 	{
 		codes = new Codes_POM(driver);

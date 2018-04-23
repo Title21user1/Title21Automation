@@ -13,8 +13,6 @@ import com.relevantcodes.extentreports.LogStatus;
 
 import org.testng.annotations.BeforeClass;
 
-import java.util.concurrent.TimeUnit;
-
 import org.testng.annotations.AfterClass;
 
 public class DetailedCheckout_Test extends BaseClass
@@ -39,11 +37,9 @@ public class DetailedCheckout_Test extends BaseClass
 		mydocs =new org.title21.Documents_POM.MyDocs_POM(driver);
 		Credoc=new CreateDocument_POM(driver);
 		fileup = new FileUpload();
-
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 	}
 
-	@Test(testName = "DocumentCheckoutInDetail", groups = "DocumentCheck")
+	@Test(testName = "DocumentCheckoutInDetail", groups = "DocumentModule", priority = 0)
 	public void DocumentCheckoutInDetail()
 	{
 		preRequisites();
@@ -291,7 +287,7 @@ public class DetailedCheckout_Test extends BaseClass
 		Credoc.saveButton().click();										sleep(2);
 		mydocs.beforeCheckReviewer();
 		verticalScrollingDown();											sleep(1);
-		Credoc.addAttachment().click();										sleep(2);
+		Credoc.addAttachment().click();										sleep(3);
 		Credoc.fileupload(uploadFileName);									sleep(9);
 		mydocs.beforeCheckAttachment();
 		Credoc.addNewLinks().click();										sleep(3);

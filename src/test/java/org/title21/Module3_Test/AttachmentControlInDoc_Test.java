@@ -49,7 +49,7 @@ public class AttachmentControlInDoc_Test extends BaseClass {
 		login.loginUser("aparnak", "aparna2450");
 	}
 
-	@Test(testName = "AttachmentCotrol_Test", groups = "AttachmentControl_Test", priority = 0)
+	@Test(testName = "Attachment Control In Doc", groups = "Module3", priority = 0)
 	public void AttachmentCotrol_Test() throws Exception {
 		attachment = new AttachmentControlInDoc_POM(driver);
 		test = extent.startTest("Attachment control in document");

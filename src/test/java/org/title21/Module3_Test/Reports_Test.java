@@ -12,8 +12,6 @@ import com.relevantcodes.extentreports.LogStatus;
 
 import org.testng.annotations.BeforeClass;
 
-import java.util.concurrent.TimeUnit;
-
 import org.testng.annotations.AfterClass;
 
 public class Reports_Test extends BaseClass
@@ -39,10 +37,9 @@ public class Reports_Test extends BaseClass
 		logout=new LogoutPage_POM(driver);
 		reports = new Reports_POM(driver);
 		adminpage=new AdministrationPage_POM(driver);
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 	}
 
-	@Test
+	@Test(testName = "Reports", groups = "Module3", priority = 0)
 	public void Reports()
 	{
 		test = extent.startTest("Reports");

@@ -44,7 +44,7 @@ public class DeleteUser_Test extends BaseClass{
 		login.loginFunction();
 	}
 	
-	@Test(testName = "DeleteUser", groups = "Delete User", priority = 0)
+	@Test(testName = "Delete User", groups = "AdminModule", priority = 0)
 	public void UpdateUser() throws Exception
 	{		
 		test = extent.startTest("Delete User");
