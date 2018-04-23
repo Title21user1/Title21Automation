@@ -200,7 +200,7 @@ public class PeriodicNotOwnedDocuments_Test extends BaseClass{
 		 periodicReviews.wizard_Option().click();
 		 sleep(2);
 		 periodicReviews.wizardReview_Tab().click();
-		 sleep(2);
+		 sleep(3);
 		 for(int i=1; i<=20; i++)
 		 {
 		  selectDocForReview(documentNo2);
@@ -215,7 +215,7 @@ public class PeriodicNotOwnedDocuments_Test extends BaseClass{
 			 }
 		 } 
 		 
-		 sleep(2);
+		 sleep(3);
 		 if(periodicReviews.change_Button().isDisplayed() && periodicReviews.dontChange_Button().isDisplayed())
 		 {
 			 test.log(LogStatus.PASS, "<b>ER4- The document appears as read/ready to sign and periodic review actions are available.<b>"+
@@ -532,14 +532,15 @@ public class PeriodicNotOwnedDocuments_Test extends BaseClass{
 	private String createNewDocWithPeriodicReviewer()
 	{
 		periodicReviews.getnewdoc().click();
-		sleep(2);
+		sleep(3);
 		waitTillElementVisible(periodicReviews.getdocument());
 		periodicReviews.getdocument().click();
 		sleep(3);
 		periodicReviews.getlocationDrodown().selectByVisibleText(routeData[1][0]);
-		sleep(2);
+		sleep(3);
 		documentNo = periodicReviews.document_No().getAttribute("value");
 		periodicReviews.getDocumentTitle().sendKeys(routeData[1][1]+documentNo); 
+		sleep(2);
 		periodicReviews.getDocChangeSummary().sendKeys(routeData[1][2]+documentNo);
 		verticalScrollingDown();
 		periodicReviews.getConfirmButton().click();
@@ -687,7 +688,7 @@ public class PeriodicNotOwnedDocuments_Test extends BaseClass{
 				periodicReviews.checkIn_Route().click();
 				sleep(2);
 				periodicReviews.checkInRouteSubmit_Button().click();
-				sleep(2);
+				sleep(3);
 				periodicReviews.close_Button().click();
 				sleep(3);
 			}
@@ -703,6 +704,7 @@ public class PeriodicNotOwnedDocuments_Test extends BaseClass{
 	private void approveDocFromWizard(String docName)
 	{
 		periodicReviews.wizard_Option().click();
+		sleep(2);
 		periodicReviews.approval_Tab().click();
 		sleep(2);
 		isRecordFound = false;
