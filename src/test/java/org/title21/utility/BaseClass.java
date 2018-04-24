@@ -213,7 +213,7 @@ public class BaseClass {
 		/*
 		 * relativePathforImage has been set with relation with index.html
 		 */
-		imagesDirectory="/Title21/extentReports" + "/" + classname+"/";	
+		imagesDirectory=System.getProperty("user.dir")+"/extentReports" + "/" + classname+"/";	
 		
 		relativePathforImage="./"+classname+"/";
 		
