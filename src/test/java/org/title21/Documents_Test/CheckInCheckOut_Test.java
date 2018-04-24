@@ -1,7 +1,5 @@
 package org.title21.Documents_Test;
 
-import java.util.concurrent.TimeUnit;
-
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -37,11 +35,9 @@ public class CheckInCheckOut_Test extends BaseClass
 		mydocs =new org.title21.Documents_POM.MyDocs_POM(driver);
 		Credoc=new CreateDocument_POM(driver);
 		wizpage = new WizardPage_POM(driver);
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 	}
 
-
-	@Test(testName = "CheckInCheckOut", groups = "DocumentCheck")
+	@Test(testName = "Check In And Check Out", groups = "DocumentModule", priority = 0)
 	public void checkInCheckOut()
 	{
 		test = extent.startTest("Check In and Check Out Document");
@@ -180,7 +176,7 @@ public class CheckInCheckOut_Test extends BaseClass
 		sleep(2);
 		test.log(LogStatus.PASS,"16. Check in the document ");
 		mydocs.getCheckoutConfirmButton().click();
-		sleep(2);
+		sleep(3);
 		test.log(LogStatus.PASS,"<b>ER5: a Successful message that the document has been checked In is displayed. <b>"+
 				test.addScreenCapture(captureScreenShot(driver, "Succsessful document checkin")));
 		mydocs.getCheckinCloseButton().click();

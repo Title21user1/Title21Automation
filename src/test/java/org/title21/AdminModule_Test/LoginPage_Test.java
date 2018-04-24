@@ -27,7 +27,7 @@ public class LoginPage_Test extends BaseClass {
 		createDirectory(className);
 		
 	}
-	@Test(testName = "login-to-app", groups = "Logins", priority = 0)
+	@Test(testName = "Login Functionality", groups = "AdminModule", priority = 0)
 	public void LoginToApp() throws Exception 
 	{
 		test = extent.startTest("Login Authentication");

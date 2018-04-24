@@ -9,7 +9,6 @@ import org.title21.Module3_POM.eBinders_POM;
 import org.title21.utility.BaseClass;
 import com.relevantcodes.extentreports.LogStatus;
 import org.testng.annotations.BeforeClass;
-import java.util.concurrent.TimeUnit;
 import org.testng.annotations.AfterClass;
 
 
@@ -38,10 +37,9 @@ public class eBinders_Test extends BaseClass
 		adminpage=new AdministrationPage_POM(driver);
 		dashboard=new DashBord_POM(driver);
 		ebinder=new eBinders_POM(driver);
-		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 	}
 
-	@Test
+	@Test(testName = "eBinders", groups = "Module3", priority = 0)
 	public void eBinders()
 	{
 		test = extent.startTest("eBinders");
@@ -93,7 +91,7 @@ public class eBinders_Test extends BaseClass
 		ebinder.ebinderGroup().selectByVisibleText("Administrators");			sleep(1);
 		test.log(LogStatus.PASS,"10. Enter group");
 
-		ebinder.addButton().click();											sleep(4);
+		ebinder.addButton().click();											sleep(5);
 
 		test.log(LogStatus.PASS,"11. Click on add button");
 		test.log(LogStatus.PASS,"<b>ER5: A message confirming eBinder successful added is displayed.<b>"+
@@ -191,6 +189,7 @@ public class eBinders_Test extends BaseClass
 	@AfterClass
 	public void afterClass()
 	{
+		driver.get(baseUrl);
 		tearDown();
 		extent.endTest(test);
 		driver.close();

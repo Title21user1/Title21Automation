@@ -37,8 +37,6 @@ public class CreateDeleteGroups_Test extends BaseClass {
 		createDirectory(className);
 		login=new LoginPage_POM(driver);
 		login.loginFunction();
-		
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 	}
 	@Test(testName = "CreateGroup_admin", groups = "CreateGroup", priority = 0)
 	public void CreateGroupInAdmin() 

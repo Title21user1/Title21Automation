@@ -58,7 +58,7 @@ public class RecentlyViewedAndFavorites_Test extends BaseClass {
 
 	}
 
-	@Test(testName = "recentlyViewd_Favorites ", groups = "recentlyViewd_Favorites", priority = 0)
+	@Test(testName = "Recently Viewed And Favorites", groups = "DocumentModule", priority = 0)
 	public void Create_doc() throws Exception {
 		test = extent.startTest("RecentlyViewed_And_Favorites");
 
@@ -216,6 +216,8 @@ public class RecentlyViewedAndFavorites_Test extends BaseClass {
 		sleep(2);
 		documentRoutes.getApproverRole().selectByVisibleText("Approver");
 		sleep(2);
+		documentRoutes.getLocationDropdown().selectByVisibleText("All");
+		sleep(2);
 		documentRoutes.getnameinAddApprover().selectByVisibleText("sameer");
 		documentRoutes.getSequenceinAddApprover().selectByVisibleText("2");
 		documentRoutes.getallottedDaysinAddApprover().selectByVisibleText("1 day");
@@ -313,7 +315,9 @@ public class RecentlyViewedAndFavorites_Test extends BaseClass {
 		documentRoutes.getAddApproverLink().click();
 		sleep(2);
 		documentRoutes.getApproverRole().selectByVisibleText("Approver");
-		sleep(3);
+		sleep(2);
+		documentRoutes.getLocationDropdown().selectByVisibleText("All");
+		sleep(2);
 		documentRoutes.getnameinAddApprover().selectByVisibleText("sameer");
 		documentRoutes.getSequenceinAddApprover().selectByVisibleText("2");
 		documentRoutes.getallottedDaysinAddApprover().selectByVisibleText("1 day");

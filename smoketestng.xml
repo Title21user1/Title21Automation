@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Title21Suite">
+	<parameter name="configFile" value="title21config.properties" />
+	<test name="Sanity">
+		<classes>
+			<class name="org.title21.Santiy_Test.Sanity_Test" />
+		</classes>
+	</test>
+</suite>

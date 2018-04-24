@@ -16,8 +16,6 @@ import com.relevantcodes.extentreports.LogStatus;
 
 import org.testng.annotations.BeforeClass;
 
-import java.util.concurrent.TimeUnit;
-
 import org.testng.annotations.AfterClass;
 
 public class AccountLockout_Test extends BaseClass
@@ -45,10 +43,9 @@ public class AccountLockout_Test extends BaseClass
 		adduser = new AddNewUser_POM(driver);
 		updateuser = new UpdateUser_POM(driver);
 		dbqueries = new DBQueries();
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	}
 
-	@Test(testName = "AccountLockOut", groups = "LockOut", priority = 0)
+	@Test(testName = "AccountLockOut", groups = "AdminModule", priority = 0)
 	public void accountLockout()
 	{
 		test = extent.startTest("Account Lockout");

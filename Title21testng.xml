@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Title21Suite">
-	<parameter name="configFile" value="config.properties" />
-	<test name="Sanity" preserve-order="true">
+	<parameter name="configFile" value="title21config.properties" />
+	<test name="Sanity">
 		<classes>
 
 			<class name="org.title21.Santiy_Test.Sanity_Test" />
 
 		</classes>
 	</test>
-	<test name="AdminModuleScreens" preserve-order="true">
+	<test name="AdminModuleScreens">
 		<classes>
 			
 			<class name="org.title21.AdminModule_Test.LoginPage_Test"/>
-			<class name="org.title21.AdminModule_Test.LogoutPage_Test"/>
+			<class name="org.title21.AdminModule_Test.LogoutPage_Test"/> 
 			<class name="org.title21.AdminModule_Test.AddEmployee_Test"/>
 			<class name="org.title21.AdminModule_Test.UpdateEmployee_Test"/> 
 			<class name="org.title21.AdminModule_Test.CreateNewUser_Test"/>
@@ -25,21 +25,20 @@
 
 		</classes>
 	</test>
-	<test name="DocumentScreens" preserve-order="true">
+	<test name="DocumentScreens">
 		<classes>
-      
-			<class name="org.title21.Documents_Test.DocumentRoutes_Test"/>
+
 			<class name="org.title21.Documents_Test.CreateDocument_Test"/>
 			<class name="org.title21.Documents_Test.DocumentRoutes_Test"/>
 			<class name="org.title21.Documents_Test.CheckInCheckOut_Test"/> 
 			<class name="org.title21.Documents_Test.DetailedCheckout_Test"/> 
 			<class name="org.title21.Documents_Test.ReadAndSignTraining_Test"/>
 			<class name="org.title21.Documents_Test.RecentlyViewedAndFavorites_Test"/>
-			<class name="org.title21.Documents_Test.DocumentCollaboration_Test"/>
 			
 		</classes>
+
 	</test>
-	<test name="Module3" preserve-order="true">
+	<test name="Module3">
 		<classes>
 
 			<class name="org.title21.Module3_Test.Reports_Test"/>
@@ -47,18 +46,8 @@
 			<class name="org.title21.Module3_Test.eBinders_Test"/>
 			<class name="org.title21.Module3_Test.AttachmentControlInDoc_Test"/>
 			<class name="org.title21.Module3_Test.LinkControlOfDocument_Test"/>
-
 			
 		</classes>
-	</test>
-	<test name="PeriodicReviewer" preserve-order="true">
-		<classes>
 
-			<class name="org.title21.PeriodicReviewers_Test.PeriodicOwnedDocuments_Test"/>
-      		<class name="org.title21.PeriodicReviewers_Test.PeriodicNotOwnedDocuments_Test"/>
-      		<class name="org.title21.PeriodicReviewers_Test.PeriodicDelegate_Test"/>
-      		<class name="org.title21.PeriodicReviewers_Test.ActionsRequiredByDocOwner_Test"/>
-			
-		</classes>
 	</test>
 </suite>

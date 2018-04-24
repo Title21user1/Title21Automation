@@ -16,7 +16,7 @@ public class ErrorMessages
 	public static final String employeeIDExistsValidationMessage="EmployeeID Already Exists";
 	public static final String employeeNameExistsValidationMessage="Full Name already exists";
 	public static final String EditEmployeeSuccessMessage="updated successfully!";
-	
+
 	// CreateDocumentModule
 	public static final String DocumentTitleValidationMessage="Document Title is required.";
 	public static final String DocumentSummaryValidationMessage="Document Change Summary is required.";
@@ -29,12 +29,16 @@ public class ErrorMessages
 	public static final String checkedsuccessfullyMessage="checked in successfully.";
 	public static final String permissionToEdit="You don't have permissions to edit form";
 	public static final String rejectedmessage="You have successfully rejected";
-	
+	public static final String recordLockeditmodevalidation="This record is locked";
+
 	//Reports
 	public static final String ReportNameValidation="Report name is required.";
 	public static final String SelectReportValidation="Please select report.";
 	public static final String CategoryRequiredValidation="Category is required.";
 	public static final String DesignPermissionValidation="Please select at least one group with design permission.";
 	public static final String ReportEditPermission="You must be a member of group with design permission to access this functionality.";
-	
+
+	//Periodic Review delegate
+	public static final String NoResultFoundOnReviewValidation="No results returned, please check your filter.";
+
 }
