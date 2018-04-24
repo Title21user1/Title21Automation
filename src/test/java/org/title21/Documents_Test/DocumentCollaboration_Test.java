@@ -40,7 +40,8 @@ public class DocumentCollaboration_Test extends BaseClass {
 		test = extent.startTest("Document Collaboration");
 		test.log(LogStatus.INFO, "Link to Test case document",
 				"<a href='file://" + filePath + "'>TestCaseDocument</a>");
-
+		
+		login.loginUser("saurabhp", "Title123456*");
 		addcollaborator("1");
 		sleep(5);
 		DocumentCollaboration.getMyTaskTab().click();
@@ -122,7 +123,7 @@ public class DocumentCollaboration_Test extends BaseClass {
 		}
 		sleep(3);
 		logout.logoutFunction();
-		// sleep(5);
+		login.loginUser("saurabhp", "Title123456*");
 		addcollaborator("2");
 		sleep(4);
 		auditlog();
@@ -170,6 +171,7 @@ public class DocumentCollaboration_Test extends BaseClass {
 				+ test.addScreenCapture(captureScreenShot(driver, "email_not_send")));
 		sleep(4);
 		logout.logoutFunction();
+		login.loginUser("saurabhp", "Title123456*");
 		addcollaborator("3");
 		sleep(4);
 		logout.logoutFunction();
@@ -206,7 +208,7 @@ public class DocumentCollaboration_Test extends BaseClass {
 	}
 
 	public void addcollaborator(String ScenarioNo) {
-		login.loginUser("saurabhp", "Title123456*");
+		
 		DocumentCollaboration.CreateDocument();
 		sleep(4);
 		DocumentCollaboration.getCollaborationTab().click();
@@ -219,10 +221,10 @@ public class DocumentCollaboration_Test extends BaseClass {
 							+ "<br/>" + "<b>ER 1: Add Collaborator popup is displayed. <b>"
 							+ test.addScreenCapture(captureScreenShot(driver, "Collaboration_window")));
 		}
-		sleep(10);
+		sleep(7);
 		DocumentCollaboration.getDescription_On_AddCollaborator().clear();
 		sleep(2);
-		DocumentCollaboration.getDescription_On_AddCollaborator().sendKeys("Automation testing");
+		DocumentCollaboration.getDescription_On_AddCollaborator().sendKeys("Automation Testing");
 		sleep(2);
 		DocumentCollaboration.getCategoryOnAddCollaborator().selectByVisibleText("Collaboration");
 		sleep(2);
@@ -241,19 +243,20 @@ public class DocumentCollaboration_Test extends BaseClass {
 			}
 		}
 		DocumentCollaboration.getDueDate_On_AddCollaborator().click();
-		org.title21.utility.BaseClass.sleep(2);
+		sleep(2);
 		driver.findElement(By.xpath("//td[text()='" + dd + "']")).click();
 		sleep(3);
+		
 		if (ScenarioNo.equalsIgnoreCase("2")) {
 			DocumentCollaboration.getelectonisognaturecheckbox(false);
-			sleep(2);
+			sleep(1);
 			DocumentCollaboration.getAllowDocumentEditingcheckbox(false);
-			sleep(2);
+			sleep(1);
 			DocumentCollaboration.getEmailOnaddNewcheckbox(false);
-			sleep(3);
+			sleep(1);
 			DocumentCollaboration.getEnableTaskcheckbox(true);
 			DocumentCollaboration.getNotifyMeWhenTaskCompleteCheckbox(false);
-			sleep(3);
+			sleep(1);
 			test.log(LogStatus.PASS,
 					"21.Create new document." + "<br/>"
 							+ "22.	Click on add collaborator link and In Add collaborator task dialog ensure that"
@@ -277,15 +280,15 @@ public class DocumentCollaboration_Test extends BaseClass {
 		} else if (ScenarioNo.equalsIgnoreCase("3")) {
 			sleep(2);
 			DocumentCollaboration.getAllowDocumentEditingcheckbox(true);
-			sleep(2);
+			sleep(1);
 			DocumentCollaboration.getEmailOnaddNewcheckbox(true);
-			sleep(3);
+			sleep(1);
 			DocumentCollaboration.getEnableTaskcheckbox(false);
-			sleep(5);
+			sleep(1);
 			DocumentCollaboration.getelectonisognaturecheckbox(true);
-			sleep(2);
+			sleep(1);
 			DocumentCollaboration.getNotifyMeWhenTaskCompleteCheckbox(true);
-			sleep(3);
+			sleep(1);
 			test.log(LogStatus.PASS,
 					"35.Again add one collaborator " + "<br/>" + "a.Assign to: A second test user" + "<br/>"
 							+ "b.Due Date: Any future date" + "<br/>"
@@ -304,15 +307,15 @@ public class DocumentCollaboration_Test extends BaseClass {
 		else {
 			sleep(2);
 			DocumentCollaboration.getAllowDocumentEditingcheckbox(true);
-			sleep(2);
+			sleep(1);
 			DocumentCollaboration.getEmailOnaddNewcheckbox(true);
-			sleep(3);
+			sleep(1);
 			DocumentCollaboration.getEnableTaskcheckbox(true);
-			sleep(5);
+			sleep(1);
 			DocumentCollaboration.getelectonisognaturecheckbox(true);
-			sleep(2);
+			sleep(1);
 			DocumentCollaboration.getNotifyMeWhenTaskCompleteCheckbox(false);
-			sleep(3);
+			sleep(1);
 			test.log(LogStatus.PASS,
 					"5.In the Add collaborator task dialog ensure that:" + "<br/>" + "a.Assign to: A second test user"
 							+ "<br/>" + "b.Due Date: Any future date" + "<br/>"
@@ -323,7 +326,7 @@ public class DocumentCollaboration_Test extends BaseClass {
 							+ test.addScreenCapture(captureScreenShot(driver, "add_collaboration1")));
 
 			sleep(3);
-			verticalScrollingDown();
+			//verticalScrollingDown();
 			DocumentCollaboration.getAddButton().click();
 			sleep(3);
 			test.log(LogStatus.PASS,
@@ -332,13 +335,11 @@ public class DocumentCollaboration_Test extends BaseClass {
 			sleep(3);
 		}
 		sleep(3);
-
 	}
 
 	@AfterClass
 	public void closeBrowserInstance() {
 		extent.endTest(test);
-		logout.logoutFunction();
-		driver.close();
+		driver.quit();
 	}
 }

@@ -46,8 +46,8 @@ public class DocumentCollaboration_POM {
 	@FindBy(css = ".t21-js-row-link.text-nowrap>a")
 	List<WebElement> document;
 
-	@FindBy(css = ".alert.t21-alert-info.alert-dismissible>p")
-	WebElement NoResultErrorMessageForSearch;
+	@FindBy(css = ".t21-margin-bottom")
+	List<WebElement> NoResultErrorMessageForSearch;
 
 	@FindBy(xpath = ".//*[@id='Category']")
 	WebElement CategoryOnAddCollaborator;
@@ -99,8 +99,8 @@ public class DocumentCollaboration_POM {
 
 	@FindBy(css = ".set-item-link")
 	List<WebElement> AssignByMe;
-
-	@FindBy(css = ".col-lg-8.col-md-8.col-sm-8.t21-no-bold")
+	
+@FindBy(css = ".col-lg-8.col-md-8.col-sm-8.t21-no-bold")
 	List<WebElement> Taskstatusverify;
 
 	@FindBy(css = ".btn.t21-btn-primary.t21-ajax-link.t21-bold")
@@ -287,7 +287,7 @@ public class DocumentCollaboration_POM {
 		return AddButton;
 	}
 
-	public WebElement getNoResultErrorMessageForSearch() {
+	public List<WebElement> getNoResultErrorMessageForSearch() {
 
 		return NoResultErrorMessageForSearch;
 	}
@@ -413,7 +413,7 @@ public class DocumentCollaboration_POM {
 
 	public boolean NoResultvalidationMessage() {
 
-		element = getNoResultErrorMessageForSearch();
+		element = getNoResultErrorMessageForSearch().get(1);
 		String errorMessage = element.getText();
 		boolean isValidationMessagePresent = false;
 
@@ -448,7 +448,7 @@ public class DocumentCollaboration_POM {
 		RecentlyViewdAndFavorites.getSearches().click();
 		RecentlyViewdAndFavorites.getplaceholder().sendKeys("Search on Document Number");
 		RecentlyViewdAndFavorites.getGOButton().click();
-		BaseClass.sleep(5);
+		org.title21.utility.BaseClass.sleep(5);
 		RecentlyViewdAndFavorites.SearchByDocNumber().click();
 		RecentlyViewdAndFavorites.getEnterDocNo().sendKeys(Searchdata);
 		RecentlyViewdAndFavorites.SearchGobutton().click();
