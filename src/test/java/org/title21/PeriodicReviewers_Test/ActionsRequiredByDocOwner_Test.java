@@ -277,7 +277,7 @@ public class ActionsRequiredByDocOwner_Test extends BaseClass{
 			}
 			if(isValueFound)
 			{
-				test.log(LogStatus.PASS, "<b>ER 1- Periodic review of the document is available in Test User 2’s wizard</b>"+
+				test.log(LogStatus.PASS, "<b>ER 1- Periodic review of the document is available in Test User 2's wizard</b>"+
 						test.addScreenCapture(captureScreenShot(driver, "review wizard")));
 			}
 			else
@@ -441,7 +441,7 @@ public class ActionsRequiredByDocOwner_Test extends BaseClass{
 				periodicReviews.pickDate_TextBox().click();
 				action.pickCurrent_Date().click();
 				sleep(2);
-				test.log(LogStatus.PASS, "21.Add one periodic reviewer by clicking on “Edit Periodic Reviewers” link.");
+				test.log(LogStatus.PASS, "21.Add one periodic reviewer by clicking on 'Edit Periodic Reviewers' link.");
 				scrollIntoView(periodicReviews.editPeriodicReviewers_Link());
 				periodicReviews.editPeriodicReviewers_Link().click();
 				sleep(5);
