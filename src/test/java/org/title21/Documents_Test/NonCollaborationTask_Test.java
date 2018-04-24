@@ -103,7 +103,7 @@ public class NonCollaborationTask_Test extends BaseClass {
 							+ "<b>ER 10 :Delete and edit buttons are disabled for the completed task. <b>"
 							+ test.addScreenCapture(captureScreenShot(driver, "edit_and_delete_disable ")));
 		}
-
+		logout.logoutFunction();
 	}
 
 	public void addcollaborator() {
