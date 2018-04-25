@@ -28,6 +28,9 @@ public class CreatingNewPackage_Test extends BaseClass{
 	String className="";
 	String packageNo="";
 	String fileUploadPath="";
+	String docToSearch="";
+	String obsoleteDate="";
+	String obsoleteDateinserachDoc="";
 	String uploadFileName="FileToUpload.txt";
 	Table searchTable;
 	DBQueries dbqueries;
@@ -179,9 +182,7 @@ public class CreatingNewPackage_Test extends BaseClass{
 			verticalScrollingUp();
 			sleep(2);
 			
-			//need clarification about Target Release Date
-			
-			String targetReleaseDate=DateTimeUtils.getTomorrowDate();
+			String targetReleaseDate=DateTimeUtils.getCurrentPSTDate();
 			String finalDate=targetReleaseDate.substring(3, 5);
 			creatingNewPackage.targetReleaseDate_TextBox().click();
 			driver.findElement(By.xpath("//*[text()='"+finalDate+"']")).click();
@@ -211,7 +212,7 @@ public class CreatingNewPackage_Test extends BaseClass{
 			}
 			else
 			{
-				test.log(LogStatus.PASS, "<b>Unable to find the 'No obsolete documents to update' Pop up message.<b>"+
+				test.log(LogStatus.FAIL, "<b>Unable to find the 'No obsolete documents to update' Pop up message.<b>"+
 						test.addScreenCapture(captureScreenShot(driver, "No obsolete documents")));
 			}
 			
@@ -237,21 +238,164 @@ public class CreatingNewPackage_Test extends BaseClass{
 			sleep(2);
 			
 			test.log(LogStatus.PASS, "23.Select Effective documents.");
-			//write dynamic logic for the selection for effective doc bcoz some doc are disabled 
-			creatingNewPackage.filteredPackage_Result().click();
+			
+			int count=0;
+			for(int i=1;i<=10;i++)
+			{
+				if(driver.findElement(By.xpath("//tr["+i+"]/td[2]")).isEnabled())
+				{
+					driver.findElement(By.xpath("//tr["+i+"]/td[2]")).click();
+					count++;
+				}
+				if(count==2)
+				{
+					break;
+				}
+			}
+			
 			
 			test.log(LogStatus.PASS, "24.Click on 'OK'.");
 			javaScriptClick(creatingNewPackage.create_Button());
 			sleep(2);
 			
-			/*if()
+			if(creatingNewPackage.docAddedIn_DocSection().isDisplayed())
 			{
-				ER 8 –Added documents appear in the document frame.
+				test.log(LogStatus.PASS, "<b>ER8- Added documents appear in the document frame.<b>"+
+						test.addScreenCapture(captureScreenShot(driver, "No obsolete documents")));
 			}
 			else
 			{
+				test.log(LogStatus.FAIL, "<b>Unable to find the added documents in the document frame.<b>"+
+						test.addScreenCapture(captureScreenShot(driver, "No obsolete documents")));
+			}
+			
+			test.log(LogStatus.PASS, "25.Mark the document to be obsolete from the context menu.");
+			creatingNewPackage.thirdDocContext_Menu().click();
+			sleep(2);
+			creatingNewPackage.obsolete_Option().click();
+			sleep(2);
+
+			docToSearch = creatingNewPackage.thirdDoc_Name().getText();
+			
+			if(creatingNewPackage.verifyMsgPopUpHeader())
+			{
+				test.log(LogStatus.PASS, "<b>ER9- Document is marked Obsolete Message is displayed.<b>"+
+						test.addScreenCapture(captureScreenShot(driver, "Document is marked Obsolete Message")));
 				
-			}*/
+				test.log(LogStatus.PASS, "26.Click on 'Close'.");
+				creatingNewPackage.close_Button().click();
+				sleep(2);
+			}
+			else
+			{
+				test.log(LogStatus.FAIL, "<b>Unable to find the Document marked Obsolete.<b>"+
+						test.addScreenCapture(captureScreenShot(driver, "Document is marked Obsolete Message")));
+			}
+			
+			test.log(LogStatus.PASS, "27.Repeat Step 25 for all attached Effective documents.");
+			creatingNewPackage.fourthDocContext_Menu().click();
+			sleep(2);
+			creatingNewPackage.obsolete_Option().click();
+			sleep(2);
+			creatingNewPackage.close_Button().click();
+			sleep(2);
+			
+			test.log(LogStatus.PASS, "28.On Package screen add an 'Obsolete Date'.");
+			scrollIntoView(creatingNewPackage.obsoleteDate_TextBox());
+			creatingNewPackage.obsoleteDate_TextBox().click();
+			creatingNewPackage.current_Date().click();
+			sleep(2);
+			
+			if(creatingNewPackage.verifyupdateAttachedDocobsoleteDocPopUp())
+			{
+				test.log(LogStatus.PASS, "<b>ER10- Update attached document(s) (obsoleted only) to this Obsolete Date? Pop up message is appeared.<b>"+
+						test.addScreenCapture(captureScreenShot(driver, "Update attached document")));
+				
+				test.log(LogStatus.PASS, "29.Click on 'Yes'.");
+				creatingNewPackage.yes_Button().click();
+				sleep(2);
+			}
+			else
+			{
+				test.log(LogStatus.FAIL, "<b>Unable to find the Update attached document(s) (obsoleted only) to this Obsolete Date? Pop up message is appeared.<b>"+
+						test.addScreenCapture(captureScreenShot(driver, "Update attached document")));
+			}
+			
+			if(creatingNewPackage.verifyMsgPopUpHeader())
+			{
+				test.log(LogStatus.PASS, "<b>ER11- Successful message for updation of the document is displayed.<b>"+
+						test.addScreenCapture(captureScreenShot(driver, "updation of the document")));
+				
+				test.log(LogStatus.PASS, "30.Click on 'Close'.");
+				creatingNewPackage.close_Button().click();
+				
+			}
+			else
+			{
+				test.log(LogStatus.FAIL, "<b>Unable to find the Successful message for updation of the document is displayed.<b>"+
+						test.addScreenCapture(captureScreenShot(driver, "updation of the document")));
+			}
+			
+			if(creatingNewPackage.obsoleteDate_TextBox() != null)
+			{
+				test.log(LogStatus.PASS, "<b>ER12- Target Obsolete Date of the package is updated.<b>"+
+						test.addScreenCapture(captureScreenShot(driver, "Target Obsolete Date")));
+				obsoleteDate = creatingNewPackage.obsoleteDate_TextBox().getAttribute("value");
+			}
+			else
+			{
+				test.log(LogStatus.PASS, "<b>Unable to find the Target Obsolete Date of the package is updated.<b>"+
+						test.addScreenCapture(captureScreenShot(driver, "Target Obsolete Date")));
+			}
+			
+			test.log(LogStatus.PASS, "31.Take any one of the attached Effective documents names and go to the searches.");
+			//docToSearch string
+			verticalScrollingUp();
+			sleep(2);
+			creatingNewPackage.searches_Tab().click();
+			sleep(2);
+			
+			test.log(LogStatus.PASS, "32.Search for that document.");
+			creatingNewPackage.searchesFilterResult_TextBox().sendKeys(docToSearch);
+			sleep(2);
+			creatingNewPackage.searchesFilterResultGo_Button().click();
+			
+			test.log(LogStatus.PASS, "33.Open the document.");
+			//click
+			
+			obsoleteDateinserachDoc = creatingNewPackage.obsoleteDate_TextBox().getAttribute("value");
+			
+			if(obsoleteDateinserachDoc.equals(obsoleteDate))
+			{
+				test.log(LogStatus.PASS, "<b>ER13- Obsolete Date of Package and the added document is same.<b>"+
+						test.addScreenCapture(captureScreenShot(driver, "Obsolete Date of Package")));
+			}
+			else
+			{
+				test.log(LogStatus.PASS, "<b>Unable to find the Obsolete Date of Package and the added document is same.<b>"+
+						test.addScreenCapture(captureScreenShot(driver, "Obsolete Date of Package")));
+			}
+			
+			
+			test.log(LogStatus.PASS, "34.Click on 'Add/Remove' link available in documents frame.");
+			verticalScrollingDown();
+			sleep(2);
+			creatingNewPackage.addRemove_LinkText().click();
+			
+			if(creatingNewPackage.verifyAttachDocScreen())
+			{
+				test.log(LogStatus.PASS, "<b>ER14- Dialog to add documents will appear.<b>"+
+						test.addScreenCapture(captureScreenShot(driver, "Dialog to add documents")));
+			}
+			else
+			{
+				test.log(LogStatus.PASS, "<b>Unable to find the Dialog to add documents will appear.<b>"+
+						test.addScreenCapture(captureScreenShot(driver, "Dialog to add documents")));
+			}
+			
+			
+			
+			
 			
 			
 			

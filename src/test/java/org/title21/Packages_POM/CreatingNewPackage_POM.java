@@ -86,7 +86,7 @@ public class CreatingNewPackage_POM extends DocumentRoutes_POM {
 	@FindBy(css=".day.active.today")
 	WebElement currentDate;
 
-	@FindBy(xpath="//*[@id='collapse-0']//tr/td[2]")
+	@FindBy(xpath="//*[@id='collapse-0']//tr[1]/td[2]")
 	WebElement docAddedInDocSection;
 	
 	@FindBy(xpath="//input[@id='TravTargetReleaseDateString']")
@@ -94,6 +94,9 @@ public class CreatingNewPackage_POM extends DocumentRoutes_POM {
 	
 	@FindBy(css=".modal-title>span")
 	WebElement updateAttachedDocHeaderText;
+	
+	@FindBy(xpath="//*[text()='Update attached documents obsolete date']")
+	WebElement updateAttachedDocobsoleteHeaderText;
 	
 	@FindBy(xpath="//input[@name='submit']")
 	WebElement yesButton;
@@ -109,6 +112,75 @@ public class CreatingNewPackage_POM extends DocumentRoutes_POM {
 	
 	@FindBy(xpath="//*[@id='default-modal']/div/form/div/div[2]/div[1]/div[5]/div/span[1]/button")
 	WebElement attachedDocFilterResultGoButton;
+	
+	@FindBy(xpath="//*[@id='collapse-0']//tr[3]/td[3]/div/a/span[1]")
+	WebElement thirdDocContextMenu;
+	
+	@FindBy(xpath="//*[@id='collapse-0']//tr[3]/td[2]")
+	WebElement thirdDocName;
+	
+	@FindBy(xpath="//*[@id='collapse-0']//tr[4]/td[3]/div/a/span[1]")
+	WebElement fourthDocContextMenu;
+	
+	@FindBy(xpath="//span[text()='Obsolete']")
+	WebElement obsoleteOption;
+	
+	@FindBy(xpath="//*[@id='TravObsoleteDateString']")
+	WebElement obsoleteDate_TextBox;
+	
+	@FindBy(xpath="//*[@id='NavSearches']")
+	WebElement searchesTab;
+	
+	@FindBy(xpath="//*[@id='RegularSearches']/div/div[1]/div/form/div/input")
+	WebElement searchesFilterResultTextBox;
+	
+	@FindBy(xpath="//*[@id='RegularSearches']/div/div[1]/div/form/div/span[1]/button")
+	WebElement searchesFilterResultGoButton;
+	
+	public WebElement searchesFilterResultGo_Button()
+	{
+		return searchesFilterResultGoButton;
+	}
+	
+	public WebElement searchesFilterResult_TextBox()
+	{
+		return searchesFilterResultTextBox;
+	}
+	
+	public WebElement searches_Tab()
+	{
+		return searchesTab;
+	}
+	
+	public WebElement thirdDoc_Name()
+	{
+		return thirdDocName;
+	}
+	
+	public WebElement updateAttachedDocobsolete_HeaderText()
+	{
+		return updateAttachedDocobsoleteHeaderText;
+	}
+	
+	public WebElement obsoleteDate_TextBox()
+	{
+		return obsoleteDate_TextBox;
+	}
+	
+	public WebElement obsolete_Option()
+	{
+		return obsoleteOption;
+	}
+	
+	public WebElement fourthDocContext_Menu()
+	{
+		return fourthDocContextMenu;
+	}
+	
+	public WebElement thirdDocContext_Menu()
+	{
+		return thirdDocContextMenu;
+	}
 	
 	public WebElement attachedDocFilterResultGo_Button()
 	{
@@ -314,6 +386,20 @@ public class CreatingNewPackage_POM extends DocumentRoutes_POM {
 		String headerText = updateAttachedDocHeaderText().getText();
 		
 		if(headerText.equalsIgnoreCase("Update attached documents release date"))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	public boolean verifyupdateAttachedDocobsoleteDocPopUp()
+	{
+		String headerText = updateAttachedDocobsolete_HeaderText().getText();
+		
+		if(headerText.equalsIgnoreCase("Update attached documents obsolete date"))
 		{
 			return true;
 		}
