@@ -463,6 +463,6 @@ public class LinkControlOfDocument_Test extends BaseClass {
 		logout.logoutFunction();
 		sleep(2);
 		extent.endTest(test);
-		driver.close();
+		driver.quit();
 	}
 }

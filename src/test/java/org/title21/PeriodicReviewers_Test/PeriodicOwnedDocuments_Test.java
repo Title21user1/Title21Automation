@@ -696,7 +696,7 @@ public class PeriodicOwnedDocuments_Test extends BaseClass{
 	public void closeBrowserInstance()
 	{		
 		extent.endTest(test);
-		driver.close();
+		driver.quit();
 	}
 
 	private boolean verifyValuesInAuditLog(String reviewerName, int cellNo) 

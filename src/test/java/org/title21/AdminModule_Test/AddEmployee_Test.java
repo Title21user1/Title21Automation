@@ -327,7 +327,7 @@ public class AddEmployee_Test extends BaseClass {
 	public void closeBrowserInstance()
 	{	
 		extent.endTest(test);	
-		driver.close();
+		driver.quit();
 	}
 
 	private void searchRecordInTable() {

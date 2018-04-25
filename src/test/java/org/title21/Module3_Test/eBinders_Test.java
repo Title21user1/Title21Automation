@@ -192,7 +192,7 @@ public class eBinders_Test extends BaseClass
 		driver.get(baseUrl);
 		tearDown();
 		extent.endTest(test);
-		driver.close();
+		driver.quit();
 	}
 
 	public void tearDown()

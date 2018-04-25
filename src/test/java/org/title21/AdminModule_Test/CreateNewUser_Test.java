@@ -415,18 +415,11 @@ public class CreateNewUser_Test extends BaseClass{
 		
 	}
 	
-	@Test(testName = "logout", groups = "Logout", priority = 1)
-	public void Logout() throws Exception 
-	{	
-		sleep(5);
-		logout=new LogoutPage_POM(driver);
-		logout.logoutFunction();		
-	}
-	
 	@AfterClass
 	public void closeBrowserInstance()
 	{		
+		logout.logoutFunction();
 		extent.endTest(test);
-		driver.close();
+		driver.quit();
 	}
 }

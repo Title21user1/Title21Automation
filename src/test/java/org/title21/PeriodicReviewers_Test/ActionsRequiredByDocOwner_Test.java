@@ -616,7 +616,7 @@ public class ActionsRequiredByDocOwner_Test extends BaseClass{
 		public void closeBrowserInstance() throws IOException 
 		{
 			extent.endTest(test);
-			driver.close();
+			driver.quit();
 		}
 
 		private boolean verifyDocForReview(String docName) 

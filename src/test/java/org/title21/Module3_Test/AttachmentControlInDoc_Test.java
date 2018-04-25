@@ -209,6 +209,6 @@ public class AttachmentControlInDoc_Test extends BaseClass {
 		log.info("logout successfully.");
 		sleep(2);
 		extent.endTest(test);
-		driver.close();
+		driver.quit();
 	}
 }

@@ -138,6 +138,6 @@ public class AccountLockout_Test extends BaseClass
 	public void afterClass()
 	{
 		extent.endTest(test);
-		driver.close();
+		driver.quit();
 	}
 }

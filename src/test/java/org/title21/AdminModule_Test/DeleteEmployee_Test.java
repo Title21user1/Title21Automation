@@ -123,7 +123,7 @@ public class DeleteEmployee_Test extends BaseClass {
 	public void closeBrowserInstance()
 	{
 		extent.endTest(test);
-		driver.close();		
+		driver.quit();	
 	}
 
 	public boolean clickonDelete(){

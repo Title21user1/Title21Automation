@@ -51,90 +51,27 @@ public class Sanity_Test extends BaseClass
 		dashboard=new DashBord_POM(driver);
 		favorites=new RecentlyViewdAndFavorites_POM(driver);
 		wizpage=new WizardPage_POM(driver);
+		
+		dashboard.enableCIBMTR_LMS();												
+		dashboard.enableCIBMTR_LMS_ForGroup("Sp Tester");
 	}
 
 	@Test(testName = "Sanity Test - Login", groups = "Sanity", priority = 0)
 	public void Login_SanityTest()
 	{
-		test = extent.startTest("Sanity-Login");
-		dashboard.enableCIBMTR_LMS();												
-		dashboard.enableCIBMTR_LMS_ForGroup("Sp Tester");
-		test = extent.startTest("Sanity-Login");
+		test = extent.startTest("Login");
+		
 		login.loginUser(loginData[14][0],loginData[14][1]);
+		
 		test.log(LogStatus.PASS,"<b>ER: User is successfully logged-in.<b>"+
 				test.addScreenCapture(captureScreenShot(driver, "Login Successfull")));
 
-		
-		/*dashboard.toCIBMTR().click();												sleep(3);
-
-		test.log(LogStatus.PASS,"<b>ER: CIBTR - Landing pages load without errors <b>"+
-				test.addScreenCapture(captureScreenShot(driver, "CIBTR displayed")));
-
-		dashboard.toQueries().click();												sleep(4);
-
-		test.log(LogStatus.PASS,"<b>ER: Queries - Landing pages load without errors <b>"+
-				test.addScreenCapture(captureScreenShot(driver, "Queries Landing")));
-
-		dashboard.toReports().click();												sleep(2);
-		dashboard.toSubmission().click();											sleep(4);
-
-		test.log(LogStatus.PASS,"<b>ER: Submission - Landing pages load without errors <b>"+
-				test.addScreenCapture(captureScreenShot(driver, "Submission Page")));
-
-		dashboard.toReports().click();												sleep(2);
-		dashboard.toRetrieval().click();											sleep(4);
-
-		test.log(LogStatus.PASS,"<b>ER: Retrieval - Landing pages load without errors <b>"+
-				test.addScreenCapture(captureScreenShot(driver, "Retrieval Page")));
-
-		dashboard.toReports().click();												sleep(2);
-		dashboard.toRFI().click();													sleep(4);
-
-		test.log(LogStatus.PASS,"<b>ER: RFI - Landing pages load without errors <b>"+
-				test.addScreenCapture(captureScreenShot(driver, "RFI Page")));
-
-		dashboard.toCharts().click();												sleep(4);
-
-		test.log(LogStatus.PASS,"<b>ER: Charts - Landing pages load without errors <b>"+
-				test.addScreenCapture(captureScreenShot(driver, "CIBTR displayed")));
-
-		dashboard.toLMS().click();													sleep(4);
-
-		test.log(LogStatus.PASS,"<b>ER: LMS - Landing pages load without errors <b>"+
-				test.addScreenCapture(captureScreenShot(driver, "LMS displayed")));
-
-		dashboard.toTraningPlans().click();											sleep(4);
-
-		test.log(LogStatus.PASS,"<b>ER: Traning Plans - Landing pages load without errors <b>"+
-				test.addScreenCapture(captureScreenShot(driver, "Training Plans")));
-
-		dashboard.toTraningCourses().click();										sleep(4);
-
-		test.log(LogStatus.PASS,"<b>ER: Training Courses - Landing pages load without errors <b>"+
-				test.addScreenCapture(captureScreenShot(driver, "Training Courses")));
-
-		dashboard.toScheduleCourse().click();										sleep(4);
-
-		test.log(LogStatus.PASS,"<b>ER: Schedule Course - Landing pages load without errors <b>"+
-				test.addScreenCapture(captureScreenShot(driver, "Schedule Course")));
-
-		dashboard.toScheduleList().click();											sleep(4);
-
-		test.log(LogStatus.PASS,"<b>ER: Schedule List - Landing pages load without errors <b>"+
-				test.addScreenCapture(captureScreenShot(driver, "Schedule List")));
-
-		dashboard.toScheduleTrainee().click();										sleep(4);
-
-		test.log(LogStatus.PASS,"<b>ER: Schedule Trainee - Landing pages load without errors <b>"+
-				test.addScreenCapture(captureScreenShot(driver, "Schedule Trainee")));
-
-		logout.logoutFunction();*/
 	}
 
-	@Test(testName = "Sanity Test - Create Document", groups = "Sanity", priority = 1)
+	@Test(testName = "Sanity - Create Document", groups = "Sanity", priority = 1)
 	public void CreateDocument_SanityTest()
 	{
-		test = extent.startTest("Sanity-Create Document");
+		test = extent.startTest("Create Document");
 		createdoc.getnewdoc().click();												sleep(3);
 		createdoc.getdocument().click();											sleep(3);
 		createdoc.Search("SOP.CT");													sleep(3);
@@ -151,7 +88,7 @@ public class Sanity_Test extends BaseClass
 	@Test(testName = "Sanity Test - CheckoutToMe", groups = "Sanity", priority = 2)
 	public void CheckoutToMe_SanityTest()
 	{
-		test = extent.startTest("Sanity-Document CheckOutToMe");
+		test = extent.startTest("Document CheckOutToMe");
 		mydocs.getMyDocs().click();													sleep(3);
 		mydocs.getCheckOutByMe().click();											sleep(2);
 
@@ -162,7 +99,7 @@ public class Sanity_Test extends BaseClass
 	@Test(testName = "Sanity Test - Open Document Form", groups = "Sanity", priority = 3)
 	public void DocumentForm_SanityTest()
 	{
-		test = extent.startTest("Sanity-Open Document Form");
+		test = extent.startTest("Open Document Form");
 		createdoc.Search(docID);													sleep(2);
 		mydocs.getContextMenuInList().click();										sleep(2);
 		mydocs.form().click();														sleep(2);
@@ -174,11 +111,11 @@ public class Sanity_Test extends BaseClass
 	@Test(testName = "Sanity Test - Undo Checkout Document", groups = "Sanity", priority = 4)
 	public void UndoCheckout_SanityTest()
 	{
-		test = extent.startTest("Sanity-Undo Checkout Document");
+		test = extent.startTest("Undo Checkout Document");
 		mydocs.getContextMenu().click();											sleep(2);
 		verticalScrollingDown();													sleep(1);
 		mydocs.undoCheckoutForm().click();											sleep(2);
-		mydocs.undoCheckoutYesButton().click();										sleep(4);
+		mydocs.undoCheckoutYesButton().click();										sleep(10);
 		mydocs.getCheckinCloseButton().click();										sleep(2);
 		verticalScrollingUp();														sleep(2);
 
@@ -189,7 +126,7 @@ public class Sanity_Test extends BaseClass
 	@Test(testName = "Sanity Test - eBindersDocument", groups = "Sanity", priority = 5)
 	public void EbinderDocuments_SanityTest()
 	{
-		test = extent.startTest("Sanity-eBinders Document");
+		test = extent.startTest("eBinders Document");
 		ebinder.getEbinders().click();												sleep(2);
 		ebinder.expandEbinder("Lab");
 		ebinder.selectEbinder("SOP");												sleep(3);
@@ -201,7 +138,7 @@ public class Sanity_Test extends BaseClass
 	@Test(testName = "Sanity Test - Main PDF File", groups = "Sanity", priority = 6)
 	public void MainPDF_SanityTest()
 	{
-		test = extent.startTest("Sanity-Open Main PDF File");
+		test = extent.startTest("Open Main PDF File");
 		createdoc.Search("SOP.02");													sleep(2);
 		mydocs.selectDocument("SOP.02").click();									sleep(2);
 		mydocs.getContextMenu().click();											sleep(2);
@@ -214,7 +151,7 @@ public class Sanity_Test extends BaseClass
 	@Test(testName = "Sanity Test - Search For Document", groups = "Sanity", priority = 7)
 	public void SearchForDocument_SanityTest()
 	{
-		test = extent.startTest("Sanity-Search For Document");
+		test = extent.startTest("Search For Document");
 		mydocs.searchesTab().click();												sleep(2);
 		createdoc.Search("Search on Document Number");								sleep(2);
 		mydocs.selectDocument("Search on Document Number").click();					sleep(4);
@@ -227,7 +164,7 @@ public class Sanity_Test extends BaseClass
 	@Test(testName = "Sanity Test - Open Reports", groups = "Sanity", priority = 8)
 	public void OpenReports_SanityTest()
 	{
-		test = extent.startTest("Sanity-Open Reports");
+		test = extent.startTest("Open Reports");
 		reports.reports().click();													sleep(2);
 		mydocs.selectDocument("Documents Approaching Review").click();				sleep(5);
 
@@ -238,7 +175,7 @@ public class Sanity_Test extends BaseClass
 	@Test(testName = "Sanity Test - Navigate To Charts", groups = "Sanity", priority = 9)
 	public void OpenCharts_SanityTest()
 	{
-		test = extent.startTest("Sanity-Navigate To Charts");
+		test = extent.startTest("Navigate To Charts");
 		dashboard.toCharts().click();												sleep(2);
 		mydocs.selectDocument("Top Disbursements by Entity").click();				sleep(5);
 
@@ -249,7 +186,7 @@ public class Sanity_Test extends BaseClass
 	@Test(testName = "Sanity Test - Navigate To Favorites", groups = "Sanity", priority = 10)
 	public void OpenFavorites_SanityTest()
 	{
-		test = extent.startTest("Sanity-Navigate To Favorites");
+		test = extent.startTest("Navigate To Favorites");
 		verticalScrollingDown();													sleep(1);
 		favorites.getFavorite_tab().click();										sleep(5);
 
@@ -260,7 +197,7 @@ public class Sanity_Test extends BaseClass
 	@Test(testName = "Sanity Test - Navigate To Wizard>Approval Tab", groups = "Sanity", priority = 11)
 	public void OpenApprovalTab_SanityTest()
 	{
-		test = extent.startTest("Sanity-Navigate To Wizard>Approval Tab");
+		test = extent.startTest("Navigate To Wizard>Approval Tab");
 
 		wizpage.getWizardButton().click();											sleep(2);
 		wizpage.getApporvalButton().click();										sleep(4);
@@ -272,7 +209,7 @@ public class Sanity_Test extends BaseClass
 	@Test(testName = "Sanity Test - Navigate To Wizard>Review Tab", groups = "Sanity", priority = 12)
 	public void OpenReviewTab_SanityTest()
 	{
-		test = extent.startTest("Sanity-Navigate To Wizard>Review Tab");
+		test = extent.startTest("Navigate To Wizard>Review Tab");
 		
 		wizpage.getWizardButton().click();											sleep(2);
 		wizpage.getReviewButton().click();											sleep(4);
@@ -283,12 +220,116 @@ public class Sanity_Test extends BaseClass
 	@Test(testName = "Sanity Test - Navigate To Wizard>Traning Tab", groups = "Sanity", priority = 13)
 	public void OpenTrainingTab_SanityTest()
 	{
-		test = extent.startTest("Sanity-Navigate To Wizard>Traning Tab");
+		test = extent.startTest("Navigate To Wizard>Traning Tab");
 		
 		wizpage.getWizardButton().click();											sleep(2);
 		wizpage.getTrainingButton().click();										sleep(4);
 		test.log(LogStatus.PASS,"<b>ER: Wizard>Traning Landing pages display <b>"+
 				test.addScreenCapture(captureScreenShot(driver, "Wizard Traning displayed")));
+	}
+	
+	@Test(testName = "Sanity Test - Navigate To CIBMTR", groups = "Sanity", priority = 14)
+	public void ToCIBMTR_SanityTest()
+	{
+		test = extent.startTest(" Navigate To CIBMTR");
+		
+		dashboard.toCIBMTR().click();												sleep(3);
+		test.log(LogStatus.PASS,"<b>ER: CIBTR - Landing pages load without errors <b>"+
+				test.addScreenCapture(captureScreenShot(driver, "CIBTR displayed")));
+	}
+	
+	@Test(testName = "Sanity Test - Navigate To Queries", groups = "Sanity", priority = 15)
+	public void ToQueries_SanityTest()
+	{
+		test = extent.startTest("Navigate To Queries");
+		
+		dashboard.toQueries().click();												sleep(4);
+
+		test.log(LogStatus.PASS,"<b>ER: Queries - Landing pages load without errors <b>"+
+				test.addScreenCapture(captureScreenShot(driver, "Queries Landing")));
+		
+	}
+	
+	@Test(testName = "Sanity Test - Navigate To Reports", groups = "Sanity", priority = 16)
+	public void ToSubmission_SanityTest()
+	{
+		test = extent.startTest("Navigate To Reports Sub Tabs");
+	
+		dashboard.toReports().click();												sleep(2);
+		dashboard.toSubmission().click();											sleep(4);
+
+		test.log(LogStatus.PASS,"<b>ER: Submission - Landing pages load without errors <b>"+
+				test.addScreenCapture(captureScreenShot(driver, "Submission Page")));
+		
+		dashboard.toReports().click();												sleep(2);
+		dashboard.toRetrieval().click();											sleep(4);
+
+		test.log(LogStatus.PASS,"<b>ER: Retrieval - Landing pages load without errors <b>"+
+				test.addScreenCapture(captureScreenShot(driver, "Retrieval Page")));
+		
+		dashboard.toReports().click();												sleep(2);
+		dashboard.toRFI().click();													sleep(4);
+
+		test.log(LogStatus.PASS,"<b>ER: RFI - Landing pages load without errors <b>"+
+				test.addScreenCapture(captureScreenShot(driver, "RFI Page")));	
+	}
+	
+	@Test(testName = "Sanity Test - Navigate To CIBMTR>Charts Tab", groups = "Sanity", priority = 17)
+	public void ToCIBMTRCharts_SanityTest()
+	{
+		test = extent.startTest("Navigate To CIBMTR-Charts");
+		
+		dashboard.toCharts().click();												sleep(4);
+
+		test.log(LogStatus.PASS,"<b>ER: Charts - Landing pages load without errors <b>"+
+				test.addScreenCapture(captureScreenShot(driver, "CIBTR displayed")));
+	}
+	
+	@Test(testName = "Sanity Test - Navigate To LMS Tab & Sub Tabs", groups = "Sanity", priority = 18)
+	public void ToTraining_SanityTest()
+	{
+		test = extent.startTest("Navigate To LMS Tab & Sub Tabs");
+		
+		dashboard.toLMS().click();													sleep(4);
+
+		test.log(LogStatus.PASS,"<b>ER: LMS - Landing pages load without errors <b>"+
+				test.addScreenCapture(captureScreenShot(driver, "LMS displayed")));
+		
+		dashboard.toTraningPlans().click();											sleep(4);
+
+		test.log(LogStatus.PASS,"<b>ER: Traning Plans - Landing pages load without errors <b>"+
+				test.addScreenCapture(captureScreenShot(driver, "Training Plans")));
+		
+		dashboard.toTraningCourses().click();										sleep(4);
+
+		test.log(LogStatus.PASS,"<b>ER: Training Courses - Landing pages load without errors <b>"+
+				test.addScreenCapture(captureScreenShot(driver, "Training Courses")));
+		
+		dashboard.toScheduleCourse().click();										sleep(4);
+
+		test.log(LogStatus.PASS,"<b>ER: Schedule Course - Landing pages load without errors <b>"+
+				test.addScreenCapture(captureScreenShot(driver, "Schedule Course")));
+		
+		dashboard.toScheduleList().click();											sleep(4);
+
+		test.log(LogStatus.PASS,"<b>ER: Schedule List - Landing pages load without errors <b>"+
+				test.addScreenCapture(captureScreenShot(driver, "Schedule List")));
+		
+		dashboard.toScheduleTrainee().click();										sleep(4);
+
+		test.log(LogStatus.PASS,"<b>ER: Schedule Trainee - Landing pages load without errors <b>"+
+				test.addScreenCapture(captureScreenShot(driver, "Schedule Trainee")));
+	}
+	
+	@Test(testName = "Sanity Test - Logout", groups = "Sanity", priority = 19)
+	public void Logout_SanityTest()
+	{
+		test = extent.startTest("Logout");
+		
+		logout.logoutFunction();
+		
+		test.log(LogStatus.PASS,"<b>ER: Logout Successfull<b>"+
+				test.addScreenCapture(captureScreenShot(driver, "Logout Successfull")));	
 	}
 	
 	@AfterMethod
@@ -300,7 +341,6 @@ public class Sanity_Test extends BaseClass
 	@AfterClass
 	public void afterClass()
 	{
-		driver.close();
+		driver.quit();
 	}
-
 }

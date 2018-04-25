@@ -846,7 +846,7 @@ public class ReadAndSignTraining_Test extends BaseClass{
 	public void closeBrowserInstance()
 	{	
 		extent.endTest(test);
-		driver.close();
+		driver.quit();
 	}
 	
 	private boolean selectDocForApprovel(String docName) 

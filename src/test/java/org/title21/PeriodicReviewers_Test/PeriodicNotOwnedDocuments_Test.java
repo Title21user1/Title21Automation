@@ -528,7 +528,7 @@ public class PeriodicNotOwnedDocuments_Test extends BaseClass{
 	public void closeBrowserInstance()
 	{		
 		extent.endTest(test);
-		driver.close();
+		driver.quit();
 	}
 
 	private String createNewDocWithPeriodicReviewer()

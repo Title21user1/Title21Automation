@@ -394,7 +394,7 @@ public class DocumentRoutes_Test extends BaseClass{
 	{	
 		logout.logoutFunction();
 		extent.endTest(test);
-		driver.close();
+		driver.quit();
 	}
 
 	private boolean verifyDocNameInTable(String docName) 
