@@ -6,7 +6,7 @@
 		<classes>
 			
 			<class name="org.title21.AdminModule_Test.LoginPage_Test"/>
-			<!-- <class name="org.title21.AdminModule_Test.LogoutPage_Test"/>
+			<class name="org.title21.AdminModule_Test.LogoutPage_Test"/>
 			<class name="org.title21.AdminModule_Test.AddEmployee_Test"/>
 			<class name="org.title21.AdminModule_Test.UpdateEmployee_Test"/> 
 			<class name="org.title21.AdminModule_Test.CreateNewUser_Test"/>
@@ -14,11 +14,11 @@
 			<class name="org.title21.AdminModule_Test.DeleteUser_Test"/>
 			<class name="org.title21.AdminModule_Test.CreateDeleteGroups_Test"/> 
 			<class name="org.title21.AdminModule_Test.DeleteEmployee_Test"/>
-			<class name="org.title21.AdminModule_Test.AccountLockout_Test"/> -->
+			<class name="org.title21.AdminModule_Test.AccountLockout_Test"/>
 
 		</classes>
 	</test>
-	<!-- <test name="DocumentScreens" preserve-order="true">
+	<test name="DocumentScreens" preserve-order="true">
 		<classes>
       
 			<class name="org.title21.Documents_Test.CreateDocument_Test"/>
@@ -48,10 +48,10 @@
 		<classes>
 
 			<class name="org.title21.PeriodicReviewers_Test.PeriodicOwnedDocuments_Test"/>
-      		<class name="org.title21.PeriodicReviewers_Test.PeriodicNotOwnedDocuments_Test"/>
-      		<class name="org.title21.PeriodicReviewers_Test.PeriodicDelegate_Test"/>
-      		<class name="org.title21.PeriodicReviewers_Test.ActionsRequiredByDocOwner_Test"/>
+      			<class name="org.title21.PeriodicReviewers_Test.PeriodicNotOwnedDocuments_Test"/>
+      			<class name="org.title21.PeriodicReviewers_Test.PeriodicDelegate_Test"/>
+      			<class name="org.title21.PeriodicReviewers_Test.ActionsRequiredByDocOwner_Test"/>
 			
 		</classes>
-	</test> -->
+	</test>
 </suite>
