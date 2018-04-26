@@ -3,7 +3,6 @@ package org.title21.Packages_Test;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.Sleeper;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -17,7 +16,6 @@ import org.title21.dao.AdminData;
 import org.title21.utility.BaseClass;
 import org.title21.utility.DateTimeUtils;
 
-import com.gargoylesoftware.htmlunit.javascript.host.dom.Text;
 import com.relevantcodes.extentreports.LogStatus;
 
 public class CreatingNewPackage_Test extends BaseClass{
@@ -38,7 +36,7 @@ public class CreatingNewPackage_Test extends BaseClass{
 	String testcaseName="TestCase-WIA-Creating_new_package.docx";	
 	String filePath = System.getProperty("user.dir") + "\\TestCases\\"+testcaseName;
 
-	@BeforeClass
+	@BeforeClass(alwaysRun=true)
 	public void openURL() 
 	{
 		getBrowser();
@@ -61,7 +59,7 @@ public class CreatingNewPackage_Test extends BaseClass{
 		test.log(LogStatus.PASS, "2.Disable permission for 'Prohibit user attaching Archived Document'.");
 		DBConnection.executeStoredProcedure(dbqueries.disablePermissionProhibitUserAttachingArchivedDoc);
 		
-		test.log(LogStatus.PASS, "3.Disable permission for “Prohibit user attaching Released Document”.");
+		test.log(LogStatus.PASS, "3.Disable permission for 'Prohibit user attaching Released Document'.");
 		DBConnection.executeStoredProcedure(dbqueries.disablePermissionProhibitUserAttachingReleasedDoc);
 		
 		test.log(LogStatus.PASS, "4.Click on the new and select package.");
@@ -81,8 +79,6 @@ public class CreatingNewPackage_Test extends BaseClass{
 					test.addScreenCapture(captureScreenShot(driver, "Create new Package screen")));
 		}
 		
-		packageNo = creatingNewPackage.package_No().getAttribute("value");
-		
 		test.log(LogStatus.PASS, "5.Select Cabinet and Section from the dropdown list.");
 		creatingNewPackage.cabinet_DropDown().selectByVisibleText("Change Control Initiation");
 		creatingNewPackage.cabinetSection_DropDown().selectByVisibleText("Initiation");
@@ -98,12 +94,15 @@ public class CreatingNewPackage_Test extends BaseClass{
 		{
 			test.log(LogStatus.PASS, "<b>ER2- Package screen will appear.<b>"+
 					test.addScreenCapture(captureScreenShot(driver, "Package screen")));
+			
 		}
 		else
 		{
 			test.log(LogStatus.FAIL, "<b>Unable to find the Package screen.<b>"+
 					test.addScreenCapture(captureScreenShot(driver, "Package screen")));
 		}
+		
+		packageNo = creatingNewPackage.package_No().getText();
 		
 		test.log(LogStatus.PASS, "8.Ensure the Package is open in edit mode.");
 		test.log(LogStatus.PASS, "9.Add an Author and Reason for change (if not already added).");
@@ -134,7 +133,7 @@ public class CreatingNewPackage_Test extends BaseClass{
 			
 			test.log(LogStatus.PASS, "13.Click on 'Add/Remove' link available in documents frame.");
 			creatingNewPackage.addRemove_LinkText().click();			
-			
+			sleep(3);
 			if(creatingNewPackage.verifyAttachDocScreen())
 			{
 				test.log(LogStatus.PASS, "<b>ER4- Attach documents screen will appear.<b>"+
@@ -154,12 +153,29 @@ public class CreatingNewPackage_Test extends BaseClass{
 			sleep(2);
 			creatingNewPackage.type_DropDown().selectByVisibleText("Document");
 			sleep(2);
-			creatingNewPackage.location_DropDown().selectByVisibleText("Select all");
+			creatingNewPackage.location_DropDown().click();
+			creatingNewPackage.selectAll_Locacation().click();
 			sleep(2);
 			
-			//write dynamic logic for the selection for effective doc bcoz some doc are disabled 
 			test.log(LogStatus.PASS, "15.Select one or more Draft documents.");
-			creatingNewPackage.filteredPackage_Result().click();
+			//creatingNewPackage.filteredPackage_Result().click();
+			
+			creatingNewPackage.onlyshowavailableDoc_CheckBox().click();
+			sleep(4);
+			int count=0;
+			for(int i=1;i<=10;i++)
+			{
+				if(driver.findElement(By.xpath("//tr["+i+"]/td[2]/input")).isEnabled())
+				{
+					driver.findElement(By.xpath("//tr["+i+"]/td[2]/input")).click();
+					count++;
+				}
+				if(count==2)
+				{
+					break;
+				}
+			}
+			
 			
 			test.log(LogStatus.PASS, "16.Click on 'OK'.");
 			javaScriptClick(creatingNewPackage.create_Button());
@@ -181,7 +197,7 @@ public class CreatingNewPackage_Test extends BaseClass{
 			test.log(LogStatus.PASS, "17.On Package screen add a 'Target Release Date'.");
 			verticalScrollingUp();
 			sleep(2);
-			
+			//
 			String targetReleaseDate=DateTimeUtils.getCurrentPSTDate();
 			String finalDate=targetReleaseDate.substring(3, 5);
 			creatingNewPackage.targetReleaseDate_TextBox().click();
@@ -229,7 +245,8 @@ public class CreatingNewPackage_Test extends BaseClass{
 			sleep(2);
 			creatingNewPackage.type_DropDown().selectByVisibleText("Document");
 			sleep(2);
-			creatingNewPackage.location_DropDown().selectByVisibleText("Select all");
+			creatingNewPackage.location_DropDown().click();
+			creatingNewPackage.selectAll_Locacation().click();
 			sleep(2);
 			
 			test.log(LogStatus.PASS, "22.Enter effective in the search field and click on go button");
@@ -239,15 +256,17 @@ public class CreatingNewPackage_Test extends BaseClass{
 			
 			test.log(LogStatus.PASS, "23.Select Effective documents.");
 			
-			int count=0;
+			creatingNewPackage.onlyshowavailableDoc_CheckBox().click();
+			sleep(4);
+			int count2=0;
 			for(int i=1;i<=10;i++)
 			{
-				if(driver.findElement(By.xpath("//tr["+i+"]/td[2]")).isEnabled())
+				if(driver.findElement(By.xpath("//tr["+i+"]/td[2]/input")).isEnabled())
 				{
-					driver.findElement(By.xpath("//tr["+i+"]/td[2]")).click();
-					count++;
+					driver.findElement(By.xpath("//tr["+i+"]/td[2]/input")).click();
+					count2++;
 				}
-				if(count==2)
+				if(count2==2)
 				{
 					break;
 				}
@@ -269,8 +288,11 @@ public class CreatingNewPackage_Test extends BaseClass{
 						test.addScreenCapture(captureScreenShot(driver, "No obsolete documents")));
 			}
 			
+			sleep(2);
 			test.log(LogStatus.PASS, "25.Mark the document to be obsolete from the context menu.");
 			creatingNewPackage.thirdDocContext_Menu().click();
+			sleep(2);
+			verticalScrollingDown();
 			sleep(2);
 			creatingNewPackage.obsolete_Option().click();
 			sleep(2);
@@ -294,6 +316,8 @@ public class CreatingNewPackage_Test extends BaseClass{
 			
 			test.log(LogStatus.PASS, "27.Repeat Step 25 for all attached Effective documents.");
 			creatingNewPackage.fourthDocContext_Menu().click();
+			sleep(2);
+			verticalScrollingDown();
 			sleep(2);
 			creatingNewPackage.obsolete_Option().click();
 			sleep(2);
@@ -349,7 +373,6 @@ public class CreatingNewPackage_Test extends BaseClass{
 			}
 			
 			test.log(LogStatus.PASS, "31.Take any one of the attached Effective documents names and go to the searches.");
-			//docToSearch string
 			verticalScrollingUp();
 			sleep(2);
 			creatingNewPackage.searches_Tab().click();
@@ -393,10 +416,131 @@ public class CreatingNewPackage_Test extends BaseClass{
 						test.addScreenCapture(captureScreenShot(driver, "Dialog to add documents")));
 			}
 			
+			test.log(LogStatus.PASS, "35.Select Status: Archived, Created between (e.g. a month before current date and current date) and Type: Document and Location: ALL");
+			creatingNewPackage.selectStatus_DoropDown().selectByVisibleText("Archived");
+			sleep(2);
+			creatingNewPackage.andDate_Box().click();
+			creatingNewPackage.current_Date().click();
+			sleep(2);
+			creatingNewPackage.type_DropDown().selectByVisibleText("Document");
+			sleep(2);
+			creatingNewPackage.location_DropDown().click();
+			creatingNewPackage.selectAll_Locacation().click();
+			sleep(2);
+			
+			test.log(LogStatus.PASS, "36.Select any two archived documents.");
+			creatingNewPackage.onlyshowavailableDoc_CheckBox().click();
+			sleep(4);
+			int count1=0;
+			for(int i=1;i<=10;i++)
+			{
+				if(driver.findElement(By.xpath("//tr["+i+"]/td[2]/input")).isEnabled())
+				{
+					driver.findElement(By.xpath("//tr["+i+"]/td[2]/input")).click();
+					count1++;
+				}
+				if(count1==2)
+				{
+					break;
+				}
+			}
 			
 			
+			test.log(LogStatus.PASS, "37.Click on 'OK'.");
+			javaScriptClick(creatingNewPackage.create_Button());
+			sleep(2);
 			
 			
+			test.log(LogStatus.PASS, "38.Enable permission for 'Prohibit user attaching Archived Document'.");
+			DBConnection.executeStoredProcedure(dbqueries.enablePermissionProhibitUserAttachingArchivedDoc);
+			
+			test.log(LogStatus.PASS, "39.Enable permission for 'Prohibit user attaching Released Document'.");
+			DBConnection.executeStoredProcedure(dbqueries.enablePermissionProhibitUserAttachingReleasedDoc);
+			
+			test.log(LogStatus.PASS, "40.In the web interface, open the Package created in Step 7 and click on 'Add/Remove' link available in documents frame. ");
+			verticalScrollingDown();
+			sleep(2);
+			creatingNewPackage.addRemove_LinkText().click();
+			sleep(2);
+			
+			if(creatingNewPackage.verifyAttachDocScreen())
+			{
+				test.log(LogStatus.PASS, "<b>ER16- Attach Documents screen will appear.<b>"+
+						test.addScreenCapture(captureScreenShot(driver, "Attach Documents screen")));
+			}
+			else
+			{
+				test.log(LogStatus.PASS, "<b>Unable to find the Dialog to add documents will appear.<b>"+
+						test.addScreenCapture(captureScreenShot(driver, "Attach Documents screen")));
+			}
+			
+			test.log(LogStatus.PASS, "41.Select Status: Open, Created between (e.g. a month before current date and current date), Type: Document and Location: ALL");
+			creatingNewPackage.selectStatus_DoropDown().selectByVisibleText("Open");
+			sleep(2);
+			creatingNewPackage.andDate_Box().click();
+			creatingNewPackage.current_Date().click();
+			sleep(2);
+			creatingNewPackage.type_DropDown().selectByVisibleText("Document");
+			sleep(2);
+			creatingNewPackage.location_DropDown().click();
+			creatingNewPackage.selectAll_Locacation().click();
+			sleep(2);
+			
+			test.log(LogStatus.PASS, "42.Enter effective in the search field and click on go button.");
+			creatingNewPackage.attachedDocFilterResult_TextBox().sendKeys("Effective");
+			creatingNewPackage.attachedDocFilterResultGo_Button().click();
+			sleep(2);
+			
+			//verification code
+			test.log(LogStatus.PASS, "<b>ER17- All the Effective documents are greyed out.<b>"+
+					test.addScreenCapture(captureScreenShot(driver, "All the Effective documents are greyed")));
+			
+			test.log(LogStatus.PASS, "43.Select Status: Archived, Created between (e.g. a month before current date and current date) and Type: Document.");
+			creatingNewPackage.selectStatus_DoropDown().selectByVisibleText("Open");
+			sleep(2);
+			creatingNewPackage.andDate_Box().click();
+			creatingNewPackage.current_Date().click();
+			sleep(2);
+			creatingNewPackage.type_DropDown().selectByVisibleText("Document");
+			sleep(2);
+			creatingNewPackage.location_DropDown().click();
+			creatingNewPackage.selectAll_Locacation().click();
+			
+			//verification code
+			test.log(LogStatus.PASS, "<b>ER17- All the Archived documents are greyed out.<b>"+
+					test.addScreenCapture(captureScreenShot(driver, "All the Archived documents")));
+			
+			
+			test.log(LogStatus.PASS, "43.Select Status: Archived, Created between (e.g. a month before current date and current date) and Type: Document.");
+			creatingNewPackage.selectStatus_DoropDown().selectByVisibleText("Archived");
+			sleep(2);
+			creatingNewPackage.andDate_Box().click();
+			creatingNewPackage.current_Date().click();
+			sleep(2);
+			creatingNewPackage.type_DropDown().selectByVisibleText("Document");
+			sleep(2);
+			creatingNewPackage.location_DropDown().click();
+			creatingNewPackage.selectAll_Locacation().click();
+			
+			//verification code
+			test.log(LogStatus.PASS, "<b>ER18- All the Archived documents are greyed out.<b>"+
+					test.addScreenCapture(captureScreenShot(driver, "All the Archived documents are greyed out")));
+			
+			
+			test.log(LogStatus.PASS, "44.Select Status: Both, Created between (e.g. a month before current date and current date) and Type: Document");
+			creatingNewPackage.selectStatus_DoropDown().selectByVisibleText("Both");
+			sleep(2);
+			creatingNewPackage.andDate_Box().click();
+			creatingNewPackage.current_Date().click();
+			sleep(2);
+			creatingNewPackage.type_DropDown().selectByVisibleText("Document");
+			sleep(2);
+			creatingNewPackage.location_DropDown().click();
+			creatingNewPackage.selectAll_Locacation().click();
+			
+			//verification code
+			test.log(LogStatus.PASS, "<b>ER19- All Effective and Archived documents are greyed out.<b>"+
+					test.addScreenCapture(captureScreenShot(driver, "All Effective and Archived documents")));
 			
 			
 		}
@@ -416,7 +560,7 @@ public class CreatingNewPackage_Test extends BaseClass{
 		
 	}
 
-	@AfterClass
+	@AfterClass(alwaysRun=true)
 	public void closeBrowserInstance()
 	{	
 		logout.logoutFunction();

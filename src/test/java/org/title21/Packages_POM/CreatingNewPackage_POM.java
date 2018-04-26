@@ -83,6 +83,9 @@ public class CreatingNewPackage_POM extends DocumentRoutes_POM {
 	@FindBy(xpath="//span[@class='multiselect-selected-text']")
 	WebElement locationDropDown;
 	
+	@FindBy(xpath="//*[@class='multiselect-item multiselect-all']")
+	WebElement selectAllLocacation;
+	
 	@FindBy(css=".day.active.today")
 	WebElement currentDate;
 
@@ -136,6 +139,19 @@ public class CreatingNewPackage_POM extends DocumentRoutes_POM {
 	
 	@FindBy(xpath="//*[@id='RegularSearches']/div/div[1]/div/form/div/span[1]/button")
 	WebElement searchesFilterResultGoButton;
+	
+	@FindBy(xpath="//*[@id='OnlyShowAvailable']")
+	WebElement onlyshowavailableDocCheckBox;
+	
+	public WebElement onlyshowavailableDoc_CheckBox()
+	{
+		return onlyshowavailableDocCheckBox;
+	}
+	
+	public WebElement selectAll_Locacation()
+	{
+		return selectAllLocacation;
+	}
 	
 	public WebElement searchesFilterResultGo_Button()
 	{
@@ -228,10 +244,9 @@ public class CreatingNewPackage_POM extends DocumentRoutes_POM {
 		return currentDate;
 	}
 	
-	public Select location_DropDown()
+	public WebElement location_DropDown()
 	{
-		Select selectObj = new Select(locationDropDown);
-		return selectObj;
+		return locationDropDown;
 	}
 	
 	public Select type_DropDown()
