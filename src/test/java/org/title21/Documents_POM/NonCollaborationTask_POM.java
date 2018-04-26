@@ -23,6 +23,18 @@ public class NonCollaborationTask_POM {
 	@FindBy(css = ".fa.fa-pencil.action-items")
 	WebElement edit_task;
 	
+	@FindBy(css = ".t21-js-user-message-text.t21-user-message-text")
+	WebElement delete_popup_message;
+	
+	@FindBy(css = ".btn.t21-btn-primary.t21-ajax-submit-button.process-btn-click")
+	WebElement YesButtonOfDeletePopup;
+	
+	@FindBy(css = "#DueDate")
+	WebElement DueDate;
+	
+	@FindBy(css = ".fa.fa-trash-o.action-items")
+	WebElement delete_button;
+	
 	@FindBy(css = "#Notes")
 	WebElement notes;
 	
@@ -31,14 +43,33 @@ public class NonCollaborationTask_POM {
 	
 	@FindBy(css = ".btn.t21-btn-primary.t21-ajax-submit-button")
 	WebElement update;
+	public WebElement getdelete_popup_message() 
+	{
+
+		return delete_popup_message;
+	}
 	
+	public WebElement getDueDate() 
+	{
+
+		return DueDate;
+	}
 	
+	public WebElement getdelete_button() 
+	{
+
+		return delete_button;
+	}
+	public WebElement getYesButtonOfDeletePopup() 
+	{
+
+		return YesButtonOfDeletePopup;
+	}
 	public WebElement geteditbutton() 
 	{
 
 		return edit_task;
 	}
-	
 	public WebElement getdisable_edit_mode() 
 	{
 
@@ -56,4 +87,8 @@ public class NonCollaborationTask_POM {
 
 		return update;
 	}
+	
+	
 }
+
+
