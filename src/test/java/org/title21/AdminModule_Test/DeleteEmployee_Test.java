@@ -30,7 +30,7 @@ public class DeleteEmployee_Test extends BaseClass {
 	String testcaseName="TestCase-WIA-Delete Employee record.doc";	
 	String filePath = System.getProperty("user.dir") + "\\TestCases\\"+testcaseName;
 
-	@BeforeClass
+	@BeforeClass(alwaysRun=true)
 	public void openURL() {
 		getBrowser();
 		className = this.getClass().getName();
@@ -119,7 +119,7 @@ public class DeleteEmployee_Test extends BaseClass {
 
 	}
 
-	@AfterClass
+	@AfterClass(alwaysRun=true)
 	public void closeBrowserInstance()
 	{
 		extent.endTest(test);

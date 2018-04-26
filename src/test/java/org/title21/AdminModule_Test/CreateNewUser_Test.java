@@ -2,6 +2,7 @@ package org.title21.AdminModule_Test;
 
 import org.openqa.selenium.By;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.title21.AdminModule_POM.AddNewUser_POM;
@@ -30,7 +31,7 @@ public class CreateNewUser_Test extends BaseClass{
 	String testcaseName="TestCase-WIA-Create New User.doc";	
 	String filePath = System.getProperty("user.dir") + "\\TestCases\\"+testcaseName;	
 	
-	@BeforeClass
+	@BeforeClass(alwaysRun=true)
 	public void openURL() 
 	{
 		getBrowser();
@@ -415,10 +416,15 @@ public class CreateNewUser_Test extends BaseClass{
 		
 	}
 	
-	@AfterClass
-	public void closeBrowserInstance()
-	{		
+	@AfterMethod
+	public void afterMethod()
+	{
 		logout.logoutFunction();
+	}
+	
+	@AfterClass(alwaysRun=true)
+	public void closeBrowserInstance()
+	{	
 		extent.endTest(test);
 		driver.quit();
 	}

@@ -37,7 +37,7 @@ public class ReadAndSignTraining_Test extends BaseClass{
 	boolean isRecordFound=false;
 	AdminData adminData=new AdminData();
 		
-	@BeforeClass
+	@BeforeClass(alwaysRun=true)
 	public void openURL() 
 	{
 		getBrowser();
@@ -842,7 +842,7 @@ public class ReadAndSignTraining_Test extends BaseClass{
 	}
 //=============================================================================================================================================================	
 	
-	@AfterClass
+	@AfterClass(alwaysRun=true)
 	public void closeBrowserInstance()
 	{	
 		extent.endTest(test);

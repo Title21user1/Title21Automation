@@ -1,8 +1,7 @@
 package org.title21.PeriodicReviewers_Test;
 
-import java.io.IOException;
-
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.title21.AdminModule_POM.LoginPage_POM;
@@ -21,7 +20,7 @@ public class PeriodicDelegate_Test extends BaseClass {
 	String VerifyUnDelegateuserText = "";
 	String element="";
 
-	@BeforeClass
+	@BeforeClass(alwaysRun=true)
 	public void openURL() {
 		getBrowser();
 		className = this.getClass().getName();
@@ -237,11 +236,17 @@ public class PeriodicDelegate_Test extends BaseClass {
 		PeriodicReviewDelegate.Search(PeriodicReviewDelegate.documetNo);//
 	}
 	
-	@AfterClass
-	public void closeBrowserInstance() throws IOException {
+	@AfterMethod
+	public void afterMethod()
+	{
 		sleep(2);
 		logout.logoutFunction();
 		sleep(2);
+	}
+	
+	@AfterClass(alwaysRun=true)
+	public void closeBrowserInstance() 
+	{
 		extent.endTest(test);
 		driver.quit();
 	}

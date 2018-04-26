@@ -39,7 +39,7 @@ public class PeriodicOwnedDocuments_Test extends BaseClass{
 	String testcaseName="FileToUpload.txt";	
 	String filePath = System.getProperty("user.dir") + "\\TestCases\\"+testcaseName;
 
-	@BeforeClass
+	@BeforeClass(alwaysRun=true)
 	public void openURL() 
 	{
 		getBrowser();
@@ -692,7 +692,7 @@ public class PeriodicOwnedDocuments_Test extends BaseClass{
 		}
 	}
 
-	@AfterClass
+	@AfterClass(alwaysRun=true)
 	public void closeBrowserInstance()
 	{		
 		extent.endTest(test);

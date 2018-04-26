@@ -36,7 +36,7 @@ public class Sanity_Test extends BaseClass
 	String docTitle="Sanity Test "+FunctionUtils.generateRandomNumber();
 
 
-	@BeforeClass
+	@BeforeClass(alwaysRun=true)
 	public void beforeClass()
 	{
 		getBrowser();
@@ -338,7 +338,7 @@ public class Sanity_Test extends BaseClass
 		extent.endTest(test);
 	}
 	
-	@AfterClass
+	@AfterClass(alwaysRun=true)
 	public void afterClass()
 	{
 		driver.quit();

@@ -26,7 +26,7 @@ public class DetailedCheckout_Test extends BaseClass
 	String uploadFileName = "FileToUpload.txt";
 	String className="";
 
-	@BeforeClass
+	@BeforeClass(alwaysRun=true)
 	public void beforeClass()
 	{
 		getBrowser();
@@ -329,7 +329,7 @@ public class DetailedCheckout_Test extends BaseClass
 		logout.logoutFunction();
 	}
 
-	@AfterClass
+	@AfterClass(alwaysRun=true)
 	public void afterClass()
 	{
 		extent.endTest(test);

@@ -22,7 +22,7 @@ public class DocumentCollaboration_Test extends BaseClass {
 	DocumentCollaboration_POM DocumentCollaboration;
 	static Logger log = Logger.getLogger(AttachmentControlInDoc_POM.class);
 
-	@BeforeClass
+	@BeforeClass(alwaysRun=true)
 	public void openURL() {
 
 		getBrowser();
@@ -337,7 +337,7 @@ public class DocumentCollaboration_Test extends BaseClass {
 		sleep(3);
 	}
 
-	@AfterClass
+	@AfterClass(alwaysRun=true)
 	public void closeBrowserInstance() {
 		extent.endTest(test);
 		driver.quit();

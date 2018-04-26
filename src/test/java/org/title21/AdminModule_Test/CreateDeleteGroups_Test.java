@@ -29,7 +29,7 @@ public class CreateDeleteGroups_Test extends BaseClass {
 	String testcaseName="TestCase-WIA-CreateandDeleteGroups.doc";	
 	String filePath = System.getProperty("user.dir") + "\\TestCases\\"+testcaseName;
 	
-	@BeforeClass
+	@BeforeClass(alwaysRun=true)
 	public void openURL() 
 	{
 		getBrowser();
@@ -38,6 +38,7 @@ public class CreateDeleteGroups_Test extends BaseClass {
 		login=new LoginPage_POM(driver);
 		login.loginFunction();
 	}
+	
 	@Test(testName = "CreateGroup_admin", groups = "CreateGroup", priority = 0)
 	public void CreateGroupInAdmin() 
 	{
@@ -254,7 +255,7 @@ public class CreateDeleteGroups_Test extends BaseClass {
 		logout.logoutFunction();		
 	}
 	
-	@AfterClass
+	@AfterClass(alwaysRun=true)
 	public void closeBrowserInstance() 
 	{
 		extent.endTest(test);

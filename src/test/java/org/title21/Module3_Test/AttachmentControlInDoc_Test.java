@@ -1,12 +1,12 @@
 package org.title21.Module3_Test;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.title21.AdminModule_POM.LoginPage_POM;
@@ -39,7 +39,7 @@ public class AttachmentControlInDoc_Test extends BaseClass {
 	String testcaseName="TestCase-WIA-Attachment control in document.docx";	
 	String filePath = System.getProperty("user.dir") + "\\TestCases\\"+testcaseName;
 
-	@BeforeClass
+	@BeforeClass(alwaysRun=true)
 	public void openURL() {
 		getBrowser();
 		className = this.getClass().getName();
@@ -161,7 +161,6 @@ public class AttachmentControlInDoc_Test extends BaseClass {
 							+ test.addScreenCapture(captureScreenShot(driver, "viewattachment")));
 
 		}
-		
 	}
 
 	public void fileupload(String uploadFileName) {
@@ -199,15 +198,20 @@ public class AttachmentControlInDoc_Test extends BaseClass {
 		RecentlyViewdAndFavorites.getplaceholder().sendKeys(Searchdata);
 		RecentlyViewdAndFavorites.getGOButton().click();
 	}
-
-	@AfterClass
-	public void closeBrowserInstance() throws IOException {
-
+	
+	@AfterMethod
+	public void afterMethod() throws Exception
+	{
 		cleanDownloadDirectory();
 		sleep(2);
 		logout.logoutFunction();
 		log.info("logout successfully.");
 		sleep(2);
+	}
+
+	@AfterClass(alwaysRun=true)
+	public void closeBrowserInstance()
+	{
 		extent.endTest(test);
 		driver.quit();
 	}

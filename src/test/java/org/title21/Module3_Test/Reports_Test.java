@@ -27,7 +27,7 @@ public class Reports_Test extends BaseClass
 	String testcaseName="TestCase-WIA-Reports.docx";	
 	String filePath = System.getProperty("user.dir") + "\\TestCases\\"+testcaseName;
 
-	@BeforeClass
+	@BeforeClass(alwaysRun=true)
 	public void beforeClass()
 	{
 		getBrowser();
@@ -263,7 +263,7 @@ public class Reports_Test extends BaseClass
 		logout.logoutFunction();
 	}
 
-	@AfterClass
+	@AfterClass(alwaysRun=true)
 	public void afterClass()
 	{
 		extent.endTest(test);

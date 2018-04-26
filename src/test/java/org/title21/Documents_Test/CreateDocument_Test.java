@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.IOException;
 import org.apache.log4j.Logger;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.title21.AdminModule_POM.LoginPage_POM;
@@ -38,7 +39,7 @@ public class CreateDocument_Test extends BaseClass {
 	String testcaseName="TestCase-WIA-Creation of new document.doc";	
 	String filePath = System.getProperty("user.dir") + "\\TestCases\\"+testcaseName;
 
-	@BeforeClass
+	@BeforeClass(alwaysRun=true)
 	public void openURL() {
 		getBrowser();
 		className = this.getClass().getName();
@@ -235,14 +236,19 @@ public class CreateDocument_Test extends BaseClass {
 
 	}
 
-	@AfterClass
-	public void closeBrowserInstance() throws IOException {
-
+	@AfterMethod
+	public void afterMethod() throws IOException
+	{
 		cleanDownloadDirectory();
 		sleep(2);
 		logout.logoutFunction();
 		log.info("logout successfully.");
 		sleep(2);
+	}
+	
+	@AfterClass(alwaysRun=true)
+	public void closeBrowserInstance()
+	{	
 		extent.endTest(test);
 		driver.quit();
 	}

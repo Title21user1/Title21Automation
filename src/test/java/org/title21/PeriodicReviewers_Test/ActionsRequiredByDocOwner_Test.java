@@ -1,7 +1,6 @@
 package org.title21.PeriodicReviewers_Test;
 
 
-import java.io.IOException;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -44,7 +43,7 @@ public class ActionsRequiredByDocOwner_Test extends BaseClass{
 	String testcaseName="FileToUpload.txt";	
 	String filePath = System.getProperty("user.dir") + "\\TestCases\\"+testcaseName;
 	
-	@BeforeClass
+	@BeforeClass(alwaysRun=true)
 	public void openURL() 
 	{
 		getBrowser();
@@ -612,8 +611,8 @@ public class ActionsRequiredByDocOwner_Test extends BaseClass{
 				}
 		}
 
-		@AfterClass
-		public void closeBrowserInstance() throws IOException 
+		@AfterClass(alwaysRun=true)
+		public void closeBrowserInstance()
 		{
 			extent.endTest(test);
 			driver.quit();

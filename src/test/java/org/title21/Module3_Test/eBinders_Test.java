@@ -26,7 +26,7 @@ public class eBinders_Test extends BaseClass
 	String testcaseName="TestCase-WIA-eBinders.doc";	
 	String filePath = System.getProperty("user.dir") + "\\TestCases\\"+testcaseName;
 
-	@BeforeClass
+	@BeforeClass(alwaysRun=true)
 	public void beforeClass()
 	{
 		getBrowser();
@@ -186,10 +186,10 @@ public class eBinders_Test extends BaseClass
 		sleep(10);
 	}
 
-	@AfterClass
+	@AfterClass(alwaysRun=true)
 	public void afterClass()
 	{
-		driver.get(baseUrl);
+		driver.navigate().to(baseUrl);
 		tearDown();
 		extent.endTest(test);
 		driver.quit();

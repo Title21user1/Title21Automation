@@ -7,6 +7,7 @@ import java.util.concurrent.TimeUnit;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.title21.AdminModule_POM.LoginPage_POM;
@@ -36,7 +37,7 @@ public class DocumentRoutes_Test extends BaseClass{
 	String testcaseName="TestCase-WIA-Document_Routes.doc";	
 	String filePath = System.getProperty("user.dir") + "\\TestCases\\"+testcaseName;
 
-	@BeforeClass
+	@BeforeClass(alwaysRun=true)
 	public void openURL() 
 	{
 		getBrowser();
@@ -388,11 +389,16 @@ public class DocumentRoutes_Test extends BaseClass{
 			test.log(LogStatus.FAIL,"Unable to Create a new document form.");
 		}
 	}
-
-	@AfterClass
+	
+	@AfterMethod
+	public void afterMethod()
+	{
+		logout.logoutFunction();
+	}
+	
+	@AfterClass(alwaysRun=true)
 	public void closeBrowserInstance()
 	{	
-		logout.logoutFunction();
 		extent.endTest(test);
 		driver.quit();
 	}

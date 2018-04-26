@@ -31,7 +31,7 @@ public class NonCollaborationTask_Test extends BaseClass {
 	DocumentCollaboration_POM DocumentCollaboration;
 	static Logger log = Logger.getLogger(AttachmentControlInDoc_POM.class);
 
-	@BeforeClass
+	@BeforeClass(alwaysRun=true)
 	public void openURL() {
 
 		getBrowser();
@@ -288,7 +288,7 @@ public class NonCollaborationTask_Test extends BaseClass {
 
 	}
 
-	@AfterClass
+	@AfterClass(alwaysRun=true)
 	public void closeBrowserInstance() {
 		extent.endTest(test);
 		driver.quit();
