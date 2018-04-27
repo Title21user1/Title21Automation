@@ -29,6 +29,7 @@ public class CreatingNewPackage_Test extends BaseClass{
 	String docToSearch="";
 	String obsoleteDate="";
 	String obsoleteDateinserachDoc="";
+	String docStatus="";
 	String uploadFileName="FileToUpload.txt";
 	Table searchTable;
 	DBQueries dbqueries;
@@ -149,16 +150,17 @@ public class CreatingNewPackage_Test extends BaseClass{
 			creatingNewPackage.selectStatus_DoropDown().selectByVisibleText("Open");
 			sleep(2);
 			creatingNewPackage.andDate_Box().click();
+			sleep(2);
 			creatingNewPackage.current_Date().click();
 			sleep(2);
 			creatingNewPackage.type_DropDown().selectByVisibleText("Document");
 			sleep(2);
 			creatingNewPackage.location_DropDown().click();
+			sleep(2);
 			creatingNewPackage.selectAll_Locacation().click();
 			sleep(2);
 			
 			test.log(LogStatus.PASS, "15.Select one or more Draft documents.");
-			//creatingNewPackage.filteredPackage_Result().click();
 			
 			creatingNewPackage.onlyshowavailableDoc_CheckBox().click();
 			sleep(4);
@@ -175,7 +177,6 @@ public class CreatingNewPackage_Test extends BaseClass{
 					break;
 				}
 			}
-			
 			
 			test.log(LogStatus.PASS, "16.Click on 'OK'.");
 			javaScriptClick(creatingNewPackage.create_Button());
@@ -197,19 +198,30 @@ public class CreatingNewPackage_Test extends BaseClass{
 			test.log(LogStatus.PASS, "17.On Package screen add a 'Target Release Date'.");
 			verticalScrollingUp();
 			sleep(2);
-			//
 			String targetReleaseDate=DateTimeUtils.getCurrentPSTDate();
-			String finalDate=targetReleaseDate.substring(3, 5);
+			String[] preDate = targetReleaseDate.split("/");
+			String dd1 = preDate[1];
+			String dd=dd1;
+			if(dd1.contains("0"))
+			{
+				dd=dd1.substring(1, 2);
+				if(dd.equals("0")) 
+				{
+					dd = dd1;
+				}
+			}
 			creatingNewPackage.targetReleaseDate_TextBox().click();
-			driver.findElement(By.xpath("//*[text()='"+finalDate+"']")).click();
+			driver.findElement(By.xpath("//*[text()='"+dd+"']")).click();
+			sleep(4);
 			
 			if(creatingNewPackage.verifyUpdateAttachedDocPopUp())
 			{
 				test.log(LogStatus.PASS, "<b>ER6- Update attached document(s) (non-obsoleted only) to this Release Date? Pop up message is displayed.<b>"+
 						test.addScreenCapture(captureScreenShot(driver, "Update attached document")));
 				
-				test.log(LogStatus.PASS, "18.Click on “Yes”.");
+				test.log(LogStatus.PASS, "18.Click on 'Yes'.");
 				creatingNewPackage.yes_Button().click();
+				sleep(2);
 			}
 			else
 			{
@@ -217,6 +229,7 @@ public class CreatingNewPackage_Test extends BaseClass{
 						test.addScreenCapture(captureScreenShot(driver, "Update attached document")));
 			}
 			
+			sleep(2);
 			if(creatingNewPackage.verifyMsgPopUpHeader())
 			{
 				test.log(LogStatus.PASS, "<b>ER7- 'No obsolete documents to update' Pop up message appears.<b>"+
@@ -231,6 +244,20 @@ public class CreatingNewPackage_Test extends BaseClass{
 				test.log(LogStatus.FAIL, "<b>Unable to find the 'No obsolete documents to update' Pop up message.<b>"+
 						test.addScreenCapture(captureScreenShot(driver, "No obsolete documents")));
 			}
+			
+			//add refresh code---------
+			driver.navigate().refresh();
+			sleep(2);
+			creatingNewPackage.packages_Link().click();
+			sleep(3);
+			verticalScrollingUp();
+			sleep(2);
+			creatingNewPackage.packageFilter_TextBox().sendKeys(packageNo);
+			creatingNewPackage.packageFilterGo_Button().click();
+			sleep(2);
+			creatingNewPackage.filteredPackage_Result().click();
+			sleep(2);
+			//-----------------------------
 			
 			test.log(LogStatus.PASS, "20.In the web interface, click on 'Add/Remove' link available in the document's frame.");
 			verticalScrollingDown();
@@ -272,7 +299,6 @@ public class CreatingNewPackage_Test extends BaseClass{
 				}
 			}
 			
-			
 			test.log(LogStatus.PASS, "24.Click on 'OK'.");
 			javaScriptClick(creatingNewPackage.create_Button());
 			sleep(2);
@@ -291,7 +317,7 @@ public class CreatingNewPackage_Test extends BaseClass{
 			sleep(2);
 			test.log(LogStatus.PASS, "25.Mark the document to be obsolete from the context menu.");
 			creatingNewPackage.thirdDocContext_Menu().click();
-			sleep(2);
+			sleep(4);
 			verticalScrollingDown();
 			sleep(2);
 			creatingNewPackage.obsolete_Option().click();
@@ -316,7 +342,7 @@ public class CreatingNewPackage_Test extends BaseClass{
 			
 			test.log(LogStatus.PASS, "27.Repeat Step 25 for all attached Effective documents.");
 			creatingNewPackage.fourthDocContext_Menu().click();
-			sleep(2);
+			sleep(4);
 			verticalScrollingDown();
 			sleep(2);
 			creatingNewPackage.obsolete_Option().click();
@@ -325,8 +351,8 @@ public class CreatingNewPackage_Test extends BaseClass{
 			sleep(2);
 			
 			test.log(LogStatus.PASS, "28.On Package screen add an 'Obsolete Date'.");
-			scrollIntoView(creatingNewPackage.obsoleteDate_TextBox());
-			creatingNewPackage.obsoleteDate_TextBox().click();
+			verticalScrollingUp();
+			creatingNewPackage.obsoleteDateToSet_TextBox().click();
 			creatingNewPackage.current_Date().click();
 			sleep(2);
 			
@@ -352,6 +378,7 @@ public class CreatingNewPackage_Test extends BaseClass{
 				
 				test.log(LogStatus.PASS, "30.Click on 'Close'.");
 				creatingNewPackage.close_Button().click();
+				sleep(4);
 				
 			}
 			else
@@ -360,11 +387,25 @@ public class CreatingNewPackage_Test extends BaseClass{
 						test.addScreenCapture(captureScreenShot(driver, "updation of the document")));
 			}
 			
-			if(creatingNewPackage.obsoleteDate_TextBox() != null)
+			//add refresh code---------
+			driver.navigate().refresh();
+			sleep(2);
+			creatingNewPackage.packages_Link().click();
+			sleep(3);
+			verticalScrollingUp();
+			sleep(2);
+			creatingNewPackage.packageFilter_TextBox().sendKeys(packageNo);
+			creatingNewPackage.packageFilterGo_Button().click();
+			sleep(2);
+			creatingNewPackage.filteredPackage_Result().click();
+			sleep(2);
+			//-----------------------------
+			
+			if(creatingNewPackage.obsoleteDateToSet_TextBox() != null)
 			{
 				test.log(LogStatus.PASS, "<b>ER12- Target Obsolete Date of the package is updated.<b>"+
 						test.addScreenCapture(captureScreenShot(driver, "Target Obsolete Date")));
-				obsoleteDate = creatingNewPackage.obsoleteDate_TextBox().getAttribute("value");
+				obsoleteDate = creatingNewPackage.obsoleteDateToSet_TextBox().getAttribute("value");
 			}
 			else
 			{
@@ -379,12 +420,21 @@ public class CreatingNewPackage_Test extends BaseClass{
 			sleep(2);
 			
 			test.log(LogStatus.PASS, "32.Search for that document.");
-			creatingNewPackage.searchesFilterResult_TextBox().sendKeys(docToSearch);
+			creatingNewPackage.searchesFilterResult_TextBox().sendKeys("Search on Document Number");
 			sleep(2);
 			creatingNewPackage.searchesFilterResultGo_Button().click();
+			sleep(2);
+			creatingNewPackage.searchOnDocumentNumber_LinkText().click();
+			sleep(2);
+			creatingNewPackage.docNo_TextBox().sendKeys(docToSearch);
+			creatingNewPackage.searchGo_Button().click();
+			sleep(2);
+			verticalScrollingUp();
+			sleep(2);
 			
 			test.log(LogStatus.PASS, "33.Open the document.");
-			//click
+			creatingNewPackage.filteredPackage_Result().click();
+			sleep(4);
 			
 			obsoleteDateinserachDoc = creatingNewPackage.obsoleteDate_TextBox().getAttribute("value");
 			
@@ -399,11 +449,24 @@ public class CreatingNewPackage_Test extends BaseClass{
 						test.addScreenCapture(captureScreenShot(driver, "Obsolete Date of Package")));
 			}
 			
+			sleep(2);
+			test.log(LogStatus.PASS, "34.Navigate to package which was created in step 7.");
+			creatingNewPackage.myDocs_Tab().click();
+			sleep(2);
+			creatingNewPackage.packages_Link().click();
+			sleep(3);
+			verticalScrollingUp();
+			sleep(2);
+			creatingNewPackage.packageFilter_TextBox().sendKeys(packageNo);
+			creatingNewPackage.packageFilterGo_Button().click();
+			sleep(2);
+			creatingNewPackage.filteredPackage_Result().click();
 			
 			test.log(LogStatus.PASS, "34.Click on 'Add/Remove' link available in documents frame.");
 			verticalScrollingDown();
 			sleep(2);
 			creatingNewPackage.addRemove_LinkText().click();
+			sleep(2);
 			
 			if(creatingNewPackage.verifyAttachDocScreen())
 			{
@@ -425,6 +488,7 @@ public class CreatingNewPackage_Test extends BaseClass{
 			creatingNewPackage.type_DropDown().selectByVisibleText("Document");
 			sleep(2);
 			creatingNewPackage.location_DropDown().click();
+			sleep(1);
 			creatingNewPackage.selectAll_Locacation().click();
 			sleep(2);
 			
@@ -445,7 +509,6 @@ public class CreatingNewPackage_Test extends BaseClass{
 				}
 			}
 			
-			
 			test.log(LogStatus.PASS, "37.Click on 'OK'.");
 			javaScriptClick(creatingNewPackage.create_Button());
 			sleep(2);
@@ -458,7 +521,6 @@ public class CreatingNewPackage_Test extends BaseClass{
 			DBConnection.executeStoredProcedure(dbqueries.enablePermissionProhibitUserAttachingReleasedDoc);
 			
 			test.log(LogStatus.PASS, "40.In the web interface, open the Package created in Step 7 and click on 'Add/Remove' link available in documents frame. ");
-			verticalScrollingDown();
 			sleep(2);
 			creatingNewPackage.addRemove_LinkText().click();
 			sleep(2);
@@ -483,6 +545,7 @@ public class CreatingNewPackage_Test extends BaseClass{
 			creatingNewPackage.type_DropDown().selectByVisibleText("Document");
 			sleep(2);
 			creatingNewPackage.location_DropDown().click();
+			sleep(2);
 			creatingNewPackage.selectAll_Locacation().click();
 			sleep(2);
 			
@@ -491,25 +554,17 @@ public class CreatingNewPackage_Test extends BaseClass{
 			creatingNewPackage.attachedDocFilterResultGo_Button().click();
 			sleep(2);
 			
-			//verification code
-			test.log(LogStatus.PASS, "<b>ER17- All the Effective documents are greyed out.<b>"+
-					test.addScreenCapture(captureScreenShot(driver, "All the Effective documents are greyed")));
-			
-			test.log(LogStatus.PASS, "43.Select Status: Archived, Created between (e.g. a month before current date and current date) and Type: Document.");
-			creatingNewPackage.selectStatus_DoropDown().selectByVisibleText("Open");
-			sleep(2);
-			creatingNewPackage.andDate_Box().click();
-			creatingNewPackage.current_Date().click();
-			sleep(2);
-			creatingNewPackage.type_DropDown().selectByVisibleText("Document");
-			sleep(2);
-			creatingNewPackage.location_DropDown().click();
-			creatingNewPackage.selectAll_Locacation().click();
-			
-			//verification code
-			test.log(LogStatus.PASS, "<b>ER17- All the Archived documents are greyed out.<b>"+
-					test.addScreenCapture(captureScreenShot(driver, "All the Archived documents")));
-			
+			docStatus = creatingNewPackage.docStatus().getText();
+			if(docStatus.equals(""))
+			{
+				test.log(LogStatus.PASS, "<b>ER17- All the Effective documents are greyed out.<b>"+
+						test.addScreenCapture(captureScreenShot(driver, "All the Effective documents are greyed")));
+			}
+			else
+			{
+				test.log(LogStatus.PASS, "<b>Unable to find the All the Effective documents are greyed out.<b>"+
+						test.addScreenCapture(captureScreenShot(driver, "All the Effective documents are greyed")));
+			}
 			
 			test.log(LogStatus.PASS, "43.Select Status: Archived, Created between (e.g. a month before current date and current date) and Type: Document.");
 			creatingNewPackage.selectStatus_DoropDown().selectByVisibleText("Archived");
@@ -520,12 +575,23 @@ public class CreatingNewPackage_Test extends BaseClass{
 			creatingNewPackage.type_DropDown().selectByVisibleText("Document");
 			sleep(2);
 			creatingNewPackage.location_DropDown().click();
+			sleep(2);
 			creatingNewPackage.selectAll_Locacation().click();
+			sleep(4);
+			creatingNewPackage.attachedDocFilterResult_TextBox().click();
+			sleep(2);
 			
-			//verification code
-			test.log(LogStatus.PASS, "<b>ER18- All the Archived documents are greyed out.<b>"+
-					test.addScreenCapture(captureScreenShot(driver, "All the Archived documents are greyed out")));
-			
+			docStatus = creatingNewPackage.docStatus().getText();
+			if(docStatus.equals(""))
+			{
+				test.log(LogStatus.PASS, "<b>ER17- All the Archived documents are greyed out.<b>"+
+						test.addScreenCapture(captureScreenShot(driver, "All the Archived documents")));
+			}
+			else
+			{
+				test.log(LogStatus.PASS, "<b>Unable to find the All the Archived documents are greyed out.<b>"+
+						test.addScreenCapture(captureScreenShot(driver, "All the Archived documents")));
+			}
 			
 			test.log(LogStatus.PASS, "44.Select Status: Both, Created between (e.g. a month before current date and current date) and Type: Document");
 			creatingNewPackage.selectStatus_DoropDown().selectByVisibleText("Both");
@@ -536,28 +602,27 @@ public class CreatingNewPackage_Test extends BaseClass{
 			creatingNewPackage.type_DropDown().selectByVisibleText("Document");
 			sleep(2);
 			creatingNewPackage.location_DropDown().click();
+			sleep(2);
 			creatingNewPackage.selectAll_Locacation().click();
+			sleep(4);
 			
-			//verification code
-			test.log(LogStatus.PASS, "<b>ER19- All Effective and Archived documents are greyed out.<b>"+
-					test.addScreenCapture(captureScreenShot(driver, "All Effective and Archived documents")));
-			
-			
+			docStatus = creatingNewPackage.docStatus().getText();
+			if(docStatus.equals(""))
+			{
+				test.log(LogStatus.PASS, "<b>ER19- All Effective and Archived documents are greyed out.<b>"+
+						test.addScreenCapture(captureScreenShot(driver, "All Effective and Archived documents")));
+			}
+			else
+			{
+				test.log(LogStatus.PASS, "<b>Unable to find the All Effective and Archived documents are greyed out.<b>"+
+						test.addScreenCapture(captureScreenShot(driver, "All Effective and Archived documents")));
+			}
 		}
 		else
 		{
 			test.log(LogStatus.FAIL, "<b>Unable to find the newly created package.<b>"+
 					test.addScreenCapture(captureScreenShot(driver, "Newly created package")));
 		}
-		
-		
-		
-		
-		
-		
-		
-		
-		
 	}
 
 	@AfterClass(alwaysRun=true)

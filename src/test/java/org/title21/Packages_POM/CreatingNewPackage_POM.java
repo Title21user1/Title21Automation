@@ -86,7 +86,7 @@ public class CreatingNewPackage_POM extends DocumentRoutes_POM {
 	@FindBy(xpath="//*[@class='multiselect-item multiselect-all']")
 	WebElement selectAllLocacation;
 	
-	@FindBy(css=".day.active.today")
+	@FindBy(css=".day.today")
 	WebElement currentDate;
 
 	@FindBy(xpath="//*[@id='collapse-0']//tr[1]/td[2]")
@@ -127,9 +127,12 @@ public class CreatingNewPackage_POM extends DocumentRoutes_POM {
 	
 	@FindBy(xpath="//span[text()='Obsolete']")
 	WebElement obsoleteOption;
+
+	@FindBy(css="#DocObsoleteDateString")
+	WebElement obsoleteDate_TextBox;
 	
 	@FindBy(xpath="//*[@id='TravObsoleteDateString']")
-	WebElement obsoleteDate_TextBox;
+	WebElement obsoleteDateToSet_TextBox;
 	
 	@FindBy(xpath="//*[@id='NavSearches']")
 	WebElement searchesTab;
@@ -142,6 +145,43 @@ public class CreatingNewPackage_POM extends DocumentRoutes_POM {
 	
 	@FindBy(xpath="//*[@id='OnlyShowAvailable']")
 	WebElement onlyshowavailableDocCheckBox;
+	
+	@FindBy(xpath="//a[@id='editCell'][text()='Search on Document Number']")
+	WebElement searchOnDocumentNumberLinkText;
+	
+	@FindBy(xpath="//*[@id='param-0']")
+	WebElement docNoTextBox;
+	
+	@FindBy(xpath="//input[@type='submit'][@value='Go']")
+	WebElement searchGoButton;
+	
+	@FindBy(xpath="//tr[1]/td[6]")
+	WebElement docStatus;
+	
+	public WebElement docStatus()
+	{
+		return docStatus;
+	}
+	
+	public WebElement obsoleteDateToSet_TextBox()
+	{
+		return obsoleteDateToSet_TextBox;
+	}
+	
+	public WebElement searchGo_Button()
+	{
+		return searchGoButton;
+	}
+	
+	public WebElement docNo_TextBox()
+	{
+		return docNoTextBox;
+	}
+	
+	public WebElement searchOnDocumentNumber_LinkText()
+	{
+		return searchOnDocumentNumberLinkText;
+	}
 	
 	public WebElement onlyshowavailableDoc_CheckBox()
 	{
