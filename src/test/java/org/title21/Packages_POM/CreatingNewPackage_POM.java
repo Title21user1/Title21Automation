@@ -158,6 +158,14 @@ public class CreatingNewPackage_POM extends DocumentRoutes_POM {
 	@FindBy(xpath="//tr[1]/td[6]")
 	WebElement docStatus;
 	
+	@FindBy(xpath="//input[@name='submitButton']")
+	WebElement okButton;
+
+	public WebElement ok_Button()
+	{
+		return okButton;
+	}
+	
 	public WebElement docStatus()
 	{
 		return docStatus;
