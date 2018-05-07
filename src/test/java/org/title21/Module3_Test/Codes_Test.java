@@ -33,7 +33,7 @@ public class Codes_Test extends BaseClass {
 	String testcaseName="TestCase-WIA-Codes.doc";	
 	String filePath = System.getProperty("user.dir") + "\\TestCases\\"+testcaseName;
 
-	@BeforeClass
+	@BeforeClass(alwaysRun=true)
 	public void openURL() 
 	{
 		getBrowser();
@@ -452,11 +452,11 @@ public class Codes_Test extends BaseClass {
 		logout.logoutFunction();	
 	}
 
-	@AfterClass
+	@AfterClass(alwaysRun=true)
 	public void closeBrowserInstance() 
 	{
 		extent.endTest(test);
-		driver.close();
+		driver.quit();
 	}
 
 	private void clickOnEditButton(String eventType)

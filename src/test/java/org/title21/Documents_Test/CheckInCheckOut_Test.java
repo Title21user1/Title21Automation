@@ -24,7 +24,7 @@ public class CheckInCheckOut_Test extends BaseClass
 	String testcaseName="TestCase-WIA-Check_In & Checkout.doc";	
 	String filePath = System.getProperty("user.dir") + "\\TestCases\\"+testcaseName;
 
-	@BeforeClass
+	@BeforeClass(alwaysRun=true)
 	public void beforeClass()
 	{
 		getBrowser();
@@ -279,11 +279,11 @@ public class CheckInCheckOut_Test extends BaseClass
 		logout.logoutFunction();
 	}
 
-	@AfterClass
+	@AfterClass(alwaysRun=true)
 	public void afterClass()
 	{
 		extent.endTest(test);
-		driver.close();
+		driver.quit();
 	}
 
 }

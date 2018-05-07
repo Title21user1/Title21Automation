@@ -38,7 +38,7 @@ public class AddEmployee_Test extends BaseClass {
 
 	AdminData adminData=new AdminData();	
 
-	@BeforeClass
+	@BeforeClass(alwaysRun=true)
 	public void openURL() 
 	{
 		getBrowser();
@@ -323,11 +323,11 @@ public class AddEmployee_Test extends BaseClass {
 	}	
 
 
-	@AfterClass
+	@AfterClass(alwaysRun=true)
 	public void closeBrowserInstance()
 	{	
 		extent.endTest(test);	
-		driver.close();
+		driver.quit();
 	}
 
 	private void searchRecordInTable() {

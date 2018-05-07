@@ -35,7 +35,7 @@ public class UpdateUser_Test extends BaseClass{
 	String testcaseName="TestCase-WIA-Update New User.doc";	
 	String filePath = System.getProperty("user.dir") + "\\TestCases\\"+testcaseName;
 		
-	@BeforeClass
+	@BeforeClass(alwaysRun=true)
 	public void openURL() 
 	{
 		getBrowser();
@@ -313,10 +313,10 @@ public class UpdateUser_Test extends BaseClass{
 				test.addScreenCapture(captureScreenShot(driver, "Unable to find User Name in table")));			
 		}			
 	}
-	@AfterClass
+	@AfterClass(alwaysRun=true)
 	public void closeBrowserInstance()
 	{		
 		extent.endTest(test);
-		driver.close();
+		driver.quit();
 	}
 }

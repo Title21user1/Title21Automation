@@ -31,7 +31,7 @@ public class AccountLockout_Test extends BaseClass
 	String testcaseName="TestCase-WIA-Lockout on repeated incorrect passwords.doc";	
 	String filePath = System.getProperty("user.dir") + "\\TestCases\\"+testcaseName;
 
-	@BeforeClass
+	@BeforeClass(alwaysRun=true)
 	public void beforeClass()
 	{
 		getBrowser();
@@ -134,10 +134,10 @@ public class AccountLockout_Test extends BaseClass
 	}
 
 
-	@AfterClass
+	@AfterClass(alwaysRun=true)
 	public void afterClass()
 	{
 		extent.endTest(test);
-		driver.close();
+		driver.quit();
 	}
 }

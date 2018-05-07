@@ -44,7 +44,7 @@ public class UpdateEmployee_Test extends BaseClass {
 	static Logger log = Logger.getLogger(UpdateEmployee_Test.class);	
 
 
-	@BeforeClass
+	@BeforeClass(alwaysRun=true)
 	public void openURL() {
 		getBrowser();
 		className = this.getClass().getName();
@@ -350,10 +350,10 @@ public class UpdateEmployee_Test extends BaseClass {
 
 	}
 
-	@AfterClass
+	@AfterClass(alwaysRun=true)
 	public void closeBrowserInstance()
 	{
 		extent.endTest(test);
-		driver.close();
+		driver.quit();
 	}
 }
