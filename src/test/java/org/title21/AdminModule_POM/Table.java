@@ -93,6 +93,14 @@ public class Table extends BaseClass
 		  }
 		return cells;
 	}
+	//for package 
+	public List<WebElement> getPackageApprovalstableCells(int columnNumber){	
+		List<WebElement> cells = null;
+		for(WebElement row : tableRows) {
+		    cells = row.findElements(By.xpath("//*[@id='ApprovalsTab']//td["+columnNumber+"]")); 
+		  }
+		return cells;
+	}
 	
 	public List<WebElement> getcollapseDocumentstableCells(int columnNumber){	
 		List<WebElement> cells = null;

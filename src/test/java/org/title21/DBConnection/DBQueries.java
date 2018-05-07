@@ -13,4 +13,8 @@ public class DBQueries
 	public final String allowLMSAccessValue="select AllowLmsAccess from tblGroups where Groups=";
 	public final String allowCibmtrAccessEnable="update tblGroups set AllowCibmtrAccess=1 where Groups=";
 	public final String allowLMSAccessEnable="update tblGroups set AllowLmsAccess=1 where Groups=";
+	public final String disablePermissionProhibitUserAttachingArchivedDoc="update tblOptionSettingsPublic set WarnUserOnAttachingArchivedDoc = 0 where AutoNumber=2";
+	public final String disablePermissionProhibitUserAttachingReleasedDoc="update tblOptionSettingsPublic set WarnUserOnAttachingReleasedDoc = 0 where AutoNumber=2";
+	public final String enablePermissionProhibitUserAttachingArchivedDoc="update tblOptionSettingsPublic set WarnUserOnAttachingArchivedDoc = 1 where AutoNumber=2";
+	public final String enablePermissionProhibitUserAttachingReleasedDoc="update tblOptionSettingsPublic set WarnUserOnAttachingReleasedDoc = 1 where AutoNumber=2";
 }
