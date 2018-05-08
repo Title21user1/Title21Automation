@@ -6,12 +6,16 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
+import org.title21.DBConnection.DBConnection;
+import org.title21.DBConnection.DBQueries;
 import org.title21.Documents_POM.DocumentRoutes_POM;
 
 public class PackageApproval_POM extends CreatingNewPackage_POM {
 
 	public WebDriver driver;
 	public WebElement element;
+	DBConnection dbconnection = new DBConnection();
+	DBQueries dbqueries = new DBQueries();
 	static Logger log = Logger.getLogger(PackageApproval_POM.class);
 	
 	public PackageApproval_POM(WebDriver driver) {
@@ -38,10 +42,10 @@ public class PackageApproval_POM extends CreatingNewPackage_POM {
 	@FindBy(xpath="//span[text()='Route For Approval']")
 	WebElement packageRouteApproval;
 	
-	@FindBy(css=".t21-placeholder")
+	@FindBy(xpath="//*[@id='t21-workarea']/div/div/div/div[2]/div/div[2]/div/div/form/div/input")
 	WebElement approvalFilterResultTextBox;
 	
-	@FindBy(xpath="//button[@type='submit'][@tabindex='1']")
+	@FindBy(xpath="//*[@id='t21-workarea']/div/div/div/div[2]/div/div[2]/div/div/form/div/span[1]/button")
 	WebElement approvalFilterResultGoButton;
 	
 	@FindBy(xpath="//tr[1]/td[3]/a")
@@ -58,6 +62,94 @@ public class PackageApproval_POM extends CreatingNewPackage_POM {
 	
 	@FindBy(xpath="//a[contains(@href,'ApprovalsTab')]")
 	WebElement packageApprovalsTab;
+	
+	@FindBy(xpath="//a[contains(@href,'Reject&DisplayId')]")
+	WebElement docRejectLink;
+	
+	@FindBy(xpath="//*[@id='ApprovalsTab']/div/div/div[2]/div/div[2]/p")
+	WebElement packageRejectedMsg;
+	
+	@FindBy(xpath="//*[@id='Comments']")
+	WebElement commentsTextBox;
+	
+	@FindBy(xpath="//*[@id='t21-workarea']/div/div/div/div[2]/div[2]/div[2]/div/div/form/div/input")
+	WebElement searchesFilterTextBox;
+	
+	@FindBy(xpath="//*[@id='t21-workarea']/div/div/div/div[2]/div[2]/div[2]/div/div/form/div/span[1]/button")
+	WebElement searchesFilterGoButton;
+	
+	@FindBy(xpath="//*[@id='displaySel']/div[1]/div[3]/div/a/span[2]")
+	WebElement searchesPackageContextMenu;
+	
+	@FindBy(xpath="//*[@id='ApprovalDocs']/div[1]/div/form/div/input")
+	WebElement wizardApprovalFilterTextBox;
+	
+	@FindBy(xpath="//*[@id='ApprovalDocs']/div[1]/div/form/div/span[1]/button")
+	WebElement wizardApprovalFilterGoButton;
+	
+	@FindBy(xpath="//a[contains(@href,'GeneralTab')]")
+	WebElement generalTab;
+	
+	@FindBy(xpath="//*[@id='GeneralTab']/div[1]/div[2]/div[3]/div[2]/label")
+	WebElement currentStapesStatus;
+	
+	@FindBy(css="#Dashboard>a>span")
+	WebElement dashboard;
+	
+	public WebElement dashboard_Tab()
+	{
+		return dashboard;
+	}
+	
+	public WebElement currentStapesStatus()
+	{
+		return currentStapesStatus;
+	}
+	
+	public WebElement general_Tab()
+	{
+		return generalTab;
+	}
+	
+	public WebElement wizardApprovalFilterGoButton()
+	{
+		return wizardApprovalFilterGoButton;
+	}
+	
+	public WebElement wizardApprovalFilterTextBox()
+	{
+		return wizardApprovalFilterTextBox;
+	}
+	
+	public WebElement searchesPackageContextMenu()
+	{
+		return searchesPackageContextMenu;
+	}
+	
+	public WebElement searchesFilterGoButton()
+	{
+		return searchesFilterGoButton;
+	}
+	
+	public WebElement searchesFilterTextBox()
+	{
+		return searchesFilterTextBox;
+	}
+	
+	public WebElement comments_TextBox()
+	{
+		return commentsTextBox;
+	}
+	
+	public WebElement packageRejectedMsg()
+	{
+		return packageRejectedMsg;
+	}
+	
+	public WebElement docRejectLink()
+	{
+		return docRejectLink;
+	}
 	
 	public WebElement packageApprovalsTab()
 	{
@@ -124,16 +216,6 @@ public class PackageApproval_POM extends CreatingNewPackage_POM {
 		return firstDocContextMenu;
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	public boolean verifyCreateNewPackagePopUpText()
 	{
 		String CreateNewPackageHeaderText = createNewPackage_HeaderText.getText();
@@ -148,5 +230,34 @@ public class PackageApproval_POM extends CreatingNewPackage_POM {
 		}
 	}
 	
+	public boolean verifyPackageRejectedMsg()
+	{
+		String CreateNewPackageHeaderText = packageRejectedMsg.getText();
+		
+		if(CreateNewPackageHeaderText.equalsIgnoreCase("You have successfully rejected"))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+	@SuppressWarnings("static-access")
+	public void enableCIBMTR_LMS()
+	{
+		int LMSValue = dbconnection.getIntDBValue(dbqueries.DCOsValue, "LmsEnabled");
+		
+		if (LMSValue==0)
+		{
+			try {
+				DBConnection.executeStoredProcedure(dbqueries.doNotForwardAttachedIndexCards);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			System.out.println("LMS enabled");
+		}
+	}
 }
 

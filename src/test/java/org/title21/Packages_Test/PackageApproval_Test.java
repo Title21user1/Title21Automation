@@ -4,6 +4,7 @@ package org.title21.Packages_Test;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -11,6 +12,7 @@ import org.testng.annotations.Test;
 import org.title21.AdminModule_POM.LoginPage_POM;
 import org.title21.AdminModule_POM.LogoutPage_POM;
 import org.title21.AdminModule_POM.Table;
+import org.title21.DBConnection.DBConnection;
 import org.title21.DBConnection.DBQueries;
 import org.title21.Packages_POM.PackageApproval_POM;
 import org.title21.dao.AdminData;
@@ -26,12 +28,13 @@ public class PackageApproval_Test extends BaseClass{
 	String className="";
 	String packageNo="";
 	String fileUploadPath="";
+	String currentStepsStatus="";
 	boolean isRecordFound1=false;
 	String uploadFileName="FileToUpload.txt";
 	Table searchTable;
 	DBQueries dbqueries;
 	AdminData adminData=new AdminData();
-	String testcaseName="TestCase-WIA-Creating_new_package.docx";	
+	String testcaseName="TestCase-WIA-Package_approval.docx";	
 	String filePath = System.getProperty("user.dir") + "\\TestCases\\"+testcaseName;
 
 	@BeforeClass(alwaysRun=true)
@@ -53,6 +56,8 @@ public class PackageApproval_Test extends BaseClass{
 		test.log(LogStatus.PASS, "1.Login to the web interface.");
 		test.log(LogStatus.INFO, "Link to Test case document", "<a href='file://"+filePath+"'>TestCaseDocument</a>");
 		packageApproval=new PackageApproval_POM(driver);	
+	
+		DBConnection.executeStoredProcedure(dbqueries.doNotForwardAttachedIndexCards);
 		
 		test.log(LogStatus.PASS, "2.Click on the new and select package.");
 		packageApproval.getnewdoc().click();
@@ -241,7 +246,7 @@ public class PackageApproval_Test extends BaseClass{
 		packageApproval.getLocationDropdown().selectByVisibleText(routeData[1][4]);
 		sleep(2);
 		packageApproval.getnameinAddApprover().selectByVisibleText(routeData[1][9]);
-		packageApproval.getSequenceinAddApprover().selectByVisibleText("2"); 
+		packageApproval.getSequenceinAddApprover().selectByVisibleText("1"); 
 		packageApproval.getallottedDaysinAddApprover().selectByVisibleText(routeData[1][7]);
 		packageApproval.approverAdd_Button().click();
 		sleep(2);
@@ -325,11 +330,12 @@ public class PackageApproval_Test extends BaseClass{
 		
 		test.log(LogStatus.PASS, "30.Go to the approval wizard.");
 		packageApproval.wizard_Option().click();
-		packageApproval.approval_Tab().click();
-		 
-		packageApproval.approvalFilterResult_TextBox().sendKeys(packageNo);
 		sleep(2);
-		packageApproval.approvalFilterResultGo_Button().click();
+		packageApproval.approval_Tab().click();
+		sleep(2); 
+		packageApproval.wizardApprovalFilterTextBox().sendKeys(packageNo);
+		sleep(2);
+		packageApproval.wizardApprovalFilterGoButton().click();
 		sleep(2);
 		
 		packageApproval.filtered_Package().click();
@@ -339,15 +345,13 @@ public class PackageApproval_Test extends BaseClass{
 		
 		test.log(LogStatus.PASS, "31.Logout and login as the individual approver in Sequence 2");
 		logout.logoutFunction();
-		login.loginUser(loginData[8][0], loginData[8][1]);
-
+		login.loginUser("Mart707", "title21neo");
+		
+		
 		test.log(LogStatus.PASS, "32.Navigate to the approval wizard");
 		packageApproval.wizard_Option().click();
 		packageApproval.approval_Tab().click();
 		
-		packageApproval.approvalFilterResult_TextBox().sendKeys(packageNo);
-		sleep(2);
-		packageApproval.approvalFilterResultGo_Button().click();
 		sleep(2);
 		test.log(LogStatus.PASS, "<b>ER15- The document is not available in the approval wizard.<b>"+
 				test.addScreenCapture(captureScreenShot(driver, "Route is added")));
@@ -356,7 +360,6 @@ public class PackageApproval_Test extends BaseClass{
 		
 		test.log(LogStatus.PASS, "34.Login as each individual approver listed in Sequence 1, and approve the document through the Web interface.");
 		login.loginUser(loginData[1][0], loginData[1][1]);
-		
 		packageApproval.myDocs_Tab().click();
 		sleep(2);
 		packageApproval.docApproval_Link().click();
@@ -376,11 +379,8 @@ public class PackageApproval_Test extends BaseClass{
 		packageApproval.checkInRouteSubmit_Button().click();
 		sleep(2);
 		
-		test.log(LogStatus.PASS, "Login as a member of the group named in Sequence 2 again and navigate to the approval wizard.");
 		logout.logoutFunction();
 		login.loginUser(loginData[8][0], loginData[8][1]);
-
-		test.log(LogStatus.PASS, "32.Navigate to the approval wizard");
 		packageApproval.myDocs_Tab().click();
 		sleep(2);
 		packageApproval.docApproval_Link().click();
@@ -392,20 +392,201 @@ public class PackageApproval_Test extends BaseClass{
 		packageApproval.searched_Doc().click();
 		sleep(2);
 		packageApproval.packageApprovalsTab().click();
+		sleep(2);
+		packageApproval.approveLink().click();
+		sleep(4);
+		packageApproval.pinTo_Approve().clear();					
+		packageApproval.pinTo_Approve().sendKeys(routeData[1][12]);
+		packageApproval.checkInRouteSubmit_Button().click();
+		sleep(2);
+		
+		
+		test.log(LogStatus.PASS, "35.Login as a member of the group named in Sequence 2 again and navigate to the approval wizard.");
+		logout.logoutFunction();
+		login.loginUser("Mart707", "title21neo");
+
+		packageApproval.myDocs_Tab().click();
+		sleep(2);
+		packageApproval.docApproval_Link().click();
+		sleep(2);
+		packageApproval.approvalFilterResult_TextBox().sendKeys(packageNo);
+		sleep(2);
+		packageApproval.approvalFilterResultGo_Button().click();
+		sleep(2);
+		packageApproval.searched_Doc().click();
+		sleep(2);
+		packageApproval.packageApprovalsTab().click();
+		sleep(2);
+		
+		test.log(LogStatus.PASS, "<b>ER16- The document is available in the approval wizard, and the status for both of the Sequence 1 individual approvals are updated.<b>"+
+				test.addScreenCapture(captureScreenShot(driver, "Route is added")));
+		
+		test.log(LogStatus.PASS, "36.Reject the package by member of the group named in Sequence 2");
+		verticalScrollingDown();
+		sleep(2);
+		sleep(2);
+		packageApproval.docRejectLink().click();
+		sleep(4);
+		packageApproval.pinTo_Approve().clear();					
+		packageApproval.pinTo_Approve().sendKeys(routeData[1][12]);
+		packageApproval.comments_TextBox().sendKeys("Rejected");
+		packageApproval.checkInRouteSubmit_Button().click();
 		sleep(2);
 		verticalScrollingDown();
 		sleep(2);
+		
+		if(packageApproval.verifyPackageRejectedMsg())
+		{
+			test.log(LogStatus.PASS, "<b>ER17- The package is rejected.<b>"+
+					test.addScreenCapture(captureScreenShot(driver, "Route is added")));
+		}
+		else
+		{
+			test.log(LogStatus.PASS, "<b>Unable to find the rejected package.<b>"+
+					test.addScreenCapture(captureScreenShot(driver, "Route is added")));
+		}
+		
+		test.log(LogStatus.PASS, "37.Login as a user used in step (1).");
+		logout.logoutFunction();
+		login.loginUser(loginData[7][0], loginData[7][1]);
+		
+		test.log(LogStatus.PASS, "38.Go to package created in step (5).");
+		
+		sleep(2);
+		packageApproval.searches_Tab().click();
+		sleep(2);
+		packageApproval.searchesFilterResult_TextBox().sendKeys("Search Packages");
+		sleep(2);
+		packageApproval.searchesFilterResultGo_Button().click();
+		sleep(2);
+		packageApproval.searchPackagesLinkText().click();
+		sleep(2);
+		packageApproval.searchGo_Button().click();
+		sleep(2);
+		verticalScrollingUp();
+		sleep(2);
+		packageApproval.searchesFilterTextBox().sendKeys(packageNo);
+		sleep(2);
+		packageApproval.searchesFilterGoButton().click();
+		sleep(2);
+		packageApproval.filteredPackage_Result().click();
+		sleep(4);
+
+		test.log(LogStatus.PASS, "39.Navigate to approver tab and route the package for approval again.");
+		packageApproval.approvals_Tab().click();
+		sleep(2);
+		packageApproval.searchesPackageContextMenu().click();
+		sleep(2);
+		packageApproval.packageRouteApproval().click();
+		sleep(2);
+		packageApproval.checkInRouteSubmit_Button().click();
+		sleep(2);
+		packageApproval.close_Button().click();
+		sleep(2);
+		
+		test.log(LogStatus.PASS, "40.Login as each individual approver listed in Sequence 1, and approve the document through the Web interface.");
+		logout.logoutFunction();
+		sleep(2);
+		login.loginUser(loginData[1][0], loginData[1][1]);
+		packageApproval.myDocs_Tab().click();
+		sleep(2);
+		packageApproval.docApproval_Link().click();
+		sleep(2);
+		packageApproval.approvalFilterResult_TextBox().sendKeys(packageNo);
+		sleep(2);
+		packageApproval.approvalFilterResultGo_Button().click();
+		sleep(2);
+		packageApproval.searched_Doc().click();
+		sleep(4);
+		packageApproval.packageApprovalsTab().click();
+		sleep(2);
 		packageApproval.approveLink().click();
 		sleep(4);
 		packageApproval.pinTo_Approve().clear();					
 		packageApproval.pinTo_Approve().sendKeys(routeData[1][12]);
 		packageApproval.checkInRouteSubmit_Button().click();
 		sleep(2);
+		
+		logout.logoutFunction();
+		login.loginUser(loginData[8][0], loginData[8][1]);
+		packageApproval.myDocs_Tab().click();
+		sleep(2);
+		packageApproval.docApproval_Link().click();
+		sleep(2);
+		packageApproval.approvalFilterResult_TextBox().sendKeys(packageNo);
+		sleep(2);
+		packageApproval.approvalFilterResultGo_Button().click();
+		sleep(2);
+		packageApproval.searched_Doc().click();
+		sleep(4);
+		packageApproval.packageApprovalsTab().click();
+		sleep(2);
+		packageApproval.approveLink().click();
+		sleep(4);
+		packageApproval.pinTo_Approve().clear();					
+		packageApproval.pinTo_Approve().sendKeys(routeData[1][12]);
+		packageApproval.checkInRouteSubmit_Button().click();
+		sleep(2);
+		
+		test.log(LogStatus.PASS, "41.Login as a member of the group named in Sequence 2 again and navigate to the approval wizard.");
+		logout.logoutFunction();
+		login.loginUser("Mart707", "title21neo");
+		packageApproval.myDocs_Tab().click();
+		sleep(2);
+		packageApproval.docApproval_Link().click();
+		sleep(2);
+		packageApproval.approvalFilterResult_TextBox().sendKeys(packageNo);
+		sleep(2);
+		packageApproval.approvalFilterResultGo_Button().click();
+		sleep(2);
+		packageApproval.searched_Doc().click();
+		sleep(4);
+		packageApproval.packageApprovalsTab().click();
+		sleep(2);
+		packageApproval.approveLink().click();
+		sleep(4);
+		packageApproval.pinTo_Approve().clear();					
+		packageApproval.pinTo_Approve().sendKeys(routeData[1][12]);
+		packageApproval.checkInRouteSubmit_Button().click();
+		sleep(2);
+		verticalScrollingDown();
+		sleep(2);
+		test.log(LogStatus.PASS, "<b>ER18- The package is successfully approved by all the approvers.<b>"+
+				test.addScreenCapture(captureScreenShot(driver, "package is successfully approved")));
+		
 		verticalScrollingUp();
 		sleep(2);
-		test.log(LogStatus.PASS, "<b>ER15- The document is not available in the approval wizard.<b>"+
-				test.addScreenCapture(captureScreenShot(driver, "Route is added")));
+		packageApproval.general_Tab().click();
+		sleep(2);
+		currentStepsStatus = packageApproval.currentStapesStatus().getText();
 		
+		if(currentStepsStatus.equalsIgnoreCase("Approved DCOs"))
+		{
+			test.log(LogStatus.PASS, "<b>ER19- The package is moved to Next cabinet.<b>"+
+					test.addScreenCapture(captureScreenShot(driver, "package is successfully approved")));
+		}
+		else
+		{
+			driver.navigate().refresh();
+			sleep(2);
+			verticalScrollingUp();
+			sleep(2);
+			packageApproval.dashboard_Tab().click();
+			sleep(4);
+			driver.findElement(By.xpath("//a[text()='"+packageNo+"']")).click();
+			sleep(4);
+			currentStepsStatus = packageApproval.currentStapesStatus().getText();
+			if(currentStepsStatus.equalsIgnoreCase("Approved DCOs"))
+			{
+				test.log(LogStatus.PASS, "<b>ER19- The package is moved to Next cabinet.<b>"+
+						test.addScreenCapture(captureScreenShot(driver, "package is successfully approved")));
+			}
+			else
+			{
+				test.log(LogStatus.FAIL, "<b>Uanble to find the package moved to Next cabinet.<b>"+
+						test.addScreenCapture(captureScreenShot(driver, "package is successfully approved")));
+			}
+		}
 	}
 
 	@AfterClass(alwaysRun=true)

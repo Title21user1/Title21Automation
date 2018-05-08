@@ -164,6 +164,14 @@ public class CreatingNewPackage_POM extends DocumentRoutes_POM {
 	@FindBy(xpath="//div[@data-t21-ajax-id='attachments-grid']//tr[1]/td[2]")
 	WebElement attachmentsAttached;
 	
+	@FindBy(xpath="//a[@id='editCell'][text()='Search Packages']")
+	WebElement searchPackagesLinkText;
+	
+	public WebElement searchPackagesLinkText()
+	{
+		return searchPackagesLinkText;
+	}
+	
 	public WebElement attachments_Attached()
 	{
 		return attachmentsAttached;

@@ -17,4 +17,7 @@ public class DBQueries
 	public final String disablePermissionProhibitUserAttachingReleasedDoc="update tblOptionSettingsPublic set WarnUserOnAttachingReleasedDoc = 0 where AutoNumber=2";
 	public final String enablePermissionProhibitUserAttachingArchivedDoc="update tblOptionSettingsPublic set WarnUserOnAttachingArchivedDoc = 1 where AutoNumber=2";
 	public final String enablePermissionProhibitUserAttachingReleasedDoc="update tblOptionSettingsPublic set WarnUserOnAttachingReleasedDoc = 1 where AutoNumber=2";
+	public final String doNotForwardAttachedIndexCards="update tblProcessSteps set DoNotForwardAttachedIndexCards = 1  where ProcessStep='DCO in Progress' AND process='Open DCOs'";	
+	public final String DCOsValue="select DoNotForwardAttachedIndexCards from tblProcessSteps where ProcessStep='DCO in Progress' AND process='Open DCOs'";
+	
 }
