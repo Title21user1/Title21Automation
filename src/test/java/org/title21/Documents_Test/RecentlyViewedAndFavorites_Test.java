@@ -41,7 +41,7 @@ public class RecentlyViewedAndFavorites_Test extends BaseClass {
 	String Docname = "";
 	boolean DocumentPresentAfterSearch = false;
 
-	@BeforeClass
+	@BeforeClass(alwaysRun=true)
 	public void openURL() {
 		getBrowser();
 		className = this.getClass().getName();
@@ -277,11 +277,11 @@ public class RecentlyViewedAndFavorites_Test extends BaseClass {
 
 	}
 
-	@AfterClass
+	@AfterClass(alwaysRun=true)
 	public void closeBrowserInstance()
 	{
 		extent.endTest(test);
-		driver.close();
+		driver.quit();
 
 	}
 

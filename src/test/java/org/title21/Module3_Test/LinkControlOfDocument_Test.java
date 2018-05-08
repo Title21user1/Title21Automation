@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.title21.DBConnection.DBConnection;
@@ -54,7 +55,7 @@ public class LinkControlOfDocument_Test extends BaseClass {
 	AttachmentControlInDoc_POM attachment;
 	String documet_no_checkout = "";
 
-	@BeforeClass
+	@BeforeClass(alwaysRun=true)
 	public void openURL() {
 		getBrowser();
 		className = this.getClass().getName();
@@ -454,15 +455,20 @@ public class LinkControlOfDocument_Test extends BaseClass {
 		RecentlyViewdAndFavorites.SearchGobutton().click();
 	}
 	
-	@AfterClass
-	public void closeBrowserInstance() throws IOException {
-
+	@AfterMethod
+	public void afterClass() throws IOException
+	{
 		cleanDownloadDirectory();
 		sleep(2);
 		logout = new LogoutPage_POM(driver);
 		logout.logoutFunction();
 		sleep(2);
+	}
+	
+	@AfterClass(alwaysRun=true)
+	public void closeBrowserInstance() {
+
 		extent.endTest(test);
-		driver.close();
+		driver.quit();
 	}
 }

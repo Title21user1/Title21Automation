@@ -19,7 +19,7 @@ public class LoginPage_Test extends BaseClass {
 	String testcaseName="TestCase-WIA-Login Authentication.doc";	
 	String filePath = System.getProperty("user.dir") + "\\TestCases\\"+testcaseName;	
 	
-	@BeforeClass
+	@BeforeClass(alwaysRun=true)
 	public void openURL() 
 	{
 		getBrowser();
@@ -93,11 +93,11 @@ public class LoginPage_Test extends BaseClass {
 	}	
 	
 	
-	@AfterClass
+	@AfterClass(alwaysRun=true)
 	public void closeBrowserInstance() 
 	{
 		extent.endTest(test);
-		driver.close();
+		driver.quit();
 	}
 
 	

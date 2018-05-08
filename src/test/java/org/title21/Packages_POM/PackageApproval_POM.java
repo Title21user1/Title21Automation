@@ -5,17 +5,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.Select;
-import org.title21.DBConnection.DBConnection;
-import org.title21.DBConnection.DBQueries;
-import org.title21.Documents_POM.DocumentRoutes_POM;
+
 
 public class PackageApproval_POM extends CreatingNewPackage_POM {
 
 	public WebDriver driver;
 	public WebElement element;
-	DBConnection dbconnection = new DBConnection();
-	DBQueries dbqueries = new DBQueries();
 	static Logger log = Logger.getLogger(PackageApproval_POM.class);
 	
 	public PackageApproval_POM(WebDriver driver) {
@@ -244,20 +239,5 @@ public class PackageApproval_POM extends CreatingNewPackage_POM {
 		}
 	}
 	
-	@SuppressWarnings("static-access")
-	public void enableCIBMTR_LMS()
-	{
-		int LMSValue = dbconnection.getIntDBValue(dbqueries.DCOsValue, "LmsEnabled");
-		
-		if (LMSValue==0)
-		{
-			try {
-				DBConnection.executeStoredProcedure(dbqueries.doNotForwardAttachedIndexCards);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			System.out.println("LMS enabled");
-		}
-	}
 }
 

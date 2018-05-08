@@ -168,6 +168,7 @@
 
 					<testFailureIgnore>true</testFailureIgnore>
 					<suiteXmlFiles>
+						<suiteXmlFile>smoketestng.xml</suiteXmlFile>
 						<suiteXmlFile>testng.xml</suiteXmlFile>
 					</suiteXmlFiles>
 					<groupId>com.coravy.hudson.plugins.github</groupId>
