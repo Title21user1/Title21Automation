@@ -3,18 +3,10 @@
 <suite name="Title21Suite">
 	<parameter name="configFile" value="config.properties" />
 
-	<test name="Sanity" preserve-order="true">
-		<classes>
-
-			<class name="org.title21.Packages_Test.CreatingNewPackage_Test" />
-
-		</classes>
-	</test>
-
 	<test name="AdminModuleScreens" preserve-order="true">
 		<classes>
 			
-			<!-- <class name="org.title21.AdminModule_Test.LoginPage_Test"/>
+			<class name="org.title21.AdminModule_Test.LoginPage_Test"/>
 			<class name="org.title21.AdminModule_Test.LogoutPage_Test"/>
 			<class name="org.title21.AdminModule_Test.AddEmployee_Test"/>
 			<class name="org.title21.AdminModule_Test.UpdateEmployee_Test"/> 
@@ -23,7 +15,7 @@
 			<class name="org.title21.AdminModule_Test.DeleteUser_Test"/>
 			<class name="org.title21.AdminModule_Test.CreateDeleteGroups_Test"/> 
 			<class name="org.title21.AdminModule_Test.DeleteEmployee_Test"/>
-			<class name="org.title21.AdminModule_Test.AccountLockout_Test"/> -->
+			<class name="org.title21.AdminModule_Test.AccountLockout_Test"/>
 
 		</classes>
 	</test>
@@ -44,11 +36,11 @@
 	<test name="Module3" preserve-order="false">
 		<classes>
 
-			<!-- <class name="org.title21.Module3_Test.Reports_Test"/>
+			<class name="org.title21.Module3_Test.Reports_Test"/>
 			<class name="org.title21.Module3_Test.Codes_Test"/>
 			<class name="org.title21.Module3_Test.eBinders_Test"/>
 			<class name="org.title21.Module3_Test.AttachmentControlInDoc_Test"/>
-			<class name="org.title21.Module3_Test.LinkControlOfDocument_Test"/> -->
+			<class name="org.title21.Module3_Test.LinkControlOfDocument_Test"/>
 
 			
 		</classes>
@@ -57,9 +49,19 @@
 		<classes>
 
 			<class name="org.title21.PeriodicReviewers_Test.PeriodicOwnedDocuments_Test"/>
-      			<class name="org.title21.PeriodicReviewers_Test.PeriodicNotOwnedDocuments_Test"/>
-      			<class name="org.title21.PeriodicReviewers_Test.PeriodicDelegate_Test"/>
-      			<class name="org.title21.PeriodicReviewers_Test.ActionsRequiredByDocOwner_Test"/>
+      		<class name="org.title21.PeriodicReviewers_Test.PeriodicNotOwnedDocuments_Test"/>
+      		<class name="org.title21.PeriodicReviewers_Test.PeriodicDelegate_Test"/>
+      		<class name="org.title21.PeriodicReviewers_Test.ActionsRequiredByDocOwner_Test"/>
+			
+		</classes>
+	</test>
+	<test name="PeriodicReviewer">
+		<classes>
+
+			<class name="org.title21.Packages_Test.CreatingNewPackage_Test"/>
+      		<class name="org.title21.Packages_Test.PackageObsolete_Test"/>
+      		<class name="org.title21.Packages_Test.PackageApproval_Test"/>
+      		<class name="org.title21.Packages_Test.AttachmentControlInPackage_Test"/>
 			
 		</classes>
 	</test>
