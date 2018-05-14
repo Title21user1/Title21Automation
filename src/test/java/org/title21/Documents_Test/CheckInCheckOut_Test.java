@@ -1,5 +1,6 @@
 package org.title21.Documents_Test;
 
+import org.apache.log4j.Logger;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -20,6 +21,7 @@ public class CheckInCheckOut_Test extends BaseClass
 	CreateDocument_POM Credoc;
 	MyDocs_POM mydocs;
 	WizardPage_POM wizpage;
+	static Logger log = Logger.getLogger(CheckInCheckOut_Test.class);
 	String className="";
 	String testcaseName="TestCase-WIA-Check_In & Checkout.doc";	
 	String filePath = System.getProperty("user.dir") + "\\TestCases\\"+testcaseName;
@@ -42,6 +44,7 @@ public class CheckInCheckOut_Test extends BaseClass
 	{
 		test = extent.startTest("Check In and Check Out Document");
 		test.log(LogStatus.INFO, "Link to Test case document", "<a href='file://"+filePath+"'>TestCaseDocument</a>");
+		log.info("Check In and Check Out Document");
 		login.loginUser(loginData[4][0], loginData[4][1]);
 		sleep(2);
 		test.log(LogStatus.PASS,"1. Login to Web Application as a Test User");
@@ -187,7 +190,7 @@ public class CheckInCheckOut_Test extends BaseClass
 		mydocs.getRouteApporvalContext().click();
 		sleep(2);
 		mydocs.getCheckinButton().click();
-		sleep(3);
+		sleep(5);
 		test.log(LogStatus.PASS,"17. Click on a route for approval. ");
 		mydocs.getCheckinCloseButton().click();
 		sleep(2);

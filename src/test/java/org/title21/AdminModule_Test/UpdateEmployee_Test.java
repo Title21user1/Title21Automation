@@ -6,7 +6,6 @@ import org.openqa.selenium.WebElement;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import org.testng.asserts.SoftAssert;
 import org.title21.AdminModule_POM.DashBord_POM;
 import org.title21.AdminModule_POM.LoginPage_POM;
 import org.title21.AdminModule_POM.LogoutPage_POM;
@@ -21,7 +20,6 @@ public class UpdateEmployee_Test extends BaseClass {
 	UpdateEmployee_POM emp;
 	UpdateEmployee_POM emp2;
 	DashBord_POM dashboardObj;
-	SoftAssert softAssertion = new SoftAssert();
 	String className = "";
 	String employeeID = "";
 	String supervisor = "";
@@ -58,6 +56,7 @@ public class UpdateEmployee_Test extends BaseClass {
 	public void Edit_Employee() throws Exception {
 
 		test = extent.startTest("Update  Employee");
+		log.info("Update Employee Test");
 		test.log(LogStatus.INFO, "Link to Test case document", "<a href='file://"+filePath+"'>TestCaseDocument</a>");
 		test.log(LogStatus.PASS, "1 Login to the web interface");
 		getAdministrationPage(test);
@@ -321,9 +320,9 @@ public class UpdateEmployee_Test extends BaseClass {
 		emp.getCloseButtononSuccessMessage().click();
 		sleep(2);
 		emp.EmployeeEdit().click();
-		//verticalScrollingUp();
+		sleep(5);
 		emp=new UpdateEmployee_POM(driver);
-		sleep(3);	
+			
 		emp.getJobCodesTab().click();
 
 		//emp.getJobCodesTab().click();

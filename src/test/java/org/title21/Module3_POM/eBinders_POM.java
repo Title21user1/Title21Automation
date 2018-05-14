@@ -181,7 +181,7 @@ public class eBinders_POM
 	
 	public void setFavourites(String docID)
 	{
-		driver.findElement(By.xpath("//input[@name='FilterValue']")).sendKeys(docID);
+		driver.findElement(By.xpath("//div[@class='input-group']//input[@class='form-control t21-placeholder']")).sendKeys(docID);
 		BaseClass.sleep(1);
 		driver.findElement(By.xpath("//button[text()[contains(.,'Go')]]")).click();
 		BaseClass.sleep(1);

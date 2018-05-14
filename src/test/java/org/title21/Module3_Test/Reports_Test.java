@@ -11,7 +11,7 @@ import org.title21.utility.FunctionUtils;
 import com.relevantcodes.extentreports.LogStatus;
 
 import org.testng.annotations.BeforeClass;
-
+import org.apache.log4j.Logger;
 import org.testng.annotations.AfterClass;
 
 public class Reports_Test extends BaseClass
@@ -21,6 +21,7 @@ public class Reports_Test extends BaseClass
 	Reports_POM reports;
 	AdministrationPage_POM adminpage;
 	String reportName="Report Test "+FunctionUtils.generateRandomNumber();
+	static Logger log = Logger.getLogger(Reports_Test.class);
 	String className="";
 	String fileUploadPath = "";
 	String uploadFileName = "CrystalReport2.rpt";
@@ -44,6 +45,7 @@ public class Reports_Test extends BaseClass
 	{
 		test = extent.startTest("Reports");
 		test.log(LogStatus.INFO, "Link to Test case document", "<a href='file://"+filePath+"'>TestCaseDocument</a>");
+		log.info("Reports");
 		login.loginUser(loginData[13][0],loginData[13][1]);
 		
 		test.log(LogStatus.PASS,"1.	Navigate to Dashboard.");
@@ -98,7 +100,7 @@ public class Reports_Test extends BaseClass
 		
 		reports.addButton().click();											sleep(3);
 		reports.addButton().click();											sleep(15);
-		reports.permissionTab().click();										sleep(2);
+		reports.permissionTab().click();										sleep(4);
 	
 		if (reports.verifyDesignPermissionValidationMessage()==true) 
 		{
@@ -115,7 +117,9 @@ public class Reports_Test extends BaseClass
 				+ "(for eg. Admin) and only USE permissions for another group.");
 
 		reports.checkUseDesignForGroup("Sp Tester");							sleep(2);
+		reports.permissionTab().click();
 		reports.checkUseForGroup("Quality Control");							sleep(2);
+		reports.permissionTab().click();
 		
 		test.log(LogStatus.PASS,"<b>ER5: Checkboxes are checked.<b>"+
 				test.addScreenCapture(captureScreenShot(driver, "Checkboxes Checked")));
@@ -125,7 +129,7 @@ public class Reports_Test extends BaseClass
 
 		test.log(LogStatus.PASS,"13. Click on add button.");
 		
-		reports.addButton().click();											sleep(20);
+		reports.addButton().click();											sleep(30);
 		
 		test.log(LogStatus.PASS,"<b>ER6: A successful message for the newly added report is displayed..<b>"+
 				test.addScreenCapture(captureScreenShot(driver, "Report Added")));
@@ -213,12 +217,14 @@ public class Reports_Test extends BaseClass
 		test.log(LogStatus.PASS,"29. Uncheck the group permission checkboxes use in step (12).");
 		
 		reports.uncheckUseDesignForGroup("Sp Tester");							sleep(3);
+		reports.permissionTab().click();										sleep(2);
 		reports.checkDesignForGroup("Quality Control");							sleep(3);
+		reports.permissionTab().click();										sleep(2);
 		
 		test.log(LogStatus.PASS,"<b>ER11: Checkboxes are unchecked.<b>"+
 				test.addScreenCapture(captureScreenShot(driver, "Checboxes Unchecked")));
 		
-		reports.updateButton().click();											sleep(25);
+		reports.updateButton().click();											sleep(30);
 		
 		test.log(LogStatus.PASS,"30. Click on the update button.");
 		test.log(LogStatus.PASS,"<b>ER12: A message confirming successful update of the report is displayed.<b>"+

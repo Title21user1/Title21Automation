@@ -16,7 +16,7 @@ import org.title21.utility.FunctionUtils;
 import com.relevantcodes.extentreports.LogStatus;
 
 import org.testng.annotations.BeforeClass;
-
+import org.apache.log4j.Logger;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 
@@ -31,6 +31,7 @@ public class Sanity_Test extends BaseClass
 	DashBord_POM dashboard;
 	RecentlyViewdAndFavorites_POM favorites;
 	WizardPage_POM wizpage;
+	static Logger log = Logger.getLogger(Sanity_Test.class);
 	String className="";
 	String docID="";
 	String docTitle="Sanity Test "+FunctionUtils.generateRandomNumber();
@@ -60,6 +61,8 @@ public class Sanity_Test extends BaseClass
 	public void Login_SanityTest()
 	{
 		test = extent.startTest("Login");
+		
+		log.info("Sanity Test");
 		
 		login.loginUser(loginData[14][0],loginData[14][1]);
 		
@@ -176,7 +179,9 @@ public class Sanity_Test extends BaseClass
 	public void OpenCharts_SanityTest()
 	{
 		test = extent.startTest("Navigate To Charts");
+		verticalScrollingDown();													sleep(2);
 		dashboard.toCharts().click();												sleep(2);
+		verticalScrollingUp();														sleep(2);
 		mydocs.selectDocument("Top Disbursements by Entity").click();				sleep(5);
 
 		test.log(LogStatus.PASS,"<b>ER: Charts interface displays <b>"+
