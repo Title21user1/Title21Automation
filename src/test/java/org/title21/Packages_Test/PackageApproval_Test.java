@@ -53,6 +53,7 @@ public class PackageApproval_Test extends BaseClass{
 	public void DocumentRoutes() throws Exception
 	{		
 		test = extent.startTest("Package Approval");
+		log.info("Codes");
 		test.log(LogStatus.PASS, "1.Login to the web interface.");
 		test.log(LogStatus.INFO, "Link to Test case document", "<a href='file://"+filePath+"'>TestCaseDocument</a>");
 		packageApproval=new PackageApproval_POM(driver);	
