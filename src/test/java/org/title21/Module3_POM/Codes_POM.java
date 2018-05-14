@@ -95,10 +95,16 @@ WebElement codeClassDropDown;
 @FindBy(xpath="//a[contains(@href,'GetCodeAvailabilityList')]")
 WebElement getCodeAvailabilityListLink;
 
-@FindBy(css=".form-control.t21-placeholder")
+/*@FindBy(css=".form-control.t21-placeholder")
+WebElement filterResultTextBox;*/
+
+@FindBy(xpath="//*[@id='t21-workarea']/div/div/div[2]/div[2]/div/div/div/div/form/div/input")
 WebElement filterResultTextBox;
 
-@FindBy(xpath="//button[@type='submit'][@tabindex='1']")
+/*@FindBy(xpath="//button[@type='submit'][@tabindex='1']")
+WebElement filterResultGoButton;*/
+
+@FindBy(xpath="//*[@id='t21-workarea']/div/div/div[2]/div[2]/div/div/div/div/form/div/span[1]/button")
 WebElement filterResultGoButton;
 
 @FindBy(xpath="//h4[text()='Update Code Availability for IndxCard']")

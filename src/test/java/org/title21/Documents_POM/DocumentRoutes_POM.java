@@ -150,6 +150,22 @@ public class DocumentRoutes_POM extends CreateDocument_POM {
 	@FindBy(xpath="//span[text()='Next ']")
 	WebElement documentTableNextButton;
 	
+	@FindBy(xpath="//div[@class='input-group']//input[@class='form-control t21-placeholder']")
+	WebElement approvalFilterTextBox;
+	
+	@FindBy(css=".t21-ajax-submit-button.form-control.form-inline.btn.t21-btn-default")
+	WebElement approvalFilterGoButton;
+	
+	public WebElement approvalFilterGo_Button()
+	{
+		return approvalFilterGoButton;
+	}
+	
+	public WebElement approvalFilter_TextBox()
+	{
+		return approvalFilterTextBox;
+	}
+	
 	public WebElement documentTableNext_Button()
 	{
 		return documentTableNextButton;

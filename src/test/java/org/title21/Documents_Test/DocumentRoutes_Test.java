@@ -54,6 +54,7 @@ public class DocumentRoutes_Test extends BaseClass{
 		test = extent.startTest("Document Routes");
 		//test.log(LogStatus.PASS, "1.Login as a web interface.");
 		test.log(LogStatus.INFO, "Link to Test case document", "<a href='file://"+filePath+"'>TestCaseDocument</a>");
+		log.info("Document Routes");
 		documentRoutes=new DocumentRoutes_POM(driver);		
 		documentRoutes.getnewdoc().click();
 		sleep(3);
@@ -209,22 +210,13 @@ public class DocumentRoutes_Test extends BaseClass{
 					test.log(LogStatus.PASS, "16. Go to the approval wizard.");
 					documentRoutes.wizard_Option().click();
 					documentRoutes.approval_Tab().click();
+					sleep(2);
+					documentRoutes.approvalFilter_TextBox().sendKeys(documetNo);
+					sleep(2);
+					documentRoutes.approvalFilterGo_Button().click();
+					sleep(2);
 					
-					for(int i=1; i<=20; i++)
-					{
-						verifyDocForApprovel(documetNo);
-						 if(!isValueFound)
-						 {
-							documentRoutes.documentTableNext_Button().click();
-							sleep(2); 
-						}
-						else
-						{
-							break;
-						}
-					}
-					//changes-
-					if(isValueFound)
+					if(verifyDocForApprovel(documetNo))
 					{
 						test.log(LogStatus.PASS, "<b>ER 8- The document is available in the approval wizard.<b>"+
 								test.addScreenCapture(captureScreenShot(driver, "approval wizard")));
@@ -278,22 +270,11 @@ public class DocumentRoutes_Test extends BaseClass{
 					documentRoutes.wizard_Option().click();
 					documentRoutes.approval_Tab().click();
 					sleep(2);
-					
-					for(int i=1; i<=20; i++)
-					 {
-						selectDocForApprovel(documetNo);
-						 if(!isRecordFound)
-						 {
-							//verticalScrollingDown();
-							documentRoutes.documentTableNext_Button().click();
-							sleep(2); 
-						}
-						else
-						{
-							break;
-						}
-					}
-					
+					documentRoutes.approvalFilter_TextBox().sendKeys(documetNo);
+					sleep(2);
+					documentRoutes.approvalFilterGo_Button().click();
+					sleep(2);
+					selectDocForApprovel(documetNo);
 					
 					sleep(2);
 					documentRoutes.documentTab_ForApprover().click();
@@ -306,27 +287,16 @@ public class DocumentRoutes_Test extends BaseClass{
 					sleep(2);
 					logout.logoutFunction();
 
-					login.loginUser(loginData[9][0], loginData[9][1]); 
+					login.loginUser(loginData[11][0], loginData[11][1]); 
 
 					documentRoutes.wizard_Option().click();
 					documentRoutes.approval_Tab().click();
 					sleep(2);
-
-
-
-					for(int i=1; i<=20; i++)
-					 {
-						 selectDocForApprovel(documetNo);
-						 if(!isRecordFound)
-						 {
-							documentRoutes.documentTableNext_Button().click();
-							sleep(2); 
-						}
-						else
-						{
-							break;
-						}
-					}
+					documentRoutes.approvalFilter_TextBox().sendKeys(documetNo);
+					sleep(2);
+					documentRoutes.approvalFilterGo_Button().click();
+					sleep(2);
+					selectDocForApprovel(documetNo);
 
 					sleep(2);
 					documentRoutes.documentTab_ForApprover().click();
@@ -346,22 +316,12 @@ public class DocumentRoutes_Test extends BaseClass{
 					documentRoutes.wizard_Option().click();
 					documentRoutes.approval_Tab().click();
 					sleep(2);
+					documentRoutes.approvalFilter_TextBox().sendKeys(documetNo);
+					sleep(2);
+					documentRoutes.approvalFilterGo_Button().click();
+					sleep(2);
 					
-					for(int i=1; i<=20; i++)
-					{
-						verifyDocForApprovel(documetNo);
-						if(!isValueFound)
-						{
-							documentRoutes.documentTableNext_Button().click();
-							sleep(2); 
-						}
-						else
-						{
-							break;
-						}
-					}
-
-					if(isValueFound)
+					if(verifyDocForApprovel(documetNo))
 					{
 						test.log(LogStatus.PASS, "<b>ER 9- The document is available in the approval wizard, and the status for both of the Sequence 1 individual approvals are updated.<b>"+
 								test.addScreenCapture(captureScreenShot(driver, "approval wizard")));
@@ -425,7 +385,7 @@ public class DocumentRoutes_Test extends BaseClass{
 		List<WebElement> tableCells=searchTable.getcollapseDocumentstableCells(5);				
 		for (int i=0;i<tableCells.size();i++)
 		{
-			if (tableCells.get(i).getText().equalsIgnoreCase(routeData[1][1]+docName))
+			if (tableCells.get(i).getText().equalsIgnoreCase("Test"+docName))
 			{				
 				isValueFound=true;
 				break;
@@ -441,7 +401,7 @@ public class DocumentRoutes_Test extends BaseClass{
 		List<WebElement> tableCells=searchTable.getcollapseDocumentstableCells(5);				
 		for (int i=0;i<tableCells.size();i++)
 		{
-			if (tableCells.get(i).getText().equalsIgnoreCase(routeData[1][1]+docName))
+			if (tableCells.get(i).getText().equalsIgnoreCase("Test"+docName))
 			{													
 				tableCells.get(i).click();
 				isRecordFound=true;
