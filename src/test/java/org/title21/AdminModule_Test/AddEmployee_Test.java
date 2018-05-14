@@ -266,13 +266,14 @@ public class AddEmployee_Test extends BaseClass {
 
 		searchRecordInTable();
 
-		test.log(LogStatus.PASS, "<b>ER10: The created employee record is displayed.<b>");
+		test.log(LogStatus.PASS, "<b>ER10: The created employee record is displayed.<b>"+
+		test.addScreenCapture(captureScreenShot(driver, "employeeName in record")));
 
 		addEmployeePOM.addNewLink().click();	
 
 		test.log(LogStatus.PASS, "19. Click on add new link.");
 
-		sleep(3);
+		sleep(5);
 
 		test.log(LogStatus.PASS, "20. Enter already existing 'Full Name'");
 
