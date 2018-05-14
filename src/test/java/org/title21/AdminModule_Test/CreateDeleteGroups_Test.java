@@ -2,6 +2,7 @@ package org.title21.AdminModule_Test;
 
 import java.util.concurrent.TimeUnit;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
@@ -26,6 +27,7 @@ public class CreateDeleteGroups_Test extends BaseClass {
 	AdminCreateDeleteGroups_POM adminCreateGroup;
 	boolean GroupPresence = false;
 	boolean GroupPresenceAfterSearch = false;
+	static Logger log = Logger.getLogger(CreateDeleteGroups_Test.class);
 	String testcaseName="TestCase-WIA-CreateandDeleteGroups.doc";	
 	String filePath = System.getProperty("user.dir") + "\\TestCases\\"+testcaseName;
 	
@@ -46,6 +48,7 @@ public class CreateDeleteGroups_Test extends BaseClass {
 		adminCreateGroup = new AdminCreateDeleteGroups_POM(driver);
 		
 		test = extent.startTest("Create & Delete Groups");
+		log.info("Create Delete Groups Test");
 		test.log(LogStatus.INFO, "Link to Test case document", "<a href='file://"+filePath+"'>TestCaseDocument</a>");
 		test.log(LogStatus.PASS, "1.Login as a web interface.");
 		BaseClass.getAdministrationPage(test);

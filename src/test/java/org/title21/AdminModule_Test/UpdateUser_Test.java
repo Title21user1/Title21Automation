@@ -50,6 +50,7 @@ public class UpdateUser_Test extends BaseClass{
 	public void UpdateUser() throws Exception
 	{		
 		test = extent.startTest("Update User");
+		log.info("Update User Test");
 		test.log(LogStatus.INFO, "Link to Test case document", "<a href='file://"+filePath+"'>TestCaseDocument</a>");
 		test.log(LogStatus.PASS, "1.Login to the web interface.");
 		updateUserPage= new UpdateUser_POM(driver);		

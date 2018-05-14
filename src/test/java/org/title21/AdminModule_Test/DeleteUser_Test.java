@@ -21,7 +21,7 @@ public class DeleteUser_Test extends BaseClass{
 	LoginPage_POM login;
 	LogoutPage_POM logout;
 	DeleteUser_POM deleteUser;
-	static Logger log = Logger.getLogger(UpdateUser_Test.class);
+	static Logger log = Logger.getLogger(DeleteUser_Test.class);
 	String className="";
 	String number="";
 	String updatedAdminUsername="";
@@ -48,6 +48,7 @@ public class DeleteUser_Test extends BaseClass{
 	public void UpdateUser() throws Exception
 	{		
 		test = extent.startTest("Delete User");
+		log.info("Delete User Test");
 		test.log(LogStatus.INFO, "Link to Test case document", "<a href='file://"+filePath+"'>TestCaseDocument</a>");
 		test.log(LogStatus.PASS, "1.Login as a web interface.");
 		deleteUser=new DeleteUser_POM(driver);

@@ -1,5 +1,6 @@
 package org.title21.AdminModule_Test;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
@@ -28,6 +29,7 @@ public class CreateNewUser_Test extends BaseClass{
 	String userName = "";	
 	boolean UserPresenceAfterSearch = false;	
 	AdminData adminData=new AdminData();
+	static Logger log = Logger.getLogger(CreateNewUser_Test.class);
 	String testcaseName="TestCase-WIA-Create New User.doc";	
 	String filePath = System.getProperty("user.dir") + "\\TestCases\\"+testcaseName;	
 	
@@ -45,6 +47,7 @@ public class CreateNewUser_Test extends BaseClass{
 	public void AddNewUser() throws Exception
 	{
 		test = extent.startTest("Create New User");
+		log.info("Create New User Test");
 		test.log(LogStatus.INFO, "Link to Test case document", "<a href='file://"+filePath+"'>TestCaseDocument</a>");
 		addNewUserPage= new AddNewUser_POM(driver);
 		test.log(LogStatus.PASS, "1.Login to the web interface.");

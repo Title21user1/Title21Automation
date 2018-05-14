@@ -5,10 +5,13 @@ import org.title21.AdminModule_POM.AdministrationPage_POM;
 import org.title21.AdminModule_POM.DashBord_POM;
 import org.title21.AdminModule_POM.LoginPage_POM;
 import org.title21.AdminModule_POM.LogoutPage_POM;
+import org.title21.DBConnection.DBConnection;
+import org.title21.DBConnection.DBQueries;
 import org.title21.Module3_POM.eBinders_POM;
 import org.title21.utility.BaseClass;
 import com.relevantcodes.extentreports.LogStatus;
 import org.testng.annotations.BeforeClass;
+import org.apache.log4j.Logger;
 import org.testng.annotations.AfterClass;
 
 
@@ -19,10 +22,13 @@ public class eBinders_Test extends BaseClass
 	eBinders_POM ebinder;
 	AdministrationPage_POM adminpage;
 	DashBord_POM dashboard;
+	DBConnection dbconnection;
+	DBQueries dbqueries;
 	String ebinderName="eBinder Test";
 	String ebinderRoot="Test";
-	String docID = "SOP.07";
+	String docID = "SOP.01";
 	String className="";
+	static Logger log = Logger.getLogger(Reports_Test.class);
 	String testcaseName="TestCase-WIA-eBinders.doc";	
 	String filePath = System.getProperty("user.dir") + "\\TestCases\\"+testcaseName;
 
@@ -37,6 +43,8 @@ public class eBinders_Test extends BaseClass
 		adminpage=new AdministrationPage_POM(driver);
 		dashboard=new DashBord_POM(driver);
 		ebinder=new eBinders_POM(driver);
+		dbconnection = new DBConnection();
+		dbqueries = new DBQueries();
 	}
 
 	@Test(testName = "eBinders", groups = "Module3", priority = 0)
@@ -44,6 +52,9 @@ public class eBinders_Test extends BaseClass
 	{
 		test = extent.startTest("eBinders");
 		test.log(LogStatus.INFO, "Link to Test case document", "<a href='file://"+filePath+"'>TestCaseDocument</a>");
+		log.info("eBinders Test");
+		dbconnection.getQueryExecuted(dbqueries.DeleteEbinder);
+		
 		login.loginUser(loginData[10][0],loginData[10][1]);
 		ebinder.getEbinders().click();											sleep(2);
 
@@ -189,25 +200,8 @@ public class eBinders_Test extends BaseClass
 	@AfterClass(alwaysRun=true)
 	public void afterClass()
 	{
-		driver.navigate().to(baseUrl);
-		tearDown();
 		extent.endTest(test);
 		driver.quit();
-	}
-
-	public void tearDown()
-	{
-		login.loginUser(loginData[7][0],loginData[7][1]);						sleep(2);
-		logout.getAdmindropdown().click();										sleep(1);
-		adminpage.administrationLink().click();									sleep(1);
-		verticalScrollingDown();												sleep(1);
-		ebinder.adminEbinders().click();										sleep(2);
-		verticalScrollingUp();													sleep(1);
-		ebinder.selectEbinder(ebinderName);										sleep(2);
-		ebinder.deleteButton().click();											sleep(2);
-		ebinder.yesButton().click();											sleep(2);
-		ebinder.closeButton().click();											sleep(2);
-		logout.logoutFunction();
 	}
 
 }

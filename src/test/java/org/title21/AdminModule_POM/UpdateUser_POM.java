@@ -5,9 +5,7 @@ import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 import org.title21.utility.BaseClass;
@@ -44,10 +42,10 @@ public class UpdateUser_POM extends AddNewUser_POM {
 	@FindBy(xpath="//*[@id='bootstrap-duallistbox-nonselected-list_dualListItemList[]']/option[1]")
 	WebElement AvailableFirstElement;
 
-	@FindBy(xpath=".//*[@id='t21-workarea']/div/div/div[2]/div[2]/div/div[3]/div/div/form/div/input")
+	@FindBy(xpath="//div[@class='input-group']//input[@class='form-control t21-placeholder']")
 	WebElement filterTextBox;
 
-	@FindBy(xpath=".//*[@id='t21-workarea']/div/div/div[2]/div[2]/div/div[3]/div/div/form/div/span[1]/button")
+	@FindBy(css=".t21-ajax-submit-button.form-control.form-inline.btn.t21-btn-default")
 	WebElement goFilterButton;
 
 	@FindBy(xpath=".//*[@id='t21-workarea']/div/div/div[2]/div[2]/div/table/tbody/tr/td[6]/a[2]/span")

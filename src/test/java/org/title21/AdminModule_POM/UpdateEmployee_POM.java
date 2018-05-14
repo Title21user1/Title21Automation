@@ -7,8 +7,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 import org.title21.AdminModule_Test.UpdateEmployee_Test;
-import org.title21.dao.AdminData;
-import org.title21.utility.BaseClass;
 import org.title21.validation.entities.ErrorMessages;
 
 public class UpdateEmployee_POM extends AddEmployee_POM 
@@ -24,10 +22,10 @@ public class UpdateEmployee_POM extends AddEmployee_POM
 	}
 	UpdateEmployee_Test update_emp_test=new UpdateEmployee_Test();
 	
-	@FindBy(css=".form-control.t21-placeholder")
+	@FindBy(xpath="//div[@class='input-group']//input[@class='form-control t21-placeholder']")
 	WebElement Employeefilterresult;
 
-	@FindBy(xpath="//button[@type='submit'][@tabindex='1']")
+	@FindBy(css=".t21-ajax-submit-button.form-control.form-inline.btn.t21-btn-default")
 	WebElement Employeefilterresutgobutton;
 	
 	////

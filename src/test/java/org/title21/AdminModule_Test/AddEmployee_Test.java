@@ -8,7 +8,6 @@ import org.openqa.selenium.WebElement;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import org.testng.asserts.SoftAssert;
 import org.title21.AdminModule_POM.AddEmployee_POM;
 import org.title21.AdminModule_POM.DashBord_POM;
 import org.title21.AdminModule_POM.LoginPage_POM;
@@ -26,7 +25,6 @@ public class AddEmployee_Test extends BaseClass {
 	AddEmployee_POM addEmployeePOM;
 	DashBord_POM dashboardObj;
 	Table searchTable;
-	SoftAssert softAssertion=new SoftAssert();
 	String className="";
 	String employeeFullName="";	
 	String employeeID="";
@@ -51,7 +49,8 @@ public class AddEmployee_Test extends BaseClass {
 	@Test(testName = "Add Employee", groups = "AdminModule", priority = 0)
 	public void createEmployee() throws Exception 
 	{	
-		test = extent.startTest("Add Employee");	
+		test = extent.startTest("Add Employee");
+		log.info("Add Employee Test");
 		test.log(LogStatus.INFO, "Link to Test case document", "<a href='file://"+filePath+"'>TestCaseDocument</a>");
 
 		test.log(LogStatus.PASS,"1.	Login to the web interface.");
@@ -80,8 +79,6 @@ public class AddEmployee_Test extends BaseClass {
 		log.info("First checking Validation Messages. without entering in any"
 				+ "field, click on Add button.");		
 
-		verticalScrollingDown();
-		sleep(2);
 		log.info("scrolling down to click on Add button.");
 
 		//addEmployeePOM.getAddBtn().click();	
@@ -249,6 +246,10 @@ public class AddEmployee_Test extends BaseClass {
 
 		sleep(2);		
 
+		verticalScrollingUp();
+		
+		sleep(2);
+		
 		test.log(LogStatus.PASS, "16. Go to employee list and click on search filter");
 
 		addEmployeePOM.getFilterTextBox().sendKeys(employeeFullName);
@@ -256,12 +257,10 @@ public class AddEmployee_Test extends BaseClass {
 		test.log(LogStatus.PASS, "17. Enter the added employee name.");
 
 		addEmployeePOM=new AddEmployee_POM(driver);
-
-		verticalScrollingUp();		
-
+		
 		test.log(LogStatus.PASS, "18. Click on go button.");
 
-		javaScriptClick(addEmployeePOM.getGoButton());
+		addEmployeePOM.getGoButton().click();
 
 		sleep(3);
 

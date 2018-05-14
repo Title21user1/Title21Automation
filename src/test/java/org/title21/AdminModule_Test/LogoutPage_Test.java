@@ -1,9 +1,9 @@
 package org.title21.AdminModule_Test;
 
+import org.apache.log4j.Logger;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import org.testng.asserts.SoftAssert;
 import org.title21.AdminModule_POM.LoginPage_POM;
 import org.title21.AdminModule_POM.LogoutPage_POM;
 import org.title21.utility.BaseClass;
@@ -14,7 +14,7 @@ public class LogoutPage_Test extends BaseClass {
 
 	LoginPage_POM login; 
 	LogoutPage_POM logout;
-	SoftAssert softAssertion=new SoftAssert();
+	static Logger log = Logger.getLogger(LogoutPage_Test.class);
 	String className="";
 
 	String testcaseName="TestCase-WIA-Logout.doc";	
@@ -32,6 +32,9 @@ public class LogoutPage_Test extends BaseClass {
 	public void Logout() throws Exception {
 
 		test = extent.startTest("Logout");
+		
+		log.info("Logout Test");
+		
 		test.log(LogStatus.INFO, "Link to Test case document", "<a href='file://"+filePath+"'>TestCaseDocument</a>");
 		test.log(LogStatus.PASS, "1. Login to the web interface.");
 		login= new LoginPage_POM(driver);
