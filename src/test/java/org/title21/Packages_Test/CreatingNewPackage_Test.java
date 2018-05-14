@@ -53,6 +53,7 @@ public class CreatingNewPackage_Test extends BaseClass{
 	public void DocumentRoutes() throws Exception
 	{		
 		test = extent.startTest("Creating New Package");
+		log.info("Creating New Package Test");
 		test.log(LogStatus.PASS, "1.Login to the web interface.");
 		test.log(LogStatus.INFO, "Link to Test case document", "<a href='file://"+filePath+"'>TestCaseDocument</a>");
 		creatingNewPackage=new CreatingNewPackage_POM(driver);	
@@ -81,8 +82,10 @@ public class CreatingNewPackage_Test extends BaseClass{
 		}
 		
 		test.log(LogStatus.PASS, "5.Select Cabinet and Section from the dropdown list.");
-		creatingNewPackage.cabinet_DropDown().selectByVisibleText("Change Control Initiation");
-		creatingNewPackage.cabinetSection_DropDown().selectByVisibleText("Initiation");
+		creatingNewPackage.cabinet_DropDown().selectByVisibleText("Open DCOs");
+		sleep(2);
+		creatingNewPackage.cabinetSection_DropDown().selectByVisibleText("DCO in Progress");
+		sleep(2);
 		
 		test.log(LogStatus.PASS, "6.Add Package Name.");
 		creatingNewPackage.packageName_TextBox().sendKeys("NeoTest");
