@@ -15,7 +15,7 @@ import org.title21.validation.entities.ErrorMessages;
 import com.relevantcodes.extentreports.LogStatus;
 
 import org.testng.annotations.BeforeClass;
-
+import org.apache.log4j.Logger;
 import org.testng.annotations.AfterClass;
 
 public class AccountLockout_Test extends BaseClass
@@ -27,6 +27,7 @@ public class AccountLockout_Test extends BaseClass
 	UpdateUser_POM updateuser;
 	DashBord_POM dashboardObj;
 	DBQueries dbqueries;
+	static Logger log = Logger.getLogger(AccountLockout_Test.class);
 	String className="";
 	String testcaseName="TestCase-WIA-Lockout on repeated incorrect passwords.doc";	
 	String filePath = System.getProperty("user.dir") + "\\TestCases\\"+testcaseName;
@@ -49,6 +50,7 @@ public class AccountLockout_Test extends BaseClass
 	public void accountLockout()
 	{
 		test = extent.startTest("Account Lockout");
+		log.info("Account Lock Out Test");
 		test.log(LogStatus.INFO, "Link to Test case document", "<a href='file://"+filePath+"'>TestCaseDocument</a>");
 		test.log(LogStatus.PASS,"1.	Enter the URL in the browser to bring up the web interface login page.");
 		login.loginUser(loginData[2][0], loginData[2][1]);
