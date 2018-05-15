@@ -1,11 +1,13 @@
 package org.title21.PeriodicReviewers_Test;
 
+import org.apache.log4j.Logger;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.title21.AdminModule_POM.LoginPage_POM;
 import org.title21.AdminModule_POM.LogoutPage_POM;
+import org.title21.Documents_POM.CreateDocument_POM;
 import org.title21.PeriodicReviewers_POM.PeriodicOwnedDocuments_POM;
 import org.title21.PeriodicReviewers_POM.PeriodicDelegate_POM;
 import org.title21.utility.BaseClass;
@@ -19,7 +21,7 @@ public class PeriodicDelegate_Test extends BaseClass {
 	PeriodicOwnedDocuments_POM periodicReviews;
 	String VerifyUnDelegateuserText = "";
 	String element="";
-
+	static Logger log = Logger.getLogger(CreateDocument_POM.class);
 	@BeforeClass(alwaysRun=true)
 	public void openURL() {
 		getBrowser();
@@ -31,13 +33,14 @@ public class PeriodicDelegate_Test extends BaseClass {
 		periodicReviews = new PeriodicOwnedDocuments_POM(driver);
 		login.loginUser("saurabhp", "Title123456*");
 	}
-
+//
 	@Test(testName = " Periodic Delegate", groups = "PeriodicReviewer", priority = 0)
 	public void PeriodicReview_Delegate() throws Exception {
 
 		test = extent.startTest("Periodic Delegate");
 		test.log(LogStatus.INFO, "Link to Test case document",
 				"<a href='file://" + filePath + "'>TestCaseDocument</a>");
+		log.info("Periodic Delegate");
 		PeriodicReviewDelegate.CreateDocumentAndAddReviewers();
 		sleep(4);
 		PeriodicReviewDelegate.Search(PeriodicReviewDelegate.documetNo);
@@ -48,7 +51,7 @@ public class PeriodicDelegate_Test extends BaseClass {
 				+ test.addScreenCapture(captureScreenShot(driver, "DocumentOnreviewGrid ")));
 		sleep(5);
 		PeriodicReviewDelegate.getClickOnDocumentFromReviewList().click();
-		sleep(5);
+		sleep(8);
 		PeriodicReviewDelegate.getDropdownOfReviewer().get(1).click();
 		sleep(5);
 		test.log(LogStatus.PASS,

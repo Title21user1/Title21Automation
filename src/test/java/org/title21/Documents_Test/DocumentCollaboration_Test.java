@@ -40,7 +40,7 @@ public class DocumentCollaboration_Test extends BaseClass {
 		test = extent.startTest("Document Collaboration");
 		test.log(LogStatus.INFO, "Link to Test case document",
 				"<a href='file://" + filePath + "'>TestCaseDocument</a>");
-		
+		log.info("Document Collaboration");
 		login.loginUser("saurabhp", "Title123456*");
 		addcollaborator("1");
 		sleep(5);
@@ -82,25 +82,26 @@ public class DocumentCollaboration_Test extends BaseClass {
 						+ "<b>ER 7 : Form fields are editable.<b>"
 						+ test.addScreenCapture(captureScreenShot(driver, "Form_Field_Editable")));
 		DocumentCollaboration.getDocumentonCollaboration().click();
+		sleep(3);
 		DocumentCollaboration.getMarkTaskCompleteButton().click();
 		sleep(4);
 		test.log(LogStatus.PASS,
 				"15. Mark the collaboration task as complete. " + "<br/>"
 						+ "<b>ER 8 : The Checkoff document collaboration popup is displayed.<b>"
 						+ test.addScreenCapture(captureScreenShot(driver, "Checkoff_collaboration_popup")));
-
+        sleep(5);
 		DocumentCollaboration.getPin().sendKeys("262829");
-		sleep(2);
+		sleep(5);
 		DocumentCollaboration.getConfirmButton().click();
 		sleep(6);
-
-		test.log(LogStatus.PASS,
+       test.log(LogStatus.PASS,
 				" 16.Enter pin and click on confirm." + "<br/>"
 						+ "<b>ER 9 : The task is completed and it is no longer available in the collaboration list.<b>"
 						+ test.addScreenCapture(captureScreenShot(driver, "task_not_available")));
 
 		sleep(4);
 		logout.logoutFunction();
+		sleep(4);
 		login.loginUser("saurabhp", "Title123456*");
 		sleep(3);
 		System.out.println(DocumentCollaboration.documetNo);
@@ -123,7 +124,7 @@ public class DocumentCollaboration_Test extends BaseClass {
 		}
 		sleep(3);
 		logout.logoutFunction();
-		login.loginUser("saurabhp", "Title123456*");
+	    login.loginUser("saurabhp", "Title123456*");
 		addcollaborator("2");
 		sleep(4);
 		auditlog();
@@ -139,8 +140,8 @@ public class DocumentCollaboration_Test extends BaseClass {
 		DocumentCollaboration.getContextmenu().get(2).click();
 		sleep(3);
 		DocumentCollaboration.getForm().click();
-		sleep(3);
-		DocumentCollaboration.edit_mode_enable().get(1).click();
+		/*sleep(3);
+		DocumentCollaboration.edit_mode_enable().get(1).click();*/
 		sleep(3);
 		if (DocumentCollaboration.RecordLockvalidatiom()) {
 			test.log(LogStatus.PASS, " 25.Logout from Test user 1" + "<br/>" + "26.Login to the Test user 2" + "<br/>"
@@ -149,7 +150,8 @@ public class DocumentCollaboration_Test extends BaseClass {
 					+ "<br/>" + "<b>ER 14 :This record is locked for editing message is displayed <b>"
 					+ test.addScreenCapture(captureScreenShot(driver, "Record_lock_editing")));
 		}
-		DocumentCollaboration.getCloseButton().click();
+		/*DocumentCollaboration.getCloseButton().click();*/
+		sleep(5);
 		DocumentCollaboration.getdoconsearch().click();
 		DocumentCollaboration.getMarkTaskCompleteButton().click();
 		sleep(2);
@@ -203,7 +205,7 @@ public class DocumentCollaboration_Test extends BaseClass {
 		DocumentCollaboration.getMyDocumentTab().click();
 		DocumentCollaboration.getcollaborationOnMyDocument().get(4).click();
 		sleep(3);
-		DocumentCollaboration.Search(DocumentCollaboration.documetNo);
+		DocumentCollaboration.Search(DocumentCollaboration.documetNo);//DocumentCollaboration.documetNo
 		sleep(3);
 	}
 
@@ -245,7 +247,7 @@ public class DocumentCollaboration_Test extends BaseClass {
 		DocumentCollaboration.getDueDate_On_AddCollaborator().click();
 		sleep(2);
 		driver.findElement(By.xpath("//td[text()='" + dd + "']")).click();
-		sleep(3);
+		sleep(5);
 		
 		if (ScenarioNo.equalsIgnoreCase("2")) {
 			DocumentCollaboration.getelectonisognaturecheckbox(false);
@@ -256,7 +258,7 @@ public class DocumentCollaboration_Test extends BaseClass {
 			sleep(1);
 			DocumentCollaboration.getEnableTaskcheckbox(true);
 			DocumentCollaboration.getNotifyMeWhenTaskCompleteCheckbox(false);
-			sleep(1);
+			sleep(5);
 			test.log(LogStatus.PASS,
 					"21.Create new document." + "<br/>"
 							+ "22.	Click on add collaborator link and In Add collaborator task dialog ensure that"

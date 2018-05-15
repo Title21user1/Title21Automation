@@ -101,7 +101,7 @@ public class RecentlyViewdAndFavorites_POM {
 	@FindBy(css=".dashboard-subheading")
 	WebElement Recently_Viewed;
 	
-	@FindBy(css=".form-control.t21-placeholder")
+	@FindBy(xpath="//div[@class='input-group']//input[@class='form-control t21-placeholder']")
 	WebElement placeholder ;
 	
 
@@ -114,6 +114,11 @@ public class RecentlyViewdAndFavorites_POM {
 	@FindBy(css=".grid-see-all")
 	WebElement Seeall ;
 	
+	@FindBy(xpath = "//button[text()='Close']")
+	WebElement Close_button_Checkin ;
+
+	@FindBy(css = ".t21-js-row-link.text-nowrap>a")
+	List<WebElement> document;
 	
 	@FindBy(css=".t21-ajax-submit-button.form-control.form-inline.btn.t21-btn-default")
 	WebElement GO ;
@@ -335,7 +340,10 @@ public class RecentlyViewdAndFavorites_POM {
 
 		return Favoritesopen;			
 	}
-	
+	public WebElement Close_Button_Checkin() {
+
+		return Close_button_Checkin;
+	}
 	public WebElement getDashboard_Column_List()
 	{
 
@@ -346,7 +354,9 @@ public class RecentlyViewdAndFavorites_POM {
 	{
 		return dashboarddocuments;			
 	}
-	
+	public List<WebElement> docType() {
+		return document;
+	}
 	public boolean verifyFavoriteOpen()
 	{	
 		List<WebElement> favoriteopen = driver.findElements(By.cssSelector(".fa.fa-star-o.fav-star-open"));
@@ -369,36 +379,38 @@ public class RecentlyViewdAndFavorites_POM {
 		Credoc.getnewdoc().click();
 		FileUplo=new FileUpload();
 		baseclass=new BaseClass();
-		BaseClass.sleep(3);
+		org.title21.utility.BaseClass.sleep(5);
 		Credoc.getdocument().click();
-		BaseClass.sleep(5);
+		org.title21.utility.BaseClass.sleep(5);
+		docType().get(2).click();
+		org.title21.utility.BaseClass.sleep(3);
 		Credoc.GeteditdocumentNo().click();
-		BaseClass.sleep(5);
+		org.title21.utility.BaseClass.sleep(5);
 		Credoc.getnumberappedix().selectByVisibleText(AppendixNumber);
 		Credoc.Appendix().sendKeys(Appendix);
 	    Document_number = Credoc.getdocumentnumber().getAttribute("value");
-		BaseClass.sleep(2);
+	    org.title21.utility.BaseClass.sleep(5);
 		Credoc.getDocumentTitle().sendKeys("Test"+Document_number);
 		Credoc.getDocChangeSummary().sendKeys("Test summary"+Document_number);
 		baseclass.verticalScrollingDown();
 		Credoc.getConfirmButton().click();
-		BaseClass.sleep(4);
+		org.title21.utility.BaseClass.sleep(5);
 	    Credoc.getCreatedDocnumber();
 		Credoc.getPlusButtonuploadfile().click();
 		fileUploadPath = System.getProperty("user.dir") + "\\testdata";
 		fileUploadPath = fileUploadPath + "\\" + uploadFileName;
 		Credoc.getBrouse().sendKeys(fileUploadPath);
-		BaseClass.sleep(5);
+		org.title21.utility.BaseClass.sleep(5);
 		Credoc.getAddButtonupload().click();
-		BaseClass.sleep(10);
+		org.title21.utility.BaseClass.sleep(7);
 		Credoc.getcontextmenu().click();
-		BaseClass.sleep(2);
+		org.title21.utility.BaseClass.sleep(5);
 		Credoc.getcheckin().click();
-		BaseClass.sleep(3);
+		org.title21.utility.BaseClass.sleep(5);
 		Credoc.getcheckinbuttonwindow().click();
-		BaseClass.sleep(4);
+		org.title21.utility.BaseClass.sleep(5);
 		Credoc.getcheckincancelsuccess().click();
-		BaseClass.sleep(2);
+		org.title21.utility.BaseClass.sleep(5);
 		
 	}
 	

@@ -32,6 +32,7 @@ public class CreateDocument_Test extends BaseClass {
 	String Appendix =doc+FunctionUtils.generateRandomNumber();
 	String fileUploadPath = "";
 	String fileUploadPath1 = "";
+	
 	String uploadFileName = "DocDocument.docx";
 	String uploadFileNameSize = "Sizeval.doc";
 	static Logger log = Logger.getLogger(CreateDocument_Test.class);
@@ -45,32 +46,36 @@ public class CreateDocument_Test extends BaseClass {
 		className = this.getClass().getName();
 		createDirectory(className);
 		login = new LoginPage_POM(driver);
-		login.loginFunction();
+		logout = new LogoutPage_POM(driver);
+		login.loginUser("TitleUser1", "test123456");
 	}
 
 	@Test(testName = "Create  Document", groups = "DocumentModule", priority = 0)
 	public void Create_doc() {
 		test = extent.startTest("Create  Document");
 		test.log(LogStatus.INFO, "Link to Test case document", "<a href='file://"+filePath+"'>TestCaseDocument</a>");
+		log.info("Create  Document");
 		sleep(2);
 		Credoc = new CreateDocument_POM(driver);
 		Credoc.getnewdoc().click();
 		sleep(3);
 		Credoc.getdocument().click();
-		sleep(3);
+		sleep(7);
 		test.log(LogStatus.PASS,
 				"1.From the Main menu click on New and select Document " + "<br/>"
 						+ "<b>ER1: New document dialog appears. <b>"
 						+ test.addScreenCapture(captureScreenShot(driver, "Doc_Dialog")));
 		Credoc.getlocationDrodown().selectByVisibleText("Dallas");
-		sleep(2);
+		sleep(5);
+		Credoc.docType().get(0).click();
+		sleep(5);
 		test.log(LogStatus.PASS,
 				"2.Click on Search by location drop-down and select one Location Ensure the document type selected does not have a template associated with it"
 						+ "<br/>" + "<b>ER2: document type of selected location is displayed.<b>"
 						+ test.addScreenCapture(captureScreenShot(driver, "location_list")));
-		sleep(2);
+		sleep(5);
 		Credoc.getConfirmButton().click();
-		sleep(2);
+		sleep(5);
 		if (Credoc.DocumentTitlemsgvalidation() && Credoc.Documentsummarymsgvalidation()) {
 
 			test.log(LogStatus.PASS,
@@ -85,6 +90,7 @@ public class CreateDocument_Test extends BaseClass {
 		sleep(2);
 		verticalScrollingDown();
 		Credoc.getConfirmButton().click();
+		sleep(3);
 		if (Credoc.Appedixvalidation()) {
 
 			test.log(LogStatus.PASS, " 4.Click on \"document no\" fields edit button. " + "<br/>"
@@ -111,36 +117,34 @@ public class CreateDocument_Test extends BaseClass {
 		Credoc.getDocChangeSummary().sendKeys("Test Summary");
 		verticalScrollingDown();
 		Credoc.getConfirmButton().click();
-		sleep(2);
+		sleep(5);
 		if (Credoc.getdocumentcreationverify().isDisplayed()) {
 			test.log(LogStatus.PASS,
 					"9. Enter all  mandatory field " + "<br/>" + "<b> ER6: Document should save to Draft cabinet.<b>"
 							+ test.addScreenCapture(captureScreenShot(driver, "create_document")));
 
+			
 		}
-
-		logout = new LogoutPage_POM(driver);
-		logout.logoutFunction();
-		login1 = new LoginPage_POM(driver);
-		sleep(2);
-		login1.loginFunction();
 		sleep(3);
+		logout.logoutFunction();
+		sleep(3);
+		login.loginUser("TitleUser1", "test123456");
+		sleep(4);
 		Credoc.getcreateddoc().click();
 		sleep(3);
 		Credoc.getEditModeON().click();
-		sleep(3);
+		sleep(5);
 		Credoc.getPlusButtonuploadfile().click();
-		sleep(2);
-
-		Credoc.fileupload(uploadFileNameSize);
-		sleep(2);
-
-		test.log(LogStatus.PASS,
+		sleep(5);
+        Credoc.fileupload(uploadFileNameSize);
+		sleep(5);
+        test.log(LogStatus.PASS,
 				"10. Turn edit mode to ON" + "<br/>" + "11.Click on add file plus button" + "<br/>"
 						+ "12. Add file with size more than 50 MB  and click on Add  button  " + "<br/>"
 						+ "<b> ER7: It should show validation message as \"File size must be less than 50 MB\".<b>"
 						+ test.addScreenCapture(captureScreenShot(driver, "File_Size")));
-
+    
+        sleep(3);
 
 		Credoc.getCancel().click();
 		sleep(4);

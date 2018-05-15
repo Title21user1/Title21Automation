@@ -1,11 +1,13 @@
 package org.title21.Packages_Test;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.title21.AdminModule_POM.LoginPage_POM;
 import org.title21.AdminModule_POM.LogoutPage_POM;
+import org.title21.Documents_POM.CreateDocument_POM;
 import org.title21.Documents_POM.DocumentCollaboration_POM;
 import org.title21.Documents_POM.DocumentRoutes_POM;
 import org.title21.Packages_POM.PackageObsolete_POM;
@@ -23,7 +25,7 @@ public class PackageObsolete_Test extends BaseClass {
 	DocumentCollaboration_POM DocumentCollaborationPOM;
 	DocumentRoutes_POM documentRoutes;
 	DocumentCollaboration_POM Documentcoll_POM;
-
+	static Logger log = Logger.getLogger(CreateDocument_POM.class);
 	@BeforeClass
 	public void openURL() {
 
@@ -36,18 +38,20 @@ public class PackageObsolete_Test extends BaseClass {
 		DocumentCollaborationPOM = new DocumentCollaboration_POM(driver);
 		Documentcoll_POM = new DocumentCollaboration_POM(driver);
 		documentRoutes = new DocumentRoutes_POM(driver);
-		login.loginUser("saurabhp", "Title123456*");
+	login.loginUser("saurabhp", "Title123456*");
 	}
-
+//
 	@Test(testName = "Package_obsolete_Test", groups = "Package_obsolete_Test", priority = 0)
 	public void Package_obsolete() throws Exception {
 
 		test = extent.startTest("PackageObsolete_Test");
 		test.log(LogStatus.INFO, "Link to Test case document",
 				"<a href='file://" + filePath + "'>TestCaseDocument</a>");
-		PackageObsoletePOM.GenerateEffectiveFile("1");
-		sleep(5);
-		PackageObsoletePOM.GenerateEffectiveFile("2");
+		log.info("Package_obsolete_Test");
+		 PackageObsoletePOM.GenerateEffectiveFile("1"); 
+	    sleep(5);
+		  PackageObsoletePOM.GenerateEffectiveFile("2");
+		 
 		sleep(2);
 		PackageObsoletePOM.getNewTab().click();
 		sleep(5);
@@ -59,11 +63,8 @@ public class PackageObsolete_Test extends BaseClass {
 						+ test.addScreenCapture(captureScreenShot(driver, "create_package ")));
 
 		PackageObsoletePOM.getCabinetDropdown().selectByVisibleText("Open DCOs");
-		sleep(2);
-		/*
-		 * PackageObsoletePOM.getSection_Dropdown().selectByIndex(1); sleep(2);
-		 */
-		PackageObsoletePOM.getPackagename().sendKeys("autopackage");
+		sleep(5);
+        PackageObsoletePOM.getPackagename().sendKeys("autopackage");
 		sleep(3);
 		PackageObsoletePOM.getCreate_Button().click();
 		sleep(5);
@@ -83,7 +84,7 @@ public class PackageObsolete_Test extends BaseClass {
 		sleep(5);
 		PackageObsoletePOM.getobsolet_on().get(7).click();
 		sleep(3);
-		PackageObsoletePOM.getCloseButton().get(4).click();
+		PackageObsoletePOM.Close_Button_Checkin().click();
 		sleep(3);
 		test.log(LogStatus.PASS,
 				"12.Mark the document to be obsolete from the context menu " + "<br/>"
@@ -115,7 +116,8 @@ public class PackageObsolete_Test extends BaseClass {
 		sleep(5);
 		PackageObsoletePOM.getobsolet_on().get(7).click();
 		sleep(3);
-		PackageObsoletePOM.getCloseButton().get(4).click();
+		PackageObsoletePOM.Close_Button_Checkin().click();
+		sleep(3);
 		String pickDate = DateTimeUtils.getCurrentPSTDate();
 		String[] preDate = pickDate.split("/");
 		String dd1 = preDate[1];
@@ -143,7 +145,7 @@ public class PackageObsolete_Test extends BaseClass {
 				" 19.Click on Yes. " + "<br/>" + "<b>ER 9: Updated 1 Document message popup is displayed.<b>"
 						+ test.addScreenCapture(captureScreenShot(driver, "yes_button_Delete_popup ")));
 		sleep(3);
-		PackageObsoletePOM.getCloseButton().get(1).click();
+		PackageObsoletePOM.Close_Button_Checkin().click();
 		sleep(4);
 		driver.navigate().refresh();
 		sleep(3);
@@ -174,8 +176,9 @@ public class PackageObsolete_Test extends BaseClass {
 				"24.Click on yes button" + "<br/>"
 						+ "<b>ER 12 : A message confirming package is routed for approval is displayed, <b>"
 						+ test.addScreenCapture(captureScreenShot(driver, "Messageforroute ")));
-		PackageObsoletePOM.getcheckinclose().get(1).click();
-		sleep(3);
+		sleep(5);
+		PackageObsoletePOM.Close_Button_Checkin().click();
+		sleep(5);
 		logout.logoutFunction();
 		login.loginUser("sameer", "joshi12345");
 		sleep(4);
@@ -204,11 +207,11 @@ public class PackageObsolete_Test extends BaseClass {
 
 		sleep(4);
 		logout.logoutFunction();
-		sleep(4);
+		sleep(5);
 		login.loginUser("saurabhp", "Title123456*");
-		sleep(3);
-		Documentcoll_POM.SearchTab(PackageObsoletePOM.documetNo + ": 1.0");
-		sleep(3);
+		sleep(5);
+		Documentcoll_POM.SearchTab(PackageObsoletePOM.documetNo+": 1.0");
+		sleep(5);
 		PackageObsoletePOM.getSerch_document().click();
 		sleep(4);
 		test.log(LogStatus.PASS,
@@ -216,7 +219,7 @@ public class PackageObsolete_Test extends BaseClass {
 						+ "28.Search for that document." + "<br/>" + "29.Open the document." + "<br/>"
 						+ "<b>ER 14 : The Obsoleted document moved automatically to the Obsolete Cabinet.<b>"
 						+ test.addScreenCapture(captureScreenShot(driver, "approve_package ")));
-		Documentcoll_POM.SearchTab(PackageObsoletePOM.DocumetNoDelete + ": 1.0");
+		Documentcoll_POM.SearchTab(PackageObsoletePOM.DocumetNoDelete+": 1.0");
 		sleep(4);
 		PackageObsoletePOM.getSerch_document().click();
 		test.log(LogStatus.PASS,
@@ -239,8 +242,8 @@ public class PackageObsolete_Test extends BaseClass {
 							+ "<b> ER 3  Attach documents screen will appear.<b>"
 							+ test.addScreenCapture(captureScreenShot(driver, "attached_popup ")));
 		}
-		sleep(4);
-		PackageObsoletePOM.getSearch_textbox().get(2).sendKeys(doc);
+		sleep(5);
+		PackageObsoletePOM.getplaceholderonapproved().sendKeys(doc);
 		sleep(3);
 		PackageObsoletePOM.getGoButton_Search().click();
 		sleep(3);
