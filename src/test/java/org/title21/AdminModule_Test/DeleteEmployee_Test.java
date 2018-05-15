@@ -43,6 +43,7 @@ public class DeleteEmployee_Test extends BaseClass {
 	public void Delete_Employee() throws Exception {
 
 		test = extent.startTest("Delete Employee");
+		log.info("Delete Employee Test");
 		test.log(LogStatus.INFO, "Link to Test case document", "<a href='file://"+filePath+"'>TestCaseDocument</a>");
 		test.log(LogStatus.PASS, "1 Login to the web interface.");
 		getAdministrationPage(test);

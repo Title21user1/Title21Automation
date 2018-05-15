@@ -3,18 +3,13 @@ package org.title21.AdminModule_POM;
 import java.util.List;
 
 import org.apache.log4j.Logger;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
-import org.title21.AdminModule_Test.AddEmployee_Test;
 import org.title21.validation.entities.ErrorMessages;
-
-import com.relevantcodes.extentreports.ExtentTest;
-import com.relevantcodes.extentreports.LogStatus;
 
 public class AddEmployee_POM {
 	
@@ -26,7 +21,7 @@ public class AddEmployee_POM {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
-
+///test
 	@FindBy(css=".dropdown-toggle.t21-nav-bar-dropdown")
 	WebElement	administrator;
 	
@@ -42,7 +37,7 @@ public class AddEmployee_POM {
 	@FindBy(xpath="//select[contains(@name,'Employee.Location')]")
 	WebElement locationDropdown;
 
-	@FindBy(css=".form-control.t21-placeholder")
+	@FindBy(xpath="//div[@class='input-group']//input[@class='form-control t21-placeholder']")
 	WebElement searchBox;
 
 	/*@FindBy(xpath="//button[contains(@type,'submit') and contains(@tabindex,'1')]")
@@ -175,10 +170,10 @@ public class AddEmployee_POM {
 	@FindBy(xpath="//span[contains(@class,'field-validation-error') and contains(@data-valmsg-for,'Employee.Department')]")
 	WebElement departmentValidationMessage;
 	
-	@FindBy(css=".t21-placeholder")
+	@FindBy(xpath="//div[@class='input-group']//input[@class='form-control t21-placeholder']")
 	WebElement filterTextBox;
 	
-	@FindBy(xpath="//button[@type='submit'][@tabindex='1']")
+	@FindBy(css=".t21-ajax-submit-button.form-control.form-inline.btn.t21-btn-default")
 	WebElement goButton;
 	
 	public WebElement administrator_dropdown()

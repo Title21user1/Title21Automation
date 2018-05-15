@@ -14,7 +14,7 @@ import org.title21.AdminModule_POM.LogoutPage_POM;
 import org.title21.Documents_POM.CreateDocument_POM;
 import org.title21.Documents_POM.RecentlyViewdAndFavorites_POM;
 import org.title21.Module3_POM.AttachmentControlInDoc_POM;
-
+import org.title21.PeriodicReviewers_POM.PeriodicOwnedDocuments_POM;
 import org.title21.utility.BaseClass;
 import org.title21.utility.DownloadUtils;
 import org.title21.utility.FileUpload;
@@ -46,19 +46,24 @@ public class AttachmentControlInDoc_Test extends BaseClass {
 		createDirectory(className);
 		login = new LoginPage_POM(driver);
 		logout = new LogoutPage_POM(driver);
-		login.loginUser("aparnak", "aparna2450");
+		attachment = new AttachmentControlInDoc_POM(driver);
+		Credoc=new CreateDocument_POM(driver);
+		RecentlyViewdAndFavorites = new RecentlyViewdAndFavorites_POM(driver);
+		login.loginUser("Title21User1", "test123456");
 	}
 
 	@Test(testName = "Attachment Control In Doc", groups = "Module3", priority = 0)
 	public void AttachmentCotrol_Test() throws Exception {
-		attachment = new AttachmentControlInDoc_POM(driver);
+		
 		test = extent.startTest("Attachment control in document");
 		test.log(LogStatus.INFO, "Link to Test case document", "<a href='file://"+filePath+"'>TestCaseDocument</a>");
-		RecentlyViewdAndFavorites = new RecentlyViewdAndFavorites_POM(driver);
-		createdoc();		
+		log.info("Attachment Control In Doc");
+        attachment.CreateDocument();	
+		sleep(3);
+		System.out.print(attachment.documetNo);
 		String home_page = driver.getWindowHandle();
 		attachment.addMainFile().click();
-		sleep(2);
+		sleep(4);
 		fileupload("test.doc");
 		sleep(10);
 		verticalScrollingDown();
@@ -143,10 +148,10 @@ public class AttachmentControlInDoc_Test extends BaseClass {
 		Search("Search on Document Number");
 		sleep(5);
 		RecentlyViewdAndFavorites.SearchByDocNumber().click();
-		RecentlyViewdAndFavorites.getEnterDocNo().sendKeys(Document_number);
+		RecentlyViewdAndFavorites.getEnterDocNo().sendKeys(attachment.documetNo);
 		RecentlyViewdAndFavorites.SearchGobutton().click();
 		sleep(5);
-		if (attachment.getverifysearch().getText().contains(Document_number))
+		if (attachment.getverifysearch().getText().contains(attachment.documetNo))
 			test.log(LogStatus.PASS,
 					"15. Go to searches" + "<br/>" + "16.Click on Search on Document Number link." + "<br/>"
 							+ "<b>ER10: The Document is displayed as per search result.<b>"
@@ -173,25 +178,7 @@ public class AttachmentControlInDoc_Test extends BaseClass {
 
 	}
 
-	public void createdoc() {
-		Credoc = new CreateDocument_POM(driver);
-		Credoc.getnewdoc().click();
-		FileUplod = new FileUpload();
-		sleep(3);
-		Credoc.getdocument().click();
-		sleep(3);
-		Credoc.GeteditdocumentNo().click();
-		sleep(3);
-		Credoc.getnumberappedix().selectByVisibleText(AppendixNumber);
-		Credoc.Appendix().sendKeys(Appendix);
-		Document_number = Credoc.getdocumentnumber().getAttribute("value");
-		BaseClass.sleep(2);
-		Credoc.getDocumentTitle().sendKeys("Test" + Document_number);
-		Credoc.getDocChangeSummary().sendKeys("Test summary" + Document_number);
-		verticalScrollingDown();
-		Credoc.getConfirmButton().click();
-		BaseClass.sleep(3);
-	}
+	
 
 	private void Search(String Searchdata) {
 		RecentlyViewdAndFavorites = new RecentlyViewdAndFavorites_POM(driver);

@@ -77,7 +77,7 @@ public class Reports_POM
 	@FindBy(xpath="//*[@class='t21-table-hover-row']/td[1]")
 	List<WebElement> groups;
 
-	@FindBy(css=".form-control.t21-placeholder")
+	@FindBy(xpath="//div[@class='input-group']//input[@class='form-control t21-placeholder']")
 	WebElement search;
 
 	@FindBy(css=".t21-ajax-submit-button.form-control.form-inline.btn.t21-btn-default")
@@ -284,15 +284,9 @@ public class Reports_POM
 			if(str.equalsIgnoreCase(name))
 			{
 				int j = i+1;
-				WebElement element1 = driver.findElement(By.xpath("//*[@id='tab2']/div/div[2]/table/tbody/tr["+j+"]/td[3]/input"));
-				element1.click();
-				BaseClass.sleep(3);
-				permissionTab().click();
-				WebElement element2 = driver.findElement(By.xpath("//*[@id='tab2']/div/div[2]/table/tbody/tr["+j+"]/td[4]/input"));
-				element2.click();
-				BaseClass.sleep(3);
-				permissionTab().click();
-				BaseClass.sleep(2);
+				WebElement elementDesign = driver.findElement(By.xpath("//*[@id='tab2']/div/div[2]/table/tbody/tr["+j+"]/td[4]/input"));
+				elementDesign.click();
+				BaseClass.sleep(5);
 			}
 		}
 	}
@@ -310,9 +304,8 @@ public class Reports_POM
 				int j = i+1;
 				WebElement element = driver.findElement(By.xpath("//*[@id='tab2']/div/div[2]/table/tbody/tr["+j+"]/td[3]/input"));
 				element.click();
-				BaseClass.sleep(3);
+				BaseClass.sleep(5);
 				permissionTab().click();
-				BaseClass.sleep(2);
 			}
 		}
 	}
@@ -330,9 +323,7 @@ public class Reports_POM
 				int j = i+1;
 				WebElement element = driver.findElement(By.xpath("//*[@id='tab2']/div/div[2]/table/tbody/tr["+j+"]/td[4]/input"));
 				element.click();
-				BaseClass.sleep(3);
-				permissionTab().click();
-				BaseClass.sleep(2);
+				BaseClass.sleep(4);
 			}
 		}
 	}
@@ -355,8 +346,6 @@ public class Reports_POM
 				WebElement element2 = driver.findElement(By.xpath("//*[@id='tab2']/div/div[2]/table/tbody/tr["+j+"]/td[3]/input"));
 				element2.click();
 				BaseClass.sleep(3);
-				permissionTab().click();
-				BaseClass.sleep(2);
 			}
 		}
 	}

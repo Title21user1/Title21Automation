@@ -53,7 +53,7 @@ public class CreatingNewPackage_POM extends DocumentRoutes_POM {
 	@FindBy(xpath=".//*[@id='GeneralTab']/div[1]/div[2]/div[1]/div[2]/label")
 	WebElement packageNo;
 	
-	@FindBy(css=".t21-placeholder")
+	@FindBy(xpath="//div[@class='input-group']//input[@class='form-control t21-placeholder']")
 	WebElement packageFilterTextBox;
 	
 	@FindBy(xpath="//button[@type='submit'][contains(text(),'Go')]")

@@ -27,7 +27,6 @@ public class DocumentCollaboration_POM {
 
 	@FindBy(xpath = "//*[text() = 'Collaboration']")
 	WebElement CollaborationTab;
-
 	@FindBy(xpath = ".//*[@id='Description']")
 	WebElement DescriptionOnAddCollaborator;
 
@@ -130,8 +129,8 @@ public class DocumentCollaboration_POM {
 	@FindBy(css = ".fa.fa-newspaper-o.grid-button-icon")
 	WebElement Form;
 	
-	@FindBy(css = ".form-control.t21-placeholder")
-	WebElement getplaceholder;
+	@FindBy(xpath = "//*[@placeholder='Filter results']")
+	List<WebElement> getplaceholder;
 
 	@FindBy(css = ".t21-js-row-link.event-id>a")
 	WebElement documentoncollaboration;
@@ -176,7 +175,7 @@ public class DocumentCollaboration_POM {
 		return CollaborationTabonsearch;
 	}
 
-	public WebElement getplaceholder() {
+	public List<WebElement> getplaceholder() {
 
 		return getplaceholder;
 	}
@@ -359,7 +358,7 @@ public class DocumentCollaboration_POM {
 		org.title21.utility.BaseClass.sleep(4);
 		BaseClass.waitTillElementVisible(periodicReviews.getdocument());
 		periodicReviews.getdocument().click();
-		org.title21.utility.BaseClass.sleep(7);
+		org.title21.utility.BaseClass.sleep(9);
 		docType().get(4).click();
 		org.title21.utility.BaseClass.sleep(4);
 		documetNo = periodicReviews.document_No().getAttribute("value");
@@ -439,7 +438,7 @@ public class DocumentCollaboration_POM {
 		return isValidationMessagePresent;
 	}
 	public void Search(String doc) {
-		getplaceholder().sendKeys(doc);
+		getplaceholder().get(0).sendKeys(doc);
 		getGoButtonOnSearch().get(0).click();
 	}
 

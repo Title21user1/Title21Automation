@@ -22,7 +22,7 @@ public class NonCollaborationTask_Test extends BaseClass {
 	NonCollaborationTask_POM NonCol;
 	String pickDate = "";
 	String[] preDate;
-	String dd1 = "";
+	String dd1 = "";//
 	String dd = "";
 	String Description = "";
 	String category = "";
@@ -48,9 +48,8 @@ public class NonCollaborationTask_Test extends BaseClass {
 	public void Non_Collaboration_Test() {
 
 		test = extent.startTest(" NonCollaborationTask_Test");
-		test.log(LogStatus.INFO, "Link to Test case document",
-				"<a href='file://" + filePath + "'>TestCaseDocument</a>");
-
+		test.log(LogStatus.INFO, "Link to Test case document", "<a href='file://"+filePath+"'>TestCaseDocument</a>");
+		log.info("Periodic Delegate");
 		addcollaborator("1");
 		sleep(5);
 		DocumentCollaboration.getMyTaskTab().click();

@@ -292,11 +292,15 @@ public class DocumentRoutes_Test extends BaseClass{
 					documentRoutes.wizard_Option().click();
 					documentRoutes.approval_Tab().click();
 					sleep(2);
+
 					documentRoutes.approvalFilter_TextBox().sendKeys(documetNo);
 					sleep(2);
 					documentRoutes.approvalFilterGo_Button().click();
 					sleep(2);
 					selectDocForApprovel(documetNo);
+
+					documentRoutes.searchDoc(documetNo);
+
 
 					sleep(2);
 					documentRoutes.documentTab_ForApprover().click();

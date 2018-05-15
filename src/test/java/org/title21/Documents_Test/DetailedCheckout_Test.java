@@ -12,7 +12,7 @@ import org.title21.utility.FileUpload;
 import com.relevantcodes.extentreports.LogStatus;
 
 import org.testng.annotations.BeforeClass;
-
+import org.apache.log4j.Logger;
 import org.testng.annotations.AfterClass;
 
 public class DetailedCheckout_Test extends BaseClass
@@ -22,9 +22,12 @@ public class DetailedCheckout_Test extends BaseClass
 	CreateDocument_POM Credoc;
 	MyDocs_POM mydocs;
 	FileUpload fileup;
+	static Logger log = Logger.getLogger(DetailedCheckout_Test.class);
 	String fileUploadPath = "";
 	String uploadFileName = "FileToUpload.txt";
 	String className="";
+	String testcaseName="TestCase-WIA-Document details on checkout.docx";	
+	String filePath = System.getProperty("user.dir") + "\\TestCases\\"+testcaseName;
 
 	@BeforeClass(alwaysRun=true)
 	public void beforeClass()
@@ -44,6 +47,9 @@ public class DetailedCheckout_Test extends BaseClass
 	{
 		preRequisites();
 		test = extent.startTest("Document Checkout in Details");
+		test.log(LogStatus.INFO, "Link to Test case document", "<a href='file://"+filePath+"'>TestCaseDocument</a>");
+		log.info("Document Checkout in Details");
+		
 		login.loginUser(loginData[5][0], loginData[5][1]);
 		
 		test.log(LogStatus.PASS,"1.	Login to the web interface as a test user.");
@@ -316,7 +322,7 @@ public class DetailedCheckout_Test extends BaseClass
 		verticalScrollingDown();											sleep(2);
 		mydocs.selectEntitiesSubject(1);									sleep(2);
 		mydocs.editEntities().click();										sleep(2);
-		Credoc.selectEntities("Person User");								sleep(2);
+		Credoc.selectEntities("Administrator");								sleep(2);
 		Credoc.saveButton().click();										sleep(2);
 		mydocs.beforeCheckEntities();
 		verticalScrollingUp();												sleep(2);
