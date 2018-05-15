@@ -49,9 +49,9 @@
 		<classes>
 
 			<!-- <class name="org.title21.PeriodicReviewers_Test.PeriodicOwnedDocuments_Test"/> -->
-      		<class name="org.title21.PeriodicReviewers_Test.PeriodicNotOwnedDocuments_Test"/>
-      	<!-- 	<class name="org.title21.PeriodicReviewers_Test.PeriodicDelegate_Test"/>
-      		<class name="org.title21.PeriodicReviewers_Test.ActionsRequiredByDocOwner_Test"/> -->
+      		<!-- <class name="org.title21.PeriodicReviewers_Test.PeriodicNotOwnedDocuments_Test"/> -->
+      	<!-- 	<class name="org.title21.PeriodicReviewers_Test.PeriodicDelegate_Test"/>-->
+      		<class name="org.title21.PeriodicReviewers_Test.ActionsRequiredByDocOwner_Test"/> 
 			
 		</classes>
 	</test>
