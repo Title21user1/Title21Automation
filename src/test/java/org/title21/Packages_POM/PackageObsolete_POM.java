@@ -38,15 +38,12 @@ public class PackageObsolete_POM {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
-
 	@FindBy(css = ".btn.t21-btn-default") // 4 close
 	List<WebElement> checkinclose;
 
 	@FindBy(css = ".fa.fa-file-o")
 	WebElement Newtab;
 
-	
-	
 	@FindBy(xpath = "//*[@id='displaySel']//a[@title='Context Menu']")
 	WebElement contextmenu;
 
@@ -58,6 +55,8 @@ public class PackageObsolete_POM {
 
 	@FindBy(css = "#Cabinet")
 	WebElement CabinetDropdown;
+	
+	//*[@id='']//a[@title='Context Menu']
 	
 	@FindBy(css = ".form-control.t21-placeholder")
 	List<WebElement>  secrhboxFromsearchpackage;
@@ -81,7 +80,7 @@ public class PackageObsolete_POM {
 	WebElement Create_Button;
 
 	
-	@FindBy(css = ".form-control.t21-placeholder")
+	@FindBy(xpath = "//*[@placeholder='Filter results']")
 	WebElement placeholderonapproved;
 
 	@FindBy(css = ".fa.fa-level-up.grid-button-icon")
@@ -99,7 +98,7 @@ public class PackageObsolete_POM {
 	@FindBy(css = ".form-control.t21-placeholder")
 	List<WebElement> Search_textbox;
 
-	@FindBy(css = ".t21-ajax-submit-button.form-control.form-inline.btn.t21-btn-default")
+	@FindBy(xpath = "//*[contains(text(),'Go')]")
 	WebElement GoButton_Search;
 
 	@FindBy(css = ".btn.t21-btn-primary.t21-ajax-submit-button")
@@ -155,6 +154,9 @@ public class PackageObsolete_POM {
 
 	@FindBy(css = "#TravObsoleteDateString")
 	WebElement Obsolete_Date;
+	
+	@FindBy(xpath = "//button[text()='Close']")
+	WebElement Close_button_Checkin ;
 
 	
 
@@ -204,6 +206,11 @@ public class PackageObsolete_POM {
 	public List<WebElement> getdoconapproved() {
 
 		return doconapproved;
+	}
+	
+	public WebElement Close_Button_Checkin() {
+
+		return Close_button_Checkin;
 	}
 
 	public WebElement gettextboxsearch()
@@ -459,9 +466,9 @@ public class PackageObsolete_POM {
 		org.title21.utility.BaseClass.sleep(4);
 		BaseClass.waitTillElementVisible(periodicReviews.getdocument());
 		periodicReviews.getdocument().click();
-		org.title21.utility.BaseClass.sleep(7);
+		org.title21.utility.BaseClass.sleep(10);
         docType().get(1).click();
-		org.title21.utility.BaseClass.sleep(4);
+		org.title21.utility.BaseClass.sleep(5);
 		if(scenario.equalsIgnoreCase("1"))
 		{
 		documetNo = periodicReviews.document_No().getAttribute("value");
@@ -487,7 +494,7 @@ public class PackageObsolete_POM {
 		org.title21.utility.BaseClass.sleep(3);
 		getconfirm_button_checkin().click();
 		org.title21.utility.BaseClass.sleep(7);
-		getcheckinclose().get(3).click();
+		Close_Button_Checkin().click();
 		org.title21.utility.BaseClass.sleep(8);
 		getcontextmenu().click();
 		org.title21.utility.BaseClass.sleep(4);
@@ -531,16 +538,16 @@ public class PackageObsolete_POM {
 		documentRoutes.getSequenceinAddApprover().selectByVisibleText("1");
 		documentRoutes.getallottedDaysinAddApprover().selectByVisibleText("1 day");
 		documentRoutes.approverAdd_Button().click();
-		org.title21.utility.BaseClass.sleep(3);
+		org.title21.utility.BaseClass.sleep(5);
 		getcontextmenu().click();
-		org.title21.utility.BaseClass.sleep(2);
+		org.title21.utility.BaseClass.sleep(5);
 		BaseClass.verticalScrollingDown();
-		org.title21.utility.BaseClass.sleep(2);
+		org.title21.utility.BaseClass.sleep(5);
 		documentRoutes.checkIn_Route().click();
-		org.title21.utility.BaseClass.sleep(2);
+		org.title21.utility.BaseClass.sleep(5);
 		documentRoutes.checkInRouteSubmit_Button().click();
 		org.title21.utility.BaseClass.sleep(9);
-		getcheckinclose().get(5).click();
+		Close_Button_Checkin().click();
 		org.title21.utility.BaseClass.sleep(5);
 		logout.logoutFunction();
 		org.title21.utility.BaseClass.sleep(4);
@@ -548,10 +555,10 @@ public class PackageObsolete_POM {
 		documentRoutes = new DocumentRoutes_POM(driver);
 		documentRoutes.wizard_Option().click();
 		documentRoutes.approval_Tab().click();
-		org.title21.utility.BaseClass.sleep(2);
+		org.title21.utility.BaseClass.sleep(5);
 		getplaceholderonapproved().sendKeys(documetNo);
-		getGoButton().get(0).click();
-		org.title21.utility.BaseClass.sleep(2);
+		getGoButton_Search().click();
+		org.title21.utility.BaseClass.sleep(5);
 		getdoconapproved().get(12).click();
 		documentRoutes.documentTab_ForApprover().click();
 		org.title21.utility.BaseClass.sleep(2);
@@ -562,9 +569,9 @@ public class PackageObsolete_POM {
 		documentRoutes.checkInRouteSubmit_Button().click();
 		org.title21.utility.BaseClass.sleep(5);
 		logout.logoutFunction();
-		org.title21.utility.BaseClass.sleep(2);
+		org.title21.utility.BaseClass.sleep(5);
 		DBConnection.executeStoredProcedure(dbqueries.moveDocsOnReleaseDate);
-		org.title21.utility.BaseClass.sleep(2);
+		org.title21.utility.BaseClass.sleep(5);
 		login.loginUser("saurabhp", "Title123456*");
 		org.title21.utility.BaseClass.sleep(2);
 	}
@@ -579,5 +586,5 @@ public class PackageObsolete_POM {
 		getAddButtonupload().click();
 
 	}
-
+////button[@type='submit'][contains(text(),'Go')]
 }

@@ -7,6 +7,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.title21.PeriodicReviewers_POM.PeriodicOwnedDocuments_POM;
+import org.title21.utility.BaseClass;
 
 public class AttachmentControlInDoc_POM 
 {
@@ -14,6 +16,7 @@ public class AttachmentControlInDoc_POM
 
 	public WebDriver driver;
 	public WebElement element;
+	public String documetNo="";
 	static Logger log = Logger.getLogger(AttachmentControlInDoc_POM.class);
 	public AttachmentControlInDoc_POM(WebDriver driver)
 	{
@@ -21,7 +24,7 @@ public class AttachmentControlInDoc_POM
 		PageFactory.initElements(driver, this);
 	}
 
-
+//ad
 	@FindBy(css="#Description")
 	WebElement Description ;
 
@@ -73,7 +76,8 @@ public class AttachmentControlInDoc_POM
 	@FindBy(css=".fa.fa-trash-o.action-items")
 	List<WebElement> remove ;
 
-
+	@FindBy(css = ".t21-js-row-link.text-nowrap>a")
+	List<WebElement> document;
 
 	public List<WebElement> getnativedownloadoption()
 	{
@@ -166,6 +170,27 @@ public class AttachmentControlInDoc_POM
 
 		return addMainFile;			
 	}
+	public List<WebElement> docType() {
+		return document;
+	}
+	public void CreateDocument() {
 
+		PeriodicOwnedDocuments_POM periodicReviews = new PeriodicOwnedDocuments_POM(driver);
+		BaseClass BaseClass=new BaseClass();
+		periodicReviews.getnewdoc().click();
+		org.title21.utility.BaseClass.sleep(5);
+		periodicReviews.getdocument().click();
+		org.title21.utility.BaseClass.sleep(9);
+		docType().get(4).click();
+		org.title21.utility.BaseClass.sleep(5);
+		documetNo = periodicReviews.document_No().getAttribute("value");
+		System.out.print(documetNo);
+		org.title21.utility.BaseClass.sleep(5);
+		periodicReviews.getDocumentTitle().sendKeys("testautomation" + documetNo);
+		periodicReviews.getDocChangeSummary().sendKeys("test summary" + documetNo);
+		BaseClass.verticalScrollingDown();
+		periodicReviews.getConfirmButton().click();
+		org.title21.utility.BaseClass.sleep(5);
+	}
 }
 

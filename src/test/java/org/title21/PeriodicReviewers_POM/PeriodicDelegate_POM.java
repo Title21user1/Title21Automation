@@ -43,7 +43,7 @@ public class PeriodicDelegate_POM {
 		periodicReviews = new PeriodicOwnedDocuments_POM(driver);
 
 	}
-
+//
 	@FindBy(css = "#Pin")
 	WebElement PinNoChangesScreen;
 	
@@ -97,8 +97,8 @@ public class PeriodicDelegate_POM {
 	@FindBy(css = ".btn.t21-btn-primary.t21-ajax-submit-button.process-btn-click")
 	WebElement UndelegatepopupwindowYesButton;
 
-	@FindBy(css = ".form-control.t21-placeholder")
-	WebElement placeholder;
+	@FindBy(xpath = "//*[@placeholder='Filter results']")
+	List<WebElement> placeholder;
 	
 
 	@FindBy(css = ".t21-ajax-submit-button.form-control.form-inline.btn.t21-btn-default")
@@ -252,7 +252,8 @@ public class PeriodicDelegate_POM {
 		return AuditlogButton;
 	}
 	
-	public WebElement getplaceholder() {
+	public List<WebElement> getplaceholder() 
+	{
 
 		return placeholder;
 	}
@@ -296,7 +297,7 @@ public class PeriodicDelegate_POM {
 	}
 
 	public void Search(String document ) {
-		getplaceholder().sendKeys(document);//
+		getplaceholder().get(0).sendKeys(document);
 		getGOButton().click();
 	}
 

@@ -61,15 +61,15 @@ public class RecentlyViewedAndFavorites_Test extends BaseClass {
 	@Test(testName = "Recently Viewed And Favorites", groups = "DocumentModule", priority = 0)
 	public void Create_doc() throws Exception {
 		test = extent.startTest("RecentlyViewed_And_Favorites");
-
-		RecentlyViewdAndFavorites.createdocandcheckin();
+		test.log(LogStatus.INFO, "Link to Test case document", "<a href='file://"+filePath+"'>TestCaseDocument</a>");
+		log.info("Recently Viewed And Favorites");
+	RecentlyViewdAndFavorites.createdocandcheckin();
 		System.out.print(documetNo);
 		RecentlyViewdAndFavorites.datepicker().click();
 		RecentlyViewdAndFavorites.gettodaysdate().click();
 		GenerateEffectiveFile();
 		approved();
-
-		RecentlyViewdAndFavorites = new RecentlyViewdAndFavorites_POM(driver);
+        RecentlyViewdAndFavorites = new RecentlyViewdAndFavorites_POM(driver);
 		RecentlyViewdAndFavorites.getCreatedDocnumber();
 		sleep(5);
 		RecentlyViewdAndFavorites.getDashboard().click();
@@ -87,7 +87,6 @@ public class RecentlyViewedAndFavorites_Test extends BaseClass {
 		sleep(2);
 		RecentlyViewdAndFavorites.getSOP().click();
 		sleep(2);
-
 		Search("Bio-hazardous Waste Disposal");
 		sleep(3);
 
@@ -99,7 +98,7 @@ public class RecentlyViewedAndFavorites_Test extends BaseClass {
 			RecentlyViewdAndFavorites.getFavoritesStar().click();
 			RecentlyViewdAndFavorites.getFavoritesopen().click();
 		}
-
+//
 		test.log(LogStatus.PASS,
 				"2. Click on the e-Binders tab. Open an existing eBinder which has documents. " + "<br/>"
 						+ "3. Select an existing Document in the grid to view it. " + "<br/>"
@@ -236,11 +235,14 @@ public class RecentlyViewedAndFavorites_Test extends BaseClass {
 		login.loginUser("sameer", "joshi12345");
 		documentRoutes.wizard_Option().click();
 		documentRoutes.approval_Tab().click();
+		sleep(4);
+		RecentlyViewdAndFavorites.getplaceholder().sendKeys(document_number);//documet_no_checkout1
+		RecentlyViewdAndFavorites.getGOButton().click();
 		sleep(2);
-		selectDocForApprovel(document_number, 3);
-		sleep(2);
-		documentRoutes.documentTab_ForApprover().click();
-		sleep(2);
+		driver.findElement(By.cssSelector(".fa.fa-book")).click();
+		sleep(5);
+		driver.findElement(By.cssSelector(".flash")).click();
+		sleep(4);
 		documentRoutes.documentApprove_Button().click();
 		sleep(2);
 		documentRoutes.pinTo_Approve().clear();
@@ -270,10 +272,9 @@ public class RecentlyViewedAndFavorites_Test extends BaseClass {
 		Search("Bio-hazardous Waste Disposal");
 		sleep(3);
 		RecentlyViewdAndFavorites.getFavoritesStar().click();
-
-		logout.logoutFunction();
-
-		log.info("logout successfully.");
+		sleep(3);
+        logout.logoutFunction();
+    
 
 	}
 
@@ -331,7 +332,7 @@ public class RecentlyViewedAndFavorites_Test extends BaseClass {
 		sleep(2);
 		documentRoutes.checkInRouteSubmit_Button().click();
 		sleep(3);
-		documentRoutes.close_Button().click();
+		RecentlyViewdAndFavorites.Close_Button_Checkin().click();
 		sleep(5);
 		logout = new LogoutPage_POM(driver);
 		logout.logoutFunction();
@@ -349,22 +350,13 @@ public class RecentlyViewedAndFavorites_Test extends BaseClass {
 		documentRoutes.wizard_Option().click();
 		documentRoutes.approval_Tab().click();
 		sleep(2);
-		for(int i=1; i<=20; i++)
-		{
-			selectDocForApprovel(documet_no_checkout1, 3);
-			if(!isRecordFound)
-			{
-				documentRoutes.documentTableNext_Button().click();
-				sleep(2); 
-			}
-			else
-			{
-				break;
-			}
-		}
+		RecentlyViewdAndFavorites.getplaceholder().sendKeys(documet_no_checkout1);//documet_no_checkout1
+		RecentlyViewdAndFavorites.getGOButton().click();
 		sleep(2);
-		documentRoutes.documentTab_ForApprover().click();
-		sleep(2);
+		driver.findElement(By.cssSelector(".fa.fa-book")).click();
+		sleep(5);
+		driver.findElement(By.cssSelector(".flash")).click();
+		sleep(4);
 		documentRoutes.documentApprove_Button().click();
 		sleep(2);
 		documentRoutes.pinTo_Approve().clear();
