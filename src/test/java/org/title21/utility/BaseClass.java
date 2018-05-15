@@ -213,9 +213,9 @@ public class BaseClass {
 		/*
 		 * relativePathforImage has been set with relation with index.html
 		 */
-		imagesDirectory="./extentReports" + "/" + classname+"/";	
+		imagesDirectory="../extentReports" + "/" + classname+"/";	
 		
-		relativePathforImage="./"+classname+"/";
+		/*relativePathforImage="./"+classname+"/";*/
 		
 		File file = new File(imagesDirectory);
 		if (!file.exists()) {
