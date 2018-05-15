@@ -64,6 +64,7 @@ public class ActionsRequiredByDocOwner_Test extends BaseClass{
 		test = extent.startTest("ActionsRequiredByDocOwner_Test");	
 		test.log(LogStatus.PASS, "1.Login as Test user 1(Owner) " + "<br/>"	);
 		action.administratorDropDown().click();
+		sleep(2);
 		action.administrationLink().click();
 		sleep(2);
 		action.DocumentTypes().click();
@@ -74,9 +75,9 @@ public class ActionsRequiredByDocOwner_Test extends BaseClass{
 		action.getEventLocation().selectByVisibleText(routeData[1][4]);
 		sleep(2);
 		
-		action.getFilterResults().sendKeys(PeriodicReviewer[1][0]); 
+		action.approvalFilter_TextBox().sendKeys(PeriodicReviewer[1][0]); 
 		sleep(2);
-		action.getGoButton().click();
+		action.approvalFilterGo_Button().click();
 		sleep(2);
 		action.getANTFORMEditButton().click();
 		sleep(2);
@@ -95,9 +96,9 @@ public class ActionsRequiredByDocOwner_Test extends BaseClass{
 		sleep(2);
 		action.getEventLocation().selectByVisibleText(routeData[1][4]);
 		sleep(2);
-		action.getFilterResults().sendKeys(PeriodicReviewer[2][0]);    
+		action.approvalFilter_TextBox().sendKeys(PeriodicReviewer[2][0]);    
 		sleep(2);
-		action.getGoButton().click();
+		action.approvalFilterGo_Button().click();
 		sleep(2);
 		action.getANTSOPEditButton().click();
 		sleep(2);
@@ -260,8 +261,12 @@ public class ActionsRequiredByDocOwner_Test extends BaseClass{
 			sleep(2);
 			periodicReviews.wizardReview_Tab().click();
 			sleep(2);
+			periodicReviews.approvalFilter_TextBox().sendKeys(documetNo);
+			sleep(2);
+			periodicReviews.approvalFilterGo_Button().click();
+			sleep(2);
 			
-			for(int i=1; i<=20; i++)
+			/*for(int i=1; i<=20; i++)
 			{
 				verifyDocForReview(documetNo);
 				 if(!isValueFound)
@@ -273,8 +278,9 @@ public class ActionsRequiredByDocOwner_Test extends BaseClass{
 				{
 					break;
 				}
-			}
-			if(isValueFound)
+			}*/
+			
+			if(verifyDocForReview(documetNo))
 			{
 				test.log(LogStatus.PASS, "<b>ER 1- Periodic review of the document is available in Test User 2's wizard</b>"+
 						test.addScreenCapture(captureScreenShot(driver, "review wizard")));
@@ -333,8 +339,12 @@ public class ActionsRequiredByDocOwner_Test extends BaseClass{
 			 sleep(2);
 			 action.getreviewTab().click();
 			 sleep(2);
-			
-			for(int i=1; i<=20; i++)
+			 periodicReviews.approvalFilter_TextBox().sendKeys(documetNo);
+			 sleep(2);
+			 periodicReviews.approvalFilterGo_Button().click();
+			 sleep(2);
+			 
+			/*for(int i=1; i<=20; i++)
 			{
 				verifyDocForReview(documetNo);
 				 if(!isValueFound)
@@ -346,8 +356,9 @@ public class ActionsRequiredByDocOwner_Test extends BaseClass{
 				{
 					break;
 				}
-			}
-			if(isValueFound)
+			}*/
+			
+			if(verifyDocForReview(documetNo))
 			{
 				test.log(LogStatus.PASS, "<b>ER 3- The periodic review for the next due date is available in Test user 1's review window as owner review is not required. </b>"+
 						test.addScreenCapture(captureScreenShot(driver, "review wizard")));
@@ -513,8 +524,13 @@ public class ActionsRequiredByDocOwner_Test extends BaseClass{
 				sleep(2);
 				periodicReviews.wizardReview_Tab().click();
 				sleep(2);
+				periodicReviews.approvalFilter_TextBox().sendKeys(documetNo);
+				sleep(2);
+				periodicReviews.approvalFilterGo_Button().click();
+				sleep(2);
 				
-				for(int i=1; i<=20; i++)
+				
+				/*for(int i=1; i<=20; i++)
 				{
 					verifyDocForReview(documetNo);
 					 if(!isValueFound)
@@ -526,8 +542,10 @@ public class ActionsRequiredByDocOwner_Test extends BaseClass{
 					{
 						break;
 					}
-				}
-				if(isValueFound)
+				}*/
+				
+				
+				if(verifyDocForReview(documetNo))
 				{
 					test.log(LogStatus.PASS, "<b>ER 4- Periodic review of the document is available in Test User 2's wizard</b>"+
 							test.addScreenCapture(captureScreenShot(driver, "review wizard")));
@@ -585,8 +603,12 @@ public class ActionsRequiredByDocOwner_Test extends BaseClass{
 				 sleep(2);
 				 action.getreviewTab().click();
 				 sleep(2);
+				 periodicReviews.approvalFilter_TextBox().sendKeys(documetNo);
+				 sleep(2);
+				 periodicReviews.approvalFilterGo_Button().click();
+				 sleep(2);
 				
-				for(int i=1; i<=20; i++)
+				/*for(int i=1; i<=20; i++)
 				{
 					verifyDocForReview(documetNo);
 					 if(!isValueFound)
@@ -598,8 +620,9 @@ public class ActionsRequiredByDocOwner_Test extends BaseClass{
 					{
 						break;
 					}
-				}
-				if(isValueFound)
+				}*/
+				 
+				if(verifyDocForReview(documetNo))
 				{
 					test.log(LogStatus.PASS, "<b>ER 6- Periodic review for the next due date is available in the Test user 1's review window as owner review is not required. </b>"+
 							test.addScreenCapture(captureScreenShot(driver, "review wizard")));

@@ -275,11 +275,12 @@ public class ReadAndSignTraining_Test extends BaseClass{
 			}
 			
 			logout.logoutFunction();
-			
+			sleep(2);
 			test.log(LogStatus.PASS, "18.Login as admin and navigate to audit log section.");
 			login.loginUser(loginData[7][0], loginData[7][1]);
-			
+			sleep(2);
 			readSign.administratorDropDown().click();
+			sleep(2);
 			readSign.auditLog_Option().click();
 			sleep(2);
 			
@@ -530,11 +531,6 @@ public class ReadAndSignTraining_Test extends BaseClass{
 			sleep(2);
 			readSign.approvalFilterGo_Button().click();
 			sleep(2);
-			readSign.approvalFilter_TextBox().sendKeys(documetNo);
-			sleep(2);
-			readSign.approvalFilterGo_Button().click();
-			sleep(2);
-			
 			
 			/*for(int i=1; i<=20; i++)
 			{
@@ -800,7 +796,8 @@ public class ReadAndSignTraining_Test extends BaseClass{
 			readSign.close_Button().click();
 			sleep(2);
 			logout.logoutFunction();
-			login.loginUser(loginData[1][0], loginData[1][1]);  //sameer
+			sleep(2);
+			login.loginUser(loginData[1][0], loginData[1][1]);  
 			
 			test.log(LogStatus.PASS, "56.Approve the document.");
 			approveDocFromWizard(documetNo);

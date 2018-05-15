@@ -102,6 +102,7 @@ public class PeriodicNotOwnedDocuments_Test extends BaseClass{
 					break;
 				}
 			}*/
+		 
 		 sleep(2);
 		 periodicReviews.viewDocButtonForPeriodicReview().click();
 		//=======================================================Main steps===================================================================================== 
@@ -498,15 +499,15 @@ public class PeriodicNotOwnedDocuments_Test extends BaseClass{
 		 }*/
 		
 		 sleep(2);
-		 periodicReviews.approvalFilter_TextBox().clear();
+		/* periodicReviews.approvalFilter_TextBox().clear();
 		 sleep(2);
 		 periodicReviews.approvalFilter_TextBox().sendKeys(documentNo3);
 		 sleep(2);
 		 periodicReviews.approvalFilterGo_Button().click();
-		 sleep(2);
-		 verifyDocForReview(documentNo3);
+		 sleep(2);*/
+		// verifyDocForReview(documentNo3);
 		 
-		/* for(int i=1; i<=20; i++)
+		 for(int i=1; i<=50; i++)
 		 {
 			 verifyDocForReview(documentNo3);
 				if(!isValueFound)
@@ -518,7 +519,7 @@ public class PeriodicNotOwnedDocuments_Test extends BaseClass{
 				{
 					break;
 				}
-		 }*/
+		 }
 		 
 		 if(!isValueFound)
 		 {
@@ -695,8 +696,8 @@ public class PeriodicNotOwnedDocuments_Test extends BaseClass{
 			sleep(5);
 			
 			if(periodicReviews.editPeriodicReviewers_HeaderText().isDisplayed())
-			{
-				periodicReviews.editPeriodicReviewersLocationDropDown().selectByVisibleText("Antioch"); //routeData[1][0]
+			{ 
+				periodicReviews.editPeriodicReviewersLocationDropDown().selectByVisibleText(routeData[1][0]); //   "Antioch"
 				sleep(2);
 				periodicReviews.availablePeriodicReviewers_Filter().click();
 				sleep(2);
@@ -714,7 +715,7 @@ public class PeriodicNotOwnedDocuments_Test extends BaseClass{
 				sleep(2);
 				
 				periodicReviews.availablePeriodicReviewers_Filter().clear();
-				periodicReviews.availablePeriodicReviewers_Filter().sendKeys("Martink696");
+				periodicReviews.availablePeriodicReviewers_Filter().sendKeys(loginData[12][2]);
 				sleep(2);
 				if(periodicReviews.AvailablePeriodicReviewers_SearchResultArea().isDisplayed())
 				{
