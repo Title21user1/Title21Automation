@@ -209,11 +209,11 @@ public class BaseClass {
 	public static void createDirectory(String classname) {
 
 		classname = classname.substring(4);
-		//imagesDirectory = System.getProperty("user.dir") + "\\extentReports" + "\\" + classname;
+		imagesDirectory = System.getProperty("user.dir") + "/extentReports/"+classname+"/";
 		/*
 		 * relativePathforImage has been set with relation with index.html
 		 */
-		imagesDirectory="../extentReports" + "/" + classname+"/";	
+		//imagesDirectory="..\\extentReports" + "\\" + classname+"\\";	
 		
 		/*relativePathforImage="./"+classname+"/";*/
 		
@@ -273,7 +273,7 @@ public class BaseClass {
 			SimpleDateFormat formater = new SimpleDateFormat("dd_MM_yy_hh_mm_ss");
 			File src = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 			
-			String dest = imagesDirectory + "/" + screenshotName + "-" + formater.format(calander.getTime()) + ".png";
+			String dest = imagesDirectory + screenshotName + "-" + formater.format(calander.getTime()) + ".png";
 			File destination = new File(dest);
 			FileUtils.copyFile(src, destination);			
 			return dest;
