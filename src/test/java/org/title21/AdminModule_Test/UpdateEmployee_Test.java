@@ -320,9 +320,9 @@ public class UpdateEmployee_Test extends BaseClass {
 		emp.getCloseButtononSuccessMessage().click();
 		sleep(2);
 		emp.EmployeeEdit().click();
-		//verticalScrollingUp();
+		sleep(5);
 		emp=new UpdateEmployee_POM(driver);
-		sleep(3);	
+			
 		emp.getJobCodesTab().click();
 
 		//emp.getJobCodesTab().click();

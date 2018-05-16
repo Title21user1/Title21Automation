@@ -189,8 +189,15 @@ public class ReadAndSignTraining_Test extends BaseClass{
 			readSign.wizard_Option().click();
 			sleep(2);
 			readSign.wizardTraining_Tab().click();
+			sleep(2);
+			readSign.approvalFilter_TextBox().sendKeys(documetNo);
+			sleep(2);
+			readSign.approvalFilterGo_Button().click();
+			sleep(2);
 			
-			for(int i=1; i<=20; i++)
+			
+			
+			/*for(int i=1; i<=20; i++)
 			{
 				selectDocForTraining(documetNo);
 				 if(!isRecordFound)
@@ -203,9 +210,9 @@ public class ReadAndSignTraining_Test extends BaseClass{
 				 {
 					 break;
 				 }
-			}
+			}*/
 			
-			if(isRecordFound)
+			if(selectDocForTraining(documetNo))
 			{
 				test.log(LogStatus.PASS, "<b>ER4- The Read and Sign training created is available.<b>"+
 						test.addScreenCapture(captureScreenShot(driver, "The Read and Sign training created is available.")));
@@ -268,11 +275,12 @@ public class ReadAndSignTraining_Test extends BaseClass{
 			}
 			
 			logout.logoutFunction();
-			
+			sleep(2);
 			test.log(LogStatus.PASS, "18.Login as admin and navigate to audit log section.");
 			login.loginUser(loginData[7][0], loginData[7][1]);
-			
+			sleep(2);
 			readSign.administratorDropDown().click();
+			sleep(2);
 			readSign.auditLog_Option().click();
 			sleep(2);
 			
@@ -290,7 +298,7 @@ public class ReadAndSignTraining_Test extends BaseClass{
 				test.log(LogStatus.PASS, "unable to find the Audtit Log Search_Field.");
 			}
 			
-			for(int i=1; i<=20; i++)
+			for(int i=1; i<=50; i++)
 			{
 				WebElement text = driver.findElement(By.xpath("//*[@id='dynamic-grid-table']/tbody/tr["+i+"]/td[5]"));
 				String itemName= text.getText();
@@ -519,8 +527,12 @@ public class ReadAndSignTraining_Test extends BaseClass{
 			sleep(2);
 			readSign.wizardTraining_Tab().click();
 			sleep(2);
+			readSign.approvalFilter_TextBox().sendKeys(documetNo);
+			sleep(2);
+			readSign.approvalFilterGo_Button().click();
+			sleep(2);
 			
-			for(int i=1; i<=20; i++)
+			/*for(int i=1; i<=20; i++)
 			{
 				selectDocForTraining(documetNo);
 				 if(!isRecordFound)
@@ -533,9 +545,9 @@ public class ReadAndSignTraining_Test extends BaseClass{
 				 {
 					 break;
 				 }
-			}
+			}*/
 			
-			if(isRecordFound)
+			if(selectDocForTraining(documetNo))
 			{
 				test.log(LogStatus.PASS, "<b>ER13- The Read and Sign training created in ER-11 appears.<b>"+
 						test.addScreenCapture(captureScreenShot(driver, "Read and Sign training created")));
@@ -544,6 +556,12 @@ public class ReadAndSignTraining_Test extends BaseClass{
 			{
 				test.log(LogStatus.FAIL, "unable to find the Read and Sign training created in ER-11 appears.");
 			}
+			
+			readSign.approvalFilter_TextBox().clear();
+			readSign.approvalFilter_TextBox().sendKeys(documetNo);
+			sleep(2);
+			readSign.approvalFilterGo_Button().click();
+			sleep(2);
 			
 			String date="";
 			for(int j=1; j<=20; j++)
@@ -778,7 +796,8 @@ public class ReadAndSignTraining_Test extends BaseClass{
 			readSign.close_Button().click();
 			sleep(2);
 			logout.logoutFunction();
-			login.loginUser(loginData[1][0], loginData[1][1]);  //sameer
+			sleep(2);
+			login.loginUser(loginData[1][0], loginData[1][1]);  
 			
 			test.log(LogStatus.PASS, "56.Approve the document.");
 			approveDocFromWizard(documetNo);
@@ -942,6 +961,11 @@ public class ReadAndSignTraining_Test extends BaseClass{
 		readSign.wizard_Option().click();
 		readSign.approval_Tab().click();
 		sleep(2);
+		readSign.approvalFilter_TextBox().sendKeys(documetNo);
+		sleep(2);
+		readSign.approvalFilterGo_Button().click();
+		sleep(2);
+		
 		isRecordFound = false;
 		for(int i=1; i<=20; i++)
 		{

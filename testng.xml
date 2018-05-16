@@ -3,7 +3,7 @@
 <suite name="Title21Suite">
 	<parameter name="configFile" value="config.properties" />
 
-	<test name="AdminModuleScreens" preserve-order="true">
+	<test name="AdminModuleScreens" preserve-order="false">
 		<classes>
 			
 			<class name="org.title21.AdminModule_Test.LoginPage_Test"/>
@@ -22,10 +22,10 @@
 	<test name="DocumentScreens" preserve-order="false">
     <classes>
 
-			<class name="org.title21.Documents_Test.CreateDocument_Test"/>
+			<class name="org.title21.Documents_Test.CreateDocument_Test"/> 
 			<class name="org.title21.Documents_Test.DocumentRoutes_Test"/>
 			<class name="org.title21.Documents_Test.CheckInCheckOut_Test"/> 
-			<class name="org.title21.Documents_Test.DetailedCheckout_Test"/> 
+			<class name="org.title21.Documents_Test.DetailedCheckout_Test"/>
 			<class name="org.title21.Documents_Test.ReadAndSignTraining_Test"/>
 			<class name="org.title21.Documents_Test.RecentlyViewedAndFavorites_Test"/>
 			<class name="org.title21.Documents_Test.DocumentCollaboration_Test"/>
@@ -45,23 +45,23 @@
 			
 		</classes>
 	</test>
-	<test name="PeriodicReviewer" preserve-order="false">
+	<test name="PeriodicReviewer" preserve-order="true">
 		<classes>
 
 			<class name="org.title21.PeriodicReviewers_Test.PeriodicOwnedDocuments_Test"/>
       		<class name="org.title21.PeriodicReviewers_Test.PeriodicNotOwnedDocuments_Test"/>
       		<class name="org.title21.PeriodicReviewers_Test.PeriodicDelegate_Test"/>
-      		<class name="org.title21.PeriodicReviewers_Test.ActionsRequiredByDocOwner_Test"/>
+      		<class name="org.title21.PeriodicReviewers_Test.ActionsRequiredByDocOwner_Test"/> 
 			
 		</classes>
 	</test>
-	<test name="PeriodicReviewer">
+	<test name="PeriodicReviewer1" preserve-order="false">
 		<classes>
 
 			<class name="org.title21.Packages_Test.CreatingNewPackage_Test"/>
       		<class name="org.title21.Packages_Test.PackageObsolete_Test"/>
       		<class name="org.title21.Packages_Test.PackageApproval_Test"/>
-      		<class name="org.title21.Packages_Test.AttachmentControlInPackage_Test"/>
+      		<class name="org.title21.Packages_Test.AttachmentControlInPackage_Test"/> 
 			
 		</classes>
 	</test>

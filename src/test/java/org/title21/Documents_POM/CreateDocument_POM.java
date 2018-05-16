@@ -17,7 +17,7 @@ import org.title21.utility.BaseClass;
 import org.title21.validation.entities.ErrorMessages;
 
 public class CreateDocument_POM 
-
+//
 {
 	public WebDriver driver;
 	public WebElement element;
@@ -204,6 +204,9 @@ public class CreateDocument_POM
 
 	@FindBy(xpath="//input[@name='formIdOfLinksToAdd']")
 	WebElement linkstoadd;
+	
+	@FindBy(css = ".t21-js-row-link.text-nowrap>a")
+	List<WebElement> documenttype;
 
 	@FindBy(xpath="//input[@name='searchString']")
 	WebElement addlinksearch;
@@ -324,51 +327,7 @@ public class CreateDocument_POM
 		return addlinkgobutton;
 	}
 
-	public boolean DocumentTitlemsgvalidation(){
-
-		element=getDocumentTitlemsg();
-		String errorMessage = element.getText();
-		boolean isValidationMessagePresent=false;		
-
-		if(errorMessage.contains(ErrorMessages.DocumentTitleValidationMessage))
-		{
-			isValidationMessagePresent=true;
-		}else{
-			log.error("Validation message for document title is not valid.");
-		}	
-		return isValidationMessagePresent;
-	}
-
-	public boolean Appedixvalidation(){
-
-		element=getappedixvalmsg();
-		String errorMessage = element.getText();
-		boolean isValidationMessagePresent=false;		
-
-		if(errorMessage.contains(ErrorMessages.AppendixValidationMessage))
-		{
-			isValidationMessagePresent=true;
-		}else{
-			log.error("Validation message for Appendix is not valid.");
-		}	
-		return isValidationMessagePresent;
-	}
-	public boolean Documentsummarymsgvalidation(){
-
-		element=getDocumentsummarymsg();
-		String errorMessage = element.getText();
-		boolean isValidationMessagePresent=false;		
-
-		if(errorMessage.contains(ErrorMessages.DocumentSummaryValidationMessage))
-		{
-			isValidationMessagePresent=true;
-		}else{
-			log.error("Validation message for Document summary is not valid  ");
-		}	
-		return isValidationMessagePresent;
-	}
-
-
+	
 	public WebElement getdocument()
 	{
 
@@ -567,6 +526,9 @@ public class CreateDocument_POM
 
 		return nativeafile;			
 	}
+	public List<WebElement> docType() {
+		return documenttype;
+	}
 
 	public WebElement getCancel()
 	{
@@ -644,6 +606,50 @@ public class CreateDocument_POM
 		WebElement element = driver.findElement(By.xpath("//a[contains(text(),'"+DocType+"')]"));
 		element.click();
 	}
+	public boolean DocumentTitlemsgvalidation(){
+
+		element=getDocumentTitlemsg();
+		String errorMessage = element.getText();
+		boolean isValidationMessagePresent=false;		
+
+		if(errorMessage.contains(ErrorMessages.DocumentTitleValidationMessage))
+		{
+			isValidationMessagePresent=true;
+		}else{
+			log.error("Validation message for document title is not valid.");
+		}	
+		return isValidationMessagePresent;
+	}
+
+	public boolean Appedixvalidation(){
+
+		element=getappedixvalmsg();
+		String errorMessage = element.getText();
+		boolean isValidationMessagePresent=false;		
+
+		if(errorMessage.contains(ErrorMessages.AppendixValidationMessage))
+		{
+			isValidationMessagePresent=true;
+		}else{
+			log.error("Validation message for Appendix is not valid.");
+		}	
+		return isValidationMessagePresent;
+	}
+	public boolean Documentsummarymsgvalidation(){
+
+		element=getDocumentsummarymsg();
+		String errorMessage = element.getText();
+		boolean isValidationMessagePresent=false;		
+
+		if(errorMessage.contains(ErrorMessages.DocumentSummaryValidationMessage))
+		{
+			isValidationMessagePresent=true;
+		}else{
+			log.error("Validation message for Document summary is not valid  ");
+		}	
+		return isValidationMessagePresent;
+	}
+
 
 	public boolean CheckinSuccessmessage(){
 

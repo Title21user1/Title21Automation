@@ -3,6 +3,7 @@ package org.title21.Module3_Test;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
@@ -12,6 +13,7 @@ import org.testng.annotations.Test;
 import org.title21.AdminModule_POM.LoginPage_POM;
 import org.title21.AdminModule_POM.LogoutPage_POM;
 import org.title21.AdminModule_POM.Table;
+import org.title21.Documents_Test.DocumentRoutes_Test;
 import org.title21.Module3_POM.Codes_POM;
 import org.title21.utility.BaseClass;
 import org.title21.utility.FunctionUtils;
@@ -22,6 +24,7 @@ public class Codes_Test extends BaseClass {
 	LoginPage_POM login; 
 	LogoutPage_POM logout;
 	Table searchTable;
+	static Logger log = Logger.getLogger(Codes_Test.class);
 	String className="";
 	String number="";
 	String documetNo="";
@@ -50,6 +53,7 @@ public class Codes_Test extends BaseClass {
 		codes = new Codes_POM(driver);
 		test = extent.startTest("Codes");
 		test.log(LogStatus.INFO, "Link to Test case document", "<a href='file://"+filePath+"'>TestCaseDocument</a>");
+		log.info("Codes");
 		number = FunctionUtils.generateRandomNumber();
 		test.log(LogStatus.PASS, "1.Log in as the admin user.");
 		codes.administratorDropDown().click();
@@ -353,8 +357,9 @@ public class Codes_Test extends BaseClass {
 		codes.getlocationDrodown().selectByVisibleText(routeData[1][0]);
 		sleep(2);
 		documetNo = codes.document_No().getAttribute("value");
-
-		codes.getDocumentTitle().sendKeys(routeData[1][1]+documetNo); 
+		sleep(2);
+		codes.getDocumentTitle().sendKeys(routeData[1][1]+documetNo);
+		sleep(2);
 		codes.getDocChangeSummary().sendKeys(routeData[1][2]+documetNo);
 		verticalScrollingDown();
 		codes.getConfirmButton().click();

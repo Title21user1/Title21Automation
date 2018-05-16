@@ -28,6 +28,7 @@ public class AttachmentControlInPackage_POM {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
+	//
 	
 	@FindBy(xpath=".//*[@id='AttachmentFile']")
 	WebElement Brouse;
@@ -51,10 +52,8 @@ public class AttachmentControlInPackage_POM {
 	@FindBy(css = ".fa.fa-plus-circle.t21-padding-right-5")
 	List<WebElement> Add_Link;
 	
-
-	@FindBy(css = ".form-control.t21-placeholder")
+	@FindBy(xpath = "//*[@placeholder='Filter results']")
 	List<WebElement> Search_Box;
-	
 	
 	@FindBy(css = "#Cabinet")
 	WebElement CabinetDropdown;

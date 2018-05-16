@@ -45,10 +45,10 @@ WebElement addgroupaddbutton;
 @FindBy(css=".btn.t21-btn-default.pull-left")
 WebElement addgroupcancelbutton;
              
-@FindBy(css=".form-control.t21-placeholder")
+@FindBy(xpath="//div[@class='input-group']//input[@class='form-control t21-placeholder']")
 WebElement groupfilterresult;
 
-@FindBy(xpath="//button[@type='submit'][@tabindex='1']")
+@FindBy(css=".t21-ajax-submit-button.form-control.form-inline.btn.t21-btn-default")
 WebElement groupfilterresutgobutton;
 
 @FindBy(xpath="//*[text()='No group found']")
