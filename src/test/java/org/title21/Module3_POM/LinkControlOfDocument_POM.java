@@ -45,7 +45,7 @@ public class LinkControlOfDocument_POM
 	@FindBy(css=".t21-js-unlink-item.t21-select-row")
 	WebElement document_checkbox;
 	
-	@FindBy(css=".form-control.t21-placeholder")
+	@FindBy(xpath="//div[@class='input-group']//input[@class='form-control t21-placeholder']")
 	WebElement placeholderonapproved;
 	
 	
@@ -56,6 +56,8 @@ public class LinkControlOfDocument_POM
 	@FindBy(css=".t21-js-row-link.event-id>a")
 	WebElement doconsearch;
 	
+	@FindBy(xpath = "//button[text()='Close']")
+	WebElement Close_button_Checkin ;
 	
 	@FindBy(xpath="//*[text()='Search']/following::input[@class='form-control t21-placeholder']")
 	WebElement linksearchonsearch;
@@ -63,8 +65,14 @@ public class LinkControlOfDocument_POM
 	@FindBy(css=".t21-no-bold")
 	WebElement doc_name;
 	
+	@FindBy(css=".fa.fa-book")
+	WebElement clickonapproveddoc;
+	
 	@FindBy(css=".btn.t21-btn-primary.t21-ajax-submit-button.process-btn-click")
 	List<WebElement>  confirm;
+	
+	@FindBy(xpath = ".//*[@name='submitButton']")
+	WebElement confirm_button_checkin;
 	
 	@FindBy(css=".btn.t21-btn-primary.t21-ajax-submit-button")
 	List<WebElement>  checkinconfirm;
@@ -114,13 +122,35 @@ public class LinkControlOfDocument_POM
 	
 	@FindBy(css=".t21-js-unlink-item.t21-select-row")
 	List<WebElement> checkobox_list;
-
+	
+	@FindBy(css = ".fa.fa-level-up.grid-button-icon")
+	WebElement checkin;
 	
 	@FindBy(css=".t21-ajax-submit-button.form-control.form-inline.btn.t21-btn-default")
 	List<WebElement> go;
 	
+	@FindBy(css = "#SelectedLocation")
+	WebElement locationdropdown ;
+	
+	@FindBy(css = "#OpenOnCheckOut")
+	WebElement checkbox1;
+	
+	@FindBy(css = ".flash")
+	WebElement docapprovedtab;
+	
 	@FindBy(css=".btn.t21-btn-primary.t21-ajax-submit-button")
 	List<WebElement> okbuttononsearch ;
+	
+	public WebElement getclickonapproveddoc()
+	{
+
+		return clickonapproveddoc;			
+	}
+	public WebElement docapprovetab()
+	{
+
+		return docapprovedtab;			
+	}
 	
 	public WebElement getedit()
 	{
@@ -131,6 +161,10 @@ public class LinkControlOfDocument_POM
 	{
 
 		return placeholderonapproved;			
+	}
+	public WebElement getcheckboxcheckout() {
+
+		return checkbox1;
 	}
 	public WebElement getgoonapproved()
 	{
@@ -153,7 +187,15 @@ public class LinkControlOfDocument_POM
 
 		return okbuttononsearch;			
 	}
+	public WebElement Close_Button_Checkin() {
+
+		return Close_button_Checkin;
+	}
 	
+	public WebElement getconfirm_button_checkin() {
+		return confirm_button_checkin;
+
+	}
 	public List<WebElement> getcheckbox_list()
 	{
 
@@ -170,6 +212,10 @@ public class LinkControlOfDocument_POM
 	{
 
 		return searchlinkdocumentslist;			
+	}
+	public WebElement getcheckin() {
+
+		return checkin;
 	}
 	public List<WebElement>getremove()
 	{
@@ -273,17 +319,30 @@ public class LinkControlOfDocument_POM
 		return Typebutton;			
 	}
 	
+	
+	
 	public Select getStatusDropdown()
 	{
 		Select selectObj=new Select(StatusDropdown);
 		return selectObj;
 	}
 	
-	
+	public Select getlocationdropdown() {
+		Select selectObj=new Select(locationdropdown);
+		return selectObj;
+	}
 	public List<WebElement> getadd_new_link()
 	{
 
 		return add_new_link;			
+	}
+	
+	public void checkoutcheckbox(Boolean check) {
+		if (!check && getcheckboxcheckout().isSelected()) {
+			getcheckboxcheckout().click();
+		} else if (check && !getcheckboxcheckout().isSelected()) {
+			getcheckboxcheckout().click();
+		}
 	}
 	
 	public void trainingItemsCheck(Boolean check)

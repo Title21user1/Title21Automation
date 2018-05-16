@@ -2,6 +2,9 @@ package org.title21.Module3_Test;
 
 import java.io.IOException;
 import java.util.List;
+
+import org.apache.log4j.Logger;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
@@ -54,20 +57,20 @@ public class LinkControlOfDocument_Test extends BaseClass {
 	LinkControlOfDocument_POM LinkControlofDocument;
 	AttachmentControlInDoc_POM attachment;
 	String documet_no_checkout = "";
-
-	@BeforeClass(alwaysRun=true)
+	public String Document_For_link="";
+	static Logger log = Logger.getLogger(LinkControlOfDocument_Test.class);
+	@BeforeClass(alwaysRun = true)
 	public void openURL() {
 		getBrowser();
 		className = this.getClass().getName();
 		createDirectory(className);
 		login = new LoginPage_POM(driver);
-		Attachmenttest = new AttachmentControlInDoc_Test();
 		attachment = new AttachmentControlInDoc_POM(driver);
 		RecentlyViewdAndFavorites = new RecentlyViewdAndFavorites_POM(driver);
-
+		logout = new LogoutPage_POM(driver);
 		LinkControlofDocument = new LinkControlOfDocument_POM(driver);
 		Credoc = new CreateDocument_POM(driver);
-
+ 
 		login.loginUser("aparnak", "aparna2450");
 		dbqueries = new DBQueries();
 
@@ -75,26 +78,34 @@ public class LinkControlOfDocument_Test extends BaseClass {
 
 	@Test(testName = "Link Control Of Document", groups = "Module3", priority = 0)
 	public void LinkControlOfDocument_POM() throws Exception {
-
+        
 		test = extent.startTest("Link Control Of Document");
-		
-		Attachmenttest.createdoc();
+		log.info("Link Control Of Document");
+		attachment.CreateDocument();
+		sleep(2);
+		Document_For_link = LinkControlofDocument.getdocname().getText();
 		sleep(5);
-		
-		String Document_name = LinkControlofDocument.getdocname().getText();
-				
+		System.out.println(Document_For_link);
 		Credoc.getPlusButtonuploadfile().click();
 		sleep(3);
 		scrolldown(2);
-		
-		Attachmenttest.fileupload("DocDocument.docx");
+		fileupload("DocDocument.docx");
+		sleep(3);
+		scrollup(2);
+		sleep(3);
+		attachment.CreateDocument();
 		sleep(5);
-		
+		String Document_name = LinkControlofDocument.getdocname().getText();
+		sleep(3);
+		Credoc.getPlusButtonuploadfile().click();
+		sleep(3);
 		scrolldown(2);
-		
+		fileupload("DocDocument.docx");
+		sleep(5);
+		scrolldown(2);
 		attachment.getAddnew().get(0).click();
 		sleep(3);
-		Attachmenttest.fileupload("DocDocument2.docx");
+		fileupload("DocDocument2.docx");
 		sleep(5);
 		Linkattached("Open", "2/22/2018", 24);
 		sleep(5);
@@ -122,9 +133,9 @@ public class LinkControlOfDocument_Test extends BaseClass {
 		// show attachment
 		LinkControlofDocument.getdoconsearch().click();
 		scrolldown(3);
-		/*
-		 * verticalScrollingDown(); verticalScrollingDown(); verticalScrollingDown();
-		 */
+		
+		// * verticalScrollingDown(); verticalScrollingDown(); verticalScrollingDown();
+		 
 		Linkattached("Archived", "1/1/2018", 25);
 		sleep(8);
 		Linkattached("Both", "2/28/2018", 25);
@@ -146,21 +157,23 @@ public class LinkControlOfDocument_Test extends BaseClass {
 		LinkControlofDocument.getadd_new_link().get(1).click();
 		sleep(8);
 		ref_documents = LinkControlofDocument.getselected_doc_from_link().get(2).getText();
+		sleep(3);
 		System.out.println("data is" + ref_documents);
 		sleep(5);
-		searchlinkonlinkwindow(ref_documents, 8);
+		searchlinkonlinkwindow(Document_For_link, 8);
 		sleep(4);
 		test.log(LogStatus.PASS, "" + "19.Again click on add new links" + "<br/>"
 				+ "20.Link one document and note down the number of linked document(for eg: doc no. 001.406: 0.0)"
 				+ "<br/>" + test.addScreenCapture(captureScreenShot(driver, "delete_document")));
-		Search(ref_documents);
+		Search(Document_For_link);
 		LinkControlofDocument.getdoconsearch().click();
 		sleep(3);
-		LinkControlofDocument.getedit().click();
+		//LinkControlofDocument.getedit().click();
+		sleep(3);
 		scrolldown(3);
-		/*
-		 * verticalScrollingDown(); verticalScrollingDown(); verticalScrollingDown();
-		 */
+		
+		 //verticalScrollingDown(); verticalScrollingDown(); verticalScrollingDown();
+		 
 		sleep(6);
 		for (WebElement option : LinkControlofDocument.getsearchlinklist()) {
 			if (String.valueOf(option.getText()).equals(Document_name)) {
@@ -180,7 +193,7 @@ public class LinkControlOfDocument_Test extends BaseClass {
 		LinkControlofDocument.getadd_new_link().get(1).click();
 		sleep(5);
 		// searchlinkonlinkwindow("1.0", 8);
-		LinkControlofDocument.getlinksearchonsearch().sendKeys("001.412");
+		LinkControlofDocument.getlinksearchonsearch().sendKeys("effective");
 		LinkControlofDocument.getGoButton().get(8).click();
 		sleep(3);
 		test.log(LogStatus.PASS,
@@ -195,7 +208,7 @@ public class LinkControlOfDocument_Test extends BaseClass {
 		searchlinkonlinkwindow(effective_doc, 8);
 		sleep(5);
 		verticalScrollingUp();
-		Search(effective_doc);
+		Search(effective_doc);//effective_doc
 		LinkControlofDocument.getdoconsearch().click();
 		RecentlyViewd = new RecentlyViewedAndFavorites_Test();
 		sleep(7);
@@ -214,14 +227,14 @@ public class LinkControlOfDocument_Test extends BaseClass {
 						+ "<b>ER12: The document is moved to effective cabinet and major revision is updated. <b>"
 						+ test.addScreenCapture(captureScreenShot(driver, "delete_document")));
 		sleep(4);
-		Search(ref_documents);
+		Search(Document_For_link);
 		LinkControlofDocument.getdoconsearch().click();
+		sleep(3);
 		scrolldown(3);
-
-		sleep(7);
+		sleep(4);
 		test.log(LogStatus.PASS,
-				"" + "36.Open the document used in step (20)." + "<br/>" + "37.Go to link control."
-						+"<br/>"+ "<b>ER 13: The major revision document is available in the link control.<b>" + "<br/>"
+				"" + "36.Open the document used in step (20)." + "<br/>" + "37.Go to link control." + "<br/>"
+						+ "<b>ER 13: The major revision document is available in the link control.<b>" + "<br/>"
 						+ test.addScreenCapture(captureScreenShot(driver, "delete_document")));
 
 		scrollup(3);
@@ -295,8 +308,8 @@ public class LinkControlOfDocument_Test extends BaseClass {
 							+ test.addScreenCapture(captureScreenShot(driver, "open_status_linklist")));
 		} else if (status.equalsIgnoreCase("Archived")) {
 
-			test.log(LogStatus.PASS, "10.In the link control, click on Add Newlink."
-					+"<br/>" + "11.Select Status: Archived, Created between (Select dates for eg: 1/1/2018 and 3/28/2018) and Type: Document"
+			test.log(LogStatus.PASS, "10.In the link control, click on Add Newlink." + "<br/>"
+					+ "11.Select Status: Archived, Created between (Select dates for eg: 1/1/2018 and 3/28/2018) and Type: Document"
 					+ "<br/>" + "<br/>" + "<b>ER5: The Archived documents list appears. <b>"
 					+ test.addScreenCapture(captureScreenShot(driver, "Archived_list")));
 
@@ -321,10 +334,14 @@ public class LinkControlOfDocument_Test extends BaseClass {
 		sleep(4);
 		System.out.println(doc_name);
 		LinkControlofDocument = new LinkControlOfDocument_POM(driver);
+		sleep(4);
 		if (status.equalsIgnoreCase("open")) {
 			searchlinkonlinkwindow(doc_name, 2);
 
-		} else {
+		}
+		
+		else {
+			sleep(3); 
 			LinkControlofDocument.getclose().click();
 		}
 
@@ -336,21 +353,24 @@ public class LinkControlOfDocument_Test extends BaseClass {
 		Credoc = new CreateDocument_POM(driver);
 		documentRoutes = new DocumentRoutes_POM(driver);
 		sleep(5);
-		Credoc.getcontextmenu().click();
+		/*Credoc.getcontextmenu().click();
 		sleep(5);
+		LinkControlofDocument.getcheckin().click();
+		sleep(4);
+		LinkControlofDocument.getconfirm_button_checkin().click();
+		sleep(4);
+		LinkControlofDocument.Close_Button_Checkin().click();*/
+		sleep(4);
+	    Credoc.getcontextmenu().click();
+		sleep(3);
 		Credoc.getcheckoutbutton().click();
+		sleep(3);
+		LinkControlofDocument.checkoutcheckbox(true);
 		sleep(2);
-		Credoc.trainingItemsCheck(true);
-		sleep(2);
-		LinkControlofDocument.getconfirm().get(1).click();
-		sleep(5);
-		if (Credoc.getcheckincancelsuccess().isDisplayed()) {
-			Credoc.getcheckincancelsuccess();
-			Credoc.getcheckincancelsuccess().click();
-			Credoc.getcheckincancelsuccess().click();
-		}
-
+		LinkControlofDocument.getconfirm_button_checkin().click();
+        sleep(2);
 		RecentlyViewdAndFavorites.datepicker().click();
+		sleep(2);
 		RecentlyViewdAndFavorites.gettodaysdate().click();
 		sleep(3);
 		documet_no_checkout1 = RecentlyViewdAndFavorites.getDocument_no_after_checkout().getText();
@@ -364,6 +384,8 @@ public class LinkControlOfDocument_Test extends BaseClass {
 		documentRoutes.getAddApproverLink().click();
 		sleep(2);
 		documentRoutes.getApproverRole().selectByVisibleText("Approver");
+		sleep(5);
+		LinkControlofDocument.getlocationdropdown().selectByVisibleText("All");
 		sleep(2);
 		documentRoutes.getnameinAddApprover().selectByVisibleText("sameer");
 		documentRoutes.getSequenceinAddApprover().selectByVisibleText("2");
@@ -376,11 +398,10 @@ public class LinkControlOfDocument_Test extends BaseClass {
 		sleep(2);
 		documentRoutes.checkIn_Route().click();
 		sleep(2);
-		documentRoutes.checkInRouteSubmit_Button().click();
-		sleep(3);
-		LinkControlofDocument.getcheckinclose().get(5).click();
+		LinkControlofDocument.getconfirm_button_checkin().click();
 		sleep(5);
-		logout = new LogoutPage_POM(driver);
+		LinkControlofDocument.Close_Button_Checkin().click();
+		sleep(3);
 		logout.logoutFunction();
 		sleep(4);
 	}
@@ -407,12 +428,12 @@ public class LinkControlOfDocument_Test extends BaseClass {
 		documentRoutes.wizard_Option().click();
 		documentRoutes.approval_Tab().click();
 		sleep(2);
-		LinkControlofDocument.getplaceholderonapproved().sendKeys("001.412");
+		LinkControlofDocument.getplaceholderonapproved().sendKeys(doc_name);
 		LinkControlofDocument.getGoButton().get(0).click();
-		sleep(2);
-		LinkControlofDocument.getdoconapproved().get(12).click();
-		documentRoutes.documentTab_ForApprover().click();
-		sleep(2);
+		LinkControlofDocument.getclickonapproveddoc().click();
+		sleep(5);
+		LinkControlofDocument.docapprovetab().click();
+		sleep(3);
 		documentRoutes.documentApprove_Button().click();
 		sleep(2);
 		documentRoutes.pinTo_Approve().clear();
@@ -442,7 +463,7 @@ public class LinkControlOfDocument_Test extends BaseClass {
 			verticalScrollingUp();
 		}
 	}
-
+	
 	private void Search(String Searchdata) {
 		scrollup(2);
 		RecentlyViewdAndFavorites = new RecentlyViewdAndFavorites_POM(driver);
@@ -454,18 +475,27 @@ public class LinkControlOfDocument_Test extends BaseClass {
 		RecentlyViewdAndFavorites.getEnterDocNo().sendKeys(Searchdata);
 		RecentlyViewdAndFavorites.SearchGobutton().click();
 	}
-	
+
+	public void fileupload(String uploadFileName) {
+
+		fileUploadPath = System.getProperty("user.dir") + "\\testdata";
+		fileUploadPath = fileUploadPath + "\\" + uploadFileName;
+		Credoc.getBrouse().sendKeys(fileUploadPath);
+		sleep(2);
+		Credoc.getAddButtonupload().click();
+
+	}
+
 	@AfterMethod
-	public void afterClass() throws IOException
-	{
+	public void afterClass() throws IOException {
 		cleanDownloadDirectory();
 		sleep(2);
 		logout = new LogoutPage_POM(driver);
 		logout.logoutFunction();
 		sleep(2);
 	}
-	
-	@AfterClass(alwaysRun=true)
+
+	@AfterClass(alwaysRun = true)
 	public void closeBrowserInstance() {
 
 		extent.endTest(test);
