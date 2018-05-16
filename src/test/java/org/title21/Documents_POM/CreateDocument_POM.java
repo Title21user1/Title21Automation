@@ -45,7 +45,7 @@ public class CreateDocument_POM
 	@FindBy(css="#CabinetSection")
 	WebElement Section;
 
-	@FindBy(css=".form-control.t21-placeholder")
+	@FindBy(xpath="//div[@class='input-group']//input[@class='form-control t21-placeholder']")
 	WebElement search;
 
 	@FindBy(css=".t21-ajax-submit-button.form-control.form-inline.btn.t21-btn-default")
