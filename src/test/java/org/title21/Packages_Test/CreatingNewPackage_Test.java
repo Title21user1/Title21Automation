@@ -22,7 +22,6 @@ public class CreatingNewPackage_Test extends BaseClass{
 	LoginPage_POM login;
 	LogoutPage_POM logout;
 	CreatingNewPackage_POM creatingNewPackage;
-	static Logger log = Logger.getLogger(CreatingNewPackage_Test.class);
 	String className="";
 	String packageNo="";
 	String fileUploadPath="";
@@ -34,6 +33,7 @@ public class CreatingNewPackage_Test extends BaseClass{
 	Table searchTable;
 	DBQueries dbqueries;
 	AdminData adminData=new AdminData();
+	static Logger log = Logger.getLogger(CreatingNewPackage_Test.class);
 	String testcaseName="TestCase-WIA-Creating_new_package.docx";	
 	String filePath = System.getProperty("user.dir") + "\\TestCases\\"+testcaseName;
 
