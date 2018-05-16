@@ -78,7 +78,7 @@ public class LinkControlOfDocument_Test extends BaseClass {
 
 		test = extent.startTest("Link Control Of Document");
 		
-		Attachmenttest.createdoc();
+		//Attachmenttest.createdoc();
 		sleep(5);
 		
 		String Document_name = LinkControlofDocument.getdocname().getText();

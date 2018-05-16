@@ -39,6 +39,7 @@ public class CreateNewUser_Test extends BaseClass{
 		className = this.getClass().getName();
 		createDirectory(className);
 		login=new LoginPage_POM(driver);
+		logout=new LogoutPage_POM(driver);
 		login.loginFunction();
 	}
 

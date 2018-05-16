@@ -18,7 +18,7 @@ public class Delete_Employee_POM
 		PageFactory.initElements(driver, this);
 	}
 
-	@FindBy(css=".form-control.t21-placeholder")
+	@FindBy(xpath="//div[@class='input-group']//input[@class='form-control t21-placeholder']")
 	WebElement Employeefilterresult;
 
 	@FindBy(css=".modal-title>span")
