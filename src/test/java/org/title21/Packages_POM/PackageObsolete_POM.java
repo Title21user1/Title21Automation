@@ -451,13 +451,20 @@ public class PackageObsolete_POM {
 	}
 
 	
-
+	public void Prerequsite() throws Exception
+	{
+		DBQueries dbqueries = new DBQueries();
+		DBConnection.executeStoredProcedure(dbqueries.disablePermissionProhibitUserAttachingArchivedDoc);
+		DBConnection.executeStoredProcedure(dbqueries.disablePermissionProhibitUserAttachingReleasedDoc);
+		DBConnection.executeStoredProcedure(dbqueries.PromoteindexCards);
+		DBConnection.executeStoredProcedure(dbqueries.AttachingApprovedDoc);
+	}
 	public void GenerateEffectiveFile(String scenario) throws Exception
 
 	{
 		LoginPage_POM login = new LoginPage_POM(driver);
 	    DBQueries dbqueries = new DBQueries();
-		DocumentRoutes_POM documentRoutes = new DocumentRoutes_POM(driver);
+	    DocumentRoutes_POM documentRoutes = new DocumentRoutes_POM(driver);
 		LogoutPage_POM logout = new LogoutPage_POM(driver);
 		BaseClass BaseClass = new BaseClass();
 		PeriodicOwnedDocuments_POM periodicReviews = new PeriodicOwnedDocuments_POM(driver);
@@ -493,7 +500,7 @@ public class PackageObsolete_POM {
 		getcheckin().click();
 		org.title21.utility.BaseClass.sleep(3);
 		getconfirm_button_checkin().click();
-		org.title21.utility.BaseClass.sleep(7);
+		org.title21.utility.BaseClass.sleep(8);
 		Close_Button_Checkin().click();
 		org.title21.utility.BaseClass.sleep(8);
 		getcontextmenu().click();
@@ -561,9 +568,9 @@ public class PackageObsolete_POM {
 		org.title21.utility.BaseClass.sleep(5);
 		getdoconapproved().get(12).click();
 		documentRoutes.documentTab_ForApprover().click();
-		org.title21.utility.BaseClass.sleep(2);
+		org.title21.utility.BaseClass.sleep(4);
 		documentRoutes.documentApprove_Button().click();
-		org.title21.utility.BaseClass.sleep(2);
+		org.title21.utility.BaseClass.sleep(6);
 		documentRoutes.pinTo_Approve().clear();
 		documentRoutes.pinTo_Approve().sendKeys("262829");
 		documentRoutes.checkInRouteSubmit_Button().click();

@@ -73,7 +73,7 @@ public class PeriodicDelegate_Test extends BaseClass {
 						+ "<b>ER 4 : The second test users name is updated in the Delegated To field <b>"
 						+ test.addScreenCapture(captureScreenShot(driver, "adddelegateuser ")));
 		
-		logout.logoutFunction();
+		logout.logoutFunction();//test
 		sleep(2);
 		login.loginUser("aparnak", "aparna2450");
 		Reviewscreen_Document();

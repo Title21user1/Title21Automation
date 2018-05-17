@@ -20,5 +20,7 @@ public class DBQueries
 	public final String doNotForwardAttachedIndexCards="update tblProcessSteps set DoNotForwardAttachedIndexCards = 1  where ProcessStep='DCO in Progress' AND process='Open DCOs'";	
 	public final String DCOsValue="select DoNotForwardAttachedIndexCards from tblProcessSteps where ProcessStep='DCO in Progress' AND process='Open DCOs'";
 	public final String DeleteEbinder="DELETE FROM [dbo].[tblOrganizers] WHERE OrgName='eBinder Test'";
+	public final String PromoteindexCards ="update tblOptionSettingsPublic set PromoteAllIndexCardsAtOnce = '0'";
+	public final String AttachingApprovedDoc ="update tblOptionSettingsPublic set WarnUserOnAttachingApprovedDoc = 0 where AutoNumber=2";
 	
 }
