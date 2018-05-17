@@ -8,6 +8,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
+import org.title21.DBConnection.DBConnection;
+import org.title21.DBConnection.DBQueries;
 
 public class LinkControlOfDocument_POM 
 
@@ -319,7 +321,14 @@ public class LinkControlOfDocument_POM
 		return Typebutton;			
 	}
 	
-	
+	public void Prerequsite() throws Exception
+	{
+		DBQueries dbqueries = new DBQueries();
+		DBConnection.executeStoredProcedure(dbqueries.disablePermissionProhibitUserAttachingArchivedDoc);
+		DBConnection.executeStoredProcedure(dbqueries.disablePermissionProhibitUserAttachingReleasedDoc);
+		DBConnection.executeStoredProcedure(dbqueries.PromoteindexCards);
+		DBConnection.executeStoredProcedure(dbqueries.AttachingApprovedDoc);
+	}
 	
 	public Select getStatusDropdown()
 	{

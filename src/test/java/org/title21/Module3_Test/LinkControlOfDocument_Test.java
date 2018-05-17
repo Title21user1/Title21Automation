@@ -29,6 +29,8 @@ import com.relevantcodes.extentreports.LogStatus;
 import org.title21.Module3_POM.AttachmentControlInDoc_POM;
 import org.title21.Module3_POM.LinkControlOfDocument_POM;
 import org.title21.Module3_Test.AttachmentControlInDoc_Test;
+import org.title21.Packages_POM.PackageObsolete_POM;
+import org.title21.PeriodicReviewers_POM.PeriodicDelegate_POM;
 
 public class LinkControlOfDocument_Test extends BaseClass {
 
@@ -58,6 +60,7 @@ public class LinkControlOfDocument_Test extends BaseClass {
 	AttachmentControlInDoc_POM attachment;
 	String documet_no_checkout = "";
 	public String Document_For_link="";
+	PackageObsolete_POM PackageObsoletePOM;
 	static Logger log = Logger.getLogger(LinkControlOfDocument_Test.class);
 	@BeforeClass(alwaysRun = true)
 	public void openURL() {
@@ -70,8 +73,8 @@ public class LinkControlOfDocument_Test extends BaseClass {
 		logout = new LogoutPage_POM(driver);
 		LinkControlofDocument = new LinkControlOfDocument_POM(driver);
 		Credoc = new CreateDocument_POM(driver);
- 
-		login.loginUser("aparnak", "aparna2450");
+		PackageObsoletePOM=new PackageObsolete_POM(driver);
+		login.loginUser("saurabhp", "Title123456*");
 		dbqueries = new DBQueries();
 
 	}
@@ -80,7 +83,12 @@ public class LinkControlOfDocument_Test extends BaseClass {
 	public void LinkControlOfDocument_POM() throws Exception {
         
 		test = extent.startTest("Link Control Of Document");
+		sleep(3);
+		LinkControlofDocument.Prerequsite();
 		log.info("Link Control Of Document");
+		sleep(5);
+		PackageObsoletePOM.GenerateEffectiveFile("1");
+		System.out.print("document is"+PackageObsoletePOM.documetNo);
 		attachment.CreateDocument();
 		sleep(2);
 		Document_For_link = LinkControlofDocument.getdocname().getText();
@@ -165,11 +173,11 @@ public class LinkControlOfDocument_Test extends BaseClass {
 		test.log(LogStatus.PASS, "" + "19.Again click on add new links" + "<br/>"
 				+ "20.Link one document and note down the number of linked document(for eg: doc no. 001.406: 0.0)"
 				+ "<br/>" + test.addScreenCapture(captureScreenShot(driver, "delete_document")));
-		Search(Document_For_link);
+		Search(Document_For_link);//Document_For_link
 		LinkControlofDocument.getdoconsearch().click();
 		sleep(3);
-		//LinkControlofDocument.getedit().click();
-		sleep(3);
+		/*LinkControlofDocument.getedit().click();
+		sleep(3); test*/
 		scrolldown(3);
 		
 		 //verticalScrollingDown(); verticalScrollingDown(); verticalScrollingDown();
@@ -192,8 +200,12 @@ public class LinkControlOfDocument_Test extends BaseClass {
 		// Search(Document_name);
 		LinkControlofDocument.getadd_new_link().get(1).click();
 		sleep(5);
+		LinkControlofDocument.getTypebuttonandLocationbutton().get(1).click();// location
+		sleep(3);
+		LinkControlofDocument.getheckbox().get(23).click();
+		sleep(5);
 		// searchlinkonlinkwindow("1.0", 8);
-		LinkControlofDocument.getlinksearchonsearch().sendKeys("effective");
+		LinkControlofDocument.getlinksearchonsearch().sendKeys(PackageObsoletePOM.documetNo);
 		LinkControlofDocument.getGoButton().get(8).click();
 		sleep(3);
 		test.log(LogStatus.PASS,
