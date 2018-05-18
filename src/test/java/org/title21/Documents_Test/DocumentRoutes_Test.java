@@ -60,12 +60,12 @@ public class DocumentRoutes_Test extends BaseClass{
 		sleep(3);
 		documentRoutes.getdocument().click();
 		sleep(3);
-		documentRoutes.getlocationDrodown().selectByVisibleText(routeData[1][0]);
+		documentRoutes.getlocationDrodown().selectByVisibleText("Dallas");
 		sleep(2);
 		documetNo = documentRoutes.document_No().getAttribute("value");
 
-		documentRoutes.getDocumentTitle().sendKeys(routeData[1][1]+documetNo); 
-		documentRoutes.getDocChangeSummary().sendKeys(routeData[1][2]+documetNo);
+		documentRoutes.getDocumentTitle().sendKeys("Test"+documetNo); 
+		documentRoutes.getDocChangeSummary().sendKeys("Test Summary"+documetNo);
 		verticalScrollingDown();
 		documentRoutes.getConfirmButton().click();
 		sleep(5);
@@ -92,8 +92,8 @@ public class DocumentRoutes_Test extends BaseClass{
 				test.log(LogStatus.PASS, "<b>ER 1- Add new approver popup screen is open.<b>"+
 						test.addScreenCapture(captureScreenShot(driver, "new approver popup")));
 
-				documentRoutes.getApproverRole().selectByVisibleText(routeData[1][3]);
-				test.log(LogStatus.PASS,"5.	Select Role (for eg: "+routeData[1][3]+")"); 
+				documentRoutes.getApproverRole().selectByVisibleText("Approver");
+				test.log(LogStatus.PASS,"5.	Select Role (for eg: Approver)"); 
 				sleep(2);
 				documentRoutes.approverAdd_Button().click();
 				documentRoutes.approverAdd_Button().click();
@@ -112,17 +112,17 @@ public class DocumentRoutes_Test extends BaseClass{
 
 				test.log(LogStatus.PASS,"7.	Enter all mandatory fields.");
 
-				documentRoutes.getLocationDropdown().selectByVisibleText(routeData[1][4]); 
+				documentRoutes.getLocationDropdown().selectByVisibleText("All"); 
 				sleep(2);
-				documentRoutes.getnameinAddApprover().selectByVisibleText(routeData[1][5]);
+				documentRoutes.getnameinAddApprover().selectByVisibleText("sameer");
 				documentRoutes.getSequenceinAddApprover().selectByVisibleText("1");
-				documentRoutes.getallottedDaysinAddApprover().selectByVisibleText(routeData[1][7]);
+				documentRoutes.getallottedDaysinAddApprover().selectByVisibleText("1 day");
 
 				test.log(LogStatus.PASS,"8.	Click on add button.");
 				documentRoutes.approverAdd_Button().click();
 				sleep(2);
 
-				if(verifyDocNameInTable(routeData[1][5]))
+				if(verifyDocNameInTable("sameer"))
 				{
 					test.log(LogStatus.PASS, "<b>ER 3- Individual approver is added.<b>"+
 							test.addScreenCapture(captureScreenShot(driver, "Individual approver is added")));
@@ -136,15 +136,15 @@ public class DocumentRoutes_Test extends BaseClass{
 				test.log(LogStatus.PASS,"9.	Click on the add approver link and add a Group approver (E.g. sp tester) as Sequence 2.");//[1][9] Sp Tester
 				documentRoutes.getAddApproverLink().click();
 				sleep(2);
-				documentRoutes.getApproverRole().selectByVisibleText(routeData[1][8]);
-				documentRoutes.getLocationDropdown().selectByVisibleText(routeData[1][4]);
+				documentRoutes.getApproverRole().selectByVisibleText("Group Approvers");
+				documentRoutes.getLocationDropdown().selectByVisibleText("All");
 				sleep(2);
-				documentRoutes.getnameinAddApprover().selectByVisibleText(routeData[1][9]);
+				documentRoutes.getnameinAddApprover().selectByVisibleText("Sp Tester");
 				documentRoutes.getSequenceinAddApprover().selectByVisibleText("2"); 
-				documentRoutes.getallottedDaysinAddApprover().selectByVisibleText(routeData[1][7]);
+				documentRoutes.getallottedDaysinAddApprover().selectByVisibleText("1 day");
 				documentRoutes.approverAdd_Button().click();
 				sleep(2);
-				if(verifyDocNameInTable(routeData[1][9]))
+				if(verifyDocNameInTable("Sp Tester"))
 				{
 					test.log(LogStatus.PASS, "<b>ER 4- Group approver is added.<b>"+
 							test.addScreenCapture(captureScreenShot(driver, "Group approver is added")));
@@ -163,11 +163,11 @@ public class DocumentRoutes_Test extends BaseClass{
 					test.log(LogStatus.PASS, "<b>ER 5- Signature route dialog appears..<b>"+
 							test.addScreenCapture(captureScreenShot(driver, "Signature route dialog appears.")));
 
-					documentRoutes.routeName_DropDown().selectByVisibleText(routeData[1][11]);
-					test.log(LogStatus.PASS, "11. Select the route (for ex. "+routeData[1][11]+") and click on add button.");
+					documentRoutes.routeName_DropDown().selectByVisibleText("routeneotest");
+					test.log(LogStatus.PASS, "11. Select the route (for ex. 'routeneotest') and click on add button.");
 					documentRoutes.approverAdd_Button().click();
 					sleep(4);
-					if(verifyDocNameInTable(routeData[1][11]))
+					if(verifyDocNameInTable("routeneotest"))
 					{
 						test.log(LogStatus.PASS, "<b>ER 6- Route is added.<b>"+
 								test.addScreenCapture(captureScreenShot(driver, "Route is added")));
@@ -282,25 +282,25 @@ public class DocumentRoutes_Test extends BaseClass{
 					documentRoutes.documentApprove_Button().click();
 					sleep(2);
 					documentRoutes.pinTo_Approve().clear();					
-					documentRoutes.pinTo_Approve().sendKeys(routeData[1][12]);
+					documentRoutes.pinTo_Approve().sendKeys("262829");
 					documentRoutes.checkInRouteSubmit_Button().click();
 					sleep(2);
 					logout.logoutFunction();
-
+					sleep(2);
 					login.loginUser(loginData[11][0], loginData[11][1]); 
 
 					documentRoutes.wizard_Option().click();
 					documentRoutes.approval_Tab().click();
 					sleep(2);
 
+					documentRoutes.approvalFilter_TextBox().clear();
 					documentRoutes.approvalFilter_TextBox().sendKeys(documetNo);
 					sleep(2);
 					documentRoutes.approvalFilterGo_Button().click();
 					sleep(2);
 					selectDocForApprovel(documetNo);
-
-					documentRoutes.searchDoc(documetNo);
-
+					
+					//documentRoutes.searchDoc(documetNo);
 
 					sleep(2);
 					documentRoutes.documentTab_ForApprover().click();
@@ -308,7 +308,7 @@ public class DocumentRoutes_Test extends BaseClass{
 					documentRoutes.documentApprove_Button().click();
 					sleep(2);
 					documentRoutes.pinTo_Approve().clear();
-					documentRoutes.pinTo_Approve().sendKeys(routeData[1][12]);
+					documentRoutes.pinTo_Approve().sendKeys("262829");
 					documentRoutes.checkInRouteSubmit_Button().click();
 					sleep(2);
 					logout.logoutFunction();

@@ -63,9 +63,9 @@ public class UpdateUser_Test extends BaseClass{
 		test.log(LogStatus.PASS, "<b>ER 1- User records Screen is displayed.<b>"+
 				test.addScreenCapture(captureScreenShot(driver, "User records Screen")));
 		
-		test.log(LogStatus.PASS, "4.Click on location drop-down and select the specific location (for eg. "+userData[1][0]+").");
+		test.log(LogStatus.PASS, "4.Click on location drop-down and select the specific location (for eg. Dallas.");
 		sleep(2);
-		updateUserPage.getLocationforFilter().selectByVisibleText(userData[1][0]);
+		updateUserPage.getLocationforFilter().selectByVisibleText("Dallas");
 		sleep(2);
 				
 		verifyLocationInTable();		
@@ -159,8 +159,8 @@ public class UpdateUser_Test extends BaseClass{
 					
 					test.log(LogStatus.PASS, "13.Enter password and confirm password");
 					sleep(3);
-					updateUserPage.new_PasswordInput().sendKeys(userData[1][5]);
-					updateUserPage.confirm_PasswordInput().sendKeys(userData[1][5]);
+					updateUserPage.new_PasswordInput().sendKeys("test123456");
+					updateUserPage.confirm_PasswordInput().sendKeys("test123456");
 					
 					test.log(LogStatus.PASS, "14.Click on confirm");
 					updateUserPage.UpdateUserConfirm_Button().click();
@@ -174,7 +174,7 @@ public class UpdateUser_Test extends BaseClass{
 					login.getUsername().sendKeys(adminData.getUserName());
 					login.getLogin_button().click();
 					sleep(2);
-					login.getpassword().sendKeys(userData[1][5]);
+					login.getpassword().sendKeys("test123456");
 					login.getLogin_button().click();
 					sleep(3);
 					test.log(LogStatus.PASS, "16.Login with that user and with updated password");
@@ -218,9 +218,9 @@ public class UpdateUser_Test extends BaseClass{
 						sleep(2);
 						updateUserPage.editPassword_checkBox().click();	
 						sleep(2);
-						updateUserPage.new_PasswordInput().sendKeys(userData[1][8]);
+						updateUserPage.new_PasswordInput().sendKeys("test1234567");
 						sleep(2);
-						updateUserPage.confirm_PasswordInput().sendKeys(userData[1][8]);
+						updateUserPage.confirm_PasswordInput().sendKeys("test1234567");
 						sleep(2);
 						test.log(LogStatus.PASS, "25.Click on cancel.");
 						updateUserPage.password_CancelTab().click();
@@ -235,7 +235,7 @@ public class UpdateUser_Test extends BaseClass{
 						//login.getUsername().sendKeys(adminData.getEmployeeName());
 						login.getLogin_button().click();
 						sleep(2);
-						login.getpassword().sendKeys(userData[1][8]);
+						login.getpassword().sendKeys("test1234567");
 						login.getLogin_button().click();
 						sleep(3);
 						
@@ -284,7 +284,8 @@ public class UpdateUser_Test extends BaseClass{
 		List<WebElement> tableCells=searchTable.gettableCells(4);				
 		
 		for (int i=0;i<tableCells.size();i++){
-			if (!userData[1][0].equalsIgnoreCase(tableCells.get(i).getText()))
+			
+			if (!tableCells.get(i).getText().equalsIgnoreCase("Dallas"))
 			{				
 				test.log(LogStatus.FAIL, "Expected location is not present in rowNum: "+i);
 				isRecordFound=false;

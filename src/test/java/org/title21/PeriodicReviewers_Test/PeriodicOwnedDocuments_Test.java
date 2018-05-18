@@ -70,11 +70,11 @@ public class PeriodicOwnedDocuments_Test extends BaseClass{
 		sleep(3);
 		periodicReviews.getdocument().click();
 		sleep(3);
-		periodicReviews.getlocationDrodown().selectByVisibleText(routeData[1][0]);
+		periodicReviews.getlocationDrodown().selectByVisibleText("Dallas");
 		sleep(4);
 		documetNo = periodicReviews.document_No().getAttribute("value");
-		periodicReviews.getDocumentTitle().sendKeys(routeData[1][1]+documetNo); 
-		periodicReviews.getDocChangeSummary().sendKeys(routeData[1][2]+documetNo);
+		periodicReviews.getDocumentTitle().sendKeys("Test"+documetNo); 
+		periodicReviews.getDocChangeSummary().sendKeys("Test Summary"+documetNo);
 		verticalScrollingDown();
 		periodicReviews.getConfirmButton().click();
 		sleep(5);
@@ -105,13 +105,13 @@ public class PeriodicOwnedDocuments_Test extends BaseClass{
 			sleep(5);
 			if(periodicReviews.addNewApprover_Header().isDisplayed())
 			{
-				periodicReviews.getApproverRole().selectByVisibleText(routeData[1][3]);
+				periodicReviews.getApproverRole().selectByVisibleText("Approver");
 				sleep(4);
-				periodicReviews.getLocationDropdown().selectByVisibleText(routeData[1][4]); 
+				periodicReviews.getLocationDropdown().selectByVisibleText("All"); 
 				sleep(4);
-				periodicReviews.getnameinAddApprover().selectByVisibleText(routeData[1][5]);
+				periodicReviews.getnameinAddApprover().selectByVisibleText("sameer");
 				periodicReviews.getSequenceinAddApprover().selectByVisibleText("1");
-				periodicReviews.getallottedDaysinAddApprover().selectByVisibleText(routeData[1][7]);
+				periodicReviews.getallottedDaysinAddApprover().selectByVisibleText("1 day");
 				periodicReviews.approverAdd_Button().click();
 				sleep(4);
 
@@ -183,7 +183,7 @@ public class PeriodicOwnedDocuments_Test extends BaseClass{
 						test.addScreenCapture(captureScreenShot(driver, "Edit periodic reviewer")));
 				
 				test.log(LogStatus.PASS, "10.Select location.");
-				periodicReviews.editPeriodicReviewersLocationDropDown().selectByVisibleText(routeData[1][0]);  //     "Antioch"
+				periodicReviews.editPeriodicReviewersLocationDropDown().selectByVisibleText("Dallas");  //     "Antioch"
 				sleep(4);
 				test.log(LogStatus.PASS, "11.Select two reviewers.");
 				periodicReviews.availablePeriodicReviewers_Filter().click();
@@ -270,7 +270,7 @@ public class PeriodicOwnedDocuments_Test extends BaseClass{
 			sleep(5);
 			test.log(LogStatus.PASS,"16.Run jobs to move the document to the effective cabinet."+DBConnection.executeStoredProcedure(dbqueries.moveDocsOnReleaseDate));
 			
-			driver.findElement(By.xpath("//li[text()='"+routeData[1][1]+documetNo+"']")).click();
+			driver.findElement(By.xpath("//li[text()='Test"+documetNo+"']")).click();
 			sleep(4);	
 			documentStatus = periodicReviews.document_Status().getText();
 			if(documentStatus.equals("Effective"))
@@ -282,7 +282,7 @@ public class PeriodicOwnedDocuments_Test extends BaseClass{
 			{
 				driver.navigate().refresh();
 				sleep(10);
-				driver.findElement(By.xpath("//li[text()='"+routeData[1][1]+documetNo+"']")).click();
+				driver.findElement(By.xpath("//li[text()='Test"+documetNo+"']")).click();
 				sleep(4);
 				if(documentStatus.equals("Effective"))
 				{
@@ -486,7 +486,7 @@ public class PeriodicOwnedDocuments_Test extends BaseClass{
 						test.addScreenCapture(captureScreenShot(driver, "review wizard")));
 				
 				test.log(LogStatus.PASS, "28.Enter pin and comment.");
-				periodicReviews.reviewPIN_TextBox().sendKeys(routeData[1][12]);
+				periodicReviews.reviewPIN_TextBox().sendKeys("262829");
 				
 				test.log(LogStatus.PASS, "29.Click on confirm button.");
 				periodicReviews.checkInRouteSubmit_Button().click();
@@ -552,7 +552,7 @@ public class PeriodicOwnedDocuments_Test extends BaseClass{
 			verticalScrollingUp();
 			periodicReviews.dontChange_Button().click();
 			sleep(4);
-			periodicReviews.reviewPIN_TextBox().sendKeys(routeData[1][12]);
+			periodicReviews.reviewPIN_TextBox().sendKeys("262829");
 			periodicReviews.checkInRouteSubmit_Button().click();
 			sleep(4);
 			
@@ -598,7 +598,7 @@ public class PeriodicOwnedDocuments_Test extends BaseClass{
 			sleep(4);
 			
 			test.log(LogStatus.PASS, "36.Select type Bypass required reviewer and click on confirm.");
-			periodicReviews.auditLogType_DropDown().selectByVisibleText(AuditLogs[1][0]); 
+			periodicReviews.auditLogType_DropDown().selectByVisibleText("Bypass Required Reviewer"); 
 			sleep(4);
 			periodicReviews.auditLogConfirm_Button().click();
 			sleep(4);
@@ -618,7 +618,7 @@ public class PeriodicOwnedDocuments_Test extends BaseClass{
 			
 			test.log(LogStatus.PASS, "37.Select type Cleared Bypass of Required Reviewer and click on confirm.");
 			verticalScrollingUp();
-			periodicReviews.auditLogType_DropDown().selectByVisibleText(AuditLogs[2][0]); 
+			periodicReviews.auditLogType_DropDown().selectByVisibleText("Cleared Bypass of Required Reviewer"); 
 			sleep(4);
 			periodicReviews.auditLogConfirm_Button().click();
 			sleep(4);
@@ -637,7 +637,7 @@ public class PeriodicOwnedDocuments_Test extends BaseClass{
 			test.log(LogStatus.PASS, "38.Select type Enter/Update Review and click on confirm.");
 			verticalScrollingUp();
 			sleep(4);
-			periodicReviews.auditLogType_DropDown().selectByVisibleText(AuditLogs[3][0]); 
+			periodicReviews.auditLogType_DropDown().selectByVisibleText("Enter/Update Review"); 
 			sleep(4);
 			verticalScrollingDown();
 			sleep(4);
@@ -748,7 +748,7 @@ public class PeriodicOwnedDocuments_Test extends BaseClass{
 		periodicReviews.documentApprove_Button().click();
 		sleep(4);
 		periodicReviews.pinTo_Approve().clear();
-		periodicReviews.pinTo_Approve().sendKeys(routeData[1][12]);
+		periodicReviews.pinTo_Approve().sendKeys("262829");
 		periodicReviews.checkInRouteSubmit_Button().click();
 		sleep(5);
 	}

@@ -83,7 +83,7 @@ public class Codes_Test extends BaseClass {
 		}
 
 		test.log(LogStatus.PASS, "5.Enter class name.");
-		codes.className_TextBox().sendKeys(codesData[1][0]+number);
+		codes.className_TextBox().sendKeys("Test case code"+number);
 
 		test.log(LogStatus.PASS, "6.Click on add button.");
 		codes.add_Button().click();
@@ -107,7 +107,7 @@ public class Codes_Test extends BaseClass {
 		codes.editClass_Icon().click();
 		sleep(2);
 		codes.className_TextBox().clear();
-		codes.className_TextBox().sendKeys(codesData[1][1]); 
+		codes.className_TextBox().sendKeys("Test case sp code"); 
 		test.log(LogStatus.PASS, "8.Click on add button.");
 		sleep(3);
 
@@ -139,10 +139,10 @@ public class Codes_Test extends BaseClass {
 		}
 
 		test.log(LogStatus.PASS, "10.Enter code category name.");
-		codes.codeCategory_TextBox().sendKeys(codesData[1][0]+number+" category"); 
+		codes.codeCategory_TextBox().sendKeys("Test case code"+number+" category"); 
 		test.log(LogStatus.PASS, "11.Click on add button.");
 		codes.add_Button().click();
-		sleep(3);
+		sleep(4);
 
 		if(codes.codeAddedSuccessfully_VerificationMsg().isDisplayed())
 		{
@@ -156,7 +156,7 @@ public class Codes_Test extends BaseClass {
 
 		test.log(LogStatus.PASS, "12.Click on the close button.");
 		codes.close_Button().click();
-		sleep(2);
+		sleep(4);
 
 		test.log(LogStatus.PASS, "13.Click on add code button.");
 		codes.addCodeName_Link().click();
@@ -186,21 +186,20 @@ public class Codes_Test extends BaseClass {
 		}
 
 		test.log(LogStatus.PASS, "15.Enter code Id");
-		codes.addCodeId_TextBox().sendKeys(codesData[1][2]+number); 
+		codes.addCodeId_TextBox().sendKeys("C"+number); 
 
 		test.log(LogStatus.PASS, "16.Enter code name.");
-		codes.addCodeName_TextBox().sendKeys(codesData[1][3]+number); 
+		codes.addCodeName_TextBox().sendKeys("Test"+number); 
 
 		test.log(LogStatus.PASS, "17.Enter definition.");
-		codes.addCodeDefinition_TextBox().sendKeys(codesData[1][4]); 
+		codes.addCodeDefinition_TextBox().sendKeys("Summary test"); 
 
 		test.log(LogStatus.PASS, "18.Select criticality from criticality dropdown.");
-		codes.addCodeCritIdDropDown().selectByVisibleText(codesData[1][5]); 
-		sleep(2);
+		codes.addCodeCritIdDropDown().selectByVisibleText("Critical"); 
+		sleep(4);
 		test.log(LogStatus.PASS, "19.Click on add button.");
 		codes.add_Button().click();
-
-		sleep(3);
+		sleep(5);
 		if(codes.codeAddedSuccessfully_VerificationMsg().isDisplayed())
 		{
 			test.log(LogStatus.PASS, "<b>ER8- A successful message for newly added code is displayed.<b>"+
@@ -213,14 +212,14 @@ public class Codes_Test extends BaseClass {
 		}
 		
 		codes.close_Button().click();
-		sleep(2);
+		sleep(4);
 		
 		test.log(LogStatus.PASS, "20.Enter the code id same as used in step(15).");
 		codes.addCodeName_Link().click();
 		sleep(3);
 		if(codes.addCodePopUp_Header().isDisplayed())
 		{
-			codes.addCodeId_TextBox().sendKeys(codesData[1][2]+number); 
+			codes.addCodeId_TextBox().sendKeys("C"+number); 
 			sleep(2);
 			if(codes.codeId_ErrorMsg().isDisplayed())
 			{
@@ -233,7 +232,7 @@ public class Codes_Test extends BaseClass {
 			}
 
 			test.log(LogStatus.PASS, "21.Enter the code name same as used in step(16)");
-			codes.addCodeName_TextBox().sendKeys(codesData[1][3]+number);
+			codes.addCodeName_TextBox().sendKeys("Test"+number);
 			sleep(2);
 
 			if(codes.nameAlreadyExists_ErrorMsg().isDisplayed())
@@ -256,23 +255,24 @@ public class Codes_Test extends BaseClass {
 		}
 
 		test.log(LogStatus.PASS, "23.Select other code class from code class dropdown.");
-		codes.codeClass_DropDown().selectByVisibleText(codesData[1][6]); 
+		codes.codeClass_DropDown().selectByVisibleText("Test doc class"); 
 
-		sleep(2);
+		sleep(5);
 		test.log(LogStatus.PASS, "24.Click on add code.");
 		codes.addCodeName_Link().click();
 
-		sleep(3);
+		sleep(5);
 		test.log(LogStatus.PASS, "25.Enter code name same as used in step (16)");
-		codes.addCodeName_TextBox().sendKeys(codesData[1][3]+number); 
+		codes.addCodeName_TextBox().sendKeys("Test"+number); 
 		codes.addCodeId_TextBox().click();
-		sleep(2);
+		sleep(5);
 
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		try
 		{
 			codes.nameAlreadyExists_ErrorMsg().isDisplayed();
-			test.log(LogStatus.FAIL, "Unable to find the Code name is accepted as Code Name is only unique within the Code Class.");
+			test.log(LogStatus.FAIL, "Unable to find the Code name is accepted as Code Name is only unique within the Code Class."+
+			test.addScreenCapture(captureScreenShot(driver, "Code name is accepted")));
 		}
 		catch(NoSuchElementException e)
 		{
@@ -281,7 +281,7 @@ public class Codes_Test extends BaseClass {
 		}
 		driver.manage().timeouts().implicitlyWait(120, TimeUnit.SECONDS);
 		codes.cancel_Button().click();
-		sleep(2);
+		sleep(5);
 
 		verticalScrollingDown();
 		sleep(2);
@@ -292,16 +292,16 @@ public class Codes_Test extends BaseClass {
 		verticalScrollingUp();
 		sleep(2);
 		test.log(LogStatus.PASS, "27.Search for 'IndxCard' in the search field and click on go button.");
-		codes.filterResult_TextBox().sendKeys(codesData[1][7]);
+		codes.filterResult_TextBox().sendKeys("IndxCard");
 		sleep(2);
 		codes.filterResultGo_Button().click();
 		sleep(2);
 
 		test.log(LogStatus.PASS, "28.Edit the 'IndxCard'.");
-		clickOnEditButton(codesData[1][7]); 
+		clickOnEditButton("IndxCard"); 
 		sleep(2);
 		test.log(LogStatus.PASS, "29.Search for newly created code class (in previous steps) in the select a code class section.");
-		sleep(4);
+		sleep(7);
 		if(codes.updateCodeAvailabilityIndexCard_Header().isDisplayed())
 		{
 			WebElement eleCodeClass = driver.findElement(By.xpath("//table[@class='t21-table-hover-custom t21-margin-bottom-10']//td/a[contains(text(),'"+number+"')]"));
@@ -354,13 +354,13 @@ public class Codes_Test extends BaseClass {
 		sleep(3);
 		codes.getdocument().click();
 		sleep(3);
-		codes.getlocationDrodown().selectByVisibleText(routeData[1][0]);
+		codes.getlocationDrodown().selectByVisibleText("Dallas");
 		sleep(2);
 		documetNo = codes.document_No().getAttribute("value");
 		sleep(2);
-		codes.getDocumentTitle().sendKeys(routeData[1][1]+documetNo);
+		codes.getDocumentTitle().sendKeys("Test"+documetNo);
 		sleep(2);
-		codes.getDocChangeSummary().sendKeys(routeData[1][2]+documetNo);
+		codes.getDocChangeSummary().sendKeys("Test"+documetNo);
 		verticalScrollingDown();
 		codes.getConfirmButton().click();
 		sleep(5);
@@ -371,11 +371,11 @@ public class Codes_Test extends BaseClass {
 		sleep(2);
 
 		test.log(LogStatus.PASS, "36.Select the code class, which was added to documents (Index Cards) in step 27, from the 'Code Class' dropdown.");
-		codes.codeClass_DropDown().selectByVisibleText(codesData[1][0]+number); 
+		codes.codeClass_DropDown().selectByVisibleText("Test case code"+number); 
 		sleep(2);
 
 		String categoryName=codes.codeCategoryOn_CodeTab().getText(); 
-		if(categoryName.equalsIgnoreCase(codesData[1][0]+number+" category")) 
+		if(categoryName.equalsIgnoreCase("Test case code"+number+" category")) 
 		{
 			test.log(LogStatus.PASS, "<b>ER14- Newly created Code Class made available to an index card and the category is available.<b>"+
 					test.addScreenCapture(captureScreenShot(driver, "Newly created Code Class made available")));
@@ -391,7 +391,7 @@ public class Codes_Test extends BaseClass {
 
 		test.log(LogStatus.PASS, "38.Verify with the code name added in step (20).");
 		String codeName = codes.codeName_OnCodesTab().getText();
-		if(codeName.equalsIgnoreCase(codesData[1][3]+number)) 
+		if(codeName.equalsIgnoreCase("Test"+number)) 
 		{
 			test.log(LogStatus.PASS, "<b>ER15- Code name is available and matched.<b>"+
 					test.addScreenCapture(captureScreenShot(driver, "Newly created Code Class made available")));
@@ -406,7 +406,7 @@ public class Codes_Test extends BaseClass {
 		sleep(2);
 
 		String codeNameInTable = codes.codeNameWithDetails_OnCodesTab().getText();
-		if(codeNameInTable.equalsIgnoreCase(codesData[1][3]+number)) 
+		if(codeNameInTable.equalsIgnoreCase("Test"+number)) 
 		{
 			test.log(LogStatus.PASS, "<b>ER16- A code is added to the 'Applicable codes' list is matched.<b>"+
 					test.addScreenCapture(captureScreenShot(driver, "Applicable codes")));
@@ -423,7 +423,7 @@ public class Codes_Test extends BaseClass {
 		test.log(LogStatus.PASS, "41.Re-open the document and navigate to the codes tab.");
 		codes.codes_Tab().click();
 		sleep(2);
-		codes.codeClass_DropDown().selectByVisibleText(codesData[1][0]+number); 
+		codes.codeClass_DropDown().selectByVisibleText("Test case code"+number); 
 		sleep(2);
 
 		codes.codeCategory_PlusSign().click();
@@ -432,7 +432,7 @@ public class Codes_Test extends BaseClass {
 		sleep(2);
 
 		codeNameInTable = codes.codeNameWithDetails_OnCodesTab().getText();
-		if(codeNameInTable.equalsIgnoreCase(codesData[1][3]+number)) 
+		if(codeNameInTable.equalsIgnoreCase("Test"+number)) 
 		{
 			test.log(LogStatus.PASS, "<b>ER17- Document was saved with the selected code applied.<b>"+
 					test.addScreenCapture(captureScreenShot(driver, "Applicable codes")));

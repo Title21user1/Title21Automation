@@ -67,9 +67,9 @@ public class CreateDeleteGroups_Test extends BaseClass {
 			adminCreateGroup.verifyAddGroupPopUp(driver);
 			
 			sleep(2);
-			adminCreateGroup.groupLocationDropDownClick().selectByVisibleText(groupData[1][0]);
+			adminCreateGroup.groupLocationDropDownClick().selectByVisibleText("Dallas");
 			
-			adminCreateGroup.addGroupTextBox().sendKeys(groupData[1][1]+number);
+			adminCreateGroup.addGroupTextBox().sendKeys("Test"+number);
 			sleep(2);
 			test.log(LogStatus.PASS, "<b>ER 2- User select Location with new Group name.<b>"+
 					test.addScreenCapture(captureScreenShot(driver, "Add Group")));
@@ -82,7 +82,7 @@ public class CreateDeleteGroups_Test extends BaseClass {
 				
 				if(adminCreateGroup.verifyAlerPopUp(driver)) 
 				{
-					test.log(LogStatus.PASS, "<b>ER 3- Verify Message with Group '"+groupData[1][1]+number+"' added successfully with Close button.<b>"+
+					test.log(LogStatus.PASS, "<b>ER 3- Verify Message with Group 'Test"+number+"' added successfully with Close button.<b>"+
 							test.addScreenCapture(captureScreenShot(driver, "Close alert PopUp.")));
 					
 					test.log(LogStatus.PASS, "6.Click on 'Close' button. And user should navigate to previous screen (ER 1).");
@@ -101,9 +101,9 @@ public class CreateDeleteGroups_Test extends BaseClass {
 				adminCreateGroup.verifyAddGroupPopUp(driver);
 				
 				test.log(LogStatus.PASS, "8.Select same Location with Group name which is previously created.");
-				adminCreateGroup.groupLocationDropDownClick().selectByVisibleText(groupData[1][0]);
+				adminCreateGroup.groupLocationDropDownClick().selectByVisibleText("Dallas");
 				
-				adminCreateGroup.addGroupTextBox().sendKeys(groupData[1][1]+number);
+				adminCreateGroup.addGroupTextBox().sendKeys("Test"+number);
 				sleep(2);
 				
 				test.log(LogStatus.PASS, "9.Click on 'Add' button");
@@ -129,7 +129,7 @@ public class CreateDeleteGroups_Test extends BaseClass {
 				if(adminCreateGroup.groupFilterResult() != null)
 				{
 					adminCreateGroup.groupFilterResult().click();
-					adminCreateGroup.groupFilterResult().sendKeys(groupData[1][1]+number);
+					adminCreateGroup.groupFilterResult().sendKeys("Test"+number);
 					adminCreateGroup.groupFilterResutGoButton().click();
 					
 					sleep(2);
@@ -138,14 +138,14 @@ public class CreateDeleteGroups_Test extends BaseClass {
 					for (WebElement element:groupTable.getColumnData(1)){
 						String groups = element.getText();
 						sleep(1);
-						if(groups.equalsIgnoreCase(groupData[1][1]+number)) {
+						if(groups.equalsIgnoreCase("Test"+number)) {
 							GroupPresenceAfterSearch = true;
 							break;
 						}						
 					}
 					
 					if(GroupPresenceAfterSearch) {
-						test.log(LogStatus.PASS, "<b>ER 5- Search newly created group '"+groupData[1][1]+number+"'.<b>"+
+						test.log(LogStatus.PASS, "<b>ER 5- Search newly created group 'Test"+number+"'.<b>"+
 								test.addScreenCapture(captureScreenShot(driver, "created group")));
 					}else {
 						test.log(LogStatus.FAIL, "Unable to verify created group."+
@@ -161,10 +161,10 @@ public class CreateDeleteGroups_Test extends BaseClass {
 						WebElement groups = driver.findElement(By.xpath("//tbody[@class='t21-js-clickable-rows']/tr["+i+"]/td[1]"));
 						String groupName= groups.getText();
 						
-						if(groupName.equalsIgnoreCase(groupData[1][1]+number)) {
+						if(groupName.equalsIgnoreCase("Test"+number)) {
 							
 							WebElement delete = driver.findElement(By.xpath("//tbody[@class='t21-js-clickable-rows']/tr["+i+"]//span[@title='Remove Group']"));
-							test.log(LogStatus.PASS, "11.Click on delete icon for group: "+groupData[1][1]+number+".");
+							test.log(LogStatus.PASS, "11.Click on delete icon for group: Test"+number+".");
 							delete.click();
 							break;
 						}
@@ -174,7 +174,7 @@ public class CreateDeleteGroups_Test extends BaseClass {
 					
 					if(adminCreateGroup.verifyDeleteGroupPopUp()) 					{
 						
-						test.log(LogStatus.PASS, "<b>ER 6- Delete group massege with 'Are you sure you want to delete '"+groupData[1][1]+number+"'?' with No and Yes button.<b>"+
+						test.log(LogStatus.PASS, "<b>ER 6- Delete group massege with 'Are you sure you want to delete 'Test"+number+"'?' with No and Yes button.<b>"+
 								test.addScreenCapture(captureScreenShot(driver, "Verified Delete Group Pop-Up.")));
 						
 						test.log(LogStatus.PASS, "12.Click on 'Yes' button.");
@@ -190,9 +190,9 @@ public class CreateDeleteGroups_Test extends BaseClass {
 						sleep(2);
 						if(adminCreateGroup.groupFilterResult() != null)
 						{
-							test.log(LogStatus.PASS, "14.Type deleted Group name like '"+groupData[1][1]+number+"' in the 'filter results' text field.");
+							test.log(LogStatus.PASS, "14.Type deleted Group name like 'Test"+number+"' in the 'filter results' text field.");
 							adminCreateGroup.groupFilterResult().clear();
-							adminCreateGroup.groupFilterResult().sendKeys(groupData[1][1]+number);
+							adminCreateGroup.groupFilterResult().sendKeys("Test"+number);
 							adminCreateGroup.groupFilterResutGoButton().click();
 							
 							sleep(2);
@@ -210,7 +210,7 @@ public class CreateDeleteGroups_Test extends BaseClass {
 									try {
 										String groups = driver.findElement(By.xpath("//tbody[@class='t21-js-clickable-rows']/tr["+i+"]/td[1]")).getText();
 										
-										if(groups.equalsIgnoreCase(groupData[1][1]+number)) {
+										if(groups.equalsIgnoreCase("Test"+number)) {
 											GroupPresenceAfterSearch = true;
 											break;
 										}
@@ -219,7 +219,7 @@ public class CreateDeleteGroups_Test extends BaseClass {
 									}
 								}
 								if(GroupPresenceAfterSearch) {
-									test.log(LogStatus.FAIL, "Unable to delete existing group: "+groupData[1][1]+number+" "+
+									test.log(LogStatus.FAIL, "Unable to delete existing group: Test"+number+" "+
 											test.addScreenCapture(captureScreenShot(driver, "Unable to delete existing group")));
 								}else {
 									test.log(LogStatus.PASS, "<b>ER 9- No group found for deleted group.<b>"+
