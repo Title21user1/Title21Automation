@@ -215,7 +215,7 @@ public class UpdateUser_Test extends BaseClass{
 						updateUserPage.password_Tab().click();
 						
 						test.log(LogStatus.PASS, "24.Enter password and confirm password");
-						sleep(1);
+						sleep(2);
 						updateUserPage.editPassword_checkBox().click();	
 						sleep(2);
 						updateUserPage.new_PasswordInput().sendKeys("test1234567");
