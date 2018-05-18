@@ -62,9 +62,9 @@ public class DeleteUser_Test extends BaseClass{
 		test.log(LogStatus.PASS, "<b>ER 1- User records Screen is displayed.<b>"+
 				test.addScreenCapture(captureScreenShot(driver, "User records Screen")));
 		
-		test.log(LogStatus.PASS, "4.Click on location drop-down and select the specific location (for eg. Dallas).");
+		test.log(LogStatus.PASS, "4.Click on location drop-down and select the specific location (for eg. Antioch).");
 		sleep(2);
-		deleteUser.getLocationforFilter().selectByVisibleText("Dallas");
+		deleteUser.getLocationforFilter().selectByVisibleText("Antioch");
 		sleep(2);
 				
 		verifyLocationInTable();		
@@ -227,7 +227,7 @@ public class DeleteUser_Test extends BaseClass{
 		
 		for (int i=0;i<tableCells.size();i++){
 			
-			if (!tableCells.get(i).getText().equalsIgnoreCase("Dallas"))
+			if (!tableCells.get(i).getText().equalsIgnoreCase("Antioch"))
 			{				
 				test.log(LogStatus.FAIL, "Expected location is not present in rowNum: "+i);
 				isRecordFound=false;

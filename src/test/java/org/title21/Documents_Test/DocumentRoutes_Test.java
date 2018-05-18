@@ -45,7 +45,7 @@ public class DocumentRoutes_Test extends BaseClass{
 		createDirectory(className);
 		logout=new LogoutPage_POM(driver);
 		login=new LoginPage_POM(driver);
-		login.loginUser(loginData[7][0], loginData[7][1]);
+		login.loginUser("Title21User2", "test123456");
 	}
 
 	@Test(testName = "Document Routes", groups = "DocumentModule", priority = 0)
@@ -205,7 +205,7 @@ public class DocumentRoutes_Test extends BaseClass{
 					sleep(2);
 					test.log(LogStatus.PASS, "15. Login as one of the users named in Sequence 1.");
 
-					login.loginUser(loginData[1][0], loginData[1][1]); 
+					login.loginFunction();
 
 					test.log(LogStatus.PASS, "16. Go to the approval wizard.");
 					documentRoutes.wizard_Option().click();
