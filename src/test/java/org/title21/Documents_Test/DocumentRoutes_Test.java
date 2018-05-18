@@ -299,8 +299,8 @@ public class DocumentRoutes_Test extends BaseClass{
 					documentRoutes.approvalFilterGo_Button().click();
 					sleep(2);
 					selectDocForApprovel(documetNo);
-					/*documentRoutes.approvalFilter_TextBox().clear();
-					documentRoutes.searchDoc(documetNo);*/
+					
+					//documentRoutes.searchDoc(documetNo);
 
 					sleep(2);
 					documentRoutes.documentTab_ForApprover().click();
