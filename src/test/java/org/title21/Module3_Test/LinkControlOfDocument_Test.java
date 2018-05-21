@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.List;
 
 import org.apache.log4j.Logger;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
@@ -30,7 +29,6 @@ import org.title21.Module3_POM.AttachmentControlInDoc_POM;
 import org.title21.Module3_POM.LinkControlOfDocument_POM;
 import org.title21.Module3_Test.AttachmentControlInDoc_Test;
 import org.title21.Packages_POM.PackageObsolete_POM;
-import org.title21.PeriodicReviewers_POM.PeriodicDelegate_POM;
 
 public class LinkControlOfDocument_Test extends BaseClass {
 
@@ -79,14 +77,13 @@ public class LinkControlOfDocument_Test extends BaseClass {
 
 	}
 
-	@Test(testName = "Link Control Of Document", groups = "Module3", priority = 0)
+	@Test(testName = "Link Control Of Document", groups = "Module3", priority = 0, alwaysRun=true)
 	public void LinkControlOfDocument_POM() throws Exception {
         
 		test = extent.startTest("Link Control Of Document");
-
+		log.info("Link Control Of Document");
 		sleep(3);
 		LinkControlofDocument.Prerequsite();
-		log.info("Link Control Of Document");
 		sleep(5);
 		PackageObsoletePOM.GenerateEffectiveFile("1");
 		System.out.print("document is"+PackageObsoletePOM.documetNo);

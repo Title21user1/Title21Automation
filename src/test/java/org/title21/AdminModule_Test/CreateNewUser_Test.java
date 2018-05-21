@@ -43,7 +43,7 @@ public class CreateNewUser_Test extends BaseClass{
 		login.loginFunction();
 	}
 
-	@Test(testName = "Create New User", groups = "AdminModule", priority = 0)
+	@Test(testName = "Create New User", groups = "AdminModule", priority = 0, alwaysRun=true)
 	public void AddNewUser() throws Exception
 	{
 		test = extent.startTest("Create New User");

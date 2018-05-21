@@ -7,7 +7,6 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.title21.AdminModule_POM.LoginPage_POM;
 import org.title21.AdminModule_POM.LogoutPage_POM;
-import org.title21.Documents_POM.CreateDocument_POM;
 import org.title21.PeriodicReviewers_POM.PeriodicOwnedDocuments_POM;
 import org.title21.PeriodicReviewers_POM.PeriodicDelegate_POM;
 import org.title21.utility.BaseClass;
@@ -21,7 +20,7 @@ public class PeriodicDelegate_Test extends BaseClass {
 	PeriodicOwnedDocuments_POM periodicReviews;
 	String VerifyUnDelegateuserText = "";
 	String element="";
-	static Logger log = Logger.getLogger(CreateDocument_POM.class);
+	static Logger log = Logger.getLogger(PeriodicDelegate_Test.class);
 	@BeforeClass(alwaysRun=true)
 	public void openURL() {
 		getBrowser();
@@ -33,8 +32,8 @@ public class PeriodicDelegate_Test extends BaseClass {
 		periodicReviews = new PeriodicOwnedDocuments_POM(driver);
 		login.loginUser("saurabhp", "Title123456*");
 	}
-//
-	@Test(testName = " Periodic Delegate", groups = "PeriodicReviewer", priority = 0)
+
+	@Test(testName = " Periodic Delegate", groups = "PeriodicReviewer", priority = 0, alwaysRun=true)
 	public void PeriodicReview_Delegate() throws Exception {
 
 		test = extent.startTest("Periodic Delegate");

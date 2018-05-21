@@ -28,7 +28,7 @@ public class LogoutPage_Test extends BaseClass {
 		createDirectory(className);
 	}
 
-	@Test(testName = "Logout Functionality", groups = "AdminModule", priority = 0)
+	@Test(testName = "Logout Functionality", groups = "AdminModule", priority = 0, alwaysRun=true)
 	public void Logout() throws Exception {
 
 		test = extent.startTest("Logout");

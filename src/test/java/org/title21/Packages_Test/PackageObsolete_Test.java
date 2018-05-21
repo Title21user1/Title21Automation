@@ -7,7 +7,6 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.title21.AdminModule_POM.LoginPage_POM;
 import org.title21.AdminModule_POM.LogoutPage_POM;
-import org.title21.Documents_POM.CreateDocument_POM;
 import org.title21.Documents_POM.DocumentCollaboration_POM;
 import org.title21.Documents_POM.DocumentRoutes_POM;
 import org.title21.Packages_POM.PackageObsolete_POM;
@@ -25,7 +24,7 @@ public class PackageObsolete_Test extends BaseClass {
 	DocumentCollaboration_POM DocumentCollaborationPOM;
 	DocumentRoutes_POM documentRoutes;
 	DocumentCollaboration_POM Documentcoll_POM;
-	static Logger log = Logger.getLogger(CreateDocument_POM.class);
+	static Logger log = Logger.getLogger(PackageObsolete_Test.class);
 	@BeforeClass
 	public void openURL() {
 
@@ -40,14 +39,14 @@ public class PackageObsolete_Test extends BaseClass {
 		documentRoutes = new DocumentRoutes_POM(driver);
 	login.loginUser("saurabhp", "Title123456*");
 	}
-//
-	@Test(testName = "Package_obsolete_Test", groups = "Package_obsolete_Test", priority = 0)
+
+	@Test(testName = "Package_obsolete_Test", groups = "Package_obsolete_Test", priority = 0, alwaysRun=true)
 	public void Package_obsolete() throws Exception {
 
-		test = extent.startTest("PackageObsolete_Test");
+		test = extent.startTest("Package Obsolete Test");
 		test.log(LogStatus.INFO, "Link to Test case document",
 				"<a href='file://" + filePath + "'>TestCaseDocument</a>");
-		log.info("Package_obsolete_Test");
+		log.info("Package Obsolete Test");
 		PackageObsoletePOM.Prerequsite();
 		sleep(2);
 		 PackageObsoletePOM.GenerateEffectiveFile("1"); 

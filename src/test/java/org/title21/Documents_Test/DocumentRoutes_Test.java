@@ -48,7 +48,7 @@ public class DocumentRoutes_Test extends BaseClass{
 		login.loginUser(loginData[7][0], loginData[7][1]);
 	}
 
-	@Test(testName = "Document Routes", groups = "DocumentModule", priority = 0)
+	@Test(testName = "Document Routes", groups = "DocumentModule", priority = 0, alwaysRun=true)
 	public void DocumentRoutes() throws Exception
 	{		
 		test = extent.startTest("Document Routes");

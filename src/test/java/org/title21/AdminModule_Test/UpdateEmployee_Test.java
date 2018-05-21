@@ -52,7 +52,7 @@ public class UpdateEmployee_Test extends BaseClass {
 
 	}
 
-	@Test(testName = "Update Employee ", groups = "AdminModule", priority = 0)
+	@Test(testName = "Update Employee ", groups = "AdminModule", priority = 0, alwaysRun=true)
 	public void Edit_Employee() throws Exception {
 
 		test = extent.startTest("Update  Employee");

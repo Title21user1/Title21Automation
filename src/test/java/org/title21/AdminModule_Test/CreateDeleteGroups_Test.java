@@ -41,7 +41,7 @@ public class CreateDeleteGroups_Test extends BaseClass {
 		login.loginFunction();
 	}
 	
-	@Test(testName = "CreateGroup_admin", groups = "CreateGroup", priority = 0)
+	@Test(testName = "CreateGroup_admin", groups = "CreateGroup", priority = 0, alwaysRun=true)
 	public void CreateGroupInAdmin() 
 	{
 		number = FunctionUtils.generateRandomNumber();

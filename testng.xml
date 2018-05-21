@@ -3,7 +3,7 @@
 <suite name="Title21Suite">
 	<parameter name="configFile" value="config.properties" />
 
-	<test name="AdminModuleScreens" preserve-order="false">
+	<test name="AdminModuleScreens" preserve-order="true">
 		<classes>
 			
 			<class name="org.title21.AdminModule_Test.LoginPage_Test"/>
@@ -19,8 +19,8 @@
 
 		</classes>
 	</test>
-	<test name="DocumentScreens" preserve-order="false">
-    <classes>
+	<test name="DocumentScreens" preserve-order="true">
+    	<classes>
 
 			<class name="org.title21.Documents_Test.CreateDocument_Test"/> 
 			<class name="org.title21.Documents_Test.DocumentRoutes_Test"/>
@@ -33,7 +33,7 @@
 
 		</classes>
 	</test>
-	<test name="Module3" preserve-order="false">
+	<test name="Module3" preserve-order="true">
 		<classes>
 
 			<class name="org.title21.Module3_Test.Reports_Test"/>
@@ -55,7 +55,7 @@
 			
 		</classes>
 	</test>
-	<test name="PeriodicReviewer1" preserve-order="false">
+	<test name="PeriodicReviewer1" preserve-order="true">
 		<classes>
 
 			<class name="org.title21.Packages_Test.CreatingNewPackage_Test"/>

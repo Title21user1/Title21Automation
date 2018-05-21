@@ -46,7 +46,7 @@ public class AccountLockout_Test extends BaseClass
 		dbqueries = new DBQueries();
 	}
 
-	@Test(testName = "AccountLockOut", groups = "AdminModule", priority = 0)
+	@Test(testName = "AccountLockOut", groups = "AdminModule", priority = 0, alwaysRun=true)
 	public void accountLockout()
 	{
 		test = extent.startTest("Account Lockout");

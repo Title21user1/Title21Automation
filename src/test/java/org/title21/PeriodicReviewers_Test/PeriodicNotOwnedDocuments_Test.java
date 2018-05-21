@@ -57,11 +57,12 @@ public class PeriodicNotOwnedDocuments_Test extends BaseClass{
 		login.loginFunction();
 	}
 
-	@Test(testName = "Periodic Not Owned Document", groups = "PeriodicReviewer", priority = 0)
+	@Test(testName = "Periodic Not Owned Document", groups = "PeriodicReviewer", priority = 0, alwaysRun=true)
 	public void DocumentRoutes() throws Exception
 	{
 		DBConnection.executeStoredProcedure(dbqueries.moveDocsOnReleaseDate);
 		test = extent.startTest("Periodic Not Owned Documents");
+		log.info("Periodic Not Owned Documents");
 		test.log(LogStatus.PASS, "1.In the Web interface, Login as admin.");
 		test.log(LogStatus.INFO, "Link to Test case document", "<a href='file://"+filePath+"'>TestCaseDocument</a>");
 		
