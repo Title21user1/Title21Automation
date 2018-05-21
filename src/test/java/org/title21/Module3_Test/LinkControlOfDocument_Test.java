@@ -83,6 +83,7 @@ public class LinkControlOfDocument_Test extends BaseClass {
 	public void LinkControlOfDocument_POM() throws Exception {
         
 		test = extent.startTest("Link Control Of Document");
+
 		sleep(3);
 		LinkControlofDocument.Prerequsite();
 		log.info("Link Control Of Document");
@@ -102,6 +103,7 @@ public class LinkControlOfDocument_Test extends BaseClass {
 		scrollup(2);
 		sleep(3);
 		attachment.CreateDocument();
+
 		sleep(5);
 		String Document_name = LinkControlofDocument.getdocname().getText();
 		sleep(3);

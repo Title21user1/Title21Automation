@@ -59,7 +59,7 @@ public class AttachmentControlInPackage_Test extends BaseClass {
 				"1 Create a new package." + "<br/>" + "2.Navigate to Attachment/Task tab" + "<br/>"
 						+ "3.Click on Add New link." + "<br/>" + "<b>ER 1 : Add a file/document dialog appears. <b>"
 						+ test.addScreenCapture(captureScreenShot(driver, "addnewlink")));
-		attachmentpackage.fileupload("upload.PNG");//
+		attachmentpackage.fileupload("upload.PNG");
 		sleep(7);
 		test.log(LogStatus.PASS, "4.	Click on Choose File button.." + "<br/>"
 				+ "5.	Try to attach a file type which is not a MS Word document or an executable (e.g. Jpeg, PNG, TXT etc.)."

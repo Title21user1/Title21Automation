@@ -39,6 +39,7 @@ public class CreateNewUser_Test extends BaseClass{
 		className = this.getClass().getName();
 		createDirectory(className);
 		login=new LoginPage_POM(driver);
+		logout=new LogoutPage_POM(driver);
 		login.loginFunction();
 	}
 
@@ -61,15 +62,15 @@ public class CreateNewUser_Test extends BaseClass{
 			test.log(LogStatus.PASS, "<b>ER 1- User records Screen is displayed.<b>"+
 					test.addScreenCapture(captureScreenShot(driver, "User records Screen")));
 
-			addNewUserPage.getUserLocation_DropDown().selectByVisibleText(userData[1][0]);
-			test.log(LogStatus.PASS, "4.Click on location drop-down and select the specific location (for ex. "+userData[1][0]+").");
+			addNewUserPage.getUserLocation_DropDown().selectByVisibleText("Dallas");
+			test.log(LogStatus.PASS, "4.Click on location drop-down and select the specific location (for ex. "+"Dallas"+").");
 
 			sleep(3);
 			for(int i=1; i<=5; i++ ) {
 
 				String userLocation = driver.findElement(By.xpath("//tbody[@class='t21-js-clickable-rows']/tr["+i+"]/td[4]")).getText();
 				sleep(1);
-				if(userLocation.equalsIgnoreCase(userData[1][0])) {
+				if(userLocation.equalsIgnoreCase("Dallas")) {
 					UserPresenceAfterSearch = true;
 					break;
 				}
@@ -140,9 +141,9 @@ public class CreateNewUser_Test extends BaseClass{
 							test.addScreenCapture(captureScreenShot(driver, "Location is required")));
 				}
 
-				addNewUserPage.location_Dropdown().selectByVisibleText(userData[1][0]);
+				addNewUserPage.location_Dropdown().selectByVisibleText("Dallas");
 
-				test.log(LogStatus.PASS, "8.Select one location.(for eg: "+userData[1][0]+").");
+				test.log(LogStatus.PASS, "8.Select one location.(for eg: "+"Dallas"+").");
 
 				sleep(2);
 
@@ -163,7 +164,7 @@ public class CreateNewUser_Test extends BaseClass{
 					addNewUserPage.userFullName_Dropdown().selectByVisibleText(adminData.getEmployeeName());
 
 					test.log(LogStatus.PASS, "9.Select Location whose all employees have already been assigned a user ID");
-					addNewUserPage.location_Dropdown().selectByVisibleText(userData[1][9]);
+					addNewUserPage.location_Dropdown().selectByVisibleText("Antioch");
 					sleep(2);
 					if(addNewUserPage.empAssigned_Msg().isDisplayed())
 					{
@@ -176,11 +177,11 @@ public class CreateNewUser_Test extends BaseClass{
 						test.log(LogStatus.FAIL, "Unable to find validation message- It displayed validation message as 'All employees have already been assigned a user ID'."+
 								test.addScreenCapture(captureScreenShot(driver, "already assigned a user ID")));
 					}
-					addNewUserPage.location_Dropdown().selectByVisibleText(userData[1][0]);
+					addNewUserPage.location_Dropdown().selectByVisibleText("Dallas");
 					sleep(2);
 					addNewUserPage.userFullName_Dropdown().selectByVisibleText(adminData.getEmployeeName());
 					sleep(2);
-					addNewUserPage.username_textbox().sendKeys(userData[1][10]);
+					addNewUserPage.username_textbox().sendKeys("saurabhp");
 					test.log(LogStatus.PASS, "10.Enter already existing username in username field.");
 					addNewUserPage.userName_Label().click();
 					sleep(2);
@@ -196,7 +197,7 @@ public class CreateNewUser_Test extends BaseClass{
 					}
 
 					test.log(LogStatus.PASS, "11.Select one employee.");
-					userName=userData[1][2]+FunctionUtils.generateRandomNumber();
+					userName="Mart"+FunctionUtils.generateRandomNumber();
 
 					addNewUserPage.username_textbox().clear();
 					addNewUserPage.username_textbox().sendKeys(userName);
@@ -204,19 +205,19 @@ public class CreateNewUser_Test extends BaseClass{
 					adminData.setUserName(userName);
 
 					sleep(2);
-					addNewUserPage.available_Filter().sendKeys(userData[1][0]);
+					addNewUserPage.available_Filter().sendKeys("Dallas");
 
 					String list = addNewUserPage.available_List().getText();
 
 					sleep(2);
-					if(list.contains(userData[1][0]))
+					if(list.contains("Dallas"))
 					{
 						addNewUserPage.available_Button().click();
 						test.log(LogStatus.PASS, "13.Add one group by clicking on the arrow.");
 
 						String selectedList = addNewUserPage.selected_List().getText();
 
-						if(selectedList.contains(userData[1][0]))
+						if(selectedList.contains("Dallas"))
 						{
 							sleep(3);
 
@@ -244,10 +245,10 @@ public class CreateNewUser_Test extends BaseClass{
 											test.addScreenCapture(captureScreenShot(driver, "Password is required ")));
 								}
 
-								addNewUserPage.check_AuthenticationType().selectByVisibleText(userData[1][4]);
+								addNewUserPage.check_AuthenticationType().selectByVisibleText("Title21");
 								test.log(LogStatus.PASS, "16.Select authentication type as Title21.");
 								sleep(2);
-								addNewUserPage.new_PasswordInput().sendKeys(userData[1][6]);
+								addNewUserPage.new_PasswordInput().sendKeys("test12");
 								test.log(LogStatus.PASS, "17.Enter password less than 10 characters.");
 
 								addNewUserPage.check_StrengthButton().click();
@@ -301,10 +302,10 @@ public class CreateNewUser_Test extends BaseClass{
 								}
 								sleep(2);
 								addNewUserPage.new_PasswordInput().clear();
-								addNewUserPage.new_PasswordInput().sendKeys(userData[1][5]);
+								addNewUserPage.new_PasswordInput().sendKeys("test123456");
 								test.log(LogStatus.PASS, "21.Enter valid password ");
 								addNewUserPage.confirm_PasswordInput().clear();
-								addNewUserPage.confirm_PasswordInput().sendKeys(userData[1][8]);
+								addNewUserPage.confirm_PasswordInput().sendKeys("test1234567");
 								test.log(LogStatus.PASS, "22.Enter invalid data in confirm password field.");
 								sleep(2);
 								javaScriptClick(addNewUserPage.password_AddTab());
@@ -320,9 +321,9 @@ public class CreateNewUser_Test extends BaseClass{
 											test.addScreenCapture(captureScreenShot(driver, "Password does not match")));
 								}
 								sleep(3);
-								addNewUserPage.new_PasswordInput().sendKeys(userData[1][5]);
+								addNewUserPage.new_PasswordInput().sendKeys("test123456");
 								sleep(2);
-								addNewUserPage.confirm_PasswordInput().sendKeys(userData[1][5]);
+								addNewUserPage.confirm_PasswordInput().sendKeys("test123456");
 
 								test.log(LogStatus.PASS, "23.Enter valid password and confirm password ");
 								sleep(2);
