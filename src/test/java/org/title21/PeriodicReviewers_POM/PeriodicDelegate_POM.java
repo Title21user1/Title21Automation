@@ -14,7 +14,8 @@ import org.title21.AdminModule_POM.LogoutPage_POM;
 import org.title21.AdminModule_POM.Table;
 import org.title21.DBConnection.DBConnection;
 import org.title21.DBConnection.DBQueries;
-
+import org.title21.Documents_POM.DocumentRoutes_POM;
+import org.title21.Documents_POM.RecentlyViewdAndFavorites_POM;
 import org.title21.Module3_POM.AttachmentControlInDoc_POM;
 
 import org.title21.utility.BaseClass;
@@ -434,30 +435,24 @@ public class PeriodicDelegate_POM {
 	}
 
 	private void approveDocFromWizard(String docName) {
+		RecentlyViewdAndFavorites_POM RecentlyViewdAndFavorites=new RecentlyViewdAndFavorites_POM(driver);
+		DocumentRoutes_POM documentRoutes = new DocumentRoutes_POM(driver);
 		periodicReviews.wizard_Option().click();
 		periodicReviews.approval_Tab().click();
-		BaseClass.sleep(5);
-		isRecordFound = false;
-		for (int i = 1; i <= 20; i++) {
-			BaseClass.sleep(5);
-			selectDocForApprovel(docName, 3);
-			if (!isRecordFound) {
-				// verticalScrollingDown();
-				periodicReviews.documentTableNext_Button().click();
-				BaseClass.sleep(2);
-			} else {
-				break;
-			}
-		}
-		BaseClass.sleep(2);
-		periodicReviews.documentTab_ForApprover().click();
-		BaseClass.sleep(2);
+		org.title21.utility.BaseClass.sleep(5);
+		RecentlyViewdAndFavorites.getplaceholder().sendKeys(documetNo);//documet_no_checkout1
+		RecentlyViewdAndFavorites.getGOButton().click();
+		org.title21.utility.BaseClass.sleep(5);
+		driver.findElement(By.cssSelector(".fa.fa-book")).click();
+		org.title21.utility.BaseClass.sleep(5);
+		driver.findElement(By.cssSelector(".flash")).click();
+		org.title21.utility.BaseClass.sleep(5);
 		periodicReviews.documentApprove_Button().click();
-		BaseClass.sleep(2);
+		org.title21.utility.BaseClass.sleep(5);
 		periodicReviews.pinTo_Approve().clear();
 		periodicReviews.pinTo_Approve().sendKeys("262829");
 		periodicReviews.checkInRouteSubmit_Button().click();
-		BaseClass.sleep(4);
+		org.title21.utility.BaseClass.sleep(5);
 	}
 
 	private boolean selectDocForApprovel(String docName, int cell) {

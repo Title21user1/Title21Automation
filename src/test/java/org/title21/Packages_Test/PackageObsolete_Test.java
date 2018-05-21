@@ -48,10 +48,13 @@ public class PackageObsolete_Test extends BaseClass {
 		test.log(LogStatus.INFO, "Link to Test case document",
 				"<a href='file://" + filePath + "'>TestCaseDocument</a>");
 		log.info("Package_obsolete_Test");
+		PackageObsoletePOM.Prerequsite();
+		sleep(2);
 		 PackageObsoletePOM.GenerateEffectiveFile("1"); 
+		System.out.println("doc_no1"+PackageObsoletePOM.documetNo); 
 	    sleep(5);
 		  PackageObsoletePOM.GenerateEffectiveFile("2");
-		 
+		  System.out.println("doc_no1"+PackageObsoletePOM.DocumetNoDelete); 
 		sleep(2);
 		PackageObsoletePOM.getNewTab().click();
 		sleep(5);
