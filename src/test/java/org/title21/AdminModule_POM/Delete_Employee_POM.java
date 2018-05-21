@@ -24,7 +24,7 @@ public class Delete_Employee_POM
 	@FindBy(css=".modal-title>span")
 	WebElement deleteEmployeePopUpHeaderText;
 
-	@FindBy(xpath="//button[@type='submit'][@tabindex='1']")
+	@FindBy(css=".t21-ajax-submit-button.form-control.form-inline.btn.t21-btn-default")
 	WebElement Employeefilterresutgobutton;
 
 	@FindBy(xpath=".//*[@id='t21-workarea']/div/div/div[2]/div[2]/div/div[3]/div/div/form/div/span[2]/button")
