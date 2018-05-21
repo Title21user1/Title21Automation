@@ -3,14 +3,21 @@ package org.title21.DBConnection;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+
 import org.testng.Assert;
 import org.title21.utility.BaseClass;
 
-public class DBConnection extends BaseClass {
+public class DBConnection {
+	
+	protected static Connection connection;
+	protected static Statement statement;
+	protected static ResultSet rs;
 
 	public static Connection getConnection() throws Exception {
-		System.out.println(connection);
+
 		if (connection==null)  {
 			try {
 				DriverManager.registerDriver(new com.microsoft.sqlserver.jdbc.SQLServerDriver());
@@ -42,7 +49,7 @@ public class DBConnection extends BaseClass {
 			try {				
 				connection.close();
 				connection=null;
-				sleep(2);
+				BaseClass.sleep(2);
 			} catch (SQLException ex) {
 				ex.printStackTrace();
 			}
@@ -65,7 +72,7 @@ public class DBConnection extends BaseClass {
 		}
 		catch(Exception e)
 		{
-			System.out.println("Failed Database Connection");
+
 		}
 		finally{
 			closeConnection();
@@ -83,7 +90,7 @@ public class DBConnection extends BaseClass {
 		}
 		catch(Exception e)
 		{
-			System.out.println("Failed Database Connection");
+
 		}
 		finally{
 			closeConnection();
@@ -107,7 +114,7 @@ public class DBConnection extends BaseClass {
 		}
 		catch(Exception e)
 		{
-			System.out.println("Failed Database Connection");
+
 		}
 		finally{
 			closeConnection();
@@ -116,10 +123,10 @@ public class DBConnection extends BaseClass {
 		if (dbvalue.equalsIgnoreCase(value))
 		{
 			isPresent=true;
-			System.out.println("User "+value+" is already present");
+			System.out.println(""+value+" is already present");
 		} else 
 		{
-			System.out.println("User "+value+" is not present");
+			System.out.println(""+value+" is not present");
 		}
 		
 		return isPresent;

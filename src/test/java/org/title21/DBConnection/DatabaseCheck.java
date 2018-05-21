@@ -6,18 +6,20 @@ public class DatabaseCheck
 	DBConnection dbconnection = new DBConnection();
 	CreateUsers createusers = new CreateUsers();
 	CreateGroup creategroups = new CreateGroup();
-	String columnName="UserName";
+	String columnUserName="UserName";
+	String columnGroupName="Groups";
 	
 	public void runDatabaseCheck()
 	{
-		boolean verifyUser1 = DBConnection.verifyString("Title21User1", dbquries.verifyTitle21User1, columnName);
-		boolean verifyUser2 = DBConnection.verifyString("Title21User2", dbquries.verifyTitle21User2, columnName);
-		boolean verifyUser3 = DBConnection.verifyString("Title21User3", dbquries.verifyTitle21User3, columnName);
-		boolean verifyUser4 = DBConnection.verifyString("Title21User4", dbquries.verifyTitle21User4, columnName);
-		boolean verifyUser5 = DBConnection.verifyString("Title21User5", dbquries.verifyTitle21User5, columnName);
-		boolean verifyGroup = DBConnection.verifyString("Title21Group", dbquries.verifyTitle21User1, columnName);
+		boolean verifyUser1 = DBConnection.verifyString("Title21User1", dbquries.verifyTitle21User1, columnUserName);
+		boolean verifyUser2 = DBConnection.verifyString("Title21User2", dbquries.verifyTitle21User2, columnUserName);
+		boolean verifyUser3 = DBConnection.verifyString("Title21User3", dbquries.verifyTitle21User3, columnUserName);
+		boolean verifyUser4 = DBConnection.verifyString("Title21User4", dbquries.verifyTitle21User4, columnUserName);
+		boolean verifyUser5 = DBConnection.verifyString("Title21User5", dbquries.verifyTitle21User5, columnUserName);
+		boolean verifyGroup = DBConnection.verifyString("Title21Group", dbquries.verifyTitle21Group, columnGroupName);
 		
 		dbconnection.getQueryExecuted(dbquries.setAdminPassword);
+		dbconnection.getQueryExecuted(dbquries.uncheckWizardPopUp);
 		
 		if(verifyGroup==false)
 		{

@@ -72,7 +72,7 @@ public class BaseClass {
 	protected String data[][];
 	protected WebDriverWait waitDriver = null;
 
-	DatabaseCheck dbcheck = new DatabaseCheck();
+	//DatabaseCheck dbcheck = new DatabaseCheck();
 	
 	public String excelFile="";
 	public static String loginSheet="";
@@ -95,10 +95,6 @@ public class BaseClass {
 	static String imagesDirectory = "";
 	static String relativePathforImage="";
 	static String downloadPath="";
-	
-	protected static Connection connection;
-	protected static Statement statement;
-	protected static ResultSet rs;
 	
 	int pixels=0;
 
@@ -174,7 +170,7 @@ public class BaseClass {
 		
 		downloadPath=System.getProperty("user.dir") + "\\DownloadedFiles";
 		extent = ExtentManager.getReporter(filePath,baseUrl);
-		dbcheck.runDatabaseCheck();
+		//dbcheck.runDatabaseCheck();
 	}
 
 	@AfterSuite
