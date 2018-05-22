@@ -62,15 +62,15 @@ public class CreateNewUser_Test extends BaseClass{
 			test.log(LogStatus.PASS, "<b>ER 1- User records Screen is displayed.<b>"+
 					test.addScreenCapture(captureScreenShot(driver, "User records Screen")));
 
-			addNewUserPage.getUserLocation_DropDown().selectByVisibleText("Dallas");
-			test.log(LogStatus.PASS, "4.Click on location drop-down and select the specific location (for ex. "+"Dallas"+").");
+			addNewUserPage.getUserLocation_DropDown().selectByVisibleText("Antioch");
+			test.log(LogStatus.PASS, "4.Click on location drop-down and select the specific location (for ex. Antioch).");
 
 			sleep(3);
 			for(int i=1; i<=5; i++ ) {
 
 				String userLocation = driver.findElement(By.xpath("//tbody[@class='t21-js-clickable-rows']/tr["+i+"]/td[4]")).getText();
 				sleep(1);
-				if(userLocation.equalsIgnoreCase("Dallas")) {
+				if(userLocation.equalsIgnoreCase("Antioch")) {
 					UserPresenceAfterSearch = true;
 					break;
 				}
@@ -141,9 +141,9 @@ public class CreateNewUser_Test extends BaseClass{
 							test.addScreenCapture(captureScreenShot(driver, "Location is required")));
 				}
 
-				addNewUserPage.location_Dropdown().selectByVisibleText("Dallas");
+				addNewUserPage.location_Dropdown().selectByVisibleText("Antioch");
 
-				test.log(LogStatus.PASS, "8.Select one location.(for eg: "+"Dallas"+").");
+				test.log(LogStatus.PASS, "8.Select one location.(for eg: Antioch).");
 
 				sleep(2);
 
@@ -162,9 +162,9 @@ public class CreateNewUser_Test extends BaseClass{
 					test.log(LogStatus.PASS, "<b>ER 6- 'list of employees' in full name field and 'groups' associated with that location should get listed.<b>"+
 							test.addScreenCapture(captureScreenShot(driver, "Location Details")));
 					addNewUserPage.userFullName_Dropdown().selectByVisibleText(adminData.getEmployeeName());
-
+					
 					test.log(LogStatus.PASS, "9.Select Location whose all employees have already been assigned a user ID");
-					addNewUserPage.location_Dropdown().selectByVisibleText("Antioch");
+					addNewUserPage.location_Dropdown().selectByVisibleText("Fremont");
 					sleep(2);
 					if(addNewUserPage.empAssigned_Msg().isDisplayed())
 					{
@@ -177,11 +177,11 @@ public class CreateNewUser_Test extends BaseClass{
 						test.log(LogStatus.FAIL, "Unable to find validation message- It displayed validation message as 'All employees have already been assigned a user ID'."+
 								test.addScreenCapture(captureScreenShot(driver, "already assigned a user ID")));
 					}
-					addNewUserPage.location_Dropdown().selectByVisibleText("Dallas");
+					addNewUserPage.location_Dropdown().selectByVisibleText("Antioch");
 					sleep(2);
 					addNewUserPage.userFullName_Dropdown().selectByVisibleText(adminData.getEmployeeName());
-					sleep(2);
-					addNewUserPage.username_textbox().sendKeys("saurabhp");
+					sleep(3);
+					addNewUserPage.username_textbox().sendKeys("Title21User2");
 					test.log(LogStatus.PASS, "10.Enter already existing username in username field.");
 					addNewUserPage.userName_Label().click();
 					sleep(2);
@@ -205,19 +205,19 @@ public class CreateNewUser_Test extends BaseClass{
 					adminData.setUserName(userName);
 
 					sleep(2);
-					addNewUserPage.available_Filter().sendKeys("Dallas");
+					addNewUserPage.available_Filter().sendKeys("Administrators");
 
 					String list = addNewUserPage.available_List().getText();
 
 					sleep(2);
-					if(list.contains("Dallas"))
+					if(list.contains("Administrators"))
 					{
 						addNewUserPage.available_Button().click();
 						test.log(LogStatus.PASS, "13.Add one group by clicking on the arrow.");
 
 						String selectedList = addNewUserPage.selected_List().getText();
 
-						if(selectedList.contains("Dallas"))
+						if(selectedList.contains("Administrators"))
 						{
 							sleep(3);
 

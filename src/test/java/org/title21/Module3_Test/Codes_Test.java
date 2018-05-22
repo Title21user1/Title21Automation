@@ -106,7 +106,7 @@ public class Codes_Test extends BaseClass {
 		codes.editClass_Icon().click();
 		sleep(2);
 		codes.className_TextBox().clear();
-		codes.className_TextBox().sendKeys("Test case sp code"); 
+		codes.className_TextBox().sendKeys("Test case code"+number); //"Test case code"+number    "Test case sp code"
 		test.log(LogStatus.PASS, "8.Click on add button.");
 		sleep(3);
 
@@ -253,8 +253,9 @@ public class Codes_Test extends BaseClass {
 			test.log(LogStatus.FAIL, "Unable to find the Add code popup screen.");
 		}
 
+		//Query required for the below code
 		test.log(LogStatus.PASS, "23.Select other code class from code class dropdown.");
-		codes.codeClass_DropDown().selectByVisibleText("Test doc class"); 
+		codes.codeClass_DropDown().selectByVisibleText("Test case code1751"); 
 
 		sleep(5);
 		test.log(LogStatus.PASS, "24.Click on add code.");
@@ -344,7 +345,9 @@ public class Codes_Test extends BaseClass {
 		test.log(LogStatus.PASS, "33.Logout from admin user and log in as a test user.");
 		logout.logoutFunction();
 		sleep(2);
-		login.loginUser(loginData[8][0], loginData[8][1]);
+		//login.loginUser(loginData[8][0], loginData[8][1]);
+		login.loginUser("Title21User4", "test123456");
+		
 
 		test.log(LogStatus.PASS, "34.Open an existing document that contains the codes control.");
 		test.log(LogStatus.PASS, "Note: Edit mode needs to be turned on.");

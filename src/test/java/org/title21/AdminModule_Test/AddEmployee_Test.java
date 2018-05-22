@@ -140,7 +140,7 @@ public class AddEmployee_Test extends BaseClass {
 
 		sleep(2);			
 
-		addEmployeePOM.getLocationDropdown().selectByValue("Dallas");	
+		addEmployeePOM.getLocationDropdown().selectByValue("Antioch");	//Antioch  Dallas
 
 		test.log(LogStatus.PASS, "6. Select location from Location dropdown.");
 
@@ -162,7 +162,7 @@ public class AddEmployee_Test extends BaseClass {
 
 		test.log(LogStatus.PASS, "8. Enter the data in the Employee ID field.");
 
-		addEmployeePOM.getsupervisorDropdown().selectByVisibleText("Hetal M");
+		addEmployeePOM.getsupervisorDropdown().selectByVisibleText("Administrator");
 
 		test.log(LogStatus.PASS, "9. Click on supervisor dropdown field.");
 
