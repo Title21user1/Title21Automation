@@ -256,7 +256,7 @@ public class Codes_Test extends BaseClass {
 
 		//Query required for the below code
 		test.log(LogStatus.PASS, "23.Select other code class from code class dropdown.");
-		codes.codeClass_DropDown().selectByVisibleText("Test case code1751"); 
+		codes.codeClass_DropDown().selectByVisibleText("Title21 Code Class"); 
 
 		sleep(5);
 		test.log(LogStatus.PASS, "24.Click on add code.");
