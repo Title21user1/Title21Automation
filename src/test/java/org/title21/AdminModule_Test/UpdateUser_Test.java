@@ -46,7 +46,7 @@ public class UpdateUser_Test extends BaseClass{
 		login.loginFunction();
 	}
 	
-	@Test(testName = "Update User", groups = "AdminModule", priority = 0)
+	@Test(testName = "Update User", groups = "AdminModule", priority = 0, alwaysRun=true)
 	public void UpdateUser() throws Exception
 	{		
 		test = extent.startTest("Update User");

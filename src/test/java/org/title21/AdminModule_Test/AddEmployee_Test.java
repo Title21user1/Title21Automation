@@ -46,7 +46,7 @@ public class AddEmployee_Test extends BaseClass {
 		login.loginFunction();
 	}
 
-	@Test(testName = "Add Employee", groups = "AdminModule", priority = 0)
+	@Test(testName = "Add Employee", groups = "AdminModule", priority = 0, alwaysRun=true)
 	public void createEmployee() throws Exception 
 	{	
 		test = extent.startTest("Add Employee");
@@ -330,7 +330,6 @@ public class AddEmployee_Test extends BaseClass {
 
 	private void searchRecordInTable() {
 
-		// TODO Auto-generated method stub
 		searchTable=new Table(driver);
 		List<WebElement> tableCells=searchTable.gettableCells(1);				
 

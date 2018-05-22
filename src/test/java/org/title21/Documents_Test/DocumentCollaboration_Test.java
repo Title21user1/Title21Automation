@@ -34,7 +34,7 @@ public class DocumentCollaboration_Test extends BaseClass {
 
 	}
 
-	@Test(testName = "Document Collaboration", groups = "DocumentModule", priority = 0)
+	@Test(testName = "Document Collaboration", groups = "DocumentModule", priority = 0, alwaysRun=true)
 	public void Document_Collaboration_Test() {
 
 		test = extent.startTest("Document Collaboration");

@@ -51,12 +51,12 @@ public class PeriodicOwnedDocuments_Test extends BaseClass{
 		login.loginUser(loginData[7][0], loginData[7][1]);
 	}
 
-	@Test(testName = "Periodic Owned Documents", groups = "PeriodicReviewer", priority = 0)
+	@Test(testName = "Periodic Owned Documents", groups = "PeriodicReviewer", priority = 0, alwaysRun=true)
 	public void DocumentRoutes() throws Exception
 	{		
 		test = extent.startTest("Periodic Owned Documents");
-		test.log(LogStatus.PASS, "1.Login to the web interface as the first test user 1.");
 		test.log(LogStatus.INFO, "Link to Test case document", "<a href='file://"+filePath+"'>TestCaseDocument</a>");
+		test.log(LogStatus.PASS, "1.Login to the web interface as the first test user 1.");
 		periodicReviews=new PeriodicOwnedDocuments_POM(driver);	
 		
 		periodicReviews.administratorDropDown().click();
