@@ -42,7 +42,7 @@ public class DetailedCheckout_Test extends BaseClass
 		fileup = new FileUpload();
 	}
 
-	@Test(testName = "DocumentCheckoutInDetail", groups = "DocumentModule", priority = 0)
+	@Test(testName = "DocumentCheckoutInDetail", groups = "DocumentModule", priority = 0, alwaysRun=true)
 	public void DocumentCheckoutInDetail()
 	{
 		preRequisites();

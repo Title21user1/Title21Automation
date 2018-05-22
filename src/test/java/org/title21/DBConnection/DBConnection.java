@@ -3,14 +3,21 @@ package org.title21.DBConnection;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+
 import org.testng.Assert;
 import org.title21.utility.BaseClass;
 
-public class DBConnection extends BaseClass {
+public class DBConnection {
+	
+	protected static Connection connection;
+	protected static Statement statement;
+	protected static ResultSet rs;
 
 	public static Connection getConnection() throws Exception {
-		System.out.println(connection);
+
 		if (connection==null)  {
 			try {
 				DriverManager.registerDriver(new com.microsoft.sqlserver.jdbc.SQLServerDriver());
@@ -42,20 +49,14 @@ public class DBConnection extends BaseClass {
 			try {				
 				connection.close();
 				connection=null;
-				sleep(2);
+				BaseClass.sleep(2);
 			} catch (SQLException ex) {
-  				ex.printStackTrace();
+				ex.printStackTrace();
 			}
 		}
 		return connection;
 	}
 
-	/*
-	 * @param dbquery - query statement
-	 * @param columnName - columnName in which query will fetch the value.
-	 * 
-	 */
-	
 	public static int getIntDBValue(String dbquery, String columnName)
 	{
 		int dbvalue = 0;
@@ -64,21 +65,21 @@ public class DBConnection extends BaseClass {
 			String query = dbquery;
 			statement = connection.createStatement();
 			rs = statement.executeQuery(query);
-						
+
 			while(rs.next()){
 				dbvalue= rs.getInt(columnName);				
 			}
 		}
 		catch(Exception e)
 		{
-			System.out.println("Failed Database Connection");
+
 		}
 		finally{
 			closeConnection();
 		}
 		return dbvalue;
 	}
-	
+
 	public void getQueryExecuted(String dbquery)
 	{
 		try{
@@ -89,20 +90,48 @@ public class DBConnection extends BaseClass {
 		}
 		catch(Exception e)
 		{
-			System.out.println("Failed Database Connection");
+
 		}
 		finally{
 			closeConnection();
 		}
 	}
-	
-	/*
-	 * 
-	 * This will execute storedProcedure. 
-	 * It will return true if there is any resultset false otherwise. 
-	 * 
-	 */
+
+	public static boolean verifyString(String value,String dbquery, String columnName)
+	{
+		boolean isPresent=false;
+		String dbvalue = null;
 		
+		try{
+			getConnection();
+			String query = dbquery;
+			statement = connection.createStatement();
+			rs = statement.executeQuery(query);
+
+			while(rs.next()){
+				dbvalue= rs.getString(columnName);			
+			}
+		}
+		catch(Exception e)
+		{
+
+		}
+		finally{
+			closeConnection();
+		}
+		
+		if (dbvalue.equalsIgnoreCase(value))
+		{
+			isPresent=true;
+			System.out.println(""+value+" is already present");
+		} else 
+		{
+			System.out.println(""+value+" is not present");
+		}
+		
+		return isPresent;
+	}
+
 	public static boolean executeStoredProcedure(String storedProcedure) throws Exception{
 		Connection con;
 		PreparedStatement ps = null;
@@ -110,21 +139,21 @@ public class DBConnection extends BaseClass {
 			boolean getResults;
 			con=getConnection();
 			ps= con.prepareStatement(storedProcedure);
-			
+
 			ps.setEscapeProcessing(true);
 			getResults=ps.execute();
-			
+
 			if (getResults){
-				
+
 				rs=ps.getResultSet();
 				System.out.println("There is a resultset.");
 				return true;
-													
+
 			}else{
 				System.out.println("There is a no resultset returned after executing stored procedure.");
 				return true;
 			}
-						
+
 		}
 		catch(Exception e){
 			System.out.println(e);
@@ -133,10 +162,10 @@ public class DBConnection extends BaseClass {
 		finally{
 			closeConnection();			
 		}	
-		
+
 	}
-	
-	
+
+
 }
 
 

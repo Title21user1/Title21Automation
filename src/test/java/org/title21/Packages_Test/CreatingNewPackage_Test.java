@@ -49,7 +49,7 @@ public class CreatingNewPackage_Test extends BaseClass{
 		login.loginUser(loginData[7][0], loginData[7][1]);
 	}
 
-	@Test(testName = "CreatingNewPackage", groups = "Packages", priority = 0)
+	@Test(testName = "CreatingNewPackage", groups = "PackageScreens", priority = 0, alwaysRun=true)
 	public void DocumentRoutes() throws Exception
 	{		
 		test = extent.startTest("Creating New Package");

@@ -58,7 +58,7 @@ public class RecentlyViewedAndFavorites_Test extends BaseClass {
 
 	}
 
-	@Test(testName = "Recently Viewed And Favorites", groups = "DocumentModule", priority = 0)
+	@Test(testName = "Recently Viewed And Favorites", groups = "DocumentModule", priority = 0, alwaysRun=true)
 	public void Create_doc() throws Exception {
 		test = extent.startTest("RecentlyViewed_And_Favorites");
 		test.log(LogStatus.INFO, "Link to Test case document", "<a href='file://"+filePath+"'>TestCaseDocument</a>");
@@ -373,6 +373,7 @@ public class RecentlyViewedAndFavorites_Test extends BaseClass {
 
 	}
 
+	@SuppressWarnings("unused")
 	private boolean selectDocForApprovel(String docName, int cell) {
 		searchTable = new Table(driver);
 		RecentlyViewdAndFavorites = new RecentlyViewdAndFavorites_POM(driver);

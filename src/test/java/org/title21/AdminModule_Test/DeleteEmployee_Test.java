@@ -39,7 +39,7 @@ public class DeleteEmployee_Test extends BaseClass {
 		login.loginFunction();
 	}
 
-	@Test(testName = "Delete Employee", groups = "AdminModule", priority = 0)
+	@Test(testName = "Delete Employee", groups = "AdminModule", priority = 0, alwaysRun=true)
 	public void Delete_Employee() throws Exception {
 
 		test = extent.startTest("Delete Employee");

@@ -59,10 +59,11 @@ public class ActionsRequiredByDocOwner_Test extends BaseClass{
 		login.loginUser(loginData[7][0], loginData[7][1]);
 		
 	}
-	@Test(testName = "ActionsRequiredByDocOwner", groups = "Periodic Review", priority = 0)
+	@Test(testName = "ActionsRequiredByDocOwner", groups = "PeriodicReviewer", priority = 0, alwaysRun=true)
 	public void ActionsRequiredByDocOwner_Prerequisites() throws Exception 
 	{
-		test = extent.startTest("ActionsRequiredByDocOwner_Test");	
+		test = extent.startTest("Actions Required By Document Owner Test");	
+		log.info("Actions Required By Document Owner Test");
 		test.log(LogStatus.PASS, "1.Login as Test user 1(Owner) " + "<br/>"	);
 		action.administratorDropDown().click();
 		sleep(2);

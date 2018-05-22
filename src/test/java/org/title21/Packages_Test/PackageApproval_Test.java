@@ -49,11 +49,11 @@ public class PackageApproval_Test extends BaseClass{
 		login.loginUser(loginData[7][0], loginData[7][1]);
 	}
 
-	@Test(testName = "PackageApproval", groups = "Packages", priority = 0)
+	@Test(testName = "PackageApproval", groups = "PackageScreens", priority = 0, alwaysRun=true)
 	public void DocumentRoutes() throws Exception
 	{		
 		test = extent.startTest("Package Approval");
-		log.info("Codes");
+		log.info("Package Approval");
 		test.log(LogStatus.PASS, "1.Login to the web interface.");
 		test.log(LogStatus.INFO, "Link to Test case document", "<a href='file://"+filePath+"'>TestCaseDocument</a>");
 		packageApproval=new PackageApproval_POM(driver);	

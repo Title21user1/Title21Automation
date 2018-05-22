@@ -13,7 +13,6 @@ import org.testng.annotations.Test;
 import org.title21.AdminModule_POM.LoginPage_POM;
 import org.title21.AdminModule_POM.LogoutPage_POM;
 import org.title21.AdminModule_POM.Table;
-import org.title21.Documents_Test.DocumentRoutes_Test;
 import org.title21.Module3_POM.Codes_POM;
 import org.title21.utility.BaseClass;
 import org.title21.utility.FunctionUtils;
@@ -47,7 +46,7 @@ public class Codes_Test extends BaseClass {
 		login.loginFunction();
 
 	}
-	@Test(testName = "Codes", groups = "Module3", priority = 0)
+	@Test(testName = "Codes", groups = "Module3", priority = 0, alwaysRun=true)
 	public void CreateGroupInAdmin() 
 	{
 		codes = new Codes_POM(driver);

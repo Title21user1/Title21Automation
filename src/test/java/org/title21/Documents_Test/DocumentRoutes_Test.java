@@ -7,7 +7,6 @@ import java.util.concurrent.TimeUnit;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.title21.AdminModule_POM.LoginPage_POM;
@@ -48,7 +47,7 @@ public class DocumentRoutes_Test extends BaseClass{
 		login.loginUser("Title21User2", "test123456");
 	}
 
-	@Test(testName = "Document Routes", groups = "DocumentModule", priority = 0)
+	@Test(testName = "Document Routes", groups = "DocumentModule", priority = 0, alwaysRun=true)
 	public void DocumentRoutes() throws Exception
 	{		
 		test = extent.startTest("Document Routes");
@@ -351,11 +350,7 @@ public class DocumentRoutes_Test extends BaseClass{
 		{
 			test.log(LogStatus.FAIL,"Unable to Create a new document form.");
 		}
-	}
-	
-	@AfterMethod
-	public void afterMethod()
-	{
+		
 		logout.logoutFunction();
 	}
 	
