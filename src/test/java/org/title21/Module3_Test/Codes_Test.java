@@ -13,6 +13,8 @@ import org.testng.annotations.Test;
 import org.title21.AdminModule_POM.LoginPage_POM;
 import org.title21.AdminModule_POM.LogoutPage_POM;
 import org.title21.AdminModule_POM.Table;
+import org.title21.DBConnection.DBConnection;
+import org.title21.DBConnection.DBQueries;
 import org.title21.Module3_POM.Codes_POM;
 import org.title21.utility.BaseClass;
 import org.title21.utility.FunctionUtils;
@@ -30,6 +32,8 @@ public class Codes_Test extends BaseClass {
 	String categoryName="";
 	String codeName ="";
 	String codeNameInTable ="";
+	DBQueries dbqueries = new DBQueries();
+	DBConnection dbconnection = new DBConnection();
 	Codes_POM codes;
 	boolean isRecordFound=false;
 	String testcaseName="TestCase-WIA-Codes.doc";	
@@ -38,6 +42,9 @@ public class Codes_Test extends BaseClass {
 	@BeforeClass(alwaysRun=true)
 	public void openURL() 
 	{
+		dbconnection.getQueryExecuted(dbqueries.addCodeClass);
+		dbconnection.getQueryExecuted(dbqueries.addCodeCategory);
+		dbconnection.getQueryExecuted(dbqueries.addCode);
 		getBrowser();
 		className = this.getClass().getName();
 		createDirectory(className);
@@ -106,7 +113,7 @@ public class Codes_Test extends BaseClass {
 		codes.editClass_Icon().click();
 		sleep(2);
 		codes.className_TextBox().clear();
-		codes.className_TextBox().sendKeys("Test case code"+number); //"Test case code"+number    "Test case sp code"
+		codes.className_TextBox().sendKeys("Test case code"+number); 
 		test.log(LogStatus.PASS, "8.Click on add button.");
 		sleep(3);
 
@@ -356,7 +363,7 @@ public class Codes_Test extends BaseClass {
 		sleep(3);
 		codes.getdocument().click();
 		sleep(3);
-		codes.getlocationDrodown().selectByVisibleText("Dallas");
+		codes.getlocationDrodown().selectByVisibleText("Antioch");
 		sleep(2);
 		documetNo = codes.document_No().getAttribute("value");
 		sleep(2);

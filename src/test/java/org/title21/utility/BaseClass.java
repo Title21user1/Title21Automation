@@ -459,23 +459,23 @@ public class BaseClass {
 		
 	}*/
 		
-	public void waitTillElementisInvisible(WebElement element) {	
-		
-		WebDriverWait wait=new WebDriverWait(driver,5);
+	public void waitTillElementisInvisible(WebElement element) 
+	{	
+		WebDriverWait wait=new WebDriverWait(driver,15);
 		wait.until(ExpectedConditions.invisibilityOf(element));		
 	}		
 	
-	public void waitTillElementVisible(WebElement element) {		
-		WebDriverWait wait=new WebDriverWait(driver,5);
+	public void waitTillElementVisible(WebElement element) 
+	{		
+		WebDriverWait wait=new WebDriverWait(driver,15);
 		wait.until(ExpectedConditions.visibilityOf(element));		
 	}	
 	
-	public void waitTillElementClickable(WebElement element) {		
-		WebDriverWait wait=new WebDriverWait(driver,5);
+	public void waitTillElementClickable(WebElement element) 
+	{		
+		WebDriverWait wait=new WebDriverWait(driver,15);
 		wait.until(ExpectedConditions.elementToBeClickable(element));		
 	}	
-	
-	
 	
 	public void javaScriptClick(WebElement element){
 		JavascriptExecutor js=(JavascriptExecutor)driver;		

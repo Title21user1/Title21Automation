@@ -117,8 +117,7 @@ public class CreateNewUser_Test extends BaseClass{
 		addNewUserPage.addNew_User().click();
 		test.log(LogStatus.PASS, "6.Click on 'Add New' button.");
 
-		sleep(3);
-
+		sleep(4);
 		if(addNewUserPage.verifyAddNewUserPopUpHeader(driver))
 		{
 			test.log(LogStatus.PASS, "<b>ER 4- Add new user popup screen appears.<b>"+
@@ -129,7 +128,8 @@ public class CreateNewUser_Test extends BaseClass{
 				addNewUserPage.add_GeneralButton().click();
 				addNewUserPage.add_GeneralButton().click();
 				test.log(LogStatus.PASS, "7.Click on Add Button.");
-				sleep(2);
+				
+				sleep(3);
 				if(addNewUserPage.locationRequired_ErrorMsg().isDisplayed()&&addNewUserPage.fullNameRequired_ErrorMsg().isDisplayed()&&addNewUserPage.userNameRequired_ErrorMsg().isDisplayed()&&addNewUserPage.pleaseSelectOneGroup_ErrorMsg().isDisplayed())
 				{
 					test.log(LogStatus.PASS, "<b>ER 5- It displays validation messages as 'Location is required', 'Full Name is required', 'User Name is required', 'Please select at least one group'.<b>."+
@@ -145,8 +145,7 @@ public class CreateNewUser_Test extends BaseClass{
 
 				test.log(LogStatus.PASS, "8.Select one location.(for eg: Antioch).");
 
-				sleep(2);
-
+				sleep(3);
 				if(addNewUserPage.alertEMPAssignedMsg(driver))
 				{
 					test.log(LogStatus.FAIL, "It displayed validation message as 'All employees have already been assigned a user ID'."+
@@ -165,7 +164,7 @@ public class CreateNewUser_Test extends BaseClass{
 					
 					test.log(LogStatus.PASS, "9.Select Location whose all employees have already been assigned a user ID");
 					addNewUserPage.location_Dropdown().selectByVisibleText("Fremont");
-					sleep(2);
+					sleep(4);
 					if(addNewUserPage.empAssigned_Msg().isDisplayed())
 					{
 						test.log(LogStatus.PASS, "<b>ER 7- It displayed validation message as 'All employees have already been assigned a user ID'.<b>"+
@@ -184,7 +183,7 @@ public class CreateNewUser_Test extends BaseClass{
 					addNewUserPage.username_textbox().sendKeys("Title21User2");
 					test.log(LogStatus.PASS, "10.Enter already existing username in username field.");
 					addNewUserPage.userName_Label().click();
-					sleep(2);
+					sleep(4);
 					if(addNewUserPage.userNameError_Msg().isDisplayed())
 					{
 						test.log(LogStatus.PASS, "<b>ER 8- A validation message 'Full Name already exists' and 'EmployeeID Already Exists' are displayed..<b>"+
@@ -198,7 +197,7 @@ public class CreateNewUser_Test extends BaseClass{
 
 					test.log(LogStatus.PASS, "11.Select one employee.");
 					userName="Mart"+FunctionUtils.generateRandomNumber();
-
+					//Mart8614
 					addNewUserPage.username_textbox().clear();
 					addNewUserPage.username_textbox().sendKeys(userName);
 					test.log(LogStatus.PASS, "12.Enter username.");
@@ -220,7 +219,6 @@ public class CreateNewUser_Test extends BaseClass{
 						if(selectedList.contains("Administrators"))
 						{
 							sleep(3);
-
 							javaScriptClick(addNewUserPage.add_GeneralButton());
 							test.log(LogStatus.PASS, "14.Click on add button.");
 
@@ -254,7 +252,7 @@ public class CreateNewUser_Test extends BaseClass{
 								addNewUserPage.check_StrengthButton().click();
 								test.log(LogStatus.PASS, "18.Click on check strength.");
 
-								sleep(3);
+								sleep(4);
 								if(addNewUserPage.passwordMust_PopUp().isDisplayed()) 
 								{
 									firstMsgColor = addNewUserPage.tenCharacters_Msg().getCssValue("color");
@@ -309,7 +307,7 @@ public class CreateNewUser_Test extends BaseClass{
 								test.log(LogStatus.PASS, "22.Enter invalid data in confirm password field.");
 								sleep(2);
 								javaScriptClick(addNewUserPage.password_AddTab());
-								sleep(3);
+								sleep(4);
 								if(addNewUserPage.passwordDoesNotMatch_ErrorMsg().isDisplayed())
 								{
 									test.log(LogStatus.PASS, "<b>ER 13- It should display validation messages as 'Password does not match'.<b>"+
@@ -349,7 +347,7 @@ public class CreateNewUser_Test extends BaseClass{
 									test.log(LogStatus.FAIL, "Successfully verified confirm pop-up");
 								}
 
-								sleep(3);
+								sleep(4);
 								if(addNewUserPage.groupFilterResult().isDisplayed())
 								{
 									test.log(LogStatus.PASS, "25.Go to user list screen .");
@@ -359,9 +357,9 @@ public class CreateNewUser_Test extends BaseClass{
 									addNewUserPage.groupFilterResult().sendKeys(userName);
 									test.log(LogStatus.PASS, "27.Click on Go butto");
 									addNewUserPage.groupFilterResutGoButton().click();
-
 									sleep(2);
-
+									addNewUserPage.groupFilterResutGoButton().click();
+									sleep(4);
 									for(int i=1; i<=10; i++ ) {
 
 										String groups = driver.findElement(By.xpath("//tbody[@class='t21-js-clickable-rows']/tr["+i+"]/td[2]")).getText();
