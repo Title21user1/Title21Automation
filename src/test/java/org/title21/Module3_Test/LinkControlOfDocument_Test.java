@@ -168,7 +168,7 @@ public class LinkControlOfDocument_Test extends BaseClass {
 		sleep(3);
 		System.out.println("data is" + ref_documents);
 		sleep(5);
-		searchlinkonlinkwindow(Document_For_link, 8);
+		searchlinkonlinkwindow(Document_For_link, 2);
 		sleep(4);
 		test.log(LogStatus.PASS, "" + "19.Again click on add new links" + "<br/>"
 				+ "20.Link one document and note down the number of linked document(for eg: doc no. 001.406: 0.0)"
@@ -206,7 +206,7 @@ public class LinkControlOfDocument_Test extends BaseClass {
 		sleep(5);
 		// searchlinkonlinkwindow("1.0", 8);
 		LinkControlofDocument.getlinksearchonsearch().sendKeys(PackageObsoletePOM.documetNo);
-		LinkControlofDocument.getGoButton().get(8).click();
+		LinkControlofDocument.getGoButton().get(2).click();
 		sleep(3);
 		test.log(LogStatus.PASS,
 				"28.Link one effective document." + "<br/>"
@@ -217,7 +217,7 @@ public class LinkControlOfDocument_Test extends BaseClass {
 		effective_doc = LinkControlofDocument.getselected_doc_from_link().get(1).getText();
 		sleep(5);
 		System.out.println(effective_doc);
-		searchlinkonlinkwindow(effective_doc, 8);
+		searchlinkonlinkwindow(effective_doc, 2);
 		sleep(5);
 		verticalScrollingUp();
 		Search(effective_doc);//effective_doc
@@ -265,7 +265,7 @@ public class LinkControlOfDocument_Test extends BaseClass {
 		LinkControlofDocument = new LinkControlOfDocument_POM(driver);
 		if (searchlink.equalsIgnoreCase(doc_name)) {
 
-			LinkControlofDocument.getsearch().get(2).sendKeys(searchlink);
+			LinkControlofDocument.getlinksearchonsearch().sendKeys(searchlink);
 
 		} else
 

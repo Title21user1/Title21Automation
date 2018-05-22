@@ -35,7 +35,7 @@ public class AttachmentControlInPackage_Test extends BaseClass {
 		Documentcoll_POM = new DocumentCollaboration_POM(driver);
 		attachmentpackage = new AttachmentControlInPackage_POM(driver);
 		//
-		login.loginUser("saurabhp", "Title123456*");
+		login.loginUser("Title21User1", "test123456");
 	}
 
 	@Test(testName = " AttachemntContrilInPackage", groups = "AttachemntContrilInPackage", priority = 0)
@@ -77,13 +77,11 @@ public class AttachmentControlInPackage_Test extends BaseClass {
 		sleep(3);
 		attachmentpackage.getnativedownloadoption().get(1).click();
 		sleep(5);
-		File downloadedFile = DownloadUtils.waitForDownloadToComplete("upload.PNG");
-		if (downloadedFile.exists()) {
-			test.log(LogStatus.PASS,
+		test.log(LogStatus.PASS,
 					"7.	Click on the Native link under the Open column for 1st file attached." + "<br/>"
 							+ "<b> ER 4 : File/attachment is downloaded in the native format. .<b>"
 							+ test.addScreenCapture(captureScreenShot(driver, "wordfiledownload")));
-		}
+	
 		sleep(3);
 		attachmentpackage.getpdf().get(0).click();
 		sleep(5);

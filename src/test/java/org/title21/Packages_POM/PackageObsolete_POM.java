@@ -468,7 +468,7 @@ public class PackageObsolete_POM {
 		LogoutPage_POM logout = new LogoutPage_POM(driver);
 		BaseClass BaseClass = new BaseClass();
 		PeriodicOwnedDocuments_POM periodicReviews = new PeriodicOwnedDocuments_POM(driver);
-		org.title21.utility.BaseClass.sleep(4);
+		org.title21.utility.BaseClass.sleep(7);
 		periodicReviews.getnewdoc().click();
 		org.title21.utility.BaseClass.sleep(4);
 		BaseClass.waitTillElementVisible(periodicReviews.getdocument());
@@ -541,7 +541,7 @@ public class PackageObsolete_POM {
 		org.title21.utility.BaseClass.sleep(2);
 		getlocationdropdown().selectByVisibleText("All");
 		org.title21.utility.BaseClass.sleep(2);
-		documentRoutes.getnameinAddApprover().selectByVisibleText("sameer");
+		documentRoutes.getnameinAddApprover().selectByVisibleText("Title21User2");
 		documentRoutes.getSequenceinAddApprover().selectByVisibleText("1");
 		documentRoutes.getallottedDaysinAddApprover().selectByVisibleText("1 day");
 		documentRoutes.approverAdd_Button().click();
@@ -558,7 +558,7 @@ public class PackageObsolete_POM {
 		org.title21.utility.BaseClass.sleep(5);
 		logout.logoutFunction();
 		org.title21.utility.BaseClass.sleep(4);
-		login.loginUser("sameer", "joshi12345");
+		login.loginUser("Title21User2", "test123456");
 		documentRoutes = new DocumentRoutes_POM(driver);
 		documentRoutes.wizard_Option().click();
 		documentRoutes.approval_Tab().click();
@@ -572,14 +572,14 @@ public class PackageObsolete_POM {
 		documentRoutes.documentApprove_Button().click();
 		org.title21.utility.BaseClass.sleep(6);
 		documentRoutes.pinTo_Approve().clear();
-		documentRoutes.pinTo_Approve().sendKeys("262829");
+		documentRoutes.pinTo_Approve().sendKeys("212223");
 		documentRoutes.checkInRouteSubmit_Button().click();
 		org.title21.utility.BaseClass.sleep(5);
 		logout.logoutFunction();
 		org.title21.utility.BaseClass.sleep(5);
 		DBConnection.executeStoredProcedure(dbqueries.moveDocsOnReleaseDate);
 		org.title21.utility.BaseClass.sleep(5);
-		login.loginUser("saurabhp", "Title123456*");
+		login.loginUser("Title21User2", "test123456");
 		org.title21.utility.BaseClass.sleep(2);
 	}
 
