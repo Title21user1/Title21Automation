@@ -22,7 +22,7 @@
 	<test name="DocumentScreens" preserve-order="true">
     	<classes>
 
-			<class name="org.title21.Documents_Test.CreateDocument_Test"/> 
+			<class name="org.title21.Documents_Test.CreateDocument_Test" /> 
 			<class name="org.title21.Documents_Test.DocumentRoutes_Test"/>
 			<class name="org.title21.Documents_Test.CheckInCheckOut_Test"/> 
 			<class name="org.title21.Documents_Test.DetailedCheckout_Test"/>
