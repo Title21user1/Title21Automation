@@ -123,6 +123,22 @@ public class ReadAndSignTraining_POM extends DocumentRoutes_POM {
 	@FindBy(css=".day.today")
 	WebElement currentDate;
 	
+	@FindBy(xpath="//*[@id='ReviewDocs']/div/div[3]/p")
+	WebElement NoResultsReturned;
+	
+	@FindBy(xpath="//*[@id='t21-workarea']/div/div/div[1]/h5")
+	WebElement NoItemsFound;
+	
+	public WebElement NoItemsFound_Text()
+	{
+		return NoItemsFound;
+	}
+	
+	public WebElement NoResultsReturned_Text()
+	{
+		return NoResultsReturned;
+	}
+	
 	public WebElement current_Date()
 	{
 		return currentDate;
@@ -313,5 +329,45 @@ public class ReadAndSignTraining_POM extends DocumentRoutes_POM {
 		  trainingsPercentage_CheckBox().click();
 	  }
 	 }
+	
+public boolean verifyNoResults(){
+		
+		String errorMessage="";
+		try 
+		{
+			errorMessage = NoResultsReturned_Text().getText();
+			
+		}catch(NoSuchElementException e) {
+			
+		}
+		if(errorMessage.contains("No results"))
+		{
+			return true;
+		}
+		else
+		{	
+			return false;
+		}		
+	}
+	
+	public boolean verifyNoItemsFoundText(){
+		
+		String errorMessage="";
+		try 
+		{
+			errorMessage = NoItemsFound_Text().getText();
+			
+		}catch(NoSuchElementException e) {
+			
+		}
+		if(errorMessage.contains("No items found"))
+		{
+			return true;
+		}
+		else
+		{	
+			return false;
+		}		
+	}
 }
 

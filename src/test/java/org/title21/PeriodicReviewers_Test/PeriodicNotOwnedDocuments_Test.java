@@ -66,13 +66,13 @@ public class PeriodicNotOwnedDocuments_Test extends BaseClass{
 		test.log(LogStatus.PASS, "1.In the Web interface, Login as admin.");
 		test.log(LogStatus.INFO, "Link to Test case document", "<a href='file://"+filePath+"'>TestCaseDocument</a>");
 		
-		//periodicReviews.administratorDropDown().click();
+		periodicReviews.administratorDropDown().click();
 		sleep(2);
-		//periodicReviews.dropDownSetting_Link().click();
-		//periodicReviews.multiSignReviewCheck(false);
+		periodicReviews.dropDownSetting_Link().click();
+		periodicReviews.multiSignReviewCheck(false);
 		
 		//=======================================================Prerequisites==========================================================================
-		/* documentNo1 = createNewDocWithPeriodicReviewer();
+		 documentNo1 = createNewDocWithPeriodicReviewer();
 		 documentNo2 = createNewDocWithPeriodicReviewer();
 		 documentNo3 = createNewDocWithPeriodicReviewer();
 		
@@ -107,11 +107,11 @@ public class PeriodicNotOwnedDocuments_Test extends BaseClass{
 			}
 		 
 		 sleep(2);
-		 periodicReviews.viewDocButtonForPeriodicReview().click();*/
+		 periodicReviews.viewDocButtonForPeriodicReview().click();
 		//=======================================================Main steps===================================================================================== 
-		 documentNo1 = "ANT-FORM.757";
-		 documentNo2 = "ANT-FORM.758";
-		 documentNo3 = "ANT-FORM.759";
+		// documentNo1 = "ANT-FORM.757";
+		// documentNo2 = "ANT-FORM.758";
+		// documentNo3 = "ANT-FORM.759";
 		 
 		 
 		 test.log(LogStatus.PASS, "2.Navigate to Administrator> Users >Edit user. Make a note of all the groups the test user is part of.");
@@ -611,7 +611,7 @@ public class PeriodicNotOwnedDocuments_Test extends BaseClass{
 		waitTillElementVisible(periodicReviews.getdocument());
 		periodicReviews.getdocument().click();
 		sleep(3);
-		periodicReviews.getlocationDrodown().selectByVisibleText("Dallas");
+		periodicReviews.getlocationDrodown().selectByVisibleText("Antioch");  //Dallas
 
 		sleep(3);
 
@@ -652,7 +652,7 @@ public class PeriodicNotOwnedDocuments_Test extends BaseClass{
 				sleep(2);
 				periodicReviews.getLocationDropdown().selectByVisibleText("All"); 
 				sleep(2);
-				periodicReviews.getnameinAddApprover().selectByVisibleText("sameer");
+				periodicReviews.getnameinAddApprover().selectByVisibleText("Title21User1");  //sameer
 				periodicReviews.getSequenceinAddApprover().selectByVisibleText("1");
 				periodicReviews.getallottedDaysinAddApprover().selectByVisibleText("1 day");
 				periodicReviews.approverAdd_Button().click();
@@ -686,6 +686,8 @@ public class PeriodicNotOwnedDocuments_Test extends BaseClass{
 				}
 			}
 			periodicReviews.pickDate_TextBox().click();
+			sleep(1);
+			periodicReviews.pickDate_TextBox().click();
 			sleep(2);
 			driver.findElement(By.xpath("//td[text()='"+dd+"']")).click();
 			sleep(2);
@@ -718,7 +720,7 @@ public class PeriodicNotOwnedDocuments_Test extends BaseClass{
 				sleep(2);
 				periodicReviews.availablePeriodicReviewers_Filter().click();
 				sleep(2);
-				periodicReviews.availablePeriodicReviewers_Filter().sendKeys(loginData[8][0]); //secret
+				periodicReviews.availablePeriodicReviewers_Filter().sendKeys("Title21User4"); //secret  loginData[8][0]
 				sleep(2);
 				if(periodicReviews.AvailablePeriodicReviewers_SearchResultArea().isDisplayed())
 				{
@@ -732,7 +734,7 @@ public class PeriodicNotOwnedDocuments_Test extends BaseClass{
 				sleep(2);
 				
 				periodicReviews.availablePeriodicReviewers_Filter().clear();
-				periodicReviews.availablePeriodicReviewers_Filter().sendKeys("aparna"); //aparnak
+				periodicReviews.availablePeriodicReviewers_Filter().sendKeys("Title21User5"); //aparnak   aparna
 				sleep(2);
 				if(periodicReviews.AvailablePeriodicReviewers_SearchResultArea().isDisplayed())
 				{
