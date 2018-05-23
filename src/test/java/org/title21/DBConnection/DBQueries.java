@@ -32,4 +32,10 @@ public class DBQueries
 	public final String verifyTitle21User4="select UserName from tblUserName where Username='Title21User4'";
 	public final String verifyTitle21User5="select UserName from tblUserName where Username='Title21User5'";
 	public final String verifyTitle21Group="SELECT Groups FROM tblGroups WHERE Groups='Title21Group'";
+	
+	public final String addCodeClass="exec sp_executesql N'INSERT [dbo].[tblCodeClass]([CodeClass]) VALUES (@0)',N'@0 nvarchar(128)',@0=N'Title21 Code Class'";
+	public final String addCodeCategory="exec sp_executesql N'exec usp_WebAddCodeCategory @p0, @p1',N'@p0 nvarchar(18),@p1 nvarchar(21)',@p0=N'Title21 Code Class',@p1=N'Title21 Code Category'";
+	public final String addCode="exec sp_executesql N'exec usp_WebAddCode @p0, @p1,@p2,@p3,@p4,@p5',N'@p0 nvarchar(18),@p1 nvarchar(21),@p2 nvarchar(12),@p3 nvarchar(4),@p4 nvarchar(9),@p5 int',@p0=N'Title21 Code Class',@p1=N'Title21 Code Category',@p2=N'Title21 Code',@p3=N'4567',@p4=N'Define',@p5=1";
+	
+	
 }
