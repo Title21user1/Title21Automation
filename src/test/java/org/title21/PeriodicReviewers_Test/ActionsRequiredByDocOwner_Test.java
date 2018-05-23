@@ -56,7 +56,7 @@ public class ActionsRequiredByDocOwner_Test extends BaseClass{
 		dbqueries = new DBQueries();
 		periodicReviews=new PeriodicOwnedDocuments_POM(driver);	
 		periodicTest = new PeriodicOwnedDocuments_Test();
-		login.loginUser(loginData[7][0], loginData[7][1]);
+		login.loginUser("Title21User2", "test123456");   
 		
 	}
 	@Test(testName = "ActionsRequiredByDocOwner", groups = "PeriodicReviewer", priority = 0, alwaysRun=true)
@@ -87,6 +87,8 @@ public class ActionsRequiredByDocOwner_Test extends BaseClass{
 	    sleep(2);
 	    action.verifyPeriodicReviewsCheckBox2(true);
 	    sleep(2);
+	    action.verifyPeriodicReviewsCheckBox1(false);
+	    sleep(2);
 	    action.getCloseWindow().click();
 		sleep(2);
 		action.administratorDropDown().click();
@@ -105,6 +107,8 @@ public class ActionsRequiredByDocOwner_Test extends BaseClass{
 		action.getANTSOPEditButton().click();
 		sleep(2);
 		action.verifyPeriodicReviewsCheckBox1(true);
+		sleep(2);
+		action.verifyPeriodicReviewsCheckBox2(false);
 		sleep(2);
 		action.getCloseWindow().click();
 		sleep(3);
@@ -163,7 +167,7 @@ public class ActionsRequiredByDocOwner_Test extends BaseClass{
 				sleep(2);
 				periodicReviews.getLocationDropdown().selectByVisibleText("All"); 
 				sleep(2);
-				periodicReviews.getnameinAddApprover().selectByVisibleText("sameer");
+				periodicReviews.getnameinAddApprover().selectByVisibleText("Title21User1"); 
 				sleep(2);
 				periodicReviews.getSequenceinAddApprover().selectByVisibleText("1");
 				periodicReviews.getallottedDaysinAddApprover().selectByVisibleText("1 day");
@@ -188,10 +192,13 @@ public class ActionsRequiredByDocOwner_Test extends BaseClass{
 			test.log(LogStatus.PASS, "5.Enter days per review (for eg: 7) and pick a date as current date.");
 			periodicReviews.periodicReviewsDays_TextBox().clear();
 			periodicReviews.periodicReviewsDays_TextBox().sendKeys("7"); 
-			sleep(2);
+			sleep(4);
+			periodicReviews.pickDate_TextBox().click();
+			sleep(1);
 			periodicReviews.pickDate_TextBox().click();
 			action.pickCurrent_Date().click();
-			sleep(2);
+			
+			sleep(4);
 			test.log(LogStatus.PASS, "6.Add one periodic reviewer by clicking on Edit Periodic Reviewers link.");
 			scrollIntoView(periodicReviews.editPeriodicReviewers_Link());
 			periodicReviews.editPeriodicReviewers_Link().click();
@@ -202,7 +209,7 @@ public class ActionsRequiredByDocOwner_Test extends BaseClass{
 		
 			sleep(2);
 			periodicReviews.availablePeriodicReviewers_Filter().click();
-			periodicReviews.availablePeriodicReviewers_Filter().sendKeys(loginData[15][2]);  
+			periodicReviews.availablePeriodicReviewers_Filter().sendKeys("Title21User5");    
 			sleep(4);
 			if(periodicReviews.AvailablePeriodicReviewers_SearchResultArea().isDisplayed())
 			{
@@ -225,7 +232,7 @@ public class ActionsRequiredByDocOwner_Test extends BaseClass{
 			periodicReviews.checkIn_Route().click();
 
 			test.log(LogStatus.PASS, "7.CheckIn the document and rout in for approval.");
-			sleep(2);
+			sleep(4);
 			periodicReviews.checkInRouteSubmit_Button().click();
 			sleep(4);
 			periodicReviews.close_Button().click();
@@ -256,7 +263,7 @@ public class ActionsRequiredByDocOwner_Test extends BaseClass{
          sleep(2);
          
          test.log(LogStatus.PASS,"10.Login as Test user 2(periodic reviewer added in step");
-         login.loginUser(loginData[15][0], loginData[15][1]);  
+         login.loginUser("Title21User5", "test123456");    
          sleep(2);
          
             test.log(LogStatus.PASS, "11.Open the periodic review wizard to view a list of documents awaiting the user's review. ");
@@ -287,7 +294,7 @@ public class ActionsRequiredByDocOwner_Test extends BaseClass{
 			selectDocForReviewFromTable(documetNo);
 			action.getchangeBTN().click();
 			sleep(2);
-			//452
+			
 			action.pinTo_Approve().sendKeys("262829");
 			action.approveComment_TextBox().sendKeys("Changes Required"); 
 			action.approveConfirm_Button().click();
@@ -305,6 +312,10 @@ public class ActionsRequiredByDocOwner_Test extends BaseClass{
 					dd = dd1;
 				}
 			}
+			driver.navigate().refresh();
+			sleep(2);
+			periodicReviews.wizard_Option().click();
+		    sleep(2);
 			verifyDueDateOfSelectedDoc(documetNo, dd);
 			if(isValueFound)
 			{
@@ -321,7 +332,7 @@ public class ActionsRequiredByDocOwner_Test extends BaseClass{
 			logout.logoutFunction();
 			
 			test.log(LogStatus.PASS, "15.Login as Test user 1. (Owner )");
-			login.loginUser(loginData[7][0], loginData[7][1]);
+			login.loginUser("Title21User2", "test123456");  
 			
 			test.log(LogStatus.PASS, "16.Open the periodic review wizard to view a list of documents awaiting your review.");
 			 periodicReviews.wizard_Option().click();
@@ -399,7 +410,7 @@ public class ActionsRequiredByDocOwner_Test extends BaseClass{
 					sleep(2);
 					periodicReviews.getLocationDropdown().selectByVisibleText("All"); 
 					sleep(2);
-					periodicReviews.getnameinAddApprover().selectByVisibleText("sameer");
+					periodicReviews.getnameinAddApprover().selectByVisibleText("Title21User1");  
 					sleep(2);
 					periodicReviews.getSequenceinAddApprover().selectByVisibleText("1");
 					periodicReviews.getallottedDaysinAddApprover().selectByVisibleText("1 day");
@@ -426,6 +437,8 @@ public class ActionsRequiredByDocOwner_Test extends BaseClass{
 				periodicReviews.periodicReviewsDays_TextBox().sendKeys("7"); 
 				sleep(3);
 				periodicReviews.pickDate_TextBox().click();
+				sleep(1);
+				periodicReviews.pickDate_TextBox().click();
 				action.pickCurrent_Date().click();
 				sleep(2);
 				test.log(LogStatus.PASS, "21.Add one periodic reviewer by clicking on 'Edit Periodic Reviewers' link.");
@@ -438,7 +451,7 @@ public class ActionsRequiredByDocOwner_Test extends BaseClass{
 			
 				sleep(2);
 				periodicReviews.availablePeriodicReviewers_Filter().click();
-				periodicReviews.availablePeriodicReviewers_Filter().sendKeys(loginData[15][2]); 
+				periodicReviews.availablePeriodicReviewers_Filter().sendKeys("Title21User5");   
 				sleep(4);
 				if(periodicReviews.AvailablePeriodicReviewers_SearchResultArea().isDisplayed())
 				{
@@ -492,7 +505,7 @@ public class ActionsRequiredByDocOwner_Test extends BaseClass{
 	         sleep(2);
 	         
 	         test.log(LogStatus.PASS,"25.Login as Test user 2(periodic reviewer added in step(21) )");
-	         login.loginUser(loginData[15][0], loginData[15][1]); 
+	         login.loginUser("Title21User5", "test123456"); 
 	         sleep(2);
 	         
 	         
@@ -542,7 +555,10 @@ public class ActionsRequiredByDocOwner_Test extends BaseClass{
 						dd2 = dd12;
 					}
 				}
-				sleep(5);
+				driver.navigate().refresh();
+				sleep(2);
+				periodicReviews.wizard_Option().click();
+			    sleep(2);
 				verifyDueDateOfSelectedDoc(documetNo, dd2);
 				if(isValueFound)
 				{
@@ -559,7 +575,7 @@ public class ActionsRequiredByDocOwner_Test extends BaseClass{
 				logout.logoutFunction();
 				
 				test.log(LogStatus.PASS, "30.Login as Test user 1. (Owner )");
-				login.loginUser(loginData[7][0], loginData[7][1]);
+				login.loginUser("Title21User2", "test123456");  
 				
 				test.log(LogStatus.PASS, "31.Open the periodic review wizard to view a list of documents awaiting your review.");
 				 periodicReviews.wizard_Option().click();
@@ -652,21 +668,6 @@ public class ActionsRequiredByDocOwner_Test extends BaseClass{
 			sleep(2);
 			selectDocForApprovel(docName);
 			
-			/*isRecordFound = false;
-			for(int i=1; i<=20; i++)
-			{
-				 selectDocForApprovel(docName);
-				 if(!isRecordFound)
-				 {
-					// verticalScrollingDown();
-					 periodicReviews.documentTableNext_Button().click();
-			 		 sleep(2); 
-				 }
-				 else
-				 {
-					 break;
-				 }
-			}*/
 			sleep(2);
 			periodicReviews.documentTab_ForApprover().click();
 			sleep(2);
@@ -689,21 +690,6 @@ public class ActionsRequiredByDocOwner_Test extends BaseClass{
 			sleep(2);
 			selectDocForReview(docName);
 		    
-		  /*  isRecordFound = false;
-		    for(int i=1; i<=20; i++)
-		    {
-		   	 selectDocForReview(docName);
-		      if(!isValueFound)
-		      {
-		      // verticalScrollingDown();
-		       periodicReviews.documentTableNext_Button().click();
-		       sleep(2); 
-		      }
-		      else
-		      {
-		       break;
-		      }
-		    }*/
 		    sleep(2);
 		    action.viewDocButtonForPeriodicReview().click();
 		    sleep(3);
@@ -721,20 +707,6 @@ public class ActionsRequiredByDocOwner_Test extends BaseClass{
 			sleep(2);
 			selectDocForReviewDueDate(docName, date);
 		    
-		 /*   for(int i=1; i<=50; i++)
-		    {
-		   	  selectDocForReviewDueDate(docName, date);
-		      if(!isValueFound)
-		      {
-		    	  // verticalScrollingDown();
-		    	  periodicReviews.documentTableNext_Button().click();
-		    	  sleep(2); 
-		      }
-		      else
-		      {
-		    	  break;
-		      }
-		    }*/
 		    sleep(2);
 		  }
 		
