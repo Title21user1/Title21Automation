@@ -444,36 +444,22 @@ public class BaseClass {
 		}
 
 	}
-	
-	/*public void waitforSynchronization(WebElement element){
-		
-		Wait wait=new FluentWait(driver)
-				.withTimeout(30, TimeUnit.SECONDS).
-				pollingEvery(5, TimeUnit.SECONDS);
-		
-		element = wait.until(new Function(WebDriver driver,element)  {    
-		    public WebElement apply(WebDriver driver) {    
-		        return element;   
-		    }
-		
-		
-	}*/
 		
 	public void waitTillElementisInvisible(WebElement element) 
 	{	
-		WebDriverWait wait=new WebDriverWait(driver,15);
+		WebDriverWait wait=new WebDriverWait(driver,30);
 		wait.until(ExpectedConditions.invisibilityOf(element));		
 	}		
 	
 	public void waitTillElementVisible(WebElement element) 
 	{		
-		WebDriverWait wait=new WebDriverWait(driver,15);
+		WebDriverWait wait=new WebDriverWait(driver,30);
 		wait.until(ExpectedConditions.visibilityOf(element));		
 	}	
 	
 	public void waitTillElementClickable(WebElement element) 
 	{		
-		WebDriverWait wait=new WebDriverWait(driver,15);
+		WebDriverWait wait=new WebDriverWait(driver,30);
 		wait.until(ExpectedConditions.elementToBeClickable(element));		
 	}	
 	
