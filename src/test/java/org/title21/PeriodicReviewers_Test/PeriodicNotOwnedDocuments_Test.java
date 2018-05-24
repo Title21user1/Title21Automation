@@ -105,6 +105,8 @@ public class PeriodicNotOwnedDocuments_Test extends BaseClass{
 		 sleep(2);
 		 periodicReviews.viewDocButtonForPeriodicReview().click();
 		//=======================================================Main steps===================================================================================== 
+
+
 		 test.log(LogStatus.PASS, "2.Navigate to Administrator> Users >Edit user. Make a note of all the groups the test user is part of.");
 		 periodicReviews.administratorDropDown().click();
 		 periodicReviews.administrationLink().click();
@@ -593,7 +595,9 @@ public class PeriodicNotOwnedDocuments_Test extends BaseClass{
 		waitTillElementVisible(periodicReviews.getdocument());
 		periodicReviews.getdocument().click();
 		sleep(3);
-		periodicReviews.getlocationDrodown().selectByVisibleText(routeData[1][0]);
+
+		periodicReviews.getlocationDrodown().selectByVisibleText("Antioch");  //Dallas
+
 
 		sleep(3);
 
@@ -634,7 +638,9 @@ public class PeriodicNotOwnedDocuments_Test extends BaseClass{
 				sleep(2);
 				periodicReviews.getLocationDropdown().selectByVisibleText(routeData[1][4]); 
 				sleep(2);
-				periodicReviews.getnameinAddApprover().selectByVisibleText(routeData[1][5]);
+
+				periodicReviews.getnameinAddApprover().selectByVisibleText("Title21User1");  //sameer
+
 				periodicReviews.getSequenceinAddApprover().selectByVisibleText("1");
 				periodicReviews.getallottedDaysinAddApprover().selectByVisibleText(routeData[1][7]);
 				periodicReviews.approverAdd_Button().click();
@@ -668,6 +674,8 @@ public class PeriodicNotOwnedDocuments_Test extends BaseClass{
 				}
 			}
 			periodicReviews.pickDate_TextBox().click();
+			sleep(1);
+			periodicReviews.pickDate_TextBox().click();
 			sleep(2);
 			driver.findElement(By.xpath("//td[text()='"+dd+"']")).click();
 			sleep(2);
@@ -700,7 +708,9 @@ public class PeriodicNotOwnedDocuments_Test extends BaseClass{
 				sleep(2);
 				periodicReviews.availablePeriodicReviewers_Filter().click();
 				sleep(2);
-				periodicReviews.availablePeriodicReviewers_Filter().sendKeys(loginData[11][2]);
+
+				periodicReviews.availablePeriodicReviewers_Filter().sendKeys("Title21User4"); //secret  loginData[8][0]
+
 				sleep(2);
 				if(periodicReviews.AvailablePeriodicReviewers_SearchResultArea().isDisplayed())
 				{
@@ -714,7 +724,9 @@ public class PeriodicNotOwnedDocuments_Test extends BaseClass{
 				sleep(2);
 				
 				periodicReviews.availablePeriodicReviewers_Filter().clear();
-				periodicReviews.availablePeriodicReviewers_Filter().sendKeys("Martink696");
+
+				periodicReviews.availablePeriodicReviewers_Filter().sendKeys("Title21User5"); //aparnak   aparna
+
 				sleep(2);
 				if(periodicReviews.AvailablePeriodicReviewers_SearchResultArea().isDisplayed())
 				{

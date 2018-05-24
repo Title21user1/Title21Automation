@@ -46,7 +46,7 @@ public class CreatingNewPackage_Test extends BaseClass{
 		dbqueries = new DBQueries();
 		logout=new LogoutPage_POM(driver);
 		login=new LoginPage_POM(driver);
-		login.loginUser(loginData[7][0], loginData[7][1]);
+		login.loginUser("Title21User2", "test123456");
 	}
 
 	@Test(testName = "CreatingNewPackage", groups = "Packages", priority = 0)
@@ -106,6 +106,7 @@ public class CreatingNewPackage_Test extends BaseClass{
 					test.addScreenCapture(captureScreenShot(driver, "Package screen")));
 		}
 		
+		sleep(4);
 		packageNo = creatingNewPackage.package_No().getText();
 		
 		test.log(LogStatus.PASS, "8.Ensure the Package is open in edit mode.");
@@ -607,7 +608,6 @@ public class CreatingNewPackage_Test extends BaseClass{
 			sleep(2);
 			creatingNewPackage.attachedDocFilterResultGo_Button().click();
 			sleep(2);
-			
 			
 			docStatus = creatingNewPackage.docStatus().getText();
 			if(docStatus.equals(""))

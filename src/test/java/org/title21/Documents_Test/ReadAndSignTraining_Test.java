@@ -51,7 +51,7 @@ public class ReadAndSignTraining_Test extends BaseClass{
 	@Test(testName = "Read And Sign Training", groups = "DocumentModule", priority = 0)
 	public void ReadAndSignTraining_Part1() throws Exception
 	{		
-		login.loginUser(loginData[7][0], loginData[7][1]);
+		login.loginUser("Title21User2", "test123456");  //loginData[7][0], loginData[7][1]
 		test = extent.startTest("Read And Sign Training Part");
 		test.log(LogStatus.PASS, "1.Login to the web interface as 'Test User'.");
 		test.log(LogStatus.INFO, "Link to Test case document", "<a href='file:///E:/sameer/Sameer Joshi/Title health solutions/Test case by neosoft/TestCase-WIA-document_routes.doc'>TestCaseDocument</a>");
@@ -62,7 +62,11 @@ public class ReadAndSignTraining_Test extends BaseClass{
 		sleep(3);
 		readSign.getdocument().click();
 		sleep(3);
+
 		readSign.getlocationDrodown().selectByVisibleText(routeData[1][0]);
+
+		readSign.getlocationDrodown().selectByVisibleText("antioch");  //Dallas
+
 		sleep(2);
 		documetNo = readSign.document_No().getAttribute("value");
 		
@@ -108,7 +112,9 @@ public class ReadAndSignTraining_Test extends BaseClass{
 				sleep(2);
 				readSign.getLocationDropdown().selectByVisibleText(routeData[1][4]); 
 				sleep(2);
-				readSign.getnameinAddApprover().selectByVisibleText(routeData[1][5]);
+
+				readSign.getnameinAddApprover().selectByVisibleText("Title21User1"); //sameer
+
 				readSign.getSequenceinAddApprover().selectByVisibleText("1");
 				readSign.getallottedDaysinAddApprover().selectByVisibleText(routeData[1][7]);
 				readSign.approverAdd_Button().click();
@@ -178,7 +184,7 @@ public class ReadAndSignTraining_Test extends BaseClass{
 			}
 			
 			logout.logoutFunction();
-			login.loginUser(loginData[1][0], loginData[1][1]);  //sameer
+			login.loginUser("Title21User1", "test123456");  //loginData[1][0], loginData[1][1]
 			
 			test.log(LogStatus.PASS, "11.Login with approver's login and approve the document.");
 			approveDocFromWizard(documetNo);
@@ -190,12 +196,19 @@ public class ReadAndSignTraining_Test extends BaseClass{
 			sleep(2);
 			readSign.wizardTraining_Tab().click();
 			sleep(2);
-			readSign.approvalFilter_TextBox().sendKeys(documetNo);
-			sleep(2);
-			readSign.approvalFilterGo_Button().click();
-			sleep(2);
 			
-			
+			if(readSign.verifyNoItemsFoundText())
+			{
+				test.log(LogStatus.FAIL, "<b>Unable to find the Filter TextBox.<b>"+
+						test.addScreenCapture(captureScreenShot(driver, "Filter TextBox")));
+			}
+			else
+			{
+				readSign.approvalFilter_TextBox().sendKeys(documetNo);
+				sleep(2);
+				readSign.approvalFilterGo_Button().click();
+				sleep(2);
+			}
 			
 			/*for(int i=1; i<=20; i++)
 			{
@@ -270,15 +283,17 @@ public class ReadAndSignTraining_Test extends BaseClass{
 			}
 			else
 			{
-				test.log(LogStatus.FAIL, "Unable to find the validation message- User is informed that the training item is completed, and the training item details are visible with the “Signed On” date updated.<b>"+
+				test.log(LogStatus.FAIL, "Unable to find the validation message- User is informed that the training item is completed, and the training item details are visible with the Â“Signed OnÂ” date updated.<b>"+
 						test.addScreenCapture(captureScreenShot(driver, "training item is completed")));
 			}
 			
 			logout.logoutFunction();
 			
 			test.log(LogStatus.PASS, "18.Login as admin and navigate to audit log section.");
+
 			login.loginUser(loginData[7][0], loginData[7][1]);
 			
+
 			readSign.administratorDropDown().click();
 			readSign.auditLog_Option().click();
 			sleep(2);
@@ -326,7 +341,7 @@ public class ReadAndSignTraining_Test extends BaseClass{
 	@Test(testName = "Read And Sign Training", groups = "DocumentModule", priority = 1)
 	public void ReadAndSignTraining_Part2() throws Exception
 	{		
-		login.loginUser(loginData[7][0], loginData[7][1]);
+		login.loginUser("Title21User2", "test123456");  //loginData[7][0], loginData[7][1]
 		readSign=new ReadAndSignTraining_POM(driver);	
 		dateTimeUtils=new DateTimeUtils();
 		
@@ -335,7 +350,9 @@ public class ReadAndSignTraining_Test extends BaseClass{
 		readSign.getdocument().click();
 		sleep(3);
 		test.log(LogStatus.PASS,"20.Create a new document");
+
 		readSign.getlocationDrodown().selectByVisibleText(routeData[1][0]);
+
 		sleep(2);
 		documetNo = readSign.document_No().getAttribute("value");
 		
@@ -378,7 +395,9 @@ public class ReadAndSignTraining_Test extends BaseClass{
 				sleep(2);
 				readSign.getLocationDropdown().selectByVisibleText(routeData[1][4]); 
 				sleep(2);
+
 				readSign.getnameinAddApprover().selectByVisibleText(routeData[1][5]);
+
 				readSign.getSequenceinAddApprover().selectByVisibleText("1");
 				readSign.getallottedDaysinAddApprover().selectByVisibleText(routeData[1][7]);
 				readSign.approverAdd_Button().click();
@@ -395,10 +414,10 @@ public class ReadAndSignTraining_Test extends BaseClass{
 			sleep(2);
 			
 			String targetReleaseDate=DateTimeUtils.getCurrentPSTDate();  
-		//	String finalDate=targetReleaseDate.substring(3, 5);
 			
 			readSign.targetReleaseDate_TextBox().click();
-			//driver.findElement(By.xpath("//*[text()='"+finalDate+"']")).click();
+			sleep(1);
+			readSign.targetReleaseDate_TextBox().click();
 			readSign.current_Date().click();
 			
 			test.log(LogStatus.PASS, "<b>ER10- Target release date is set.<b>"+
@@ -447,14 +466,14 @@ public class ReadAndSignTraining_Test extends BaseClass{
 			if(readSign.selectedEntities_Header().isDisplayed())
 			{
 				readSign.entitiesEmp_FilterBox().clear();
-				readSign.entitiesEmp_FilterBox().sendKeys(loginData[11][2]);
+				readSign.entitiesEmp_FilterBox().sendKeys("Title21User4");  //loginData[11][2]
 				readSign.entitiesEmpFilterGo_Button().click();
 				sleep(2);
 				readSign.moveSelectedEntities_Button().click();
 				sleep(2);
 				
 				readSign.entitiesEmp_FilterBox().clear();
-				readSign.entitiesEmp_FilterBox().sendKeys(loginData[12][2]);
+				readSign.entitiesEmp_FilterBox().sendKeys("Title21User5"); //loginData[12][2]
 				readSign.entitiesEmpFilterGo_Button().click();
 				sleep(2);
 				readSign.moveSelectedEntities_Button().click();
@@ -484,14 +503,14 @@ public class ReadAndSignTraining_Test extends BaseClass{
 			sleep(2);
 			test.log(LogStatus.PASS, "32.Logout and login with an approver.");
 			logout.logoutFunction();
-			login.loginUser(loginData[1][0], loginData[1][1]);  //sameer
+			login.loginUser("Title21User1", "test123456");  //loginData[1][0], loginData[1][1]
 			
 			test.log(LogStatus.PASS, "33.Approve the document.");
 			approveDocFromWizard(documetNo);
 			
 			test.log(LogStatus.PASS, "34.Logout and login with the same user used in step 22.");
 			logout.logoutFunction();
-			login.loginUser(loginData[7][0], loginData[7][1]); //saurabhp
+			login.loginUser("Title21User2", "test123456"); //loginData[7][0], loginData[7][1]
 			
 			test.log(LogStatus.PASS,"35.Move document between cabinets through the database."+DBConnection.executeStoredProcedure(dbqueries.moveDocsOnReleaseDate));
 			
@@ -512,13 +531,13 @@ public class ReadAndSignTraining_Test extends BaseClass{
 			test.log(LogStatus.PASS, "37.Logout and login as one of the entity noted in Step 30.");
 			logout.logoutFunction();
 			
-			if(addedEntities.equalsIgnoreCase(loginData[11][2]))
+			if(addedEntities.equalsIgnoreCase("Title21User4"))   //loginData[11][2]
 			{
-				login.loginUser(loginData[11][0], loginData[11][1]);
+				login.loginUser("Title21User4", "test123456");  //loginData[11][0], loginData[11][1]
 			}
 			else
 			{
-				login.loginUser(loginData[12][0], loginData[12][1]);
+				login.loginUser("Title21User5", "test123456");  //loginData[12][0], loginData[12][1]
 			}
 			
 			test.log(LogStatus.PASS, "38.Navigate to Wizard > Training.");
@@ -534,6 +553,7 @@ public class ReadAndSignTraining_Test extends BaseClass{
 			sleep(2);
 			readSign.approvalFilterGo_Button().click();
 			sleep(2);
+			
 			
 			
 			/*for(int i=1; i<=20; i++)

@@ -13,7 +13,9 @@ import org.testng.annotations.Test;
 import org.title21.AdminModule_POM.LoginPage_POM;
 import org.title21.AdminModule_POM.LogoutPage_POM;
 import org.title21.AdminModule_POM.Table;
+
 import org.title21.Documents_Test.DocumentRoutes_Test;
+
 import org.title21.Module3_POM.Codes_POM;
 import org.title21.utility.BaseClass;
 import org.title21.utility.FunctionUtils;
@@ -31,6 +33,8 @@ public class Codes_Test extends BaseClass {
 	String categoryName="";
 	String codeName ="";
 	String codeNameInTable ="";
+	DBQueries dbqueries = new DBQueries();
+	DBConnection dbconnection = new DBConnection();
 	Codes_POM codes;
 	boolean isRecordFound=false;
 	String testcaseName="TestCase-WIA-Codes.doc";	
@@ -39,6 +43,9 @@ public class Codes_Test extends BaseClass {
 	@BeforeClass(alwaysRun=true)
 	public void openURL() 
 	{
+		dbconnection.getQueryExecuted(dbqueries.addCodeClass);
+		dbconnection.getQueryExecuted(dbqueries.addCodeCategory);
+		dbconnection.getQueryExecuted(dbqueries.addCode);
 		getBrowser();
 		className = this.getClass().getName();
 		createDirectory(className);
@@ -107,7 +114,9 @@ public class Codes_Test extends BaseClass {
 		codes.editClass_Icon().click();
 		sleep(2);
 		codes.className_TextBox().clear();
-		codes.className_TextBox().sendKeys(codesData[1][1]); 
+
+		codes.className_TextBox().sendKeys("Test case code"+number); 
+
 		test.log(LogStatus.PASS, "8.Click on add button.");
 		sleep(3);
 
@@ -256,7 +265,9 @@ public class Codes_Test extends BaseClass {
 		}
 
 		test.log(LogStatus.PASS, "23.Select other code class from code class dropdown.");
-		codes.codeClass_DropDown().selectByVisibleText(codesData[1][6]); 
+
+		codes.codeClass_DropDown().selectByVisibleText("Title21 Code Class"); 
+
 
 		sleep(2);
 		test.log(LogStatus.PASS, "24.Click on add code.");
@@ -354,7 +365,9 @@ public class Codes_Test extends BaseClass {
 		sleep(3);
 		codes.getdocument().click();
 		sleep(3);
-		codes.getlocationDrodown().selectByVisibleText(routeData[1][0]);
+
+		codes.getlocationDrodown().selectByVisibleText("Antioch");
+
 		sleep(2);
 		documetNo = codes.document_No().getAttribute("value");
 		sleep(2);

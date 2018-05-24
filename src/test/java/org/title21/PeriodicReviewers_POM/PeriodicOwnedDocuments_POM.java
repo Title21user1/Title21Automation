@@ -1,12 +1,14 @@
 package org.title21.PeriodicReviewers_POM;
 
 import org.apache.log4j.Logger;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 import org.title21.Documents_POM.DocumentRoutes_POM;
+import org.title21.validation.entities.ErrorMessages;
 
 public class PeriodicOwnedDocuments_POM extends DocumentRoutes_POM {
 
@@ -127,6 +129,22 @@ public class PeriodicOwnedDocuments_POM extends DocumentRoutes_POM {
 	
 	@FindBy(xpath="//input[@name='submitButton']")
 	WebElement approveConfirmButton;
+
+	@FindBy(xpath="//*[@id='ReviewDocs']/div/div[3]/p")
+	WebElement NoResultsReturned;
+	
+	@FindBy(xpath="//*[@id='t21-workarea']/div/div/div[1]/h5")
+	WebElement NoItemsFound;
+	
+	public WebElement NoItemsFound_Text()
+	{
+		return NoItemsFound;
+	}
+	
+	public WebElement NoResultsReturned_Text()
+	{
+		return NoResultsReturned;
+	}
 	
 	public WebElement approveConfirm_Button()
 	{
@@ -322,4 +340,43 @@ public class PeriodicOwnedDocuments_POM extends DocumentRoutes_POM {
 	  }
 	}
 	
+	public boolean verifyNoResults(){
+		
+		String errorMessage="";
+		try 
+		{
+			errorMessage = NoResultsReturned_Text().getText();
+			
+		}catch(NoSuchElementException e) {
+			
+		}
+		if(errorMessage.contains("No results"))
+		{
+			return true;
+		}
+		else
+		{	
+			return false;
+		}		
+	}
+	
+	public boolean verifyNoItemsFoundText(){
+		
+		String errorMessage="";
+		try 
+		{
+			errorMessage = NoItemsFound_Text().getText();
+			
+		}catch(NoSuchElementException e) {
+			
+		}
+		if(errorMessage.contains("No items found"))
+		{
+			return true;
+		}
+		else
+		{	
+			return false;
+		}		
+	}
 }
