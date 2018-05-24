@@ -22,6 +22,7 @@ public class CreatingNewPackage_Test extends BaseClass{
 	LoginPage_POM login;
 	LogoutPage_POM logout;
 	CreatingNewPackage_POM creatingNewPackage;
+	static Logger log = Logger.getLogger(CreatingNewPackage_Test.class);
 	String className="";
 	String packageNo="";
 	String fileUploadPath="";
@@ -33,7 +34,6 @@ public class CreatingNewPackage_Test extends BaseClass{
 	Table searchTable;
 	DBQueries dbqueries;
 	AdminData adminData=new AdminData();
-	static Logger log = Logger.getLogger(CreatingNewPackage_Test.class);
 	String testcaseName="TestCase-WIA-Creating_new_package.docx";	
 	String filePath = System.getProperty("user.dir") + "\\TestCases\\"+testcaseName;
 
@@ -49,7 +49,7 @@ public class CreatingNewPackage_Test extends BaseClass{
 		login.loginUser("Title21User2", "test123456");
 	}
 
-	@Test(testName = "CreatingNewPackage", groups = "PackageScreens", priority = 0, alwaysRun=true)
+	@Test(testName = "CreatingNewPackage", groups = "Packages", priority = 0)
 	public void DocumentRoutes() throws Exception
 	{		
 		test = extent.startTest("Creating New Package");

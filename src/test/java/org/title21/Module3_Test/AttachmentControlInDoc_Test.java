@@ -67,7 +67,7 @@ public class AttachmentControlInDoc_Test extends BaseClass {
 		sleep(10);
 		verticalScrollingDown();
 		verticalScrollingDown();
-		sleep(1);
+		sleep(5);
 		attachment.getAddnew().get(0).click();
 		sleep(5);
 		test.log(LogStatus.PASS,

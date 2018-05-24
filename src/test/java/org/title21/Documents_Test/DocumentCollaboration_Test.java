@@ -41,7 +41,7 @@ public class DocumentCollaboration_Test extends BaseClass {
 		test.log(LogStatus.INFO, "Link to Test case document",
 				"<a href='file://" + filePath + "'>TestCaseDocument</a>");
 		log.info("Document Collaboration");
-		login.loginUser("saurabhp", "Title123456*");
+		login.loginUser("Title21User1", "test123456");
 		addcollaborator("1");
 		sleep(5);
 		DocumentCollaboration.getMyTaskTab().click();
@@ -71,7 +71,7 @@ public class DocumentCollaboration_Test extends BaseClass {
 							+ test.addScreenCapture(captureScreenShot(driver, "collaboration_task_second_user")));
 		}
 		sleep(4);
-		DocumentCollaboration.getContextmenu().get(2).click();
+		DocumentCollaboration.getContextmenu().click();
 		sleep(3);
 		DocumentCollaboration.getForm().click();
 		sleep(3);
@@ -90,7 +90,7 @@ public class DocumentCollaboration_Test extends BaseClass {
 						+ "<b>ER 8 : The Checkoff document collaboration popup is displayed.<b>"
 						+ test.addScreenCapture(captureScreenShot(driver, "Checkoff_collaboration_popup")));
         sleep(5);
-		DocumentCollaboration.getPin().sendKeys("262829");
+		DocumentCollaboration.getPin().sendKeys("212223");
 		sleep(5);
 		DocumentCollaboration.getConfirmButton().click();
 		sleep(6);
@@ -102,7 +102,7 @@ public class DocumentCollaboration_Test extends BaseClass {
 		sleep(4);
 		logout.logoutFunction();
 		sleep(4);
-		login.loginUser("saurabhp", "Title123456*");
+		login.loginUser("Title21User1", "test123456");
 		sleep(3);
 		System.out.println(DocumentCollaboration.documetNo);
 		DocumentCollaboration.SearchTab(DocumentCollaboration.documetNo);
@@ -124,7 +124,7 @@ public class DocumentCollaboration_Test extends BaseClass {
 		}
 		sleep(3);
 		logout.logoutFunction();
-	    login.loginUser("saurabhp", "Title123456*");
+	    login.loginUser("Title21User1", "test123456");
 		addcollaborator("2");
 		sleep(4);
 		auditlog();
@@ -137,7 +137,7 @@ public class DocumentCollaboration_Test extends BaseClass {
 		sleep(4);
 		getDocumentFromUser2Collaborationlist();
 		sleep(4);
-		DocumentCollaboration.getContextmenu().get(2).click();
+		DocumentCollaboration.getContextmenu().click();
 		sleep(3);
 		DocumentCollaboration.getForm().click();
 		/*sleep(3);
@@ -164,7 +164,7 @@ public class DocumentCollaboration_Test extends BaseClass {
 		sleep(3);
 		logout.logoutFunction();
 		sleep(3);
-		login.loginUser("saurabhp", "Title123456*");
+		login.loginUser("Title21User1", "test123456");
 		sleep(3);
 		auditlog();
 		test.log(LogStatus.PASS, " 31.Click on yes" + "<br/>" + "32.Logout from Test user 2 " + "<br/>"
@@ -173,7 +173,7 @@ public class DocumentCollaboration_Test extends BaseClass {
 				+ test.addScreenCapture(captureScreenShot(driver, "email_not_send")));
 		sleep(4);
 		logout.logoutFunction();
-		login.loginUser("saurabhp", "Title123456*");
+		login.loginUser("Title21User1", "test123456");
 		addcollaborator("3");
 		sleep(4);
 		logout.logoutFunction();
@@ -201,7 +201,7 @@ public class DocumentCollaboration_Test extends BaseClass {
 	}
 
 	public void getDocumentFromUser2Collaborationlist() {
-		login.loginUser("sameer", "joshi12345");
+		login.loginUser("Title21User2", "test123456");
 		DocumentCollaboration.getMyDocumentTab().click();
 		DocumentCollaboration.getcollaborationOnMyDocument().get(4).click();
 		sleep(3);
@@ -230,9 +230,9 @@ public class DocumentCollaboration_Test extends BaseClass {
 		sleep(2);
 		DocumentCollaboration.getCategoryOnAddCollaborator().selectByVisibleText("Collaboration");
 		sleep(2);
-		DocumentCollaboration.getLocation().selectByVisibleText("Dallas");
+		DocumentCollaboration.getLocation().selectByVisibleText("All");
 		sleep(4);
-		DocumentCollaboration.getAssignToPerson_On_AddCollaborator().sendKeys("sameer");
+		DocumentCollaboration.getAssignToPerson().sendKeys("Title21User2");
 		sleep(4);
 		String pickDate = DateTimeUtils.getTomorrowDate();
 		String[] preDate = pickDate.split("/");

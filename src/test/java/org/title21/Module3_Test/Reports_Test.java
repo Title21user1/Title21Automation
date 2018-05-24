@@ -40,7 +40,7 @@ public class Reports_Test extends BaseClass
 		adminpage=new AdministrationPage_POM(driver);
 	}
 
-	@Test(testName = "Reports", groups = "Module3", priority = 0, alwaysRun=true)
+	@Test(testName = "Reports", groups = "Module3", priority = 0)
 	public void Reports()
 	{
 		test = extent.startTest("Reports");

@@ -48,7 +48,7 @@ public class ReadAndSignTraining_Test extends BaseClass{
 		dbqueries = new DBQueries();
 	}
 //=====================================================================Part=>01================================================================================
-	@Test(testName = "Read And Sign Training", groups = "DocumentModule", priority = 0, alwaysRun=true)
+	@Test(testName = "Read And Sign Training", groups = "DocumentModule", priority = 0)
 	public void ReadAndSignTraining_Part1() throws Exception
 	{		
 		login.loginUser("Title21User2", "test123456");  //loginData[7][0], loginData[7][1]
@@ -62,12 +62,16 @@ public class ReadAndSignTraining_Test extends BaseClass{
 		sleep(3);
 		readSign.getdocument().click();
 		sleep(3);
+
+		readSign.getlocationDrodown().selectByVisibleText(routeData[1][0]);
+
 		readSign.getlocationDrodown().selectByVisibleText("antioch");  //Dallas
+
 		sleep(2);
 		documetNo = readSign.document_No().getAttribute("value");
 		
-		readSign.getDocumentTitle().sendKeys("Test"+documetNo); 
-		readSign.getDocChangeSummary().sendKeys("Test Summary"+documetNo);
+		readSign.getDocumentTitle().sendKeys(routeData[1][1]+documetNo); 
+		readSign.getDocChangeSummary().sendKeys(routeData[1][2]+documetNo);
 		verticalScrollingDown();
 		readSign.getConfirmButton().click();
 		sleep(5);
@@ -104,13 +108,15 @@ public class ReadAndSignTraining_Test extends BaseClass{
 			sleep(2);
 			if(readSign.addNewApprover_Header().isDisplayed())
 			{
-				readSign.getApproverRole().selectByVisibleText("Approver");
+				readSign.getApproverRole().selectByVisibleText(routeData[1][3]);
 				sleep(2);
-				readSign.getLocationDropdown().selectByVisibleText("All"); 
+				readSign.getLocationDropdown().selectByVisibleText(routeData[1][4]); 
 				sleep(2);
+
 				readSign.getnameinAddApprover().selectByVisibleText("Title21User1"); //sameer
+
 				readSign.getSequenceinAddApprover().selectByVisibleText("1");
-				readSign.getallottedDaysinAddApprover().selectByVisibleText("1 day");
+				readSign.getallottedDaysinAddApprover().selectByVisibleText(routeData[1][7]);
 				readSign.approverAdd_Button().click();
 				sleep(2);
 			}
@@ -259,7 +265,7 @@ public class ReadAndSignTraining_Test extends BaseClass{
 				test.log(LogStatus.PASS, "<b>ER7- The electronic signature dialog is presented.<b>"+
 						test.addScreenCapture(captureScreenShot(driver, "electronic signature dialog")));
 				test.log(LogStatus.PASS, "17.Enter the pin and click on confirm button.");
-				readSign.pin_TextBox().sendKeys("262829");
+				readSign.pin_TextBox().sendKeys(routeData[1][12]);
 				readSign.changeTrainingTypePopUpSave_Button().click();
 				sleep(2);
 			}
@@ -277,17 +283,18 @@ public class ReadAndSignTraining_Test extends BaseClass{
 			}
 			else
 			{
-				test.log(LogStatus.FAIL, "Unable to find the validation message- User is informed that the training item is completed, and the training item details are visible with the “Signed On” date updated.<b>"+
+				test.log(LogStatus.FAIL, "Unable to find the validation message- User is informed that the training item is completed, and the training item details are visible with the Â“Signed OnÂ” date updated.<b>"+
 						test.addScreenCapture(captureScreenShot(driver, "training item is completed")));
 			}
 			
 			logout.logoutFunction();
-			sleep(2);
+			
 			test.log(LogStatus.PASS, "18.Login as admin and navigate to audit log section.");
-			login.loginUser("Title21User2", "test123456");   //loginData[7][0], loginData[7][1]
-			sleep(2);
+
+			login.loginUser(loginData[7][0], loginData[7][1]);
+			
+
 			readSign.administratorDropDown().click();
-			sleep(2);
 			readSign.auditLog_Option().click();
 			sleep(2);
 			
@@ -331,7 +338,7 @@ public class ReadAndSignTraining_Test extends BaseClass{
 		logout.logoutFunction();
 	}
 //=====================================================================Part=>02================================================================================
-	@Test(testName = "Read And Sign Training", groups = "DocumentModule", priority = 1, alwaysRun=true)
+	@Test(testName = "Read And Sign Training", groups = "DocumentModule", priority = 1)
 	public void ReadAndSignTraining_Part2() throws Exception
 	{		
 		login.loginUser("Title21User2", "test123456");  //loginData[7][0], loginData[7][1]
@@ -343,12 +350,14 @@ public class ReadAndSignTraining_Test extends BaseClass{
 		readSign.getdocument().click();
 		sleep(3);
 		test.log(LogStatus.PASS,"20.Create a new document");
-		readSign.getlocationDrodown().selectByVisibleText("Antioch");  //Dallas
+
+		readSign.getlocationDrodown().selectByVisibleText(routeData[1][0]);
+
 		sleep(2);
 		documetNo = readSign.document_No().getAttribute("value");
 		
-		readSign.getDocumentTitle().sendKeys("Test"+documetNo); 
-		readSign.getDocChangeSummary().sendKeys("Test Summary"+documetNo);
+		readSign.getDocumentTitle().sendKeys(routeData[1][1]+documetNo); 
+		readSign.getDocChangeSummary().sendKeys(routeData[1][2]+documetNo);
 		verticalScrollingDown();
 		readSign.getConfirmButton().click();
 		sleep(5);
@@ -382,13 +391,15 @@ public class ReadAndSignTraining_Test extends BaseClass{
 			sleep(2);
 			if(readSign.addNewApprover_Header().isDisplayed())
 			{
-				readSign.getApproverRole().selectByVisibleText("Approver");
+				readSign.getApproverRole().selectByVisibleText(routeData[1][3]);
 				sleep(2);
-				readSign.getLocationDropdown().selectByVisibleText("All"); 
+				readSign.getLocationDropdown().selectByVisibleText(routeData[1][4]); 
 				sleep(2);
-				readSign.getnameinAddApprover().selectByVisibleText("title21User1"); //sameer
+
+				readSign.getnameinAddApprover().selectByVisibleText(routeData[1][5]);
+
 				readSign.getSequenceinAddApprover().selectByVisibleText("1");
-				readSign.getallottedDaysinAddApprover().selectByVisibleText("1 day");
+				readSign.getallottedDaysinAddApprover().selectByVisibleText(routeData[1][7]);
 				readSign.approverAdd_Button().click();
 				sleep(2);
 			}
@@ -503,7 +514,7 @@ public class ReadAndSignTraining_Test extends BaseClass{
 			
 			test.log(LogStatus.PASS,"35.Move document between cabinets through the database."+DBConnection.executeStoredProcedure(dbqueries.moveDocsOnReleaseDate));
 			
-			driver.findElement(By.xpath("//li[text()='Test"+documetNo+"']")).click();
+			driver.findElement(By.xpath("//li[text()='"+routeData[1][1]+documetNo+"']")).click();
 			
 			test.log(LogStatus.PASS, "36.Go to document approved in Step 35.");
 			documentStatus = readSign.document_Status().getText();
@@ -538,6 +549,11 @@ public class ReadAndSignTraining_Test extends BaseClass{
 			sleep(2);
 			readSign.approvalFilterGo_Button().click();
 			sleep(2);
+			readSign.approvalFilter_TextBox().sendKeys(documetNo);
+			sleep(2);
+			readSign.approvalFilterGo_Button().click();
+			sleep(2);
+			
 			
 			
 			/*for(int i=1; i<=20; i++)
@@ -609,7 +625,7 @@ public class ReadAndSignTraining_Test extends BaseClass{
 			readSign.document_Button().click();
 			readSign.sign_Button().click();
 			sleep(2);
-			readSign.pin_TextBox().sendKeys("262829");
+			readSign.pin_TextBox().sendKeys(routeData[1][12]);
 			readSign.changeTrainingTypePopUpSave_Button().click();
 			sleep(2);
 			
@@ -621,7 +637,7 @@ public class ReadAndSignTraining_Test extends BaseClass{
 			test.log(LogStatus.PASS, "43.Log in to a user used in Step 1");
 			login.loginUser(loginData[7][0], loginData[7][1]); //saurabhp
 			
-			driver.findElement(By.xpath("//li[text()='Test"+documetNo+"']")).click();
+			driver.findElement(By.xpath("//li[text()='"+routeData[1][1]+documetNo+"']")).click();
 			sleep(2);	
 			documentStatus = readSign.document_Status().getText();
 			if(documentStatus.equals("Effective"))
@@ -633,7 +649,7 @@ public class ReadAndSignTraining_Test extends BaseClass{
 			{
 				driver.navigate().refresh();
 				sleep(10);
-				driver.findElement(By.xpath("//li[text()='Test"+documetNo+"']")).click();
+				driver.findElement(By.xpath("//li[text()='"+routeData[1][1]+documetNo+"']")).click();
 				sleep(2);
 				if(documentStatus.equals("Effective"))
 				{
@@ -656,7 +672,7 @@ public class ReadAndSignTraining_Test extends BaseClass{
 		sleep(2);
 	}
 //=====================================================================Part=>03================================================================================	
-	@Test(testName = "Read And Sign Training", groups = "DocumentModule", priority = 3, alwaysRun=true)
+	@Test(testName = "Read And Sign Training", groups = "DocumentModule", priority = 3)
 	public void ReadAndSignTraining_Part3() throws Exception
 	{	
 		login.loginUser(loginData[7][0], loginData[7][1]);
@@ -668,12 +684,12 @@ public class ReadAndSignTraining_Test extends BaseClass{
 		readSign.getdocument().click();
 		sleep(3);
 		test.log(LogStatus.PASS,"44.Create a new document.");
-		readSign.getlocationDrodown().selectByVisibleText("Dallas");
+		readSign.getlocationDrodown().selectByVisibleText(routeData[1][0]);
 		sleep(2);
 		documetNo = readSign.document_No().getAttribute("value");
 		
-		readSign.getDocumentTitle().sendKeys("Test"+documetNo); 
-		readSign.getDocChangeSummary().sendKeys("Test Summary"+documetNo);
+		readSign.getDocumentTitle().sendKeys(routeData[1][1]+documetNo); 
+		readSign.getDocChangeSummary().sendKeys(routeData[1][2]+documetNo);
 		verticalScrollingDown();
 		readSign.getConfirmButton().click();
 		sleep(5);
@@ -708,13 +724,13 @@ public class ReadAndSignTraining_Test extends BaseClass{
 			sleep(2);
 			if(readSign.addNewApprover_Header().isDisplayed())
 			{
-				readSign.getApproverRole().selectByVisibleText("Approver");
+				readSign.getApproverRole().selectByVisibleText(routeData[1][3]);
 				sleep(2);
-				readSign.getLocationDropdown().selectByVisibleText("All"); 
+				readSign.getLocationDropdown().selectByVisibleText(routeData[1][4]); 
 				sleep(2);
-				readSign.getnameinAddApprover().selectByVisibleText("sameer");
+				readSign.getnameinAddApprover().selectByVisibleText(routeData[1][5]);
 				readSign.getSequenceinAddApprover().selectByVisibleText("1");
-				readSign.getallottedDaysinAddApprover().selectByVisibleText("1 day");
+				readSign.getallottedDaysinAddApprover().selectByVisibleText(routeData[1][7]);
 				readSign.approverAdd_Button().click();
 				sleep(2);
 			}
@@ -804,8 +820,7 @@ public class ReadAndSignTraining_Test extends BaseClass{
 			readSign.close_Button().click();
 			sleep(2);
 			logout.logoutFunction();
-			sleep(2);
-			login.loginUser(loginData[1][0], loginData[1][1]);  
+			login.loginUser(loginData[1][0], loginData[1][1]);  //sameer
 			
 			test.log(LogStatus.PASS, "56.Approve the document.");
 			approveDocFromWizard(documetNo);
@@ -883,7 +898,7 @@ public class ReadAndSignTraining_Test extends BaseClass{
 		List<WebElement> tableCells=searchTable.getcollapseDocumentstableCells(5);				
 		for (int i=0;i<tableCells.size();i++)
 		{
-			if (tableCells.get(i).getText().equalsIgnoreCase("Test"+docName))
+			if (tableCells.get(i).getText().equalsIgnoreCase(routeData[1][1]+docName))
 			{													
 				tableCells.get(i).click();
 				isRecordFound=true;
@@ -995,7 +1010,7 @@ public class ReadAndSignTraining_Test extends BaseClass{
 		readSign.documentApprove_Button().click();
 		sleep(2);
 		readSign.pinTo_Approve().clear();
-		readSign.pinTo_Approve().sendKeys("262829");
+		readSign.pinTo_Approve().sendKeys(routeData[1][12]);
 		readSign.checkInRouteSubmit_Button().click();
 		sleep(4);
 	}

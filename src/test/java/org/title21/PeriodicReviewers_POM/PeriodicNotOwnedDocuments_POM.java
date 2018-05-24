@@ -49,10 +49,7 @@ public class PeriodicNotOwnedDocuments_POM extends PeriodicOwnedDocuments_POM {
 	@FindBy(xpath="//*[@id='tab3']/div[2]/div[1]/h5")
 	WebElement docPermissionsPartTwo;
 	
-	/*@FindBy(xpath="//label[text()='Allow periodic review without viewing document']")
-	WebElement allowPeriodicReviewWithoutViewingDocumentText;*/
-	
-	@FindBy(css="#Group_AllowReviewWithoutReading")
+	@FindBy(xpath="//label[text()='Allow periodic review without viewing document']")
 	WebElement allowPeriodicReviewWithoutViewingDocumentText;
 	
 	public WebElement allowPeriodicReviewWithoutViewingDocument_Text()

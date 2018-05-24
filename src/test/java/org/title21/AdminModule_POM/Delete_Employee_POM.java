@@ -18,13 +18,13 @@ public class Delete_Employee_POM
 		PageFactory.initElements(driver, this);
 	}
 
-	@FindBy(xpath="//div[@class='input-group']//input[@class='form-control t21-placeholder']")
+	@FindBy(css=".form-control.t21-placeholder")
 	WebElement Employeefilterresult;
 
 	@FindBy(css=".modal-title>span")
 	WebElement deleteEmployeePopUpHeaderText;
 
-	@FindBy(css=".t21-ajax-submit-button.form-control.form-inline.btn.t21-btn-default")
+	@FindBy(xpath="//button[@type='submit'][@tabindex='1']")
 	WebElement Employeefilterresutgobutton;
 
 	@FindBy(xpath=".//*[@id='t21-workarea']/div/div/div[2]/div[2]/div/div[3]/div/div/form/div/span[2]/button")

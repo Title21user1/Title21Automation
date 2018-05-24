@@ -53,8 +53,9 @@ public class RecentlyViewedAndFavorites_Test extends BaseClass {
 		Credoc = new CreateDocument_POM(driver);
 		documentRoutes = new DocumentRoutes_POM(driver);
 		dbqueries = new DBQueries();
-
-		login.loginUser("aparnak", "aparna2450");
+		logout = new LogoutPage_POM(driver);
+		login.loginUser("Title21User2", "test123456");
+        RecentlyViewdAndFavorites = new RecentlyViewdAndFavorites_POM(driver);
 
 	}
 
@@ -63,13 +64,13 @@ public class RecentlyViewedAndFavorites_Test extends BaseClass {
 		test = extent.startTest("RecentlyViewed_And_Favorites");
 		test.log(LogStatus.INFO, "Link to Test case document", "<a href='file://"+filePath+"'>TestCaseDocument</a>");
 		log.info("Recently Viewed And Favorites");
-	RecentlyViewdAndFavorites.createdocandcheckin();
+	    RecentlyViewdAndFavorites.createdocandcheckin();
 		System.out.print(documetNo);
 		RecentlyViewdAndFavorites.datepicker().click();
 		RecentlyViewdAndFavorites.gettodaysdate().click();
 		GenerateEffectiveFile();
 		approved();
-        RecentlyViewdAndFavorites = new RecentlyViewdAndFavorites_POM(driver);
+		sleep(5);
 		RecentlyViewdAndFavorites.getCreatedDocnumber();
 		sleep(5);
 		RecentlyViewdAndFavorites.getDashboard().click();
@@ -82,11 +83,11 @@ public class RecentlyViewedAndFavorites_Test extends BaseClass {
 		}
 
 		RecentlyViewdAndFavorites.geteBinders().click();
-		sleep(2);
+		sleep(4);
 		RecentlyViewdAndFavorites.getLab().click();
-		sleep(2);
+		sleep(4);
 		RecentlyViewdAndFavorites.getSOP().click();
-		sleep(2);
+		sleep(4);
 		Search("Bio-hazardous Waste Disposal");
 		sleep(3);
 
@@ -217,7 +218,7 @@ public class RecentlyViewedAndFavorites_Test extends BaseClass {
 		sleep(2);
 		documentRoutes.getLocationDropdown().selectByVisibleText("All");
 		sleep(2);
-		documentRoutes.getnameinAddApprover().selectByVisibleText("sameer");
+		documentRoutes.getnameinAddApprover().selectByVisibleText("Title21User1");
 		documentRoutes.getSequenceinAddApprover().selectByVisibleText("2");
 		documentRoutes.getallottedDaysinAddApprover().selectByVisibleText("1 day");
 		documentRoutes.approverAdd_Button().click();
@@ -232,7 +233,7 @@ public class RecentlyViewedAndFavorites_Test extends BaseClass {
 		sleep(2);
 		logout = new LogoutPage_POM(driver);
 		logout.logoutFunction();
-		login.loginUser("sameer", "joshi12345");
+		login.loginUser("Title21User1", "test123456");
 		documentRoutes.wizard_Option().click();
 		documentRoutes.approval_Tab().click();
 		sleep(4);
@@ -246,14 +247,14 @@ public class RecentlyViewedAndFavorites_Test extends BaseClass {
 		documentRoutes.documentApprove_Button().click();
 		sleep(2);
 		documentRoutes.pinTo_Approve().clear();
-		documentRoutes.pinTo_Approve().sendKeys("262829");
+		documentRoutes.pinTo_Approve().sendKeys("212223");
 		documentRoutes.checkInRouteSubmit_Button().click();
 		sleep(3);
 		logout.logoutFunction();
 		sleep(3);
 		DBConnection.executeStoredProcedure(dbqueries.moveDocsOnReleaseDate);
 		sleep(3);
-		login.loginUser("aparnak", "aparna2450");
+		login.loginUser("Title21User2", "test123456");
 		sleep(3);
 		test.log(LogStatus.PASS, "15. Check out the document from step (11)." + "<br/>"
 				+ " 16.	Add the Target Release date (E.g. Either a day before or current date)" + "<br/>"
@@ -319,7 +320,7 @@ public class RecentlyViewedAndFavorites_Test extends BaseClass {
 		sleep(2);
 		documentRoutes.getLocationDropdown().selectByVisibleText("All");
 		sleep(2);
-		documentRoutes.getnameinAddApprover().selectByVisibleText("sameer");
+		documentRoutes.getnameinAddApprover().selectByVisibleText("Title21User1");
 		documentRoutes.getSequenceinAddApprover().selectByVisibleText("2");
 		documentRoutes.getallottedDaysinAddApprover().selectByVisibleText("1 day");
 		documentRoutes.approverAdd_Button().click();
@@ -331,10 +332,10 @@ public class RecentlyViewedAndFavorites_Test extends BaseClass {
 		documentRoutes.checkIn_Route().click();
 		sleep(2);
 		documentRoutes.checkInRouteSubmit_Button().click();
-		sleep(3);
+		sleep(8);
 		RecentlyViewdAndFavorites.Close_Button_Checkin().click();
-		sleep(5);
-		logout = new LogoutPage_POM(driver);
+		sleep(9);
+	
 		logout.logoutFunction();
 
 	}
@@ -346,7 +347,7 @@ public class RecentlyViewedAndFavorites_Test extends BaseClass {
 
 	public void approved() throws Exception
 	{
-		login.loginUser("sameer", "joshi12345");
+		login.loginUser("Title21User1", "test123456");
 		documentRoutes.wizard_Option().click();
 		documentRoutes.approval_Tab().click();
 		sleep(2);
@@ -360,7 +361,7 @@ public class RecentlyViewedAndFavorites_Test extends BaseClass {
 		documentRoutes.documentApprove_Button().click();
 		sleep(2);
 		documentRoutes.pinTo_Approve().clear();
-		documentRoutes.pinTo_Approve().sendKeys("262829");
+		documentRoutes.pinTo_Approve().sendKeys("212223");//262829
 		documentRoutes.checkInRouteSubmit_Button().click();
 		sleep(5);
 		logout.logoutFunction();
@@ -368,7 +369,7 @@ public class RecentlyViewedAndFavorites_Test extends BaseClass {
 
 		DBConnection.executeStoredProcedure(dbqueries.moveDocsOnReleaseDate);
 		sleep(2);
-		login.loginUser("aparnak", "aparna2450");
+		login.loginUser("Title21User2", "test123456");
 		sleep(2);
 
 	}

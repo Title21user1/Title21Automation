@@ -39,7 +39,7 @@ public class CheckInCheckOut_Test extends BaseClass
 		wizpage = new WizardPage_POM(driver);
 	}
 
-	@Test(testName = "Check In And Check Out", groups = "DocumentModule", priority = 0, alwaysRun=true)
+	@Test(testName = "Check In And Check Out", groups = "DocumentModule", priority = 0)
 	public void checkInCheckOut()
 	{
 		test = extent.startTest("Check In and Check Out Document");

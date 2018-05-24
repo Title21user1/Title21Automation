@@ -30,14 +30,14 @@ public class PeriodicDelegate_Test extends BaseClass {
 		logout = new LogoutPage_POM(driver);
 		login = new LoginPage_POM(driver);
 		periodicReviews = new PeriodicOwnedDocuments_POM(driver);
-		login.loginUser("saurabhp", "Title123456*");
+		login.loginUser("Title21User1", "test123456");
 	}
 
 	@Test(testName = " Periodic Delegate", groups = "PeriodicReviewer", priority = 0, alwaysRun=true)
 	public void PeriodicReview_Delegate() throws Exception {
 
 		test = extent.startTest("Periodic Delegate");
-		test.log(LogStatus.INFO, "Link to Test case document",
+	test.log(LogStatus.INFO, "Link to Test case document",
 				"<a href='file://" + filePath + "'>TestCaseDocument</a>");
 		log.info("Periodic Delegate");
 		PeriodicReviewDelegate.CreateDocumentAndAddReviewers();
@@ -51,19 +51,19 @@ public class PeriodicDelegate_Test extends BaseClass {
 		sleep(5);
 		PeriodicReviewDelegate.getClickOnDocumentFromReviewList().click();
 		sleep(8);
-		PeriodicReviewDelegate.getDropdownOfReviewer().get(1).click();
+		PeriodicReviewDelegate.getDropdownOfReviewer().get(0).click();
 		sleep(5);
 		test.log(LogStatus.PASS,
 				" 3.Click on the reviewer context menu next to the test users name. " + "<br/>"
 						+ "<b>ER 2 : The Delegate option is available  <b>"
 						+ test.addScreenCapture(captureScreenShot(driver, "DelegationOption ")));
 		sleep(3);
-		PeriodicReviewDelegate.getDelegateOption().get(1).click();
+		PeriodicReviewDelegate.getDelegateOption().get(0).click();
 		sleep(5);
 		test.log(LogStatus.PASS, " 4.Click on Delegate and view the list of users in the Delegate to field.  " + "<br/>"
 				+ "<b>ER 3 : The Delegate To list does not contain any of the reviewers already in the Required Reviewer list of the document<b>"
 				+ test.addScreenCapture(captureScreenShot(driver, "Delegationoption ")));
-		PeriodicReviewDelegate.getDelegateToDropdownFromaddDelegationwindow().selectByVisibleText("aparna");
+		PeriodicReviewDelegate.getDelegateToDropdownFromaddDelegationwindow().selectByVisibleText("Title21User3");
 		sleep(4);
 		PeriodicReviewDelegate.getConfirm_Button().click();
 		sleep(4);
@@ -74,7 +74,7 @@ public class PeriodicDelegate_Test extends BaseClass {
 		
 		logout.logoutFunction();//test
 		sleep(2);
-		login.loginUser("aparnak", "aparna2450");
+		login.loginUser("Title21User3", "test123456");
 		Reviewscreen_Document();
 		sleep(5);
 		if (PeriodicReviewDelegate.getClickOnDocumentFromReviewList().isDisplayed()) {
@@ -88,7 +88,7 @@ public class PeriodicDelegate_Test extends BaseClass {
 		sleep(3);
 		logout.logoutFunction();
 		sleep(5);
-		login.loginUser("sameer", "joshi12345");
+		login.loginUser("Title21User2", "test123456");
 		sleep(2);
 		Reviewscreen_Document();
 		sleep(4);
@@ -106,9 +106,9 @@ public class PeriodicDelegate_Test extends BaseClass {
 		sleep(8);
 		PeriodicReviewDelegate.getReviewTabOnPeriodicReviewscreen().click();
 		sleep(10);
-		PeriodicReviewDelegate.getDropdownOfReviewer().get(1).click();
+		PeriodicReviewDelegate.getDropdownOfReviewer().get(0).click();
 		sleep(4);
-		PeriodicReviewDelegate.getUndelegate().get(1).click();
+		PeriodicReviewDelegate.getUndelegate().get(0).click();
 		sleep(5);
 		PeriodicReviewDelegate.getUndelegatepopupwindowYesButton().click();
 		sleep(7);
@@ -125,7 +125,7 @@ public class PeriodicDelegate_Test extends BaseClass {
 		}
 		sleep(3);
 		logout.logoutFunction();
-		login.loginUser("aparnak", "aparna2450");
+		login.loginUser("Title21User3", "test123456");
 		Reviewscreen_Document();
 		sleep(4);
 		if (PeriodicReviewDelegate.NoResultvalidationMessage()) {
@@ -138,7 +138,7 @@ public class PeriodicDelegate_Test extends BaseClass {
 		}
 		sleep(3);
 		logout.logoutFunction();
-		login.loginUser("sameer", "joshi12345");
+		login.loginUser("Title21User2", "test123456");
 		sleep(2);
 		periodicReviews.wizard_Option().click();
 		sleep(2);
@@ -148,11 +148,11 @@ public class PeriodicDelegate_Test extends BaseClass {
 		sleep(5);
 		PeriodicReviewDelegate.getClickOnDocumentFromReviewList().click();
 		sleep(4);
-		PeriodicReviewDelegate.getDropdownOfReviewer().get(1).click();
+		PeriodicReviewDelegate.getDropdownOfReviewer().get(0).click();
 		sleep(4);
-		PeriodicReviewDelegate.getDelegateOption().get(1).click();
+		PeriodicReviewDelegate.getDelegateOption().get(0).click();
 		sleep(4);
-		PeriodicReviewDelegate.getDelegateToDropdownFromaddDelegationwindow().selectByVisibleText("aparna");
+		PeriodicReviewDelegate.getDelegateToDropdownFromaddDelegationwindow().selectByVisibleText("Title21User3");
 		sleep(4);
 		PeriodicReviewDelegate.getConfirm_Button().click();
 		sleep(4);
@@ -164,7 +164,7 @@ public class PeriodicDelegate_Test extends BaseClass {
 				+ test.addScreenCapture(captureScreenShot(driver, "verifyundelegateduserfromseconduser ")));
 		sleep(4);
 		logout.logoutFunction();
-		login.loginUser("aparnak", "aparna2450");
+		login.loginUser("Title21User3", "test123456");
 		periodicReviews.wizard_Option().click();
 		org.title21.utility.BaseClass.sleep(2);
 		periodicReviews.wizardReview_Tab().click();
@@ -179,7 +179,7 @@ public class PeriodicDelegate_Test extends BaseClass {
 		PeriodicReviewDelegate.getChangeButton().click();
 		sleep(3);
 		PeriodicReviewDelegate.getPinNoChangesScreen().clear();
-		PeriodicReviewDelegate.getPinNoChangesScreen().sendKeys("262829");
+		PeriodicReviewDelegate.getPinNoChangesScreen().sendKeys("212223");
 		sleep(5);
 		PeriodicReviewDelegate.getCommentsOnChangesScreen().sendKeys("test");
 		sleep(4);
@@ -194,21 +194,23 @@ public class PeriodicDelegate_Test extends BaseClass {
 						+ test.addScreenCapture(captureScreenShot(driver, "changedoc ")));
 		PeriodicReviewDelegate.getReviewTabOnPeriodicReviewscreen().click();
 		logout.logoutFunction();
+		sleep(4);
 		AuditLog();
 
 	}
 
 	private void AuditLog() {
-		login.loginUser("saurabhp", "Title123456*");
+		login.loginUser("Title21User1", "test123456");
 		PeriodicReviewDelegate.getdropdowforauditmenu().click();
 		PeriodicReviewDelegate.getAuditlogButton().click();
-		sleep(3);
-		PeriodicReviewDelegate.getusernamedropdown().selectByVisibleText("aparnak");
+		sleep(5);
 		PeriodicReviewDelegate.getTypedropdown().selectByVisibleText("Enter/Update Review");
 		sleep(2);
+		PeriodicReviewDelegate.getusernamedropdown().selectByVisibleText("Title21User3");
+		sleep(3);
 		String updateandenter = test.addScreenCapture(captureScreenShot(driver, "auditlogundelgation "));
 		PeriodicReviewDelegate.getTypedropdown().selectByVisibleText("Delegation");//
-		PeriodicReviewDelegate.getusernamedropdown().selectByVisibleText("sameer");
+		PeriodicReviewDelegate.getusernamedropdown().selectByVisibleText("Title21User2");
 		PeriodicReviewDelegate.getConfirm_Button().click();
 		sleep(3);
 		String delegatescrc = test.addScreenCapture(captureScreenShot(driver, "auditlogundelgation "));

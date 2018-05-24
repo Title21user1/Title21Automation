@@ -47,7 +47,7 @@ public class eBinders_Test extends BaseClass
 		dbqueries = new DBQueries();
 	}
 
-	@Test(testName = "eBinders", groups = "Module3", priority = 0, alwaysRun=true)
+	@Test(testName = "eBinders", groups = "Module3", priority = 0)
 	public void eBinders()
 	{
 		test = extent.startTest("eBinders");

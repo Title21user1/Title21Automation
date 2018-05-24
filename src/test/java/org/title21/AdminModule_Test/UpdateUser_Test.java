@@ -46,7 +46,7 @@ public class UpdateUser_Test extends BaseClass{
 		login.loginFunction();
 	}
 	
-	@Test(testName = "Update User", groups = "AdminModule", priority = 0, alwaysRun=true)
+	@Test(testName = "Update User", groups = "AdminModule", priority = 0)
 	public void UpdateUser() throws Exception
 	{		
 		test = extent.startTest("Update User");
@@ -63,9 +63,9 @@ public class UpdateUser_Test extends BaseClass{
 		test.log(LogStatus.PASS, "<b>ER 1- User records Screen is displayed.<b>"+
 				test.addScreenCapture(captureScreenShot(driver, "User records Screen")));
 		
-		test.log(LogStatus.PASS, "4.Click on location drop-down and select the specific location (for eg. Antioch.");
+		test.log(LogStatus.PASS, "4.Click on location drop-down and select the specific location (for eg. "+userData[1][0]+").");
 		sleep(2);
-		updateUserPage.getLocationforFilter().selectByVisibleText("Antioch");
+		updateUserPage.getLocationforFilter().selectByVisibleText(userData[1][0]);
 		sleep(2);
 				
 		verifyLocationInTable();		
@@ -159,22 +159,22 @@ public class UpdateUser_Test extends BaseClass{
 					
 					test.log(LogStatus.PASS, "13.Enter password and confirm password");
 					sleep(3);
-					updateUserPage.new_PasswordInput().sendKeys("test123456");
-					updateUserPage.confirm_PasswordInput().sendKeys("test123456");
+					updateUserPage.new_PasswordInput().sendKeys(userData[1][5]);
+					updateUserPage.confirm_PasswordInput().sendKeys(userData[1][5]);
 					
 					test.log(LogStatus.PASS, "14.Click on confirm");
 					updateUserPage.UpdateUserConfirm_Button().click();
 					updateUserPage.UpdateUserConfirm_Button().click();
-					sleep(4);
+					sleep(2);
 					updateUserPage.confirmClose_Button().click();
-					sleep(4);
+					sleep(3);
 					test.log(LogStatus.PASS, "15.Logout from admin");
 					logout.logoutFunction();	
 					sleep(3);
 					login.getUsername().sendKeys(adminData.getUserName());
 					login.getLogin_button().click();
 					sleep(2);
-					login.getpassword().sendKeys("test123456");
+					login.getpassword().sendKeys(userData[1][5]);
 					login.getLogin_button().click();
 					sleep(3);
 					test.log(LogStatus.PASS, "16.Login with that user and with updated password");
@@ -215,12 +215,12 @@ public class UpdateUser_Test extends BaseClass{
 						updateUserPage.password_Tab().click();
 						
 						test.log(LogStatus.PASS, "24.Enter password and confirm password");
-						sleep(2);
+						sleep(1);
 						updateUserPage.editPassword_checkBox().click();	
 						sleep(2);
-						updateUserPage.new_PasswordInput().sendKeys("test1234567");
+						updateUserPage.new_PasswordInput().sendKeys(userData[1][8]);
 						sleep(2);
-						updateUserPage.confirm_PasswordInput().sendKeys("test1234567");
+						updateUserPage.confirm_PasswordInput().sendKeys(userData[1][8]);
 						sleep(2);
 						test.log(LogStatus.PASS, "25.Click on cancel.");
 						updateUserPage.password_CancelTab().click();
@@ -235,7 +235,7 @@ public class UpdateUser_Test extends BaseClass{
 						//login.getUsername().sendKeys(adminData.getEmployeeName());
 						login.getLogin_button().click();
 						sleep(2);
-						login.getpassword().sendKeys("test1234567");
+						login.getpassword().sendKeys(userData[1][8]);
 						login.getLogin_button().click();
 						sleep(3);
 						
@@ -284,8 +284,7 @@ public class UpdateUser_Test extends BaseClass{
 		List<WebElement> tableCells=searchTable.gettableCells(4);				
 		
 		for (int i=0;i<tableCells.size();i++){
-			
-			if (!tableCells.get(i).getText().equalsIgnoreCase("Antioch"))
+			if (!userData[1][0].equalsIgnoreCase(tableCells.get(i).getText()))
 			{				
 				test.log(LogStatus.FAIL, "Expected location is not present in rowNum: "+i);
 				isRecordFound=false;

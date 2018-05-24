@@ -49,7 +49,7 @@ public class NonCollaborationTask_Test extends BaseClass {
 
 		test = extent.startTest("Non-Collaboration Task Test");
 		test.log(LogStatus.INFO, "Link to Test case document", "<a href='file://"+filePath+"'>TestCaseDocument</a>");
-		log.info("Periodic Delegate");
+		log.info("NonCollaborationTask");
 		addcollaborator("1");
 		sleep(5);
 		DocumentCollaboration.getMyTaskTab().click();
@@ -77,7 +77,7 @@ public class NonCollaborationTask_Test extends BaseClass {
 				"19.Mark the collaboration task as complete" + "<br/>"
 						+ "<b>ER 7: The Checkoff task popup is displayed.<b>"
 						+ test.addScreenCapture(captureScreenShot(driver, "MarkTask_popup ")));
-		DocumentCollaboration.getPin().sendKeys("262829");
+		DocumentCollaboration.getPin().sendKeys("212223");
 		sleep(2);
 		DocumentCollaboration.getConfirmButton().click();
 		sleep(2);
@@ -88,7 +88,7 @@ public class NonCollaborationTask_Test extends BaseClass {
 		}
 		sleep(3);
 		logout.logoutFunction();
-		login.loginUser("saurabhp", "Title123456*");
+		login.loginUser("Title21User1", "test123456");
 		sleep(3);
 		System.out.println(DocumentCollaboration.documetNo);
 		DocumentCollaboration.SearchTab(DocumentCollaboration.documetNo);
@@ -117,7 +117,7 @@ public class NonCollaborationTask_Test extends BaseClass {
 	}
 
 	public void addcollaborator(String ScenarioNo) {
-		login.loginUser("saurabhp", "Title123456*");
+		login.loginUser("Title21User1", "test123456");
 		DocumentCollaboration.CreateDocument();
 		sleep(4);
 		DocumentCollaboration.getCollaborationTab().click();
@@ -139,9 +139,9 @@ public class NonCollaborationTask_Test extends BaseClass {
 		sleep(2);
 		DocumentCollaboration.getCategoryOnAddCollaborator().selectByVisibleText("Procedure Review");
 		sleep(2);
-		DocumentCollaboration.getLocation().selectByVisibleText("Dallas");
-		sleep(4);
-		DocumentCollaboration.getAssignToPerson_On_AddCollaborator().sendKeys("sameer");
+		DocumentCollaboration.getLocation().selectByVisibleText("All");
+		sleep(3);
+		DocumentCollaboration.getAssignToPerson_On_AddCollaborator().sendKeys("Title21User2");
 		sleep(4);
 		pickDate = DateTimeUtils.getTomorrowDate();
 		preDate = pickDate.split("/");
@@ -226,7 +226,7 @@ public class NonCollaborationTask_Test extends BaseClass {
 			duedate = "0" + NonCol.getDueDate().getAttribute("value");
 			sleep(2);
 			if (Description.equals("Automation testing") && category.equals("Procedure Review")
-					&& assign_person.equals("sameer")
+					&& assign_person.equals("Title21User2")
 					&& DocumentCollaboration.getelectonisognaturecheckbox().isSelected()
 					&& DocumentCollaboration.getEnableTaskcheckbox().isSelected() && duedate.equalsIgnoreCase(pickDate))
 
@@ -246,12 +246,11 @@ public class NonCollaborationTask_Test extends BaseClass {
 
 			NonCol.getdelete_button().click();
 			sleep(5);
-
-			test.log(LogStatus.PASS,
+            test.log(LogStatus.PASS,
 					"38.Click on Delete icon to delete a Task updated in step (37)." + "<br/>"
 							+ "<b>ER 13 : Delete task popup is displayed..<b>"
 							+ test.addScreenCapture(captureScreenShot(driver, "delete_popup ")));
-
+            sleep(3);
 			NonCol.getYesButtonOfDeletePopup().click();
 			sleep(4);
 			test.log(LogStatus.PASS,
@@ -262,7 +261,7 @@ public class NonCollaborationTask_Test extends BaseClass {
 	}
 
 	public void getDocumentFromUser2Collaborationlist() {
-		login.loginUser("sameer", "joshi12345");
+		login.loginUser("Title21User2", "test123456");
 		DocumentCollaboration.getMyDocumentTab().click();
 		DocumentCollaboration.getcollaborationOnMyDocument().get(5).click();
 		sleep(3);

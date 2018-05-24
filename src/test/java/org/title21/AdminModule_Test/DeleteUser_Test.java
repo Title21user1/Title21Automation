@@ -44,7 +44,7 @@ public class DeleteUser_Test extends BaseClass{
 		login.loginFunction();
 	}
 	
-	@Test(testName = "Delete User", groups = "AdminModule", priority = 0, alwaysRun=true)
+	@Test(testName = "Delete User", groups = "AdminModule", priority = 0)
 	public void UpdateUser() throws Exception
 	{		
 		test = extent.startTest("Delete User");
@@ -62,9 +62,9 @@ public class DeleteUser_Test extends BaseClass{
 		test.log(LogStatus.PASS, "<b>ER 1- User records Screen is displayed.<b>"+
 				test.addScreenCapture(captureScreenShot(driver, "User records Screen")));
 		
-		test.log(LogStatus.PASS, "4.Click on location drop-down and select the specific location (for eg. Antioch).");
+		test.log(LogStatus.PASS, "4.Click on location drop-down and select the specific location (for eg. "+userData[1][0]+").");
 		sleep(2);
-		deleteUser.getLocationforFilter().selectByVisibleText("Antioch");
+		deleteUser.getLocationforFilter().selectByVisibleText(userData[1][0]);
 		sleep(2);
 				
 		verifyLocationInTable();		
@@ -226,8 +226,7 @@ public class DeleteUser_Test extends BaseClass{
 		List<WebElement> tableCells=searchTable.gettableCells(4);				
 		
 		for (int i=0;i<tableCells.size();i++){
-			
-			if (!tableCells.get(i).getText().equalsIgnoreCase("Antioch"))
+			if (!userData[1][0].equalsIgnoreCase(tableCells.get(i).getText()))
 			{				
 				test.log(LogStatus.FAIL, "Expected location is not present in rowNum: "+i);
 				isRecordFound=false;

@@ -7,6 +7,7 @@ import java.util.concurrent.TimeUnit;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.title21.AdminModule_POM.LoginPage_POM;
@@ -44,10 +45,10 @@ public class DocumentRoutes_Test extends BaseClass{
 		createDirectory(className);
 		logout=new LogoutPage_POM(driver);
 		login=new LoginPage_POM(driver);
-		login.loginUser("Title21User2", "test123456");
+		login.loginUser(loginData[7][0], loginData[7][1]);
 	}
 
-	@Test(testName = "Document Routes", groups = "DocumentModule", priority = 0, alwaysRun=true)
+	@Test(testName = "Document Routes", groups = "DocumentModule", priority = 0)
 	public void DocumentRoutes() throws Exception
 	{		
 		test = extent.startTest("Document Routes");
@@ -59,12 +60,12 @@ public class DocumentRoutes_Test extends BaseClass{
 		sleep(3);
 		documentRoutes.getdocument().click();
 		sleep(3);
-		documentRoutes.getlocationDrodown().selectByVisibleText("Dallas");
+		documentRoutes.getlocationDrodown().selectByVisibleText(routeData[1][0]);
 		sleep(2);
 		documetNo = documentRoutes.document_No().getAttribute("value");
 
-		documentRoutes.getDocumentTitle().sendKeys("Test"+documetNo); 
-		documentRoutes.getDocChangeSummary().sendKeys("Test Summary"+documetNo);
+		documentRoutes.getDocumentTitle().sendKeys(routeData[1][1]+documetNo); 
+		documentRoutes.getDocChangeSummary().sendKeys(routeData[1][2]+documetNo);
 		verticalScrollingDown();
 		documentRoutes.getConfirmButton().click();
 		sleep(5);
@@ -91,8 +92,8 @@ public class DocumentRoutes_Test extends BaseClass{
 				test.log(LogStatus.PASS, "<b>ER 1- Add new approver popup screen is open.<b>"+
 						test.addScreenCapture(captureScreenShot(driver, "new approver popup")));
 
-				documentRoutes.getApproverRole().selectByVisibleText("Approver");
-				test.log(LogStatus.PASS,"5.	Select Role (for eg: Approver)"); 
+				documentRoutes.getApproverRole().selectByVisibleText(routeData[1][3]);
+				test.log(LogStatus.PASS,"5.	Select Role (for eg: "+routeData[1][3]+")"); 
 				sleep(2);
 				documentRoutes.approverAdd_Button().click();
 				documentRoutes.approverAdd_Button().click();
@@ -111,17 +112,17 @@ public class DocumentRoutes_Test extends BaseClass{
 
 				test.log(LogStatus.PASS,"7.	Enter all mandatory fields.");
 
-				documentRoutes.getLocationDropdown().selectByVisibleText("All"); 
+				documentRoutes.getLocationDropdown().selectByVisibleText(routeData[1][4]); 
 				sleep(2);
-				documentRoutes.getnameinAddApprover().selectByVisibleText("Title21User1");   
+				documentRoutes.getnameinAddApprover().selectByVisibleText(routeData[1][5]);
 				documentRoutes.getSequenceinAddApprover().selectByVisibleText("1");
-				documentRoutes.getallottedDaysinAddApprover().selectByVisibleText("1 day");
+				documentRoutes.getallottedDaysinAddApprover().selectByVisibleText(routeData[1][7]);
 
 				test.log(LogStatus.PASS,"8.	Click on add button.");
 				documentRoutes.approverAdd_Button().click();
 				sleep(2);
 
-				if(verifyDocNameInTable("Title21User1"))  
+				if(verifyDocNameInTable(routeData[1][5]))
 				{
 					test.log(LogStatus.PASS, "<b>ER 3- Individual approver is added.<b>"+
 							test.addScreenCapture(captureScreenShot(driver, "Individual approver is added")));
@@ -135,15 +136,15 @@ public class DocumentRoutes_Test extends BaseClass{
 				test.log(LogStatus.PASS,"9.	Click on the add approver link and add a Group approver (E.g. sp tester) as Sequence 2.");//[1][9] Sp Tester
 				documentRoutes.getAddApproverLink().click();
 				sleep(2);
-				documentRoutes.getApproverRole().selectByVisibleText("Group Approvers");
-				documentRoutes.getLocationDropdown().selectByVisibleText("All");
+				documentRoutes.getApproverRole().selectByVisibleText(routeData[1][8]);
+				documentRoutes.getLocationDropdown().selectByVisibleText(routeData[1][4]);
 				sleep(2);
-				documentRoutes.getnameinAddApprover().selectByVisibleText("Title21Group");  
+				documentRoutes.getnameinAddApprover().selectByVisibleText(routeData[1][9]);
 				documentRoutes.getSequenceinAddApprover().selectByVisibleText("2"); 
-				documentRoutes.getallottedDaysinAddApprover().selectByVisibleText("1 day");
+				documentRoutes.getallottedDaysinAddApprover().selectByVisibleText(routeData[1][7]);
 				documentRoutes.approverAdd_Button().click();
 				sleep(2);
-				if(verifyDocNameInTable("Title21Group"))  
+				if(verifyDocNameInTable(routeData[1][9]))
 				{
 					test.log(LogStatus.PASS, "<b>ER 4- Group approver is added.<b>"+
 							test.addScreenCapture(captureScreenShot(driver, "Group approver is added")));
@@ -156,18 +157,17 @@ public class DocumentRoutes_Test extends BaseClass{
 
 				test.log(LogStatus.PASS,"10. Click on add a signature route link");
 				documentRoutes.signatureRoute_Link().click();
-				sleep(4);
+				sleep(2);
 				if(documentRoutes.addNewSignatureRoute_Header().isDisplayed())
 				{
-					test.log(LogStatus.PASS, "<b>ER 5- Signature route dialog appears.<b>"+
+					test.log(LogStatus.PASS, "<b>ER 5- Signature route dialog appears..<b>"+
 							test.addScreenCapture(captureScreenShot(driver, "Signature route dialog appears.")));
-					sleep(2);
-					documentRoutes.routeName_DropDown().selectByVisibleText("Title21Route");  
-					sleep(4);
-					test.log(LogStatus.PASS, "11. Select the route (for ex. 'routeneotest') and click on add button.");
+
+					documentRoutes.routeName_DropDown().selectByVisibleText(routeData[1][11]);
+					test.log(LogStatus.PASS, "11. Select the route (for ex. "+routeData[1][11]+") and click on add button.");
 					documentRoutes.approverAdd_Button().click();
-					sleep(4); 
-					if(verifyDocNameInTable("Title21Route"))  
+					sleep(4);
+					if(verifyDocNameInTable(routeData[1][11]))
 					{
 						test.log(LogStatus.PASS, "<b>ER 6- Route is added.<b>"+
 								test.addScreenCapture(captureScreenShot(driver, "Route is added")));
@@ -177,7 +177,7 @@ public class DocumentRoutes_Test extends BaseClass{
 						test.log(LogStatus.FAIL, "Unable to find Route is added."+
 								test.addScreenCapture(captureScreenShot(driver, "Route is added")));
 					}
-					sleep(2);
+
 					test.log(LogStatus.PASS, "12. Click on doc option context menu.");
 					documentRoutes.docContext_Menu().click();
 					sleep(2);
@@ -205,7 +205,7 @@ public class DocumentRoutes_Test extends BaseClass{
 					sleep(2);
 					test.log(LogStatus.PASS, "15. Login as one of the users named in Sequence 1.");
 
-					login.loginFunction();
+					login.loginUser(loginData[1][0], loginData[1][1]); 
 
 					test.log(LogStatus.PASS, "16. Go to the approval wizard.");
 					documentRoutes.wizard_Option().click();
@@ -229,10 +229,10 @@ public class DocumentRoutes_Test extends BaseClass{
 					logout.logoutFunction();
 
 					test.log(LogStatus.PASS, "17. Logout and login as the individual approver in Sequence 2");
-					
+
 					test.log(LogStatus.PASS, "18. Navigate to the approval wizard");
 
-					login.loginUser("Title21User4", "test123456"); 
+					login.loginUser(loginData[8][0], loginData[8][1]); 
 
 					documentRoutes.wizard_Option().click();
 					documentRoutes.approval_Tab().click();
@@ -265,7 +265,7 @@ public class DocumentRoutes_Test extends BaseClass{
 					test.log(LogStatus.PASS, "20. Login as each individual approvers listed in Sequence 1, and approve the document through the Web interface.");
 					sleep(2);
 
-					login.loginFunction();
+					login.loginUser(loginData[1][0], loginData[1][1]); 
 
 					documentRoutes.wizard_Option().click();
 					documentRoutes.approval_Tab().click();
@@ -282,39 +282,41 @@ public class DocumentRoutes_Test extends BaseClass{
 					documentRoutes.documentApprove_Button().click();
 					sleep(2);
 					documentRoutes.pinTo_Approve().clear();					
-					documentRoutes.pinTo_Approve().sendKeys("262829");
+					documentRoutes.pinTo_Approve().sendKeys(routeData[1][12]);
 					documentRoutes.checkInRouteSubmit_Button().click();
 					sleep(2);
 					logout.logoutFunction();
-					sleep(2);
-					login.loginUser("Title21User3", "test123456"); 
+
+					login.loginUser(loginData[11][0], loginData[11][1]); 
 
 					documentRoutes.wizard_Option().click();
 					documentRoutes.approval_Tab().click();
 					sleep(2);
 
-					documentRoutes.approvalFilter_TextBox().clear();
 					documentRoutes.approvalFilter_TextBox().sendKeys(documetNo);
 					sleep(2);
 					documentRoutes.approvalFilterGo_Button().click();
 					sleep(2);
 					selectDocForApprovel(documetNo);
-					
+
+					documentRoutes.searchDoc(documetNo);
+
+
 					sleep(2);
 					documentRoutes.documentTab_ForApprover().click();
 					sleep(2);
 					documentRoutes.documentApprove_Button().click();
 					sleep(2);
 					documentRoutes.pinTo_Approve().clear();
-					documentRoutes.pinTo_Approve().sendKeys("262829");
+					documentRoutes.pinTo_Approve().sendKeys(routeData[1][12]);
 					documentRoutes.checkInRouteSubmit_Button().click();
 					sleep(2);
 					logout.logoutFunction();
 
 					test.log(LogStatus.PASS, "21. Login as a member of the group named in Sequence 2 again and navigate to the approval wizard.");
 
-					login.loginUser("Title21User4", "test123456"); 
-					
+					login.loginUser(loginData[8][0], loginData[8][1]); 
+
 					documentRoutes.wizard_Option().click();
 					documentRoutes.approval_Tab().click();
 					sleep(2);
@@ -350,7 +352,11 @@ public class DocumentRoutes_Test extends BaseClass{
 		{
 			test.log(LogStatus.FAIL,"Unable to Create a new document form.");
 		}
-		
+	}
+	
+	@AfterMethod
+	public void afterMethod()
+	{
 		logout.logoutFunction();
 	}
 	

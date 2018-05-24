@@ -37,7 +37,7 @@ public class PackageObsolete_Test extends BaseClass {
 		DocumentCollaborationPOM = new DocumentCollaboration_POM(driver);
 		Documentcoll_POM = new DocumentCollaboration_POM(driver);
 		documentRoutes = new DocumentRoutes_POM(driver);
-	login.loginUser("saurabhp", "Title123456*");
+	login.loginUser("Title21User1", "test123456");
 	}
 
 	@Test(testName = "Package_obsolete_Test", groups = "Package_obsolete_Test", priority = 0, alwaysRun=true)
@@ -158,7 +158,7 @@ public class PackageObsolete_Test extends BaseClass {
 		approvePackage();
 		sleep(5);
 		test.log(LogStatus.PASS,
-				" 20.Click on Close. " + "<br/>" + "21.Navigate to approval tab. " + "<br/>" + "22.Add one approver."
+				" 20.Click on ClAAose. " + "<br/>" + "21.Navigate to approval tab. " + "<br/>" + "22.Add one approver."
 						+ "<br/>" + "<b>ER 10: Approver is added .<b>"
 						+ test.addScreenCapture(captureScreenShot(driver, "add_approver ")));
 		// sleep(3);
@@ -182,7 +182,7 @@ public class PackageObsolete_Test extends BaseClass {
 		PackageObsoletePOM.Close_Button_Checkin().click();
 		sleep(5);
 		logout.logoutFunction();
-		login.loginUser("sameer", "joshi12345");
+		login.loginUser("Title21User1", "test123456");
 		sleep(4);
 		PackageObsoletePOM.getMydocument().click();
 		PackageObsoletePOM.getapprovallinkonmydocument().click();
@@ -198,7 +198,7 @@ public class PackageObsolete_Test extends BaseClass {
 		sleep(3);
 		PackageObsoletePOM.gapprovelink().click();
 		sleep(3);
-		PackageObsoletePOM.getpinToApprove().sendKeys("262829");
+		PackageObsoletePOM.getpinToApprove().sendKeys("212223");
 		sleep(3);
 		PackageObsoletePOM.getCreate_Button().click();
 		sleep(3);
@@ -210,7 +210,7 @@ public class PackageObsolete_Test extends BaseClass {
 		sleep(4);
 		logout.logoutFunction();
 		sleep(5);
-		login.loginUser("saurabhp", "Title123456*");
+		login.loginUser("Title21User2", "test123456");
 		sleep(5);
 		Documentcoll_POM.SearchTab(PackageObsoletePOM.documetNo+": 1.0");
 		sleep(5);
@@ -256,7 +256,7 @@ public class PackageObsolete_Test extends BaseClass {
 		if (scenario.equalsIgnoreCase("1")) {
 			test.log(LogStatus.PASS,
 					" 8.	Select Status: Open, Created between (e.g. a month before current date and current date), Type: Document and Location: ALL "
-							+ "<br/>" + "9.	Enter effective in the search field and click on go button" + "<br/>"
+							+ "<br/>" + "9.	Enter  in the search field and click on go button" + "<br/>"
 							+ "10.	Select one effective document." + "<br/>" + "11:Click on OK." + "<br/>"
 							+ "<b>ER 4:Added documents appear in the document frame.<b>"
 							+ test.addScreenCapture(captureScreenShot(driver, "added_document_appear ")));
@@ -266,10 +266,12 @@ public class PackageObsolete_Test extends BaseClass {
 
 	public void approvePackage() {
 		documentRoutes.getAddApproverLink().click();
-		org.title21.utility.BaseClass.sleep(2);
+		org.title21.utility.BaseClass.sleep(3);
 		documentRoutes.getApproverRole().selectByVisibleText("Approver");
-		org.title21.utility.BaseClass.sleep(2);
-		documentRoutes.getnameinAddApprover().selectByVisibleText("sameer");
+		org.title21.utility.BaseClass.sleep(3);
+		documentRoutes.getLocationDropdown().selectByVisibleText("All");
+		org.title21.utility.BaseClass.sleep(4);
+		documentRoutes.getnameinAddApprover().selectByVisibleText("Title21User1");
 		documentRoutes.getSequenceinAddApprover().selectByVisibleText("1");
 		documentRoutes.getallottedDaysinAddApprover().selectByVisibleText("1 day");
 		documentRoutes.approverAdd_Button().click();
@@ -278,6 +280,6 @@ public class PackageObsolete_Test extends BaseClass {
 	@AfterClass
 	public void closeBrowserInstance() {
 		extent.endTest(test);
-		driver.close();
+		//driver.close();
 	}
 }

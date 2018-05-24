@@ -11,7 +11,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.title21.PeriodicReviewers_POM.PeriodicOwnedDocuments_POM;
 import org.title21.utility.BaseClass;
 import org.title21.validation.entities.ErrorMessages;
-
+//tset
 public class DocumentCollaboration_POM {
 	public WebDriver driver;
 	public String documetNo = "";
@@ -117,8 +117,8 @@ public class DocumentCollaboration_POM {
 	@FindBy(css = ".btn.t21-btn-default")
 	WebElement CloseButton;
     
-	@FindBy(css = ".fa.fa-caret-down")
-	List<WebElement> Contextmenu;
+	@FindBy(xpath = ".//*[@class='fa fa-caret-down']")
+	WebElement Contextmenu;
 	
 	@FindBy(css = ".grid-button-text")
 	WebElement AuditlogButton;
@@ -146,7 +146,19 @@ public class DocumentCollaboration_POM {
 
 	@FindBy(css = "#NotifyMeWhenTaskComplete")
 	WebElement NotifyMeWhenTaskCompleteCheckbox;
-
+	
+	
+	@FindBy(css = "#AssignToPerson")
+	WebElement AssignToPerson;
+	
+	public WebElement getAssignToPerson()
+	{
+		return AssignToPerson;
+	}
+	
+	
+	
+	
 	public List<WebElement> getTaskstatusverify()// 2
 	{
 
@@ -163,7 +175,7 @@ public class DocumentCollaboration_POM {
 		return GoButtonOnSearch;
 	}
 	
-	public List<WebElement> getContextmenu()// 2
+	public WebElement getContextmenu()// 2
 	{
 
 		return Contextmenu;

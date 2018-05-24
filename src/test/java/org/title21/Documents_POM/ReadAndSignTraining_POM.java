@@ -66,10 +66,10 @@ public class ReadAndSignTraining_POM extends DocumentRoutes_POM {
 	@FindBy(css=".grid-button-text")
 	WebElement auditLogOption;
 	
-	@FindBy(xpath="//div[@class='input-group']//input[@class='form-control t21-placeholder']")
+	@FindBy(css=".t21-placeholder")
 	WebElement audtitLogSearchField;
 	
-	@FindBy(css=".t21-ajax-submit-button.form-control.form-inline.btn.t21-btn-default")
+	@FindBy(xpath="//button[@type='submit'][@tabindex='1']")
 	WebElement audtitLogSearchFieldGobutton;
 	
 	@FindBy(xpath="//a[contains(@href,'#GeneralTab')]")

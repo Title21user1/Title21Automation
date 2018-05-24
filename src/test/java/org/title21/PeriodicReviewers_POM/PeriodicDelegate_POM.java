@@ -44,38 +44,42 @@ public class PeriodicDelegate_POM {
 		periodicReviews = new PeriodicOwnedDocuments_POM(driver);
 
 	}
-//
+
+	//
 	@FindBy(css = "#Pin")
 	WebElement PinNoChangesScreen;
+
 	
+	@FindBy(css = "#Location")
+	WebElement Location;
+
 	@FindBy(css = ".t21-grid-header-style>h4")
 	List<WebElement> clickBeforedelegate;
-	
+
 	@FindBy(css = ".t21-grid-header-style>h4")
 	List<WebElement> SerchtextboxOnDocument;
-	
+
 	@FindBy(css = "#UserName")
 	WebElement usernamedropdown;
-	
+
 	@FindBy(css = ".grid-button-text")
 	WebElement AuditlogButton;
-	
-	
+
 	@FindBy(css = ".t21-no-bold")
 	WebElement DocumentNumber;
-	
+
 	@FindBy(css = ".btn.btn-danger.t21-ajax-link")
 	WebElement ChangeButton;
 
 	@FindBy(css = ".t21-table-custom>tbody>tr>td")
 	List<WebElement> VerifyDelegateUser;
-	
+
 	@FindBy(css = ".t21-table-custom>tbody>tr>td")
 	List<WebElement> VerifyUnDelegateUser;
 
 	@FindBy(xpath = "//*[text() = 'Delegate']")
 	List<WebElement> Delegateoption;
-	
+
 	@FindBy(xpath = "//*[text() = 'Undelegate']")
 	List<WebElement> Undelegate;
 
@@ -84,23 +88,21 @@ public class PeriodicDelegate_POM {
 
 	@FindBy(css = ".btn.btn-default.fa.fa-plus-circle.t21-ajax-link")
 	WebElement AddMainFileLink;
-	
+
 	@FindBy(css = "#Type")
 	WebElement Typedropdown;
 
 	@FindBy(xpath = ".//*[@id='AttachmentFile']")
 	WebElement Brouse;
 
-
 	@FindBy(css = ".alert.t21-alert-info.alert-dismissible>p")
 	WebElement NoResultErrorMessageForSearch;
-	
+
 	@FindBy(css = ".btn.t21-btn-primary.t21-ajax-submit-button.process-btn-click")
 	WebElement UndelegatepopupwindowYesButton;
 
 	@FindBy(xpath = "//*[@placeholder='Filter results']")
 	List<WebElement> placeholder;
-	
 
 	@FindBy(css = ".t21-ajax-submit-button.form-control.form-inline.btn.t21-btn-default")
 	WebElement GoButton;
@@ -113,20 +115,21 @@ public class PeriodicDelegate_POM {
 
 	@FindBy(css = ".t21-js-row-link")
 	WebElement ClickOnDocumentFromReviewList;
-	
+
 	@FindBy(css = "#Comments")
 	WebElement CommentsOnChnagesScreen;
-	
+
 	@FindBy(css = ".caret")
 	WebElement dropdowforauditmenu;
-	
-	
+
+	@FindBy(css = ".fa.fa-book")
+	WebElement doccumentfromapproved;
+
 	@FindBy(css = ".t21-maintab")
 	WebElement ReviewTabOnPeriodicReviewscreen;
 
 	@FindBy(css = ".t21-js-row-link.text-nowrap")
 	List<WebElement> document;
-	
 
 	@FindBy(css = ".dropdown-toggle.t21-no-text-decoration.fill-cell.t21-combined-icons.t21-mousehand")
 	List<WebElement> DropdownOfReviewer;
@@ -134,17 +137,20 @@ public class PeriodicDelegate_POM {
 	@FindBy(css = ".t21-ajax-submit-button.form-control.form-inline.btn.t21-btn-default")
 	WebElement GoButtonOfSearch;
 
+	@FindBy(css = ".flash")
+	WebElement approvedoctab;
+
 	@FindBy(css = ".btn.t21-btn-primary.t21-ajax-submit-button")
 	WebElement Confirm_Button;
-	
+
 	public List<WebElement> getSerchtextboxOnDocument() {
 		return SerchtextboxOnDocument;
 	}
 
-	public List<WebElement> docType() 
-	{
+	public List<WebElement> docType() {
 		return document;
 	}
+
 	public List<WebElement> getVerifyDelegateUser() {
 
 		return VerifyDelegateUser;
@@ -154,14 +160,22 @@ public class PeriodicDelegate_POM {
 
 		return clickBeforedelegate;
 	}
-	public WebElement getGoButton(){
+
+	public WebElement getapprovedoctab() {
+
+		return approvedoctab;
+	}
+
+	public WebElement getGoButton() {
 
 		return GoButton;
 	}
+
 	public WebElement getdropdowforauditmenu() {
 
 		return dropdowforauditmenu;
 	}
+
 	public WebElement getClickOnDocumentFromReviewList() {
 
 		return ClickOnDocumentFromReviewList;
@@ -170,30 +184,37 @@ public class PeriodicDelegate_POM {
 	public List<WebElement> getDelegateOption() {
 		return Delegateoption;
 	}
-	public WebElement getNoResultErrorMessageForSearch() 
-	{
+
+	public WebElement getNoResultErrorMessageForSearch() {
 
 		return NoResultErrorMessageForSearch;
 	}
-	
+
 	public WebElement getUndelegatepopupwindowYesButton() {
 
 		return UndelegatepopupwindowYesButton;
 	}
-	public WebElement getPinNoChangesScreen() 
-	{
+
+	public WebElement getPinNoChangesScreen() {
 
 		return PinNoChangesScreen;
 	}
-	
+
 	public WebElement getCommentsOnChangesScreen() {
 
 		return CommentsOnChnagesScreen;
 	}
+
 	public WebElement getChangeButton() {
 
 		return ChangeButton;
 	}
+
+	public Select  getLocation() {
+		Select selectObj = new Select(Location);
+		return selectObj;
+	}
+
 	
 	public WebElement getConfirm_Button() {
 
@@ -204,15 +225,17 @@ public class PeriodicDelegate_POM {
 		Select selectObj = new Select(DelegateToDropdown);
 		return selectObj;
 	}
+
 	public Select getTypedropdown() {
 		Select selectObj = new Select(Typedropdown);
 		return selectObj;
 	}
-	
+
 	public Select getusernamedropdown() {
 		Select selectObj = new Select(usernamedropdown);
 		return selectObj;
 	}
+
 	public List<WebElement> getDropdownOfReviewer() {
 
 		return DropdownOfReviewer;
@@ -229,18 +252,28 @@ public class PeriodicDelegate_POM {
 
 		return ReviewTabOnPeriodicReviewscreen;
 	}
+
 	public WebElement get()
 
 	{
 
 		return ViewDocument;
 	}
+
 	public List<WebElement> getUndelegate()
 
 	{
 
 		return Undelegate;
 	}
+
+	public WebElement getdoccumentfromapproved()
+
+	{
+
+		return doccumentfromapproved;
+	}
+
 	public WebElement getViewDocumentButton()
 
 	{
@@ -252,9 +285,8 @@ public class PeriodicDelegate_POM {
 
 		return AuditlogButton;
 	}
-	
-	public List<WebElement> getplaceholder() 
-	{
+
+	public List<WebElement> getplaceholder() {
 
 		return placeholder;
 	}
@@ -297,22 +329,21 @@ public class PeriodicDelegate_POM {
 
 	}
 
-	public void Search(String document ) {
+	public void Search(String document) {
 		getplaceholder().get(0).sendKeys(document);
 		getGOButton().click();
 	}
 
 	public void CreateDocumentAndAddReviewers() throws Exception {
-		
+
 		LogoutPage_POM logout = new LogoutPage_POM(driver);
 		LoginPage_POM login = new LoginPage_POM(driver);
 		DBQueries dbqueries = new DBQueries();
-
 		periodicReviews.getnewdoc().click();
-		BaseClass.sleep(4);
+		org.title21.utility.BaseClass.sleep(8);
 		baseclass.waitTillElementVisible(periodicReviews.getdocument());
 		periodicReviews.getdocument().click();
-		BaseClass.sleep(7);
+		org.title21.utility.BaseClass.sleep(7);
 		docType().get(3).click();
 		BaseClass.sleep(3);
 		documetNo = periodicReviews.document_No().getAttribute("value");
@@ -324,21 +355,21 @@ public class PeriodicDelegate_POM {
 		periodicReviews.getConfirmButton().click();
 		BaseClass.sleep(5);
 		fileupload("DocDocument.docx");
-		BaseClass.sleep(2);
+		org.title21.utility.BaseClass.sleep(5);
 		periodicReviews.getDocumentApprovaltab().click();
-		BaseClass.sleep(2);
+		org.title21.utility.BaseClass.sleep(5);
 		periodicReviews.getAddApproverLink().click();
-		BaseClass.sleep(5);
+		org.title21.utility.BaseClass.sleep(5);
 		if (periodicReviews.addNewApprover_Header().isDisplayed()) {
 			periodicReviews.getApproverRole().selectByVisibleText("Approver");
 			BaseClass.sleep(2);
 			periodicReviews.getLocationDropdown().selectByVisibleText("All");
 			BaseClass.sleep(2);
-			periodicReviews.getnameinAddApprover().selectByVisibleText("sameer");
+			periodicReviews.getnameinAddApprover().selectByVisibleText("Title21User2");
 			periodicReviews.getSequenceinAddApprover().selectByVisibleText("1");
 			periodicReviews.getallottedDaysinAddApprover().selectByVisibleText("1 day");
 			periodicReviews.approverAdd_Button().click();
-			BaseClass.sleep(2);
+			org.title21.utility.BaseClass.sleep(5);
 
 		}
 		BaseClass.sleep(3);
@@ -387,8 +418,10 @@ public class PeriodicDelegate_POM {
 
 		if (periodicReviews.editPeriodicReviewers_HeaderText().isDisplayed()) {
 			BaseClass.sleep(5);
+			getLocation().selectByVisibleText("All");
+			BaseClass.sleep(3);
 			periodicReviews.availablePeriodicReviewers_Filter().click();
-			periodicReviews.availablePeriodicReviewers_Filter().sendKeys("sameer");
+			periodicReviews.availablePeriodicReviewers_Filter().sendKeys("Title21User2");
 			BaseClass.sleep(2);
 			if (periodicReviews.AvailablePeriodicReviewers_SearchResultArea().isDisplayed()) {
 				periodicReviews.availablePeriodic_MoveButton().click();
@@ -397,7 +430,7 @@ public class PeriodicDelegate_POM {
 			BaseClass.sleep(2);
 
 			periodicReviews.availablePeriodicReviewers_Filter().clear();
-			periodicReviews.availablePeriodicReviewers_Filter().sendKeys("aparna_auto");
+			periodicReviews.availablePeriodicReviewers_Filter().sendKeys("Title21User4");
 			BaseClass.sleep(2);
 			if (periodicReviews.AvailablePeriodicReviewers_SearchResultArea().isDisplayed()) {
 				periodicReviews.availablePeriodic_MoveButton().click();
@@ -409,48 +442,48 @@ public class PeriodicDelegate_POM {
 		baseclass.verticalScrollingUp();
 		baseclass.verticalScrollingUp();
 		periodicReviews.docContext_Menu().click();
-		BaseClass.sleep(2);
+		org.title21.utility.BaseClass.sleep(5);
 		periodicReviews.checkIn_Route().click();
 
-		BaseClass.sleep(2);
+		org.title21.utility.BaseClass.sleep(5);
 		periodicReviews.checkInRouteSubmit_Button().click();
-		BaseClass.sleep(5);
+		org.title21.utility.BaseClass.sleep(5);
 		periodicReviews.close_Button().click();
-		BaseClass.sleep(3);
+		org.title21.utility.BaseClass.sleep(5);
 		logout.logoutFunction();
 		// DBConnection.executeStoredProcedure(dbqueries.moveDocsOnReleaseDate);
 		BaseClass.sleep(5);
-		login.loginUser("sameer", "joshi12345");
+		login.loginUser("Title21User2", "test123456");
 		approveDocFromWizard(documetNo);
 		logout.logoutFunction();
 		DBConnection.executeStoredProcedure(dbqueries.moveDocsOnReleaseDate);
 		BaseClass.sleep(5);
-		login.loginUser("sameer", "joshi12345");
+		login.loginUser("Title21User2", "test123456");
 		BaseClass.sleep(5);
 		periodicReviews.wizard_Option().click();
-		BaseClass.sleep(2);
+		org.title21.utility.BaseClass.sleep(5);
 		periodicReviews.wizardReview_Tab().click();
-		BaseClass.sleep(8);
+		org.title21.utility.BaseClass.sleep(8);
 
 	}
 
 	private void approveDocFromWizard(String docName) {
-		RecentlyViewdAndFavorites_POM RecentlyViewdAndFavorites=new RecentlyViewdAndFavorites_POM(driver);
+		RecentlyViewdAndFavorites_POM RecentlyViewdAndFavorites = new RecentlyViewdAndFavorites_POM(driver);
 		DocumentRoutes_POM documentRoutes = new DocumentRoutes_POM(driver);
 		periodicReviews.wizard_Option().click();
 		periodicReviews.approval_Tab().click();
 		org.title21.utility.BaseClass.sleep(5);
-		RecentlyViewdAndFavorites.getplaceholder().sendKeys(documetNo);//documet_no_checkout1
+		RecentlyViewdAndFavorites.getplaceholder().sendKeys(documetNo);// documet_no_checkout1
 		RecentlyViewdAndFavorites.getGOButton().click();
 		org.title21.utility.BaseClass.sleep(5);
-		driver.findElement(By.cssSelector(".fa.fa-book")).click();
+		getdoccumentfromapproved().click();
 		org.title21.utility.BaseClass.sleep(5);
-		driver.findElement(By.cssSelector(".flash")).click();
+		getapprovedoctab().click();
 		org.title21.utility.BaseClass.sleep(5);
 		periodicReviews.documentApprove_Button().click();
 		org.title21.utility.BaseClass.sleep(5);
 		periodicReviews.pinTo_Approve().clear();
-		periodicReviews.pinTo_Approve().sendKeys("262829");
+		periodicReviews.pinTo_Approve().sendKeys("212223");
 		periodicReviews.checkInRouteSubmit_Button().click();
 		org.title21.utility.BaseClass.sleep(5);
 	}
@@ -468,18 +501,18 @@ public class PeriodicDelegate_POM {
 		}
 		return isRecordFound;
 	}
-	public boolean NoResultvalidationMessage(){
 
-		element=getNoResultErrorMessageForSearch();
+	public boolean NoResultvalidationMessage() {
+
+		element = getNoResultErrorMessageForSearch();
 		String errorMessage = element.getText();
-		boolean isValidationMessagePresent=false;		
+		boolean isValidationMessagePresent = false;
 
-		if(errorMessage.contains(ErrorMessages.NoResultFoundOnReviewValidation))
-		{
-			isValidationMessagePresent=true;
-		}else{
+		if (errorMessage.contains(ErrorMessages.NoResultFoundOnReviewValidation)) {
+			isValidationMessagePresent = true;
+		} else {
 			log.error("Validation message for No result found  ");
-		}	
+		}
 		return isValidationMessagePresent;
 	}
 }

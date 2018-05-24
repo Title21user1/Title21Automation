@@ -46,7 +46,7 @@ public class CreateDocument_Test extends BaseClass {
 		createDirectory(className);
 		login = new LoginPage_POM(driver);
 		logout = new LogoutPage_POM(driver);
-		login.loginUser("TitleUser1", "test123456");
+		login.loginUser("Title21User1", "test123456");
 	}
 
 	@Test(testName = "Create  Document", groups = "DocumentModule", priority = 0, alwaysRun=true)
@@ -99,7 +99,7 @@ public class CreateDocument_Test extends BaseClass {
 		}
 		;
 		sleep(2);
-		Credoc.getnumberappedix().selectByVisibleText(AppendixNumber);
+		Credoc.getnumberappedix().selectByIndex(1);
 		Credoc.Appendix().sendKeys(Appendix);
 		sleep(2);
 		String Document_number = Credoc.getdocumentnumber().getAttribute("value");
@@ -127,7 +127,7 @@ public class CreateDocument_Test extends BaseClass {
 		sleep(3);
 		logout.logoutFunction();
 		sleep(3);
-		login.loginUser("TitleUser1", "test123456");
+		login.loginUser("Title21User1", "test123456");
 		sleep(4);
 		Credoc.getcreateddoc().click();
 		sleep(3);

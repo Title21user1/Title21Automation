@@ -1,16 +1,30 @@
 package org.title21.utility;
 
+import java.awt.Rectangle;
+import java.awt.Robot;
+import java.awt.Toolkit;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Formatter;
 import java.util.HashMap;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
+import java.util.function.Function;
+
+import javax.imageio.ImageIO;
+
+import java.util.UUID;
+import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
 import org.apache.commons.io.FileUtils;
@@ -34,6 +48,8 @@ import org.openqa.selenium.remote.LocalFileDetector;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.ITestResult;
 import org.testng.Reporter;
@@ -42,13 +58,19 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Parameters;
+import org.testng.asserts.SoftAssert;
+import org.openqa.selenium.JavascriptExecutor;
+
 //import com.framework.selenium.BaseClass;
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
 
 import org.title21.AdminModule_POM.AdministrationPage_POM;
+import org.title21.AdminModule_POM.LoginPage_POM;
+import org.title21.AdminModule_POM.LogoutPage_POM;
 import org.title21.Reporting.ExtentManager;
+import org.title21.dao.AdminData;
 
 public class BaseClass {
 
@@ -67,8 +89,8 @@ public class BaseClass {
 	
 	protected String data[][];
 	protected WebDriverWait waitDriver = null;
-
-	//DatabaseCheck dbcheck = new DatabaseCheck();
+	LoginPage_POM login;
+	LogoutPage_POM logout;
 	
 	public String excelFile="";
 	public static String loginSheet="";
@@ -92,6 +114,10 @@ public class BaseClass {
 	static String relativePathforImage="";
 	static String downloadPath="";
 	
+	protected static Connection connection;
+	protected static Statement statement;
+	protected static ResultSet rs;
+	
 	int pixels=0;
 
 	@BeforeMethod
@@ -111,13 +137,15 @@ public class BaseClass {
 		} else {
 			test.log(LogStatus.PASS, "Test passed");
 		}
+
+		//extent.flush();
 	}
 
 	@BeforeSuite
 	@Parameters({"configFile"})
 	public void beforeSuite(String configFile) throws Exception {
 		
-		//loading log4j properties.
+		// loading log4j properties.
 		PropertyConfigurator.configure("log4j.properties");
 		
 		Properties p=new Properties();
@@ -165,8 +193,9 @@ public class BaseClass {
 		PeriodicReviewer=ExcelData(excelFile, PeriodicReviewerSheet);
 		
 		downloadPath=System.getProperty("user.dir") + "\\DownloadedFiles";
-		extent = ExtentManager.getReporter(filePath,baseUrl);
-		//dbcheck.runDatabaseCheck();
+		
+		extent = ExtentManager.getReporter(filePath,baseUrl);	
+		
 	}
 
 	@AfterSuite
