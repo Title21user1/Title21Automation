@@ -53,12 +53,13 @@ public class RecentlyViewedAndFavorites_Test extends BaseClass {
 		Credoc = new CreateDocument_POM(driver);
 		documentRoutes = new DocumentRoutes_POM(driver);
 		dbqueries = new DBQueries();
-
+		logout = new LogoutPage_POM(driver);
 		login.loginUser("Title21User2", "test123456");
+        RecentlyViewdAndFavorites = new RecentlyViewdAndFavorites_POM(driver);
 
 	}
 
-	@Test(testName = "Recently Viewed And Favorites", groups = "DocumentModule", priority = 0)
+	@Test(testName = "Recently Viewed And Favorites", groups = "DocumentModule", priority = 0, alwaysRun=true)
 	public void Create_doc() throws Exception {
 		test = extent.startTest("RecentlyViewed_And_Favorites");
 		test.log(LogStatus.INFO, "Link to Test case document", "<a href='file://"+filePath+"'>TestCaseDocument</a>");
@@ -69,7 +70,7 @@ public class RecentlyViewedAndFavorites_Test extends BaseClass {
 		RecentlyViewdAndFavorites.gettodaysdate().click();
 		GenerateEffectiveFile();
 		approved();
-        RecentlyViewdAndFavorites = new RecentlyViewdAndFavorites_POM(driver);
+		sleep(5);
 		RecentlyViewdAndFavorites.getCreatedDocnumber();
 		sleep(5);
 		RecentlyViewdAndFavorites.getDashboard().click();
@@ -82,11 +83,11 @@ public class RecentlyViewedAndFavorites_Test extends BaseClass {
 		}
 
 		RecentlyViewdAndFavorites.geteBinders().click();
-		sleep(2);
+		sleep(4);
 		RecentlyViewdAndFavorites.getLab().click();
-		sleep(2);
+		sleep(4);
 		RecentlyViewdAndFavorites.getSOP().click();
-		sleep(2);
+		sleep(4);
 		Search("Bio-hazardous Waste Disposal");
 		sleep(3);
 
@@ -331,10 +332,10 @@ public class RecentlyViewedAndFavorites_Test extends BaseClass {
 		documentRoutes.checkIn_Route().click();
 		sleep(2);
 		documentRoutes.checkInRouteSubmit_Button().click();
-		sleep(3);
+		sleep(8);
 		RecentlyViewdAndFavorites.Close_Button_Checkin().click();
-		sleep(5);
-		logout = new LogoutPage_POM(driver);
+		sleep(9);
+	
 		logout.logoutFunction();
 
 	}
@@ -373,6 +374,7 @@ public class RecentlyViewedAndFavorites_Test extends BaseClass {
 
 	}
 
+	@SuppressWarnings("unused")
 	private boolean selectDocForApprovel(String docName, int cell) {
 		searchTable = new Table(driver);
 		RecentlyViewdAndFavorites = new RecentlyViewdAndFavorites_POM(driver);

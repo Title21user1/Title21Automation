@@ -21,6 +21,7 @@ import org.title21.AdminModule_POM.LoginPage_POM;
 import org.title21.AdminModule_POM.LogoutPage_POM;
 import org.title21.AdminModule_POM.Table;
 import org.title21.utility.BaseClass;
+import org.title21.utility.DateTimeUtils;
 import org.title21.utility.FileUpload;
 import org.title21.utility.FunctionUtils;
 
@@ -74,7 +75,8 @@ public class LinkControlOfDocument_Test extends BaseClass {
 		LinkControlofDocument = new LinkControlOfDocument_POM(driver);
 		Credoc = new CreateDocument_POM(driver);
 		PackageObsoletePOM=new PackageObsolete_POM(driver);
-		login.loginUser("saurabhp", "Title123456*");
+		//login.loginUser("saurabhp", "Title123456*");
+		login.loginUser("Title21User2", "test123456");
 		dbqueries = new DBQueries();
 
 	}
@@ -87,13 +89,14 @@ public class LinkControlOfDocument_Test extends BaseClass {
 		LinkControlofDocument.Prerequsite();
 		log.info("Link Control Of Document");
 		sleep(5);
+		sleep(3);
 		PackageObsoletePOM.GenerateEffectiveFile("1");
 		System.out.print("document is"+PackageObsoletePOM.documetNo);
 		attachment.CreateDocument();
 		sleep(2);
 		Document_For_link = LinkControlofDocument.getdocname().getText();
 		sleep(5);
-		System.out.println(Document_For_link);
+		System.out.println("documentfor link"+Document_For_link);
 		Credoc.getPlusButtonuploadfile().click();
 		sleep(3);
 		scrolldown(2);
@@ -128,7 +131,7 @@ public class LinkControlOfDocument_Test extends BaseClass {
 
 		}
 		sleep(5);
-		Search(Document_name);
+		Search(Document_name);//Document_name
 		sleep(3);
 		attachment.getshowattachment().click();
 		sleep(4);
@@ -140,13 +143,14 @@ public class LinkControlOfDocument_Test extends BaseClass {
 
 		// show attachment
 		LinkControlofDocument.getdoconsearch().click();
+		sleep(10);
 		scrolldown(3);
 		
 		// * verticalScrollingDown(); verticalScrollingDown(); verticalScrollingDown();
 		 
-		Linkattached("Archived", "1/1/2018", 25);
+		//Linkattached("Archived", "1/1/2018", 25);
 		sleep(8);
-		Linkattached("Both", "2/28/2018", 25);
+	   //   Linkattached("Both", "2/28/2018", 25);
 		sleep(5);
 		verticalScrollingDown();
 		attachment.getremove().get(1).click();
@@ -162,28 +166,31 @@ public class LinkControlOfDocument_Test extends BaseClass {
 				"" + "18.Click on Yes." + "<br/>" + "<br/>" + "<b>ER9: The Linked document is deleted successfully. <b>"
 						+ test.addScreenCapture(captureScreenShot(driver, "delete_document")));
 		sleep(3);
+		
 		LinkControlofDocument.getadd_new_link().get(1).click();
 		sleep(8);
 		ref_documents = LinkControlofDocument.getselected_doc_from_link().get(2).getText();
 		sleep(3);
 		System.out.println("data is" + ref_documents);
 		sleep(5);
-		searchlinkonlinkwindow(Document_For_link, 2);
+		scrolldown(3);//remove
+		sleep(4);
+		searchlinkonlinkwindow(Document_For_link, 8);//Document_For_link
 		sleep(4);
 		test.log(LogStatus.PASS, "" + "19.Again click on add new links" + "<br/>"
 				+ "20.Link one document and note down the number of linked document(for eg: doc no. 001.406: 0.0)"
 				+ "<br/>" + test.addScreenCapture(captureScreenShot(driver, "delete_document")));
 		Search(Document_For_link);//Document_For_link
 		LinkControlofDocument.getdoconsearch().click();
-		sleep(3);
+		sleep(10);
 		/*LinkControlofDocument.getedit().click();
-		sleep(3); test*/
+		sleep(3); */
 		scrolldown(3);
 		
 		 //verticalScrollingDown(); verticalScrollingDown(); verticalScrollingDown();
 		 
 		sleep(6);
-		for (WebElement option : LinkControlofDocument.getsearchlinklist()) {
+	for (WebElement option : LinkControlofDocument.getsearchlinklist()) {
 			if (String.valueOf(option.getText()).equals(Document_name)) {
 
 				test.log(LogStatus.PASS, "" + "21.click on ok." + "<br/>" + "22.Go to searches"
@@ -206,7 +213,7 @@ public class LinkControlOfDocument_Test extends BaseClass {
 		sleep(5);
 		// searchlinkonlinkwindow("1.0", 8);
 		LinkControlofDocument.getlinksearchonsearch().sendKeys(PackageObsoletePOM.documetNo);
-		LinkControlofDocument.getGoButton().get(2).click();
+		LinkControlofDocument.getGoButton().get(8).click();
 		sleep(3);
 		test.log(LogStatus.PASS,
 				"28.Link one effective document." + "<br/>"
@@ -216,8 +223,8 @@ public class LinkControlOfDocument_Test extends BaseClass {
 		sleep(3);
 		effective_doc = LinkControlofDocument.getselected_doc_from_link().get(1).getText();
 		sleep(5);
-		System.out.println(effective_doc);
-		searchlinkonlinkwindow(effective_doc, 2);
+		System.out.println("effective doc is"+effective_doc);
+		searchlinkonlinkwindow(effective_doc, 8);
 		sleep(5);
 		verticalScrollingUp();
 		Search(effective_doc);//effective_doc
@@ -227,6 +234,7 @@ public class LinkControlOfDocument_Test extends BaseClass {
 		Credoc = new CreateDocument_POM(driver);
 		sleep(5);
 		GenerateEffectiveFile("1.0");
+		sleep(4);
 		approved();
 		sleep(5);
 		LinkControlofDocument.getdashboardocumentslist().get(0).click();
@@ -273,8 +281,8 @@ public class LinkControlOfDocument_Test extends BaseClass {
 			LinkControlofDocument.getlinksearchonsearch().clear();
 			LinkControlofDocument.getlinksearchonsearch().sendKeys(searchlink);
 		}
+		sleep(3);
 		LinkControlofDocument.getGoButton().get(go).click();
-		LinkControlofDocument = new LinkControlOfDocument_POM(driver);
 		sleep(5);
 
 		// LinkControlofDocument.getdocument_checkbox().click();
@@ -382,8 +390,19 @@ public class LinkControlOfDocument_Test extends BaseClass {
 		LinkControlofDocument.getconfirm_button_checkin().click();
         sleep(2);
 		RecentlyViewdAndFavorites.datepicker().click();
-		sleep(2);
-		RecentlyViewdAndFavorites.gettodaysdate().click();
+		sleep(3);
+		String pickDate = DateTimeUtils.getYesterdayDate();
+		String[] preDate = pickDate.split("/");
+		String dd1 = preDate[1];
+		String dd = dd1;
+		if (dd1.contains("0")) {
+			dd = dd1.substring(1, 2);
+			if (dd.equals("0")) {
+				dd = dd1;
+			}
+		}
+		org.title21.utility.BaseClass.sleep(4);
+		driver.findElement(By.xpath("//td[text()='" + dd + "']")).click();
 		sleep(3);
 		documet_no_checkout1 = RecentlyViewdAndFavorites.getDocument_no_after_checkout().getText();
 
@@ -399,7 +418,7 @@ public class LinkControlOfDocument_Test extends BaseClass {
 		sleep(5);
 		LinkControlofDocument.getlocationdropdown().selectByVisibleText("All");
 		sleep(2);
-		documentRoutes.getnameinAddApprover().selectByVisibleText("sameer");
+		documentRoutes.getnameinAddApprover().selectByVisibleText("Title21User1");
 		documentRoutes.getSequenceinAddApprover().selectByVisibleText("2");
 		documentRoutes.getallottedDaysinAddApprover().selectByVisibleText("1 day");
 		documentRoutes.approverAdd_Button().click();
@@ -413,7 +432,7 @@ public class LinkControlOfDocument_Test extends BaseClass {
 		LinkControlofDocument.getconfirm_button_checkin().click();
 		sleep(5);
 		LinkControlofDocument.Close_Button_Checkin().click();
-		sleep(3);
+		sleep(4);
 		logout.logoutFunction();
 		sleep(4);
 	}
@@ -435,7 +454,7 @@ public class LinkControlOfDocument_Test extends BaseClass {
 
 	public void approved() throws Exception {
 		login = new LoginPage_POM(driver);
-		login.loginUser("sameer", "joshi12345");
+		login.loginUser("Title21User1", "test123456");
 		documentRoutes = new DocumentRoutes_POM(driver);
 		documentRoutes.wizard_Option().click();
 		documentRoutes.approval_Tab().click();
@@ -449,15 +468,15 @@ public class LinkControlOfDocument_Test extends BaseClass {
 		documentRoutes.documentApprove_Button().click();
 		sleep(2);
 		documentRoutes.pinTo_Approve().clear();
-		documentRoutes.pinTo_Approve().sendKeys("262829");
+		documentRoutes.pinTo_Approve().sendKeys("212223");
 		documentRoutes.checkInRouteSubmit_Button().click();
 		sleep(5);
 		logout.logoutFunction();
-		sleep(2);
-
+		sleep(5);
 		DBConnection.executeStoredProcedure(dbqueries.moveDocsOnReleaseDate);
-		sleep(2);
-		login.loginUser("aparnak", "aparna2450");
+		DBConnection.executeStoredProcedure(dbqueries.moveDocsOnReleaseDate);
+		sleep(7);
+		login.loginUser("Title21User2", "test123456");
 		sleep(2);
 
 	}
@@ -511,6 +530,6 @@ public class LinkControlOfDocument_Test extends BaseClass {
 	public void closeBrowserInstance() {
 
 		extent.endTest(test);
-		driver.quit();
+		//driver.quit();
 	}
 }

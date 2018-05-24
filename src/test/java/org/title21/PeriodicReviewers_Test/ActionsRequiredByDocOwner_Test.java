@@ -46,6 +46,7 @@ public class ActionsRequiredByDocOwner_Test extends BaseClass{
 	@BeforeClass(alwaysRun=true)
 	public void openURL() 
 	{
+		
 		getBrowser();
 		className = this.getClass().getName();
 		createDirectory(className);
@@ -58,12 +59,14 @@ public class ActionsRequiredByDocOwner_Test extends BaseClass{
 		login.loginUser(loginData[7][0], loginData[7][1]);
 		
 	}
-	@Test(testName = "ActionsRequiredByDocOwner", groups = "Periodic Review", priority = 0)
+	@Test(testName = "ActionsRequiredByDocOwner", groups = "PeriodicReviewer", priority = 0, alwaysRun=true)
 	public void ActionsRequiredByDocOwner_Prerequisites() throws Exception 
 	{
-		test = extent.startTest("ActionsRequiredByDocOwner_Test");	
+		test = extent.startTest("Actions Required By Document Owner Test");	
+		log.info("Actions Required By Document Owner Test");
 		test.log(LogStatus.PASS, "1.Login as Test user 1(Owner) " + "<br/>"	);
 		action.administratorDropDown().click();
+		sleep(2);
 		action.administrationLink().click();
 		sleep(2);
 		action.DocumentTypes().click();
@@ -71,12 +74,12 @@ public class ActionsRequiredByDocOwner_Test extends BaseClass{
 		action.getEventType().selectByVisibleText(eventType);
 		sleep(2);
 		
-		action.getEventLocation().selectByVisibleText(routeData[1][4]);
+		action.getEventLocation().selectByVisibleText("All");
 		sleep(2);
 		
-		action.getFilterResults().sendKeys(PeriodicReviewer[1][0]); 
+		action.approvalFilter_TextBox().sendKeys("ANT-FORM"); 
 		sleep(2);
-		action.getGoButton().click();
+		action.approvalFilterGo_Button().click();
 		sleep(2);
 		action.getANTFORMEditButton().click();
 		sleep(2);
@@ -93,11 +96,11 @@ public class ActionsRequiredByDocOwner_Test extends BaseClass{
 		sleep(2);
 		action.getEventType().selectByVisibleText(eventType);
 		sleep(2);
-		action.getEventLocation().selectByVisibleText(routeData[1][4]);
+		action.getEventLocation().selectByVisibleText("All");
 		sleep(2);
-		action.getFilterResults().sendKeys(PeriodicReviewer[2][0]);    
+		action.approvalFilter_TextBox().sendKeys("ANT-SOP");    
 		sleep(2);
-		action.getGoButton().click();
+		action.approvalFilterGo_Button().click();
 		sleep(2);
 		action.getANTSOPEditButton().click();
 		sleep(2);
@@ -111,20 +114,21 @@ public class ActionsRequiredByDocOwner_Test extends BaseClass{
 		sleep(3);
 		periodicReviews.getdocument().click();
 		sleep(3);
-		periodicReviews.getlocationDrodown().selectByVisibleText(routeData[1][4]);
+		periodicReviews.getlocationDrodown().selectByVisibleText("All");
 		sleep(2);
 		action.getSearch().clear();
 		sleep(1);
-	    action.getSearch().sendKeys(PeriodicReviewer[1][0]); 
+	    action.getSearch().sendKeys("ANT-FORM"); 
 		sleep(2);
 		
         action.getGoBtn().click();
-		sleep(2);
+		sleep(7);
 
 		documetNo = periodicReviews.document_No().getAttribute("value");
-		periodicReviews.getDocumentTitle().sendKeys(PeriodicReviewer[1][1]); 
 		sleep(2);
-		periodicReviews.getDocChangeSummary().sendKeys(PeriodicReviewer[1][1]); 
+		periodicReviews.getDocumentTitle().sendKeys("Actions required by doc Owner"); 
+		sleep(2);
+		periodicReviews.getDocChangeSummary().sendKeys("Actions required by doc Owner"); 
 		verticalScrollingDown();
 		periodicReviews.getConfirmButton().click();
 		sleep(5);
@@ -155,14 +159,14 @@ public class ActionsRequiredByDocOwner_Test extends BaseClass{
 			sleep(5);
 			if(periodicReviews.addNewApprover_Header().isDisplayed())
 			{
-				periodicReviews.getApproverRole().selectByVisibleText(routeData[1][3]);
+				periodicReviews.getApproverRole().selectByVisibleText("Approver");
 				sleep(2);
-				periodicReviews.getLocationDropdown().selectByVisibleText(routeData[1][4]); 
+				periodicReviews.getLocationDropdown().selectByVisibleText("All"); 
 				sleep(2);
-				periodicReviews.getnameinAddApprover().selectByVisibleText(routeData[1][5]);
+				periodicReviews.getnameinAddApprover().selectByVisibleText("sameer");
 				sleep(2);
 				periodicReviews.getSequenceinAddApprover().selectByVisibleText("1");
-				periodicReviews.getallottedDaysinAddApprover().selectByVisibleText(routeData[1][7]);
+				periodicReviews.getallottedDaysinAddApprover().selectByVisibleText("1 day");
 				sleep(3);
 				periodicReviews.approverAdd_Button().click();
 				sleep(5);
@@ -193,7 +197,7 @@ public class ActionsRequiredByDocOwner_Test extends BaseClass{
 			periodicReviews.editPeriodicReviewers_Link().click();
 			sleep(5);
 			
-			periodicReviews.getlocationDrodown().selectByVisibleText(routeData[1][4]);
+			periodicReviews.getlocationDrodown().selectByVisibleText("All");
 			sleep(2);
 		
 			sleep(2);
@@ -223,7 +227,7 @@ public class ActionsRequiredByDocOwner_Test extends BaseClass{
 			test.log(LogStatus.PASS, "7.CheckIn the document and rout in for approval.");
 			sleep(2);
 			periodicReviews.checkInRouteSubmit_Button().click();
-			sleep(2);
+			sleep(4);
 			periodicReviews.close_Button().click();
 			sleep(2);
 		}
@@ -260,21 +264,12 @@ public class ActionsRequiredByDocOwner_Test extends BaseClass{
 			sleep(2);
 			periodicReviews.wizardReview_Tab().click();
 			sleep(2);
+			periodicReviews.approvalFilter_TextBox().sendKeys(documetNo);
+			sleep(2);
+			periodicReviews.approvalFilterGo_Button().click();
+			sleep(2);
 			
-			for(int i=1; i<=20; i++)
-			{
-				verifyDocForReview(documetNo);
-				 if(!isValueFound)
-				 {
-					 periodicReviews.documentTableNext_Button().click();
-					sleep(2); 
-				}
-				else
-				{
-					break;
-				}
-			}
-			if(isValueFound)
+			if(verifyDocForReview(documetNo))
 			{
 				test.log(LogStatus.PASS, "<b>ER 1- Periodic review of the document is available in Test User 2's wizard</b>"+
 						test.addScreenCapture(captureScreenShot(driver, "review wizard")));
@@ -293,8 +288,8 @@ public class ActionsRequiredByDocOwner_Test extends BaseClass{
 			action.getchangeBTN().click();
 			sleep(2);
 			//452
-			action.pinTo_Approve().sendKeys(routeData[1][12]);
-			action.approveComment_TextBox().sendKeys(PeriodicReviewer[1][4]); 
+			action.pinTo_Approve().sendKeys("262829");
+			action.approveComment_TextBox().sendKeys("Changes Required"); 
 			action.approveConfirm_Button().click();
 			sleep(2);
 			
@@ -333,21 +328,12 @@ public class ActionsRequiredByDocOwner_Test extends BaseClass{
 			 sleep(2);
 			 action.getreviewTab().click();
 			 sleep(2);
-			
-			for(int i=1; i<=20; i++)
-			{
-				verifyDocForReview(documetNo);
-				 if(!isValueFound)
-				 {
-					 periodicReviews.documentTableNext_Button().click();
-					sleep(2); 
-				}
-				else
-				{
-					break;
-				}
-			}
-			if(isValueFound)
+			 periodicReviews.approvalFilter_TextBox().sendKeys(documetNo);
+			 sleep(2);
+			 periodicReviews.approvalFilterGo_Button().click();
+			 sleep(2);
+			 
+			if(verifyDocForReview(documetNo))
 			{
 				test.log(LogStatus.PASS, "<b>ER 3- The periodic review for the next due date is available in Test user 1's review window as owner review is not required. </b>"+
 						test.addScreenCapture(captureScreenShot(driver, "review wizard")));
@@ -363,20 +349,22 @@ public class ActionsRequiredByDocOwner_Test extends BaseClass{
 			sleep(3);
 			periodicReviews.getdocument().click();
 			sleep(3);
-			periodicReviews.getlocationDrodown().selectByVisibleText(routeData[1][4]);
+			periodicReviews.getlocationDrodown().selectByVisibleText("All");
 			sleep(2);
 			action.getSearch().clear();
 			sleep(1);
-		    action.getSearch().sendKeys(PeriodicReviewer[2][0]); 
+		    action.getSearch().sendKeys("ANT-SOP"); 
 			sleep(2);
 			
 	        action.getGoBtn().click();
-			sleep(2);
+			sleep(7);
 
 			documetNo = periodicReviews.document_No().getAttribute("value");
-			periodicReviews.getDocumentTitle().sendKeys(PeriodicReviewer[1][1]); 
 			sleep(2);
-			periodicReviews.getDocChangeSummary().sendKeys(PeriodicReviewer[1][1]); 
+			periodicReviews.getDocumentTitle().sendKeys("Actions required by doc Owner"); 
+			sleep(2);
+			periodicReviews.getDocChangeSummary().sendKeys("Actions required by doc Owner"); 
+			sleep(2);
 			verticalScrollingDown();
 			periodicReviews.getConfirmButton().click();
 			sleep(5);
@@ -407,14 +395,14 @@ public class ActionsRequiredByDocOwner_Test extends BaseClass{
 				sleep(5);
 				if(periodicReviews.addNewApprover_Header().isDisplayed())
 				{
-					periodicReviews.getApproverRole().selectByVisibleText(routeData[1][3]);
+					periodicReviews.getApproverRole().selectByVisibleText("Approver");
 					sleep(2);
-					periodicReviews.getLocationDropdown().selectByVisibleText(routeData[1][4]); 
+					periodicReviews.getLocationDropdown().selectByVisibleText("All"); 
 					sleep(2);
-					periodicReviews.getnameinAddApprover().selectByVisibleText(routeData[1][5]);
+					periodicReviews.getnameinAddApprover().selectByVisibleText("sameer");
 					sleep(2);
 					periodicReviews.getSequenceinAddApprover().selectByVisibleText("1");
-					periodicReviews.getallottedDaysinAddApprover().selectByVisibleText(routeData[1][7]);
+					periodicReviews.getallottedDaysinAddApprover().selectByVisibleText("1 day");
 					sleep(3);
 					periodicReviews.approverAdd_Button().click();
 					sleep(5);
@@ -436,7 +424,7 @@ public class ActionsRequiredByDocOwner_Test extends BaseClass{
 				test.log(LogStatus.PASS, "20.Enter days per review (for eg: 7) and pick a date as current date.");
 				periodicReviews.periodicReviewsDays_TextBox().clear();
 				periodicReviews.periodicReviewsDays_TextBox().sendKeys("7"); 
-				sleep(2);
+				sleep(3);
 				periodicReviews.pickDate_TextBox().click();
 				action.pickCurrent_Date().click();
 				sleep(2);
@@ -445,7 +433,7 @@ public class ActionsRequiredByDocOwner_Test extends BaseClass{
 				periodicReviews.editPeriodicReviewers_Link().click();
 				sleep(5);
 				
-				periodicReviews.getlocationDrodown().selectByVisibleText(routeData[1][4]);
+				periodicReviews.getlocationDrodown().selectByVisibleText("All");
 				sleep(2);
 			
 				sleep(2);
@@ -513,21 +501,12 @@ public class ActionsRequiredByDocOwner_Test extends BaseClass{
 				sleep(2);
 				periodicReviews.wizardReview_Tab().click();
 				sleep(2);
+				periodicReviews.approvalFilter_TextBox().sendKeys(documetNo);
+				sleep(2);
+				periodicReviews.approvalFilterGo_Button().click();
+				sleep(2);
 				
-				for(int i=1; i<=20; i++)
-				{
-					verifyDocForReview(documetNo);
-					 if(!isValueFound)
-					 {
-						 periodicReviews.documentTableNext_Button().click();
-						sleep(2); 
-					}
-					else
-					{
-						break;
-					}
-				}
-				if(isValueFound)
+				if(verifyDocForReview(documetNo))
 				{
 					test.log(LogStatus.PASS, "<b>ER 4- Periodic review of the document is available in Test User 2's wizard</b>"+
 							test.addScreenCapture(captureScreenShot(driver, "review wizard")));
@@ -544,9 +523,10 @@ public class ActionsRequiredByDocOwner_Test extends BaseClass{
 				test.log(LogStatus.PASS, "28.Open the periodic review wizard again and hit refresh.");
 				selectDocForReviewFromTable(documetNo);
 				action.getdontchangeBTN().click();
+				//action.getchangeBTN().click();
 				sleep(2);
-				action.pinTo_Approve().sendKeys(routeData[1][12]);
-				action.approveComment_TextBox().sendKeys(PeriodicReviewer[1][4]); 
+				action.pinTo_Approve().sendKeys("262829");
+				action.approveComment_TextBox().sendKeys("Changes Required"); 
 				action.approveConfirm_Button().click();
 				sleep(2);
 				
@@ -562,6 +542,7 @@ public class ActionsRequiredByDocOwner_Test extends BaseClass{
 						dd2 = dd12;
 					}
 				}
+				sleep(5);
 				verifyDueDateOfSelectedDoc(documetNo, dd2);
 				if(isValueFound)
 				{
@@ -585,21 +566,12 @@ public class ActionsRequiredByDocOwner_Test extends BaseClass{
 				 sleep(2);
 				 action.getreviewTab().click();
 				 sleep(2);
-				
-				for(int i=1; i<=20; i++)
-				{
-					verifyDocForReview(documetNo);
-					 if(!isValueFound)
-					 {
-						 periodicReviews.documentTableNext_Button().click();
-						sleep(2); 
-					}
-					else
-					{
-						break;
-					}
-				}
-				if(isValueFound)
+				 periodicReviews.approvalFilter_TextBox().sendKeys(documetNo);
+				 sleep(2);
+				 periodicReviews.approvalFilterGo_Button().click();
+				 sleep(2);
+				 
+				if(verifyDocForReview(documetNo))
 				{
 					test.log(LogStatus.PASS, "<b>ER 6- Periodic review for the next due date is available in the Test user 1's review window as owner review is not required. </b>"+
 							test.addScreenCapture(captureScreenShot(driver, "review wizard")));
@@ -674,7 +646,13 @@ public class ActionsRequiredByDocOwner_Test extends BaseClass{
 			sleep(2);
 			periodicReviews.approval_Tab().click();
 			sleep(2);
-			isRecordFound = false;
+			periodicReviews.approvalFilter_TextBox().sendKeys(docName);
+			sleep(2);
+			periodicReviews.approvalFilterGo_Button().click();
+			sleep(2);
+			selectDocForApprovel(docName);
+			
+			/*isRecordFound = false;
 			for(int i=1; i<=20; i++)
 			{
 				 selectDocForApprovel(docName);
@@ -688,14 +666,14 @@ public class ActionsRequiredByDocOwner_Test extends BaseClass{
 				 {
 					 break;
 				 }
-			}
+			}*/
 			sleep(2);
 			periodicReviews.documentTab_ForApprover().click();
 			sleep(2);
 			periodicReviews.documentApprove_Button().click();
 			sleep(2);
 			periodicReviews.pinTo_Approve().clear();
-			periodicReviews.pinTo_Approve().sendKeys(routeData[1][12]);
+			periodicReviews.pinTo_Approve().sendKeys("262829");
 			periodicReviews.checkInRouteSubmit_Button().click();
 			sleep(4);
 		}
@@ -705,7 +683,13 @@ public class ActionsRequiredByDocOwner_Test extends BaseClass{
 		    sleep(2);
 		    action.getreviewTab().click();
 		    sleep(2);
-		    isRecordFound = false;
+			periodicReviews.approvalFilter_TextBox().sendKeys(docName);
+			sleep(2);
+			periodicReviews.approvalFilterGo_Button().click();
+			sleep(2);
+			selectDocForReview(docName);
+		    
+		  /*  isRecordFound = false;
 		    for(int i=1; i<=20; i++)
 		    {
 		   	 selectDocForReview(docName);
@@ -719,7 +703,7 @@ public class ActionsRequiredByDocOwner_Test extends BaseClass{
 		      {
 		       break;
 		      }
-		    }
+		    }*/
 		    sleep(2);
 		    action.viewDocButtonForPeriodicReview().click();
 		    sleep(3);
@@ -730,10 +714,16 @@ public class ActionsRequiredByDocOwner_Test extends BaseClass{
 		    periodicReviews.wizard_Option().click();
 		    sleep(2);
 		    action.getreviewTab().click();
-		    sleep(2);
-		    for(int i=1; i<=20; i++)
+		    sleep(4);
+			periodicReviews.approvalFilter_TextBox().sendKeys(docName);
+			sleep(2);
+			periodicReviews.approvalFilterGo_Button().click();
+			sleep(2);
+			selectDocForReviewDueDate(docName, date);
+		    
+		 /*   for(int i=1; i<=50; i++)
 		    {
-		   	 selectDocForReviewDueDate(docName, date);
+		   	  selectDocForReviewDueDate(docName, date);
 		      if(!isValueFound)
 		      {
 		    	  // verticalScrollingDown();
@@ -744,7 +734,7 @@ public class ActionsRequiredByDocOwner_Test extends BaseClass{
 		      {
 		    	  break;
 		      }
-		    }
+		    }*/
 		    sleep(2);
 		  }
 		

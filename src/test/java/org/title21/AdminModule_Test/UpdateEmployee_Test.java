@@ -52,7 +52,7 @@ public class UpdateEmployee_Test extends BaseClass {
 
 	}
 
-	@Test(testName = "Update Employee ", groups = "AdminModule", priority = 0)
+	@Test(testName = "Update Employee ", groups = "AdminModule", priority = 0, alwaysRun=true)
 	public void Edit_Employee() throws Exception {
 
 		test = extent.startTest("Update  Employee");
@@ -64,15 +64,15 @@ public class UpdateEmployee_Test extends BaseClass {
 				+ test.addScreenCapture(captureScreenShot(driver, " Administration_Screenis_displayed.")));
 		emp = new UpdateEmployee_POM(driver);
 		AdminData adminData = new AdminData();
-		supervisor = employeeData[2][3];
-		EditDepartment = employeeData[2][5];
-		EditAddressField = employeeData[2][6];
-		EmployeeCity = employeeData[2][7];
-		EmployeeState = employeeData[2][8];
-		EmpStringloyeePostalCode = employeeData[2][9];
-		EmployeeCountry = employeeData[2][10];
-		EmployeePhone = employeeData[2][11];
-		employeeemail = employeeData[2][12];
+		supervisor = "Hetal M";
+		EditDepartment = "IT";
+		EditAddressField = "TX 75266-09023 Winchester Cross Lane";
+		EmployeeCity = "Dallas";
+		EmployeeState = "Texas";
+		EmpStringloyeePostalCode = "660675";
+		EmployeeCountry = "US";
+		EmployeePhone = "089-569-1234";
+		employeeemail = "martink@testmail.com";
 		System.out.print(adminData.getEmployeeName());
 		test.log(LogStatus.PASS, "3. Select Employee link"+"<br/>"
 				+"<b>ER2: Employee records are listed. <b>"+
@@ -137,36 +137,36 @@ public class UpdateEmployee_Test extends BaseClass {
 
 
 		log.info("Update Employee Data");
-		emp.getsupervisorDropdown().selectByVisibleText(employeeData[2][3]);
+		emp.getsupervisorDropdown().selectByVisibleText("Hetal M");
 
 		emp.getbusinessUnitDropdown().selectByIndex(1);
-		emp.getDepartmentDropdown().selectByVisibleText(employeeData[2][5]);		
+		emp.getDepartmentDropdown().selectByVisibleText("IT");		
 		emp.getAddressField().clear();
 
-		emp.getAddressField().sendKeys(employeeData[2][6]);
+		emp.getAddressField().sendKeys("TX 75266-09023 Winchester Cross Lane");
 		sleep(1);
 		emp.getEmployeeCity().clear();
 
-		emp.getEmployeeCity().sendKeys(employeeData[2][7]);
+		emp.getEmployeeCity().sendKeys("Dallas");
 		emp.getEmployeeState().clear();
 
-		emp.getEmployeeState().sendKeys(employeeData[2][8]);
+		emp.getEmployeeState().sendKeys("Texas");
 
 		emp.getEmployeePostalCode().clear();
 
-		emp.getEmployeePostalCode().sendKeys(employeeData[2][9]);
+		emp.getEmployeePostalCode().sendKeys("660675");
 
 		emp.getEmployeeCountry().clear();
 
-		emp.getEmployeeCountry().sendKeys(employeeData[2][10]);
+		emp.getEmployeeCountry().sendKeys("US");
 
 		emp.getEmployeePhone().clear();
 
-		emp.getEmployeePhone().sendKeys(employeeData[2][11]);
+		emp.getEmployeePhone().sendKeys("089-569-1234");
 
 		emp.getEmployeeemail().clear();
 
-		emp.getEmployeeemail().sendKeys(employeeData[2][12]);
+		emp.getEmployeeemail().sendKeys("martink@testmail.com");
 		// emp.getAddBtn().click();
 		// javaScriptClick(emp.getAddBtn());
 		sleep(2);

@@ -1,11 +1,10 @@
 package org.title21.Documents_Test;
 
 import java.io.File;
-
 import java.io.IOException;
+
 import org.apache.log4j.Logger;
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.title21.AdminModule_POM.LoginPage_POM;
@@ -32,7 +31,7 @@ public class CreateDocument_Test extends BaseClass {
 	String Appendix =doc+FunctionUtils.generateRandomNumber();
 	String fileUploadPath = "";
 	String fileUploadPath1 = "";
-	
+
 	String uploadFileName = "DocDocument.docx";
 	String uploadFileNameSize = "Sizeval.doc";
 	static Logger log = Logger.getLogger(CreateDocument_Test.class);
@@ -50,7 +49,7 @@ public class CreateDocument_Test extends BaseClass {
 		login.loginUser("Title21User1", "test123456");
 	}
 
-	@Test(testName = "Create  Document", groups = "DocumentModule", priority = 0)
+	@Test(testName = "Create  Document", groups = "DocumentModule", priority = 0, alwaysRun=true)
 	public void Create_doc() {
 		test = extent.startTest("Create  Document");
 		test.log(LogStatus.INFO, "Link to Test case document", "<a href='file://"+filePath+"'>TestCaseDocument</a>");
@@ -123,7 +122,7 @@ public class CreateDocument_Test extends BaseClass {
 					"9. Enter all  mandatory field " + "<br/>" + "<b> ER6: Document should save to Draft cabinet.<b>"
 							+ test.addScreenCapture(captureScreenShot(driver, "create_document")));
 
-			
+
 		}
 		sleep(3);
 		logout.logoutFunction();
@@ -136,15 +135,15 @@ public class CreateDocument_Test extends BaseClass {
 		sleep(5);
 		Credoc.getPlusButtonuploadfile().click();
 		sleep(5);
-        Credoc.fileupload(uploadFileNameSize);
+		Credoc.fileupload(uploadFileNameSize);
 		sleep(5);
-        test.log(LogStatus.PASS,
+		test.log(LogStatus.PASS,
 				"10. Turn edit mode to ON" + "<br/>" + "11.Click on add file plus button" + "<br/>"
 						+ "12. Add file with size more than 50 MB  and click on Add  button  " + "<br/>"
 						+ "<b> ER7: It should show validation message as \"File size must be less than 50 MB\".<b>"
 						+ test.addScreenCapture(captureScreenShot(driver, "File_Size")));
-    
-        sleep(3);
+
+		sleep(3);
 
 		Credoc.getCancel().click();
 		sleep(4);
@@ -237,22 +236,17 @@ public class CreateDocument_Test extends BaseClass {
 		sleep(3);
 		test.log(LogStatus.PASS, "<b>ER 15: Document edit mode enable.<b>"
 				+ test.addScreenCapture(captureScreenShot(driver, "document edit   mode")));
-
-	}
-
-	@AfterMethod
-	public void afterMethod() throws IOException
-	{
-		cleanDownloadDirectory();
-		sleep(2);
+		
 		logout.logoutFunction();
 		log.info("logout successfully.");
 		sleep(2);
 	}
-	
+
 	@AfterClass(alwaysRun=true)
-	public void closeBrowserInstance()
+	public void closeBrowserInstance() throws IOException
 	{	
+		cleanDownloadDirectory();
+		sleep(2);
 		extent.endTest(test);
 		driver.quit();
 	}

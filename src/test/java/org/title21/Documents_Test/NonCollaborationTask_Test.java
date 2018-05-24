@@ -44,10 +44,10 @@ public class NonCollaborationTask_Test extends BaseClass {
 
 	}
 
-	@Test(testName = " NonCollaborationTask", groups = "NonCollaborationTask", priority = 0)
+	@Test(testName = " NonCollaborationTask", groups = "NonCollaborationTask", priority = 0, alwaysRun=true)
 	public void Non_Collaboration_Test() {
 
-		test = extent.startTest(" NonCollaborationTask_Test");
+		test = extent.startTest("Non-Collaboration Task Test");
 		test.log(LogStatus.INFO, "Link to Test case document", "<a href='file://"+filePath+"'>TestCaseDocument</a>");
 		log.info("NonCollaborationTask");
 		addcollaborator("1");

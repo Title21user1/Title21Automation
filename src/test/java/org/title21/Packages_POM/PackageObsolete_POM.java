@@ -473,9 +473,9 @@ public class PackageObsolete_POM {
 		org.title21.utility.BaseClass.sleep(4);
 		BaseClass.waitTillElementVisible(periodicReviews.getdocument());
 		periodicReviews.getdocument().click();
-		org.title21.utility.BaseClass.sleep(10);
-        docType().get(1).click();
-		org.title21.utility.BaseClass.sleep(5);
+        org.title21.utility.BaseClass.sleep(9);
+        docType().get(3).click();
+		org.title21.utility.BaseClass.sleep(7);
 		if(scenario.equalsIgnoreCase("1"))
 		{
 		documetNo = periodicReviews.document_No().getAttribute("value");
@@ -545,9 +545,9 @@ public class PackageObsolete_POM {
 		documentRoutes.getSequenceinAddApprover().selectByVisibleText("1");
 		documentRoutes.getallottedDaysinAddApprover().selectByVisibleText("1 day");
 		documentRoutes.approverAdd_Button().click();
-		org.title21.utility.BaseClass.sleep(5);
+		org.title21.utility.BaseClass.sleep(8);
 		getcontextmenu().click();
-		org.title21.utility.BaseClass.sleep(5);
+		org.title21.utility.BaseClass.sleep(7);
 		BaseClass.verticalScrollingDown();
 		org.title21.utility.BaseClass.sleep(5);
 		documentRoutes.checkIn_Route().click();

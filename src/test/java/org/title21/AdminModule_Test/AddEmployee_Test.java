@@ -46,7 +46,7 @@ public class AddEmployee_Test extends BaseClass {
 		login.loginFunction();
 	}
 
-	@Test(testName = "Add Employee", groups = "AdminModule", priority = 0)
+	@Test(testName = "Add Employee", groups = "AdminModule", priority = 0, alwaysRun=true)
 	public void createEmployee() throws Exception 
 	{	
 		test = extent.startTest("Add Employee");
@@ -140,11 +140,11 @@ public class AddEmployee_Test extends BaseClass {
 
 		sleep(2);			
 
-		addEmployeePOM.getLocationDropdown().selectByValue(employeeData[1][0]);	
+		addEmployeePOM.getLocationDropdown().selectByValue("Antioch");	//Antioch  Dallas
 
 		test.log(LogStatus.PASS, "6. Select location from Location dropdown.");
 
-		employeeFullName=employeeData[1][1]+FunctionUtils.generateRandomNumber();
+		employeeFullName="Martink"+FunctionUtils.generateRandomNumber();
 
 		addEmployeePOM.getEmployeeFullName().sendKeys(employeeFullName);
 
@@ -153,9 +153,7 @@ public class AddEmployee_Test extends BaseClass {
 
 		test.log(LogStatus.PASS, "7. Enter the text data in full name field.");
 
-		employeeID=employeeData[1][2]+FunctionUtils.generateRandomNumber();
-
-		//addEmployeePOM.getEmployeeID().sendKeys(employeeData[1][2]+FunctionUtils.generateRandomNumber());
+		employeeID="1267"+FunctionUtils.generateRandomNumber();
 
 		addEmployeePOM.getEmployeeID().sendKeys(employeeID);
 
@@ -164,7 +162,7 @@ public class AddEmployee_Test extends BaseClass {
 
 		test.log(LogStatus.PASS, "8. Enter the data in the Employee ID field.");
 
-		addEmployeePOM.getsupervisorDropdown().selectByVisibleText(employeeData[1][3]);
+		addEmployeePOM.getsupervisorDropdown().selectByVisibleText("Administrator");
 
 		test.log(LogStatus.PASS, "9. Click on supervisor dropdown field.");
 
@@ -174,24 +172,24 @@ public class AddEmployee_Test extends BaseClass {
 
 		test.log(LogStatus.PASS, "11. Select department from Department dropdown.");
 
-		addEmployeePOM.getDepartmentDropdown().selectByVisibleText(employeeData[1][5]);	
+		addEmployeePOM.getDepartmentDropdown().selectByVisibleText("IT");	
 
 		test.log(LogStatus.PASS, "<b>ER5: User should be able to add data for all mandatory fields.<b>"+
 				test.addScreenCapture(captureScreenShot(driver, "EnterMandatoryFields")));			
 
-		addEmployeePOM.getAddressField().sendKeys(employeeData[1][6]);
+		addEmployeePOM.getAddressField().sendKeys("TX 75266-09023 Winchester Cross Lane");
 
-		addEmployeePOM.getEmployeeCity().sendKeys(employeeData[1][7]);
+		addEmployeePOM.getEmployeeCity().sendKeys("Dallas");
 
-		addEmployeePOM.getEmployeeState().sendKeys(employeeData[1][8]);
+		addEmployeePOM.getEmployeeState().sendKeys("Texas");
 
-		addEmployeePOM.getEmployeePostalCode().sendKeys(employeeData[1][9]);
+		addEmployeePOM.getEmployeePostalCode().sendKeys("660675");
 
-		addEmployeePOM.getEmployeeCountry().sendKeys(employeeData[1][10]);
+		addEmployeePOM.getEmployeeCountry().sendKeys("US");
 
-		addEmployeePOM.getEmployeePhone().sendKeys(employeeData[1][11]);
+		addEmployeePOM.getEmployeePhone().sendKeys("089-569-1234");
 
-		addEmployeePOM.getEmployeeemail().sendKeys(employeeData[1][12]);
+		addEmployeePOM.getEmployeeemail().sendKeys("martink@testmail.com");
 
 		test.log(LogStatus.PASS, "12. Enter the data in other non-mandatory fields, (Address, City, State, Postal Code, Country, Phone, Email etc.).");
 
@@ -332,7 +330,6 @@ public class AddEmployee_Test extends BaseClass {
 
 	private void searchRecordInTable() {
 
-		// TODO Auto-generated method stub
 		searchTable=new Table(driver);
 		List<WebElement> tableCells=searchTable.gettableCells(1);				
 

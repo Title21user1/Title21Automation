@@ -8,7 +8,6 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.title21.AdminModule_POM.LoginPage_POM;
 import org.title21.AdminModule_POM.LogoutPage_POM;
-import org.title21.Documents_POM.CreateDocument_POM;
 import org.title21.Documents_POM.DocumentCollaboration_POM;
 import org.title21.Packages_POM.AttachmentControlInPackage_POM;
 import org.title21.utility.BaseClass;
@@ -23,7 +22,7 @@ public class AttachmentControlInPackage_Test extends BaseClass {
 	public String className = "";
 	AttachmentControlInPackage_POM attachmentpackage;
 	DocumentCollaboration_POM Documentcoll_POM;
-	static Logger log = Logger.getLogger(CreateDocument_POM.class);
+	static Logger log = Logger.getLogger(AttachmentControlInPackage_Test.class);
 	@BeforeClass
 	public void openURL() {
 
@@ -34,17 +33,18 @@ public class AttachmentControlInPackage_Test extends BaseClass {
 		login = new LoginPage_POM(driver);
 		Documentcoll_POM = new DocumentCollaboration_POM(driver);
 		attachmentpackage = new AttachmentControlInPackage_POM(driver);
-		//
+
 		login.loginUser("Title21User1", "test123456");
+
 	}
 
-	@Test(testName = " AttachemntContrilInPackage", groups = "AttachemntContrilInPackage", priority = 0)
+	@Test(testName = " AttachmentControlInPackage", groups = "PackageScreens", priority = 0, alwaysRun=true)
 	public void AttachemntContrilInPackage() throws Exception {
 
-		test = extent.startTest(" DocumentCollaboration_Test");
+		test = extent.startTest("Attachment Control In Package");
 		test.log(LogStatus.INFO, "Link to Test case document",
 				"<a href='file://" + filePath + "'>TestCaseDocument</a>");
-		log.info("AttachemntContrilInPackage");
+		log.info("Attachment Control In Package");
 		attachmentpackage.Create_Package();
 		sleep(4);
 		String package_name = attachmentpackage.getpackagecreatedname().get(0).getText();
@@ -59,7 +59,7 @@ public class AttachmentControlInPackage_Test extends BaseClass {
 				"1 Create a new package." + "<br/>" + "2.Navigate to Attachment/Task tab" + "<br/>"
 						+ "3.Click on Add New link." + "<br/>" + "<b>ER 1 : Add a file/document dialog appears. <b>"
 						+ test.addScreenCapture(captureScreenShot(driver, "addnewlink")));
-		attachmentpackage.fileupload("upload.PNG");//
+		attachmentpackage.fileupload("upload.PNG");
 		sleep(7);
 		test.log(LogStatus.PASS, "4.	Click on Choose File button.." + "<br/>"
 				+ "5.	Try to attach a file type which is not a MS Word document or an executable (e.g. Jpeg, PNG, TXT etc.)."

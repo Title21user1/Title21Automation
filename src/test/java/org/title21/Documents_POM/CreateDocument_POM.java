@@ -45,7 +45,7 @@ public class CreateDocument_POM
 	@FindBy(css="#CabinetSection")
 	WebElement Section;
 
-	@FindBy(css=".form-control.t21-placeholder")
+	@FindBy(xpath="//div[@class='input-group']//input[@class='form-control t21-placeholder']")
 	WebElement search;
 
 	@FindBy(css=".t21-ajax-submit-button.form-control.form-inline.btn.t21-btn-default")
@@ -57,9 +57,12 @@ public class CreateDocument_POM
 	@FindBy(css="#DocCheckOutTo")
 	WebElement AutoCheck;
 
-	@FindBy(css="#DocumentTitle")
+	/*@FindBy(css="#DocumentTitle")
 	WebElement DocumentTitle;
-
+*/
+	@FindBy(xpath="//*[@id='DocumentTitle']")
+	WebElement DocumentTitle;
+	
 	@FindBy(xpath="//span[contains(@class,'field-validation-error') and contains(@data-valmsg-for,'DocumentTitle')]")
 	WebElement DocumentTitlemsg;
 

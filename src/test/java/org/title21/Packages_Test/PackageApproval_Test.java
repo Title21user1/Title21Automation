@@ -49,11 +49,11 @@ public class PackageApproval_Test extends BaseClass{
 		login.loginUser(loginData[7][0], loginData[7][1]);
 	}
 
-	@Test(testName = "PackageApproval", groups = "Packages", priority = 0)
+	@Test(testName = "PackageApproval", groups = "PackageScreens", priority = 0, alwaysRun=true)
 	public void DocumentRoutes() throws Exception
 	{		
 		test = extent.startTest("Package Approval");
-		log.info("Codes");
+		log.info("Package Approval");
 		test.log(LogStatus.PASS, "1.Login to the web interface.");
 		test.log(LogStatus.INFO, "Link to Test case document", "<a href='file://"+filePath+"'>TestCaseDocument</a>");
 		packageApproval=new PackageApproval_POM(driver);	
@@ -214,22 +214,22 @@ public class PackageApproval_Test extends BaseClass{
 		sleep(4);
 		test.log(LogStatus.PASS, "18.Select Role (for eg: Approver)");
 		test.log(LogStatus.PASS, "Note: Only role: Approver for individual approver should be chosen here");
-		packageApproval.getApproverRole().selectByVisibleText(routeData[1][3]);
+		packageApproval.getApproverRole().selectByVisibleText("Approver");
 		
 		test.log(LogStatus.PASS, "19.Select location, approver name.");
-		packageApproval.getLocationDropdown().selectByVisibleText(routeData[1][4]); 
+		packageApproval.getLocationDropdown().selectByVisibleText("All"); 
 		sleep(2);
 		
 		test.log(LogStatus.PASS, "20.Select sequence as 1 and select allotted days from the dropdown.");
-		packageApproval.getnameinAddApprover().selectByVisibleText(routeData[1][5]);
+		packageApproval.getnameinAddApprover().selectByVisibleText("sameer");
 		packageApproval.getSequenceinAddApprover().selectByVisibleText("1");
-		packageApproval.getallottedDaysinAddApprover().selectByVisibleText(routeData[1][7]);
+		packageApproval.getallottedDaysinAddApprover().selectByVisibleText("1 day");
 
 		test.log(LogStatus.PASS,"21.Click on add button.");
 		packageApproval.approverAdd_Button().click();
 		sleep(4);
 		
-		if(verifyDocNameInTable(routeData[1][5]))
+		if(verifyDocNameInTable("sameer"))
 		{
 			test.log(LogStatus.PASS, "<b>ER8- Individual approver is added<b>"+
 					test.addScreenCapture(captureScreenShot(driver, "Individual approver is added")));
@@ -243,15 +243,15 @@ public class PackageApproval_Test extends BaseClass{
 		test.log(LogStatus.PASS, "22.Click on the add approver link and add a Group approver (E.g. sp tester) as Sequence 1");
 		packageApproval.getAddApproverLink().click();
 		sleep(2);
-		packageApproval.getApproverRole().selectByVisibleText(routeData[1][8]);
-		packageApproval.getLocationDropdown().selectByVisibleText(routeData[1][4]);
+		packageApproval.getApproverRole().selectByVisibleText("Group Approvers");
+		packageApproval.getLocationDropdown().selectByVisibleText("All");
 		sleep(2);
-		packageApproval.getnameinAddApprover().selectByVisibleText(routeData[1][9]);
+		packageApproval.getnameinAddApprover().selectByVisibleText("Sp Tester");
 		packageApproval.getSequenceinAddApprover().selectByVisibleText("1"); 
-		packageApproval.getallottedDaysinAddApprover().selectByVisibleText(routeData[1][7]);
+		packageApproval.getallottedDaysinAddApprover().selectByVisibleText("1 day");
 		packageApproval.approverAdd_Button().click();
 		sleep(2);
-		if(verifyDocNameInTable(routeData[1][9]))
+		if(verifyDocNameInTable("Sp Tester"))
 		{
 			test.log(LogStatus.PASS, "<b>ER9- Group approver is added.<b>"+
 					test.addScreenCapture(captureScreenShot(driver, "Group approver is added")));
@@ -281,10 +281,10 @@ public class PackageApproval_Test extends BaseClass{
 		test.log(LogStatus.PASS, "24.Select the route (for e.g. 'routeneotest') and click on add button.(added as sequence 2) "
 				+ "Note: Ensure that individual approvers in the route do not belong to the group added previously. Remove them from the group if necessary.");
 		
-		packageApproval.routeName_DropDown().selectByVisibleText(routeData[1][11]);
+		packageApproval.routeName_DropDown().selectByVisibleText("routeneotest");
 		packageApproval.approverAdd_Button().click();
 		sleep(4);
-		if(verifyDocNameInTable(routeData[1][11]))
+		if(verifyDocNameInTable("routeneotest"))
 		{
 			test.log(LogStatus.PASS, "<b>ER11- Route is added.<b>"+
 					test.addScreenCapture(captureScreenShot(driver, "Route is added")));
@@ -376,7 +376,7 @@ public class PackageApproval_Test extends BaseClass{
 		packageApproval.approveLink().click();
 		sleep(4);
 		packageApproval.pinTo_Approve().clear();					
-		packageApproval.pinTo_Approve().sendKeys(routeData[1][12]);
+		packageApproval.pinTo_Approve().sendKeys("262829");
 		packageApproval.checkInRouteSubmit_Button().click();
 		sleep(2);
 		
@@ -397,7 +397,7 @@ public class PackageApproval_Test extends BaseClass{
 		packageApproval.approveLink().click();
 		sleep(4);
 		packageApproval.pinTo_Approve().clear();					
-		packageApproval.pinTo_Approve().sendKeys(routeData[1][12]);
+		packageApproval.pinTo_Approve().sendKeys("262829");
 		packageApproval.checkInRouteSubmit_Button().click();
 		sleep(2);
 		
@@ -429,7 +429,7 @@ public class PackageApproval_Test extends BaseClass{
 		packageApproval.docRejectLink().click();
 		sleep(4);
 		packageApproval.pinTo_Approve().clear();					
-		packageApproval.pinTo_Approve().sendKeys(routeData[1][12]);
+		packageApproval.pinTo_Approve().sendKeys("262829");
 		packageApproval.comments_TextBox().sendKeys("Rejected");
 		packageApproval.checkInRouteSubmit_Button().click();
 		sleep(2);
@@ -504,7 +504,7 @@ public class PackageApproval_Test extends BaseClass{
 		packageApproval.approveLink().click();
 		sleep(4);
 		packageApproval.pinTo_Approve().clear();					
-		packageApproval.pinTo_Approve().sendKeys(routeData[1][12]);
+		packageApproval.pinTo_Approve().sendKeys("262829");
 		packageApproval.checkInRouteSubmit_Button().click();
 		sleep(2);
 		
@@ -525,7 +525,7 @@ public class PackageApproval_Test extends BaseClass{
 		packageApproval.approveLink().click();
 		sleep(4);
 		packageApproval.pinTo_Approve().clear();					
-		packageApproval.pinTo_Approve().sendKeys(routeData[1][12]);
+		packageApproval.pinTo_Approve().sendKeys("262829");
 		packageApproval.checkInRouteSubmit_Button().click();
 		sleep(2);
 		
@@ -547,7 +547,7 @@ public class PackageApproval_Test extends BaseClass{
 		packageApproval.approveLink().click();
 		sleep(4);
 		packageApproval.pinTo_Approve().clear();					
-		packageApproval.pinTo_Approve().sendKeys(routeData[1][12]);
+		packageApproval.pinTo_Approve().sendKeys("262829");
 		packageApproval.checkInRouteSubmit_Button().click();
 		sleep(2);
 		verticalScrollingDown();

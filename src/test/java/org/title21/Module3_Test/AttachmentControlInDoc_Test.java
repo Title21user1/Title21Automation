@@ -14,7 +14,6 @@ import org.title21.AdminModule_POM.LogoutPage_POM;
 import org.title21.Documents_POM.CreateDocument_POM;
 import org.title21.Documents_POM.RecentlyViewdAndFavorites_POM;
 import org.title21.Module3_POM.AttachmentControlInDoc_POM;
-import org.title21.PeriodicReviewers_POM.PeriodicOwnedDocuments_POM;
 import org.title21.utility.BaseClass;
 import org.title21.utility.DownloadUtils;
 import org.title21.utility.FileUpload;
@@ -52,7 +51,7 @@ public class AttachmentControlInDoc_Test extends BaseClass {
 		login.loginUser("Title21User1", "test123456");
 	}
 
-	@Test(testName = "Attachment Control In Doc", groups = "Module3", priority = 0)
+	@Test(testName = "Attachment Control In Doc", groups = "Module3", priority = 0, alwaysRun=true)
 	public void AttachmentCotrol_Test() throws Exception {
 		
 		test = extent.startTest("Attachment control in document");
